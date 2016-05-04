@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardElevation="3dp"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardUseCompatPadding="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingLeft="10dp"
+            android:id="@+id/editHistoriaCarrera"
+            android:hint="Fecha"
+            android:background="@drawable/selector_fond_border"
+            android:textColor="#000"
+            android:textColorHint="#afafaf"
+            android:enabled="false"
+            android:layout_weight="0.20" />
+
+        <CheckBox
+            android:layout_width="103dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:text="Fecha"
+            android:paddingLeft="10dp"
+            android:background="#00FFFFFF"
+            android:button="@drawable/selector_radio_button"
+            android:id="@+id/chxFecha" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

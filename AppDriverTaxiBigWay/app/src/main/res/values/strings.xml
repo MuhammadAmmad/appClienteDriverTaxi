@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">BigWay Conductor</string>
+    <string name="action_settings">Settings</string>
+    <string name="usuario">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="SigIn">INICIAR</string>
+    <string name="Ajustes">Ajustes</string>
+    <string name="cerrar_sesion">Cerrar sesion</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="Ayuda">Necesita ayuda</string>
+    <string name="miUbicacion">Mi ubicacion</string>
+    <string name="accesoConductor">Acceso Conductor</string>
+    <string name="CANCEL">CANCELAR</string>
+    <string name="OK">OK</string>
+</resources>

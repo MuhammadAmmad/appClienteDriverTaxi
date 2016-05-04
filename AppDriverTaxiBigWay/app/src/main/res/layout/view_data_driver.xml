@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:id="@+id/scrollView">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginRigth"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imagDriver"
+                android:src="@mipmap/ic_imagen_driver"
+                android:layout_gravity="center_horizontal" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padinP"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#393939"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Nombre\t\t\t\t\t:"
+            android:textStyle="bold"
+            android:id="@+id/lblNombre"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/txtmaringTop"
+            android:layout_marginLeft="@dimen/txtMaringLeft"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Carlos"
+            android:id="@+id/txtName"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:text="Appelidos\t\t\t:"
+        android:textColor="#393939"
+        android:id="@+id/lblApellido"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/txtMaringLeft"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Lopez Acaro"
+        android:id="@+id/txtApellido"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#393939"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Celular\t\t\t\t\t:"
+        android:id="@+id/lblCelular"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:layout_marginLeft="@dimen/txtMaringLeft"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="965807545"
+        android:id="@+id/txtCelular"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#393939"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Telefono\t\t\t:"
+        android:id="@+id/lblTelefono"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:layout_marginLeft="@dimen/txtMaringLeft"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="074-224578"
+        android:id="@+id/txtPhone"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#393939"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email\t\t\t\t\t\t\t:"
+        android:id="@+id/lblEmail"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:layout_marginLeft="@dimen/txtMaringLeft"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="driver@taxibigway.com"
+        android:id="@+id/txtEmail"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#393939"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="DNI\t\t\t\t\t\t\t\t\t:"
+        android:id="@+id/lblDni"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:layout_marginLeft="@dimen/txtMaringLeft"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="45857458"
+        android:id="@+id/txtDNI"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#393939"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Licencia Expiracion:"
+        android:id="@+id/lblLicenciaExpiration"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/txtmaringTop"
+        android:layout_marginLeft="@dimen/txtMaringLeft"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="13/03/2021"
+        android:id="@+id/txtLicenciaExpiration"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorAccent">#607D8B</color>
+    <color name="hintColor">#aba9a9</color>
+
+    <color name="primary">#009688</color>
+    <color name="primary_dark">#00796B</color>
+    <color name="primary_light">#B2DFDB</color>
+    <color name="accent">#607D8B</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="btnFalse">#607D8B</color>
+    <color name="btnTrue">#8eabb9</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="progress">#5a03d06d</color>
+
+    <color name="btnButtonNotificacionFalse">#abb4b5b4</color>
+    <color name="btnButtonNotificacionTrue">#ab777877</color>
+
+    <color name="btnTraslucerFalse">#e0025002</color>
+    <color name="btnTraslucerTrue">#b3015601</color>
+    <color name="black">#000000</color>
+
+</resources>
