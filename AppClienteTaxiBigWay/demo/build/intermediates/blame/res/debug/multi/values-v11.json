@@ -1,0 +1,98 @@
+[
+    {
+        "outputFile": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 72,
+                    "endOffset": 123
+                },
+                "from": {
+                    "file": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\values-v11\\styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 79,
+                        "endOffset": 130
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 72,
+                    "endOffset": 123
+                },
+                "from": {
+                    "file": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\values-v11\\styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 79,
+                        "endOffset": 130
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 72,
+                    "endOffset": 123
+                },
+                "from": {
+                    "file": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\res\\values-v11\\styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 79,
+                        "endOffset": 130
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 72,
+                    "endOffset": 123
+                },
+                "from": {
+                    "file": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\res\\values-v11\\styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 79,
+                        "endOffset": 130
+                    }
+                }
+            }
+        ]
+    }
+]

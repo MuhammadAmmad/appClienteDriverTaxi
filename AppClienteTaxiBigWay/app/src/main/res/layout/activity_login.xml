@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7F6F3"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/appbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:src="@drawable/appbar_c"/>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="@dimen/padinLeft"
+                android:drawablePadding="@dimen/padinDrawable"
+                android:drawableLeft="@drawable/ic_account_circle_"
+                android:textColorHint="@color/hintColorText"
+                android:hint="@string/email"
+                android:background="@drawable/selector_border"
+                android:ems="10"
+                android:id="@+id/editEmail"
+                android:layout_gravity="center_horizontal" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="@dimen/padinLeft"
+                android:layout_marginTop="@dimen/marginLine"
+                android:drawablePadding="@dimen/padinDrawable"
+                android:drawableLeft="@drawable/ic_lock_open_black_"
+                android:inputType="numberPassword"
+                android:hint="@string/password"
+                android:background="@drawable/selector_border"
+                android:textColorHint="@color/hintColorText"
+                android:ems="10"
+                android:id="@+id/editPass"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/SigIn"
+                android:textColor="@color/white"
+                android:id="@+id/btnSigIn"
+                android:background="@drawable/selector_buton"
+                android:layout_gravity="center_horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ó"/>
+
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                        android:layout_height="1dp"
+                        android:background="#8e8e8e"
+                        />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:textColor="@color/white"
+                android:text="@string/sigUp"
+                android:id="@+id/btnSigUp"
+                android:background="@drawable/selector_buton"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nucleosis.www.appclientetaxibigway.Solicitar_Servicio_Cliente">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:gravity="right">
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:id="@+id/imageButtonCerrar"
+                android:background="@drawable/selector_button_cancel"
+                 />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/marginLeft">
+
+            <EditText
+                android:layout_width="160dp"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:id="@+id/editFechaServicio"
+                android:clickable="false"
+                android:background="@drawable/selector_border"
+                android:textColor="#000"
+                android:textColorHint="@color/textColorHint"
+                android:enabled="false" />
+
+            <CheckBox
+                android:layout_width="103dp"
+                android:layout_height="match_parent"
+                android:text="Fecha"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="5dp"
+                android:background="@color/radioButonsTransparente"
+                android:button="@drawable/selector_radio_button"
+                android:id="@+id/chxFecha" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/marginLeft">
+
+            <EditText
+                android:layout_width="160dp"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:id="@+id/editHoraServicio"
+                android:clickable="false"
+                android:background="@drawable/selector_border"
+                android:textColor="#000"
+                android:textColorHint="@color/textColorHint"
+                android:enabled="false" />
+
+            <CheckBox
+                android:layout_width="103dp"
+                android:layout_height="match_parent"
+                android:text="Hora"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="5dp"
+                android:background="@color/radioButonsTransparente"
+                android:button="@drawable/selector_radio_button"
+                android:id="@+id/chxHora" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblAddresIncio"
+            android:layout_marginTop="@dimen/marginLine"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Direccion de inicio"/>
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/marginLine"
+            android:visibility="gone"
+            android:id="@+id/spinerDistrito"
+            android:background="@drawable/selector_spinner"
+            android:layout_gravity="center_horizontal" />
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/marginLine"
+            android:visibility="gone"
+            android:id="@+id/spinerZona"
+            android:background="@drawable/selector_spinner"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/marginLine"
+            android:layout_marginLeft="@dimen/marginLine"
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/marginLine"
+            android:textColor="@color/hintColorText"
+            android:paddingLeft="@dimen/padinLeft"
+            android:background="@drawable/selector_border"
+            android:gravity="center"
+            android:hint="Direccion Incio"/>
+        <AutoCompleteTextView
+            android:id="@+id/autocomplete_AddresIncio"
+            android:layout_width="match_parent"
+            android:paddingLeft="@dimen/marginLine"
+            android:paddingRight="@dimen/marginLine"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/marginLine"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginRight="@dimen/marginLine"
+            android:textColor="@color/txtColor"
+            android:background="@drawable/selector_border"
+            android:layout_gravity="center_horizontal"
+            android:enabled="false"
+            android:hint="Direccion Incio"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblAddresFin"
+            android:layout_marginTop="@dimen/marginLine"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Direccion Destino"/>
+
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/marginLine"
+            android:visibility="gone"
+            android:id="@+id/spinerDistritoFin"
+            android:background="@drawable/selector_spinner"
+            android:layout_gravity="center_horizontal" />
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/marginLine"
+            android:id="@+id/spinerZonaFin"
+            android:background="@drawable/selector_spinner"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/marginLine"
+            android:layout_marginLeft="@dimen/marginLine"
+            android:layout_marginRight="@dimen/marginLine"
+            android:textColor="@color/hintColorText"
+            android:paddingLeft="@dimen/padinLeft"
+            android:background="@drawable/selector_border"
+            android:gravity="center"
+            android:hint="Direccion Destino"/>
+        <AutoCompleteTextView
+            android:id="@+id/autocomplete_placesFinal"
+            android:layout_width="match_parent"
+            android:textColor="@color/txtColor"
+            android:paddingLeft="@dimen/marginLine"
+            android:paddingRight="@dimen/marginLine"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/marginLine"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginRight="@dimen/marginLine"
+            android:background="@drawable/selector_border"
+            android:layout_gravity="center_horizontal"
+            android:enabled="false"
+            android:hint="Direccion Final"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/lblTarifaServicio"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/marginLine"
+            android:text="Tarifa para el servicio"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTarifa"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/marginLine"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="S/. 50.00"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnConfirmarServicio"
+            android:layout_marginBottom="@dimen/marginLine"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginRight="@dimen/marginRigth"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector_buton"
+            android:text="Confirmar Servicio"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,3727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>mapaBigWay</name>
+	<open>1</open>
+	<Style id="poly-F4B400-1-128-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff00b4f4</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000b4f4</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-4186F0-1-87-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>fff08641</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>57f08641</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-97-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>6144af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-FAD199-1-201-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff99d1fa</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>c999d1fa</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-117-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>753644db</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-0BA9CC-1-128-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-0BA9CC-1-128-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-0BA9CC-1-128-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-000000-1-77-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff000000</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>4d000000</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-B29189-1-156-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff8991b2</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>9c8991b2</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-0BA9CC-1-79-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-0BA9CC-1-79-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-0BA9CC-1-79-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-A61B4A-1-77-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>4d4a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-93D7E8-1-163-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffe8d793</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>a3e8d793</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F4B400-1-156-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff00b4f4</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>9c00b4f4</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-130-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>82a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-000000-1-77-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff000000</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4d000000</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-92-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>5c579d00</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-CDDC39-1-117-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-CDDC39-1-117-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-CDDC39-1-117-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-009D57-1-201-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>c9579d00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-125-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>7d579d00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-82-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>52a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-4186F0-1-145-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-4186F0-1-145-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-4186F0-1-145-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-3F5BA9-1-168-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>a8a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F8971B-1-107-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F8971B-1-107-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F8971B-1-107-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-009D57-1-94-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>5e579d00</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-DB4436-1-168-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-DB4436-1-168-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-DB4436-1-168-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-0BA9CC-1-94-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>5ecca90b</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-102-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>664a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-62AF44-1-128-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-128-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-128-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-0BA9CC-1-158-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-0BA9CC-1-158-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-0BA9CC-1-158-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-CDDC39-1-130-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8239dccd</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-795046-1-148-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-795046-1-148-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-795046-1-148-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-117-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>751b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-64-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>403644db</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-120-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>78a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-135-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8744af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-0BA9CC-1-156-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>9ccca90b</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F8971B-1-163-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>a31b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-173-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>ad39dccd</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-009D57-1-117-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-009D57-1-117-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-009D57-1-117-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-A61B4A-1-117-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>754a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-795046-1-158-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff465079</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>9e465079</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-0BA9CC-1-158-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>9ecca90b</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-000000-1-77-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-000000-1-77-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-000000-1-77-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-DB4436-1-99-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>633644db</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F8971B-1-84-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F8971B-1-84-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F8971B-1-84-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-D698AD-2-171-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-D698AD-2-171-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-D698AD-2-171-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-A61B4A-1-92-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-A61B4A-1-92-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-A61B4A-1-92-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-3F5BA9-1-161-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>a1a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-3F5BA9-1-92-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-3F5BA9-1-92-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-3F5BA9-1-92-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-A61B4A-1-145-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-A61B4A-1-145-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-A61B4A-1-145-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-138-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8a44af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F4B400-1-128-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F4B400-1-128-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F4B400-1-128-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-7C3592-1-166-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff92357c</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>a692357c</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-120-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>783644db</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-FAD199-1-201-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff99d1fa</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>c999d1fa</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-117-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>753644db</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-B29189-1-156-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff8991b2</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>9c8991b2</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-77-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4d4a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-93D7E8-1-163-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-93D7E8-1-163-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-93D7E8-1-163-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F4B400-1-156-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff00b4f4</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>9c00b4f4</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-128-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>80579d00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-201-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>c9579d00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-130-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>82a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-117-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>75579d00</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-3F5BA9-1-82-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-3F5BA9-1-82-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-3F5BA9-1-82-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-3F5BA9-1-168-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-3F5BA9-1-168-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-3F5BA9-1-168-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-009D57-1-94-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>5e579d00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-120-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>783644db</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-C6A4CF-0-176-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcfa4c6</color>
+			<width>0</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>b0cfa4c6</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-0BA9CC-1-94-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-0BA9CC-1-94-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-0BA9CC-1-94-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-A61B4A-1-102-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>664a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-79-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>4f4a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-168-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>a8a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F4B400-1-176-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff00b4f4</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b000b4f4</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F8971B-1-117-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F8971B-1-117-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F8971B-1-117-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-CDDC39-1-130-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-CDDC39-1-130-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-CDDC39-1-130-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-3F5BA9-1-196-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>c4a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-112-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>7044af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-DB4436-1-64-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-DB4436-1-64-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-DB4436-1-64-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-99-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>6344af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-3F5BA9-1-161-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-3F5BA9-1-161-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-3F5BA9-1-161-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-62AF44-1-135-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-135-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-135-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-3F5BA9-1-130-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-3F5BA9-1-130-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-3F5BA9-1-130-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-163-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>a31b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-173-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ad39dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-117-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>754a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-795046-1-158-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-795046-1-158-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-795046-1-158-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-0BA9CC-1-158-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>9ecca90b</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-99-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>633644db</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-138-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8a44af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F8971B-1-196-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>c41b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-176-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b039dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-125-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>7d4a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-7C3592-1-166-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff92357c</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>a692357c</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-4186F0-1-145-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>fff08641</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>91f08641</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-4186F0-1-128-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>fff08641</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80f08641</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-EE9C96-1-179-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff969cee</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3969cee</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-DB4436-1-117-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-DB4436-1-117-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-DB4436-1-117-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-B29189-1-156-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-B29189-1-156-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-B29189-1-156-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-A61B4A-1-77-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-A61B4A-1-77-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-A61B4A-1-77-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-143-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8f44af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F4B400-1-156-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F4B400-1-156-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F4B400-1-156-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-7C3592-1-84-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff92357c</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>5492357c</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-128-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80579d00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-92-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>5ca95b3f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-4186F0-1-145-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>fff08641</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>91f08641</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-009D57-1-125-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-009D57-1-125-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-009D57-1-125-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-C6A4CF-0-176-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcfa4c6</color>
+			<width>0</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>b0cfa4c6</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-A61B4A-1-102-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-A61B4A-1-102-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-A61B4A-1-102-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-A61B4A-1-79-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4f4a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-4186F0-1-128-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>fff08641</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>80f08641</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-62AF44-1-97-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-97-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-97-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-3F5BA9-1-82-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>52a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F4B400-1-176-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff00b4f4</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>b000b4f4</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-0BA9CC-1-161-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>a1cca90b</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-112-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>7044af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-107-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>6b39dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-92-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>5c4a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-99-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>6344af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-009D57-1-201-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-009D57-1-201-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-009D57-1-201-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-105-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>691b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-4186F0-1-87-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>fff08641</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>57f08641</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-125-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>7d3644db</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F8971B-1-163-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F8971B-1-163-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F8971B-1-163-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-CDDC39-1-173-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-CDDC39-1-173-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-CDDC39-1-173-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-A61B4A-1-117-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-A61B4A-1-117-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-A61B4A-1-117-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-120-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>7844af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-120-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>78a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-DB4436-1-99-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-DB4436-1-99-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-DB4436-1-99-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-795046-1-145-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff465079</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>91465079</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-62AF44-1-138-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-138-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-138-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-196-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>c41b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-176-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>b039dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-117-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>75579d00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-125-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>7d4a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-7C3592-1-166-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-7C3592-1-166-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-7C3592-1-166-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-EE9C96-1-179-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff969cee</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>b3969cee</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-009D57-1-92-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-009D57-1-92-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-009D57-1-92-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-143-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8f44af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F8971B-1-54-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>361b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-77-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>4d39dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-7C3592-1-84-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff92357c</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>5492357c</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-133-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>854a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F4B400-1-117-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff00b4f4</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>7500b4f4</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-196-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>c4a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-C6A4CF-0-176-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-C6A4CF-0-176-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-C6A4CF-0-176-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-A61B4A-1-79-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-A61B4A-1-79-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-A61B4A-1-79-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-0BA9CC-1-156-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-0BA9CC-1-156-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-0BA9CC-1-156-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-145-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>9144af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F4B400-1-176-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F4B400-1-176-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F4B400-1-176-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-DB4436-1-120-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-DB4436-1-120-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-DB4436-1-120-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-7C3592-1-97-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff92357c</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>6192357c</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-0BA9CC-1-161-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>a1cca90b</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-62AF44-1-112-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-112-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-112-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-3F5BA9-1-196-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-3F5BA9-1-196-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-3F5BA9-1-196-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-009D57-1-94-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-009D57-1-94-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-009D57-1-94-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-4186F0-1-194-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>fff08641</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>c2f08641</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-107-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>6b39dccd</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-FAD199-1-201-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-FAD199-1-201-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-FAD199-1-201-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-62AF44-1-99-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-99-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-99-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-105-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>691b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-125-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>7d3644db</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-4186F0-1-87-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-4186F0-1-87-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-4186F0-1-87-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-0BA9CC-1-79-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>4fcca90b</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-92-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>5ca95b3f</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-120-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>7844af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-3F5BA9-1-120-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-3F5BA9-1-120-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-3F5BA9-1-120-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-CDDC39-1-117-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>7539dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-795046-1-145-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff465079</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>91465079</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F8971B-1-107-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>6b1b97f8</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F8971B-1-196-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F8971B-1-196-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F8971B-1-196-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-DB4436-1-168-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>a83644db</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-CDDC39-1-176-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-CDDC39-1-176-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-CDDC39-1-176-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-009D57-1-128-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-009D57-1-128-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-009D57-1-128-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-A61B4A-1-125-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-A61B4A-1-125-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-A61B4A-1-125-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-128-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8044af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-4186F0-1-128-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-4186F0-1-128-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-4186F0-1-128-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-EE9C96-1-179-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-EE9C96-1-179-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-EE9C96-1-179-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-795046-1-148-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff465079</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>94465079</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-62AF44-1-143-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-143-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-143-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-54-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>361b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-77-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4d39dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-0BA9CC-1-128-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>80cca90b</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-7C3592-1-84-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-7C3592-1-84-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-7C3592-1-84-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-A61B4A-1-133-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>854a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F4B400-1-117-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff00b4f4</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>7500b4f4</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-145-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>9144af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F8971B-1-84-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>541b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-D698AD-2-171-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffad98d6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>abad98d6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-7C3592-1-97-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff92357c</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>6192357c</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-0BA9CC-1-161-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-0BA9CC-1-161-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-0BA9CC-1-161-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-A61B4A-1-145-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>914a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-F4B400-1-128-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff00b4f4</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000b4f4</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-CDDC39-1-107-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-CDDC39-1-107-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-CDDC39-1-107-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-97-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>6144af62</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F8971B-1-105-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F8971B-1-105-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F8971B-1-105-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-DB4436-1-125-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-DB4436-1-125-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-DB4436-1-125-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-0BA9CC-1-79-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4fcca90b</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-93D7E8-1-163-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffe8d793</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>a3e8d793</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-62AF44-1-120-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-120-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-120-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-CDDC39-1-117-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>7539dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-92-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>5c579d00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-009D57-1-125-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff579d00</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>7d579d00</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-795046-1-145-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-795046-1-145-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-795046-1-145-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-107-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>6b1b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-168-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>a83644db</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-0BA9CC-1-94-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>5ecca90b</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-62AF44-1-128-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8044af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-4186F0-1-194-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>fff08641</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>c2f08641</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-CDDC39-1-130-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff39dccd</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8239dccd</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-795046-1-148-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff465079</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>94465079</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-4186F0-1-194-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-4186F0-1-194-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-4186F0-1-194-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-117-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>751b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-DB4436-1-64-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff3644db</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>403644db</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F8971B-1-54-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F8971B-1-54-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F8971B-1-54-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="poly-CDDC39-1-77-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-CDDC39-1-77-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-CDDC39-1-77-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-0BA9CC-1-128-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80cca90b</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-A61B4A-1-133-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-A61B4A-1-133-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-A61B4A-1-133-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-62AF44-1-135-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff44af62</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>8744af62</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-0BA9CC-1-156-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffcca90b</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>9ccca90b</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-F4B400-1-117-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-F4B400-1-117-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-F4B400-1-117-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-795046-1-158-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff465079</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>9e465079</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-62AF44-1-145-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-62AF44-1-145-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-62AF44-1-145-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-F8971B-1-84-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff1b97f8</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>541b97f8</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-D698AD-2-171-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffad98d6</color>
+			<width>3</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>abad98d6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-A61B4A-1-92-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>5c4a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-3F5BA9-1-161-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ffa95b3f</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>a1a95b3f</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="poly-7C3592-1-97-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-7C3592-1-97-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-7C3592-1-97-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-A61B4A-1-145-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff4a1ba6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>914a1ba6</color>
+		</PolyStyle>
+	</Style>
+	<Folder>
+		<name>BigWayTaxi</name>
+		<Placemark>
+			<name>Aeropuerto</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.1148288,-12.0045135,0 -77.1152901,-12.0047864,0 -77.1192009,-12.0065651,0 -77.1204293,-12.0040937,0 -77.1238518,-12.0057308,0 -77.10737229999999,-12.0418284,0 -77.09767340000001,-12.0398137,0 -77.09887500000001,-12.0367918,0 -77.1148288,-12.0045135,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO V</name>
+			<styleUrl>#poly-CDDC39-1-107-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.10632080000001,-12.02165,0 -77.09767340000001,-12.0394884,0 -77.08782429999999,-12.0173476,0 -77.0933604,-12.0123736,0 -77.094841,-12.0130242,0 -77.0955706,-12.0135489,0 -77.09767340000001,-12.0157946,0 -77.10145,-12.0194673,0 -77.1058273,-12.0215241,0 -77.10632080000001,-12.02165,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO I</name>
+			<styleUrl>#poly-F8971B-1-84-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0767307,-12.0465081,0 -77.0825779,-12.0469697,0 -77.0881784,-12.0474314,0 -77.0984137,-12.0483338,0 -77.09836009999999,-12.0497398,0 -77.09805969999999,-12.0537059,0 -77.0972443,-12.053559,0 -77.0920515,-12.0527196,0 -77.0765591,-12.0499076,0 -77.0767307,-12.0465081,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO II</name>
+			<styleUrl>#poly-4186F0-1-145-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0984137,-12.0483338,0 -77.09923980000001,-12.040097,0 -77.1040249,-12.0411358,0 -77.108531,-12.0419857,0 -77.1176291,-12.040076,0 -77.1272421,-12.0377466,0 -77.1259761,-12.0510933,0 -77.12419509999999,-12.0586687,0 -77.1208906,-12.0583959,0 -77.1115994,-12.0565283,0 -77.09805969999999,-12.0537059,0 -77.0984137,-12.0483338,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO III</name>
+			<styleUrl>#poly-0BA9CC-1-94-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.1242166,-12.0586897,0 -77.1267057,-12.0446299,0 -77.13855030000001,-12.0485751,0 -77.1405244,-12.0510933,0 -77.14601759999999,-12.0545348,0 -77.1561456,-12.0649429,0 -77.163248,-12.0679436,0 -77.16799020000001,-12.0713219,0 -77.1667028,-12.0733363,0 -77.1635271,-12.0746792,0 -77.1606731,-12.0738713,0 -77.15826989999999,-12.0697901,0 -77.1566713,-12.0682268,0 -77.15537310000001,-12.067377,0 -77.1448159,-12.0677127,0 -77.1325689,-12.0703697,0 -77.13297129999999,-12.06800650000001,0 -77.13440900000001,-12.0597179,0 -77.13213450000001,-12.0594241,0 -77.1242166,-12.0586897,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO IV</name>
+			<styleUrl>#poly-009D57-1-94-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.14166160000002,-12.0178303,0 -77.1561241,-12.0477986,0 -77.14599610000001,-12.0545138,0 -77.1405029,-12.0510723,0 -77.1385288,-12.0485541,0 -77.1266413,-12.0448607,0 -77.1272421,-12.0377466,0 -77.12676999999999,-12.037138,0 -77.1273279,-12.029583,0 -77.128787,-12.023329,0 -77.129302,-12.0230352,0 -77.14166160000002,-12.0178303,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO VI</name>
+			<styleUrl>#poly-DB4436-1-125-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.09333890000001,-12.0123736,0 -77.10271590000001,-11.9986682,0 -77.11280100000001,-11.997178,0 -77.1168244,-11.9958557,0 -77.1196461,-11.995247,0 -77.12200110000001,-11.999004,0 -77.11679220000001,-12.0012078,0 -77.1161807,-12.0022835,0 -77.1148288,-12.0045135,0 -77.110355,-12.0132339,0 -77.108295,-12.0175889,0 -77.10632080000001,-12.02165,0 -77.1014285,-12.0194673,0 -77.09782360000001,-12.0160464,0 -77.0951628,-12.0132341,0 -77.09333890000001,-12.0123736,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO VII</name>
+			<styleUrl>#poly-D698AD-2-171-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.12421120000001,-11.9981015,0 -77.1359539,-11.993232,0 -77.14166160000002,-12.0178303,0 -77.12882999999999,-12.0229512,0 -77.1273279,-12.029583,0 -77.1268129,-12.0376417,0 -77.1150541,-12.0405797,0 -77.108531,-12.0419857,0 -77.10737229999999,-12.0418284,0 -77.1238518,-12.0057308,0 -77.1204293,-12.0040937,0 -77.1192009,-12.0065651,0 -77.1148288,-12.0045135,0 -77.11679220000001,-12.0012078,0 -77.12421120000001,-11.9981015,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO IX</name>
+			<styleUrl>#poly-3F5BA9-1-82-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.09767340000001,-12.0398137,0 -77.09923980000001,-12.040097,0 -77.0984137,-12.0483338,0 -77.0796275,-12.0466445,0 -77.0803571,-12.0389218,0 -77.0826101,-12.0392366,0 -77.0829749,-12.0368023,0 -77.09767340000001,-12.0398137,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO X</name>
+			<styleUrl>#poly-DB4436-1-99-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.1045184,-12.0633481,0 -77.0881677,-12.0615855,0 -77.0874381,-12.0517857,0 -77.09805969999999,-12.0537059,0 -77.10580589999999,-12.0552272,0 -77.1045184,-12.0633481,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO XI</name>
+			<styleUrl>#poly-7C3592-1-97-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.13294980000001,-12.0679855,0 -77.10447550000001,-12.0632012,0 -77.10580589999999,-12.0552272,0 -77.1214914,-12.0585008,0 -77.1343875,-12.0596969,0 -77.13294980000001,-12.0679855,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CARABAYLLO I</name>
+			<styleUrl>#poly-CDDC39-1-117-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0305324,-11.8995616,0 -77.0267344,-11.8903019,0 -77.0236015,-11.8875722,0 -77.02325820000002,-11.8819029,0 -77.0202541,-11.880433,0 -77.0175076,-11.8778712,0 -77.01536179999999,-11.8735036,0 -77.0312405,-11.8628991,0 -77.0476341,-11.865293,0 -77.07767490000001,-11.8621851,0 -77.0741987,-11.865083,0 -77.0690489,-11.8725586,0 -77.04707620000001,-11.8848216,0 -77.0305324,-11.8995616,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CARABAYLLO II</name>
+			<styleUrl>#poly-795046-1-148-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.01536179999999,-11.8735036,0 -77.0060062,-11.8596232,0 -76.99660780000001,-11.8544572,0 -76.9961357,-11.8463511,0 -77.001071,-11.845595,0 -77.02544690000001,-11.845343,0 -77.0358324,-11.8533232,0 -77.0312405,-11.8628991,0 -77.01536179999999,-11.8735036,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CHORRILLOS I</name>
+			<styleUrl>#poly-0BA9CC-1-79-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9916511,-12.1724208,0 -77.00752970000001,-12.1603597,0 -77.01182129999999,-12.1579265,0 -77.0191813,-12.153857,0 -77.0193958,-12.1545073,0 -77.0269275,-12.1554512,0 -77.02935220000001,-12.1634012,0 -77.01122049999999,-12.1827823,0 -77.0074868,-12.1849637,0 -77.0001054,-12.1832857,0 -76.9916511,-12.1724208,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CHORRILLOS II</name>
+			<styleUrl>#poly-F8971B-1-107-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.00592039999999,-12.1900394,0 -77.0066071,-12.1847539,0 -77.01122049999999,-12.1827823,0 -77.0274639,-12.1657925,0 -77.02935220000001,-12.1634012,0 -77.0387077,-12.1680579,0 -77.0324421,-12.1766997,0 -77.0399094,-12.1821531,0 -77.04299930000001,-12.2061468,0 -77.0235157,-12.2135291,0 -77.00592039999999,-12.1900394,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CHORRILLOS III</name>
+			<styleUrl>#poly-009D57-1-117-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.97334770000001,-12.195157,0 -76.97712420000001,-12.194318,0 -76.9805574,-12.1874806,0 -76.9846344,-12.1811044,0 -76.9885826,-12.1742666,0 -76.9916511,-12.1724208,0 -76.9996548,-12.1829501,0 -77.0066071,-12.1850056,0 -77.00592039999999,-12.1900394,0 -76.9930458,-12.2040915,0 -76.97948460000001,-12.2175976,0 -76.9770384,-12.2172201,0 -76.97334770000001,-12.195157,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CHORRILLOS IV</name>
+			<styleUrl>#poly-DB4436-1-117-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.00592039999999,-12.1900394,0 -77.0235157,-12.2135291,0 -76.9881535,-12.2310611,0 -76.9846344,-12.2266992,0 -76.9785404,-12.2190656,0 -76.9771671,-12.2188978,0 -76.9770384,-12.2172201,0 -76.97948460000001,-12.2175976,0 -77.00592039999999,-12.1900394,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CIENEGILLA I</name>
+			<styleUrl>#poly-4186F0-1-128-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.8602228,-12.1701974,0 -76.82807920000001,-12.167051,0 -76.82726380000001,-12.1608841,0 -76.81872370000001,-12.1297537,0 -76.83043960000001,-12.1236698,0 -76.8447304,-12.1146486,0 -76.8558455,-12.1287047,0 -76.8701363,-12.1355857,0 -76.8602228,-12.1701974,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>COMAS I</name>
+			<styleUrl>#poly-F8971B-1-54-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.06643099999999,-11.9284513,0 -77.0696497,-11.9301098,0 -77.0738339,-11.9134399,0 -77.07106589999999,-11.945876,0 -77.0693922,-11.9569181,0 -77.0638132,-11.9558265,0 -77.06196780000001,-11.964769,0 -77.0597363,-11.976524,0 -77.0595699,-11.9771537,0 -77.0575047,-11.9731235,0 -77.0572042,-11.9685894,0 -77.05518720000002,-11.964811,0 -77.05141070000001,-11.9529295,0 -77.0508099,-11.9513341,0 -77.0490932,-11.9497807,0 -77.0505095,-11.9441126,0 -77.05025200000002,-11.9409216,0 -77.0546293,-11.9360091,0 -77.0563889,-11.9347915,0 -77.0588779,-11.9335738,0 -77.05939290000001,-11.9348335,0 -77.0651007,-11.9318103,0 -77.06643099999999,-11.9284513,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>COMAS II</name>
+			<styleUrl>#poly-A61B4A-1-102-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0595699,-11.9771537,0 -77.049222,-11.9701008,0 -77.0289659,-11.9595631,0 -77.0248246,-11.9552596,0 -77.02694889999999,-11.9445744,0 -77.0468616,-11.9399139,0 -77.05033779999999,-11.9409216,0 -77.0505953,-11.9441126,0 -77.049179,-11.9497807,0 -77.0508957,-11.9513341,0 -77.0536852,-11.9601508,0 -77.05578800000001,-11.9660285,0 -77.057333,-11.9688413,0 -77.0575905,-11.9731235,0 -77.0595699,-11.9771537,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>COMAS III</name>
+			<styleUrl>#poly-3F5BA9-1-120-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.05025200000002,-11.9409216,0 -77.04943660000001,-11.9378985,0 -77.0448875,-11.9321043,0 -77.0422268,-11.9268977,0 -77.0408535,-11.917324,0 -77.04840660000001,-11.9150566,0 -77.0560455,-11.9106895,0 -77.0677614,-11.9016192,0 -77.07037920000001,-11.9074141,0 -77.0738339,-11.9134399,0 -77.0696497,-11.9301098,0 -77.06643099999999,-11.9284513,0 -77.0651007,-11.9318103,0 -77.05939290000001,-11.9348335,0 -77.0588779,-11.9335738,0 -77.0546293,-11.9360091,0 -77.05025200000002,-11.9409216,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>COMAS IV</name>
+			<styleUrl>#poly-CDDC39-1-130-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.05025200000002,-11.9409216,0 -77.0468616,-11.9399139,0 -77.02694889999999,-11.9445744,0 -77.0248246,-11.9552596,0 -77.0213699,-11.9632156,0 -77.0130444,-11.9274855,0 -77.01866630000001,-11.9261419,0 -77.0311117,-11.9238325,0 -77.03711989999999,-11.9187517,0 -77.0408535,-11.917324,0 -77.0422268,-11.9271916,0 -77.044673,-11.9317684,0 -77.04943660000001,-11.9378985,0 -77.05025200000002,-11.9409216,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>COMAS V</name>
+			<styleUrl>#poly-DB4436-1-64-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0654869,-11.9032149,0 -77.0560455,-11.9106895,0 -77.04840660000001,-11.9150566,0 -77.0408535,-11.917324,0 -77.03742029999999,-11.9101856,0 -77.0322704,-11.907918,0 -77.030468,-11.9040548,0 -77.0305324,-11.8995616,0 -77.0480633,-11.8844016,0 -77.0654869,-11.9032149,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>COMAS VI</name>
+			<styleUrl>#poly-62AF44-1-120-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0408535,-11.917324,0 -77.0367765,-11.9189197,0 -77.0311117,-11.9238325,0 -77.0130444,-11.9274855,0 -76.99270249999999,-11.9138388,0 -76.99858190000002,-11.9040128,0 -77.02184200000001,-11.9049366,0 -77.0305324,-11.8995616,0 -77.030468,-11.9040548,0 -77.0322704,-11.907918,0 -77.03742029999999,-11.9101856,0 -77.0408535,-11.917324,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>INDEPENDENCIA III</name>
+			<styleUrl>#poly-62AF44-1-138-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.04993010000001,-12.0234234,0 -77.0440722,-12.0282819,0 -77.0425272,-12.013381,0 -77.0275927,-11.985088,0 -77.0248246,-11.9552596,0 -77.02922340000001,-11.959689,0 -77.0488787,-11.969723,0 -77.0595699,-11.9771537,0 -77.0566893,-11.9887822,0 -77.0571613,-11.9924764,0 -77.0551443,-11.9958766,0 -77.05364230000001,-12.0073364,0 -77.0508528,-12.0221537,0 -77.0506329,-12.0224632,0 -77.05025200000002,-12.0231611,0 -77.04993010000001,-12.0234234,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>JESUS MARIA I</name>
+			<styleUrl>#poly-F8971B-1-196-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.06331969999999,-12.0867231,0 -77.05334190000001,-12.0930805,0 -77.0513248,-12.0894716,0 -77.049179,-12.085569,0 -77.04360010000001,-12.0819181,0 -77.0427633,-12.0817083,0 -77.04192639999999,-12.0818342,0 -77.036047,-12.0809949,0 -77.037077,-12.0744902,0 -77.0381498,-12.0685311,0 -77.0380103,-12.0671042,0 -77.03769920000001,-12.0653101,0 -77.037431,-12.0641612,0 -77.0457887,-12.0652576,0 -77.06331969999999,-12.0867231,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>LA MOLINA I</name>
+			<styleUrl>#poly-F8971B-1-117-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9606983,-12.0631488,0 -76.9715774,-12.0674294,0 -76.9762391,-12.0782305,0 -76.974324,-12.0775643,0 -76.97310090000001,-12.083859,0 -76.96977490000002,-12.083838,0 -76.9660628,-12.0799563,0 -76.964947,-12.0782987,0 -76.9635093,-12.0770187,0 -76.9606983,-12.0759276,0 -76.9579088,-12.0761375,0 -76.9553768,-12.074186,0 -76.9566214,-12.0716891,0 -76.9606983,-12.0631488,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>LA MOLINA II</name>
+			<styleUrl>#poly-009D57-1-125-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9606876,-12.0631383,0 -76.9540358,-12.0771761,0 -76.9510746,-12.079694,0 -76.94961549999999,-12.0793583,0 -76.93729879999999,-12.0754555,0 -76.9353247,-12.0757493,0 -76.9276857,-12.0575775,0 -76.9399595,-12.0640406,0 -76.94407940000001,-12.056948,0 -76.9444656,-12.0571998,0 -76.9518471,-12.0608091,0 -76.95485119999999,-12.0619002,0 -76.9585848,-12.0624038,0 -76.9606876,-12.0631383,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>LA MOLINA III</name>
+			<styleUrl>#poly-A61B4A-1-92-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9479418,-12.089115,0 -76.9538426,-12.0917167,0 -76.9536495,-12.0920944,0 -76.9528127,-12.0941926,0 -76.9492936,-12.1023122,0 -76.9481993,-12.1038963,0 -76.9436073,-12.1006128,0 -76.9479418,-12.089115,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>LA MOLINA IV</name>
+			<styleUrl>#poly-3F5BA9-1-92-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9481993,-12.1038963,0 -76.9494224,-12.1046831,0 -76.9509029,-12.1070539,0 -76.9445944,-12.1147535,0 -76.94287780000001,-12.1181732,0 -76.93734170000001,-12.119432,0 -76.9302821,-12.1226838,0 -76.92461729999999,-12.1205859,0 -76.9293165,-12.1047669,0 -76.9332218,-12.1011793,0 -76.93787810000001,-12.0956193,0 -76.9436073,-12.1006128,0 -76.9481993,-12.1038963,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>LA MOLINA V</name>
+			<styleUrl>#poly-7C3592-1-84-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9479418,-12.089115,0 -76.9436073,-12.1006128,0 -76.93787810000001,-12.0956193,0 -76.93506720000001,-12.0990392,0 -76.9259691,-12.0850235,0 -76.9273424,-12.0843101,0 -76.92820070000001,-12.082044,0 -76.9215918,-12.073609,0 -76.9276857,-12.0575775,0 -76.9315909,-12.0670831,0 -76.9353247,-12.0757493,0 -76.93729879999999,-12.0754555,0 -76.94047449999999,-12.0765886,0 -76.9384575,-12.0839325,0 -76.94274900000001,-12.0871637,0 -76.9479418,-12.089115,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>MOLINA VI</name>
+			<styleUrl>#poly-F8971B-1-105-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9215918,-12.073609,0 -76.92820070000001,-12.082044,0 -76.9273424,-12.0843101,0 -76.9259691,-12.0850235,0 -76.93506720000001,-12.0990392,0 -76.9293165,-12.1047669,0 -76.92461729999999,-12.1205859,0 -76.9024944,-12.1030256,0 -76.9109917,-12.0862405,0 -76.91554069999999,-12.0765886,0 -76.9215918,-12.073609,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>MOLINA IX</name>
+			<styleUrl>#poly-009D57-1-92-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.8916583,-12.0841843,0 -76.892066,-12.0894298,0 -76.8908644,-12.0961648,0 -76.8840623,-12.0893458,0 -76.8871307,-12.0816664,0 -76.8916583,-12.0841843,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Miguel II</name>
+			<styleUrl>#poly-C6A4CF-0-176-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0980167,-12.0872896,0 -77.09192280000001,-12.0739447,0 -77.0910215,-12.0683212,0 -77.0972443,-12.0645862,0 -77.0971584,-12.0624878,0 -77.1045184,-12.0633481,0 -77.1049261,-12.0720563,0 -77.11089130000001,-12.0818762,0 -77.0980167,-12.0872896,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Callao XII</name>
+			<styleUrl>#poly-CDDC39-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.13294980000001,-12.0679855,0 -77.13260649999999,-12.0701048,0 -77.1324348,-12.0717205,0 -77.1104622,-12.0811208,0 -77.1049261,-12.0720563,0 -77.1045184,-12.0633481,0 -77.13294980000001,-12.0679855,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Miguel I</name>
+			<styleUrl>#poly-62AF44-1-97-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.08020689999999,-12.0968151,0 -77.0736838,-12.0857368,0 -77.07179549999999,-12.0812047,0 -77.0812798,-12.0780573,0 -77.0783186,-12.0731892,0 -77.07763199999999,-12.0682372,0 -77.0789624,-12.0600535,0 -77.088039,-12.0615854,0 -77.09697610000001,-12.0625716,0 -77.0971156,-12.0645861,0 -77.09089280000001,-12.0683211,0 -77.0912362,-12.0707972,0 -77.0917941,-12.0739446,0 -77.097888,-12.0872895,0 -77.08020689999999,-12.0968151,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Pueblo Libre I</name>
+			<styleUrl>#poly-4186F0-1-87-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.07267520000001,-12.083345,0 -77.06331969999999,-12.0867231,0 -77.0498443,-12.0701048,0 -77.05424309999999,-12.0663068,0 -77.0636415,-12.0676078,0 -77.07763199999999,-12.0682372,0 -77.07857610000001,-12.0732313,0 -77.0812798,-12.0780573,0 -77.07179549999999,-12.0812047,0 -77.07267520000001,-12.083345,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Lima I</name>
+			<styleUrl>#poly-62AF44-1-128-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.03608989999999,-12.080911,0 -77.0275604,-12.079778,0 -77.030511,-12.0722975,0 -77.0338046,-12.0637258,0 -77.037431,-12.0641612,0 -77.0376187,-12.0649796,0 -77.037954,-12.0667344,0 -77.0381498,-12.0685311,0 -77.0371092,-12.0741021,0 -77.03608989999999,-12.080911,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>La Victoria I</name>
+			<styleUrl>#poly-A61B4A-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0288372,-12.0767564,0 -77.02304359999999,-12.0905628,0 -77.0074654,-12.0884646,0 -77.0082378,-12.084436,0 -77.0079803,-12.0824637,0 -77.00501920000001,-12.0812887,0 -77.01016900000001,-12.0789386,0 -77.01076980000001,-12.0769663,0 -77.0114136,-12.0716366,0 -77.0178938,-12.0737349,0 -77.02219599999999,-12.0743644,0 -77.024095,-12.0749939,0 -77.0288372,-12.0767564,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>La Victoria II</name>
+			<styleUrl>#poly-009D57-1-128-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.03548910000001,-12.0597389,0 -77.03361150000001,-12.0642504,0 -77.03207740000001,-12.0688352,0 -77.0288372,-12.0767564,0 -77.02219599999999,-12.0743644,0 -77.0178938,-12.0737349,0 -77.0114136,-12.0716366,0 -77.0128727,-12.0610189,0 -77.0154261,-12.0613966,0 -77.0171857,-12.0576195,0 -77.02980280000001,-12.0591303,0 -77.03548910000001,-12.0597389,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>La Victoria III</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0128727,-12.0610189,0 -77.01076980000001,-12.0769663,0 -77.0105982,-12.0777216,0 -77.0099115,-12.0769243,0 -77.0026159,-12.0720143,0 -76.9962645,-12.0682373,0 -76.9999552,-12.0633691,0 -77.002573,-12.0627815,0 -77.0056629,-12.0611868,0 -77.0072722,-12.0602635,0 -77.0128727,-12.0610189,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate I</name>
+			<styleUrl>#poly-B29189-1-156-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9910288,-12.0752037,0 -76.9840336,-12.0845619,0 -76.98205950000001,-12.0848976,0 -76.9768667,-12.0794842,0 -76.974206,-12.0739447,0 -76.9714379,-12.0668944,0 -76.9712985,-12.065394,0 -76.9713306,-12.0640825,0 -76.9715345,-12.0629075,0 -76.97196099999999,-12.061874,0 -76.9722802,-12.0609874,0 -76.9727817,-12.0598386,0 -76.97328330000001,-12.0586477,0 -76.9783688,-12.0610189,0 -76.98175910000001,-12.0632642,0 -76.9870162,-12.064135,0 -76.9889259,-12.0715946,0 -76.9881535,-12.0727277,0 -76.9910288,-12.0752037,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate II</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.97328330000001,-12.0586477,0 -76.97197439999999,-12.0616484,0 -76.9715345,-12.0629075,0 -76.9713306,-12.0640825,0 -76.9712878,-12.0656983,0 -76.9714326,-12.0668261,0 -76.9716418,-12.0674714,0 -76.9709069,-12.0671986,0 -76.9705501,-12.0670203,0 -76.9698715,-12.0668209,0 -76.9675541,-12.0657193,0 -76.9606876,-12.0631383,0 -76.9585848,-12.0624038,0 -76.95882090000001,-12.0618582,0 -76.9591642,-12.0607671,0 -76.9598079,-12.0594032,0 -76.9608164,-12.056948,0 -76.9612187,-12.0559145,0 -76.96156600000001,-12.055024,0 -76.96210379999999,-12.0536744,0 -76.9644642,-12.0546817,0 -76.97328330000001,-12.0586477,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate III</name>
+			<styleUrl>#poly-0BA9CC-1-128-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.96210379999999,-12.0536744,0 -76.9598079,-12.0594032,0 -76.9585848,-12.0624038,0 -76.95485119999999,-12.0619002,0 -76.9518471,-12.0608091,0 -76.94407940000001,-12.056948,0 -76.95025920000001,-12.0485541,0 -76.96210379999999,-12.0536744,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>CALLAO VIII</name>
+			<styleUrl>#poly-62AF44-1-112-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.1168244,-11.9958557,0 -77.1124363,-11.9613264,0 -77.11818700000001,-11.9537273,0 -77.1197748,-11.9412155,0 -77.1307611,-11.9357152,0 -77.1390438,-11.9381085,0 -77.14174749999999,-11.93915819999999,0 -77.1359539,-11.993232,0 -77.12200110000001,-11.999004,0 -77.1196461,-11.995247,0 -77.1168244,-11.9958557,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate IV</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.95025920000001,-12.0485541,0 -76.94407940000001,-12.056948,0 -76.9399595,-12.0640406,0 -76.9276857,-12.0575775,0 -76.93734170000001,-12.0435596,0 -76.95025920000001,-12.0485541,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate V</name>
+			<styleUrl>#poly-62AF44-1-143-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9276857,-12.0575775,0 -76.9159698,-12.0382293,0 -76.9184697,-12.0369596,0 -76.9206262,-12.0355221,0 -76.92322249999999,-12.0301706,0 -76.92451,-12.028114,0 -76.9284153,-12.0302126,0 -76.9348955,-12.032689,0 -76.942234,-12.0334865,0 -76.9394875,-12.0396983,0 -76.9382,-12.0424264,0 -76.9376662,-12.0436855,0 -76.93734170000001,-12.0435596,0 -76.9276857,-12.0575775,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate VI</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9532203,-12.0227624,0 -76.9555807,-12.0294151,0 -76.9442511,-12.0274004,0 -76.94317820000001,-12.03122,0 -76.942234,-12.0334865,0 -76.935153,-12.032731,0 -76.92790030000001,-12.0299188,0 -76.92451,-12.028114,0 -76.92689180000001,-12.0232345,0 -76.9283295,-12.023266,0 -76.93019630000001,-12.023224,0 -76.9315696,-12.0231034,0 -76.9329858,-12.0228988,0 -76.93638679999999,-12.0222586,0 -76.93841450000001,-12.0223636,0 -76.9397986,-12.0221013,0 -76.94120409999999,-12.0218599,0 -76.9430119,-12.0216868,0 -76.9448197,-12.0215766,0 -76.94918629999999,-12.0218389,0 -76.950345,-12.0219858,0 -76.9523298,-12.022458,0 -76.9532203,-12.0227624,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate VII</name>
+			<styleUrl>#poly-0BA9CC-1-156-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9276857,-12.0575775,0 -76.9073009,-12.0608091,0 -76.89307400000001,-12.0556471,0 -76.8803068,-12.0503586,0 -76.88852540000001,-12.0433601,0 -76.8907785,-12.0350604,0 -76.8953276,-12.0177674,0 -76.898675,-12.015952,0 -76.90215110000001,-12.0132131,0 -76.9131374,-12.0185859,0 -76.9268703,-12.0215241,0 -76.92689180000001,-12.0232345,0 -76.9242096,-12.0286596,0 -76.9206262,-12.0355221,0 -76.9159698,-12.0382293,0 -76.9276857,-12.0575775,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate VIII</name>
+			<styleUrl>#poly-F8971B-1-163-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.8803068,-12.0503586,0 -76.8415546,-12.0434337,0 -76.8496227,-12.0225315,0 -76.8527126,-12.0068327,0 -76.85442920000001,-12.0037264,0 -76.90215110000001,-12.0132131,0 -76.898675,-12.015952,0 -76.8953276,-12.0177674,0 -76.88852540000001,-12.0433601,0 -76.8803068,-12.0503586,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ate IX</name>
+			<styleUrl>#poly-3F5BA9-1-161-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.85442920000001,-12.0037264,0 -76.8527126,-12.0068327,0 -76.8496227,-12.0225315,0 -76.8415546,-12.0434337,0 -76.8219852,-12.044441,0 -76.79769520000001,-12.0321853,0 -76.79340360000001,-12.0106106,0 -76.82284439999999,-11.9992354,0 -76.8293674,-11.9971889,0 -76.8311697,-11.9954939,0 -76.8326288,-11.9927495,0 -76.835289,-11.9898317,0 -76.839516,-11.9932845,0 -76.8413398,-11.9954779,0 -76.84490169999999,-11.9984793,0 -76.85442920000001,-12.0037264,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Chaclacayo I</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.835289,-11.9898317,0 -76.8326288,-11.9927495,0 -76.8311697,-11.9954939,0 -76.8293674,-11.9971889,0 -76.79340360000001,-12.0106106,0 -76.7748642,-12.000872,0 -76.7544365,-11.9961705,0 -76.7734909,-11.9797985,0 -76.7761946,-11.974215,0 -76.7837048,-11.9767339,0 -76.79984090000001,-11.9805962,0 -76.83357239999999,-11.989328,0 -76.835289,-11.9898317,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Chaclacayo II</name>
+			<styleUrl>#poly-93D7E8-1-163-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.7761946,-11.974215,0 -76.7734909,-11.9797985,0 -76.7544365,-11.9961705,0 -76.7322063,-11.9812259,0 -76.7143536,-11.9760202,0 -76.70946120000001,-11.9690513,0 -76.718227,-11.9617043,0 -76.7293954,-11.9531815,0 -76.7285827,-11.9493687,0 -76.73249060000001,-11.9473193,0 -76.7367016,-11.9495183,0 -76.7388795,-11.9536644,0 -76.7403066,-11.9543675,0 -76.7441798,-11.9530555,0 -76.74858930000001,-11.9510874,0 -76.7498016,-11.9592797,0 -76.75469400000002,-11.9626489,0 -76.7654441,-11.9662808,0 -76.7755401,-11.967876,0 -76.7761946,-11.974215,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Chosica I</name>
+			<styleUrl>#poly-A61B4A-1-133-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.70946120000001,-11.9690513,0 -76.6983032,-11.9646011,0 -76.6917801,-11.9473875,0 -76.6979599,-11.9432729,0 -76.70422550000001,-11.9402918,0 -76.7170572,-11.9279474,0 -76.7219925,-11.9296689,0 -76.7209625,-11.9376046,0 -76.7301035,-11.9402078,0 -76.73594,-11.9431889,0 -76.73491,-11.9468417,0 -76.73249060000001,-11.9473193,0 -76.7285827,-11.9493687,0 -76.7293954,-11.9531815,0 -76.7210913,-11.9594371,0 -76.70946120000001,-11.9690513,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Chosica II</name>
+			<styleUrl>#poly-F4B400-1-128-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.6917801,-11.9473875,0 -76.66740419999999,-11.9246303,0 -76.6687775,-11.9192556,0 -76.6760302,-11.917492,0 -76.68512819999999,-11.9223209,0 -76.6960716,-11.9225308,0 -76.7031956,-11.9226988,0 -76.7170572,-11.9279474,0 -76.70422550000001,-11.9402918,0 -76.6979599,-11.9432729,0 -76.6917801,-11.9473875,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ñaña I</name>
+			<styleUrl>#poly-CDDC39-1-173-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.84292790000001,-11.9966742,0 -76.8399239,-11.9940716,0 -76.8378639,-11.9918047,0 -76.835289,-11.9898317,0 -76.81795120000001,-11.985256,0 -76.81228640000001,-11.9836607,0 -76.8158054,-11.9760202,0 -76.82730669999999,-11.9759363,0 -76.8338299,-11.969555,0 -76.839838,-11.9662804,0 -76.8453312,-11.9722419,0 -76.84528830000001,-11.9815617,0 -76.8473911,-11.9838286,0 -76.84713360000001,-11.9918467,0 -76.84292790000001,-11.9966742,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Ñaña II</name>
+			<styleUrl>#poly-62AF44-1-145-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.8158054,-11.9760202,0 -76.81228640000001,-11.9836607,0 -76.79821010000002,-11.9803862,0 -76.78499220000001,-11.9770278,0 -76.7761946,-11.974215,0 -76.7755401,-11.967876,0 -76.78499220000001,-11.967372,0 -76.7965794,-11.9640973,0 -76.8035316,-11.9694711,0 -76.80962560000002,-11.9747608,0 -76.8158054,-11.9760202,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Juan de Lurigancho I</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.01233619999999,-12.0412093,0 -77.0124435,-12.038733,0 -77.0122719,-12.0328149,0 -77.0116925,-12.0284917,0 -77.01042649999999,-12.0319125,0 -76.99660780000001,-12.0274634,0 -76.9924558,-12.0269073,0 -76.99037970000001,-12.0268705,0 -76.9883466,-12.0268127,0 -76.987381,-12.0266239,0 -76.9860935,-12.026435,0 -76.9861149,-12.0228462,0 -76.98643680000001,-12.0193414,0 -76.9893551,-12.0180192,0 -76.993475,-12.016697,0 -76.9991398,-12.0166131,0 -77.0026589,-12.0180402,0 -77.006843,-12.0219648,0 -77.01016900000001,-12.0256375,0 -77.0120144,-12.0250499,0 -77.0224857,-12.0140946,0 -77.0241594,-12.0291633,0 -77.01233619999999,-12.0412093,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Juan de Lurigancho II</name>
+			<styleUrl>#poly-A61B4A-1-117-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.993475,-12.016697,0 -76.9893551,-12.0180192,0 -76.98643680000001,-12.0193414,0 -76.9861149,-12.0228462,0 -76.9860935,-12.026435,0 -76.9812441,-12.0256795,0 -76.97682380000001,-12.0259313,0 -76.9696569,-12.026435,0 -76.95772650000002,-12.0226154,0 -76.95515159999999,-12.0073784,0 -76.9693565,-11.9929801,0 -76.993475,-12.016697,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Juan de Lurigancho III</name>
+			<styleUrl>#poly-62AF44-1-135-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0120144,-12.0250499,0 -77.01016900000001,-12.0256375,0 -77.00710050000001,-12.0222586,0 -77.0026589,-12.0180402,0 -76.9991398,-12.0166131,0 -76.993475,-12.016697,0 -76.9693565,-11.9929801,0 -77.0052334,-11.9960881,0 -77.01536160000001,-11.9989001,0 -77.029481,-11.997178,0 -77.0224857,-12.0140946,0 -77.0120144,-12.0250499,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Juan de Lurigancho IV</name>
+			<styleUrl>#poly-3F5BA9-1-168-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.029481,-11.997178,0 -77.01536160000001,-11.9989001,0 -77.0052334,-11.9960881,0 -76.9693565,-11.9929801,0 -76.9662666,-11.9836607,0 -76.9936895,-11.9686734,0 -77.0102978,-11.9560364,0 -77.0198893,-11.9566662,0 -77.0213699,-11.9632156,0 -77.0248246,-11.9552596,0 -77.0275927,-11.985088,0 -77.029481,-11.997178,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Juan de Lurigancho V</name>
+			<styleUrl>#poly-F4B400-1-176-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9662666,-11.9836607,0 -76.95279119999999,-11.9612424,0 -76.964035,-11.954441,0 -76.9987965,-11.9332799,0 -77.0135593,-11.9306767,0 -77.0198893,-11.9566662,0 -77.0102978,-11.9560364,0 -76.9936895,-11.9686734,0 -76.9662666,-11.9836607,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Juan de Lurigancho VI</name>
+			<styleUrl>#poly-795046-1-145-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0130444,-11.9274855,0 -77.0135593,-11.9306767,0 -76.9987965,-11.9332799,0 -76.95279119999999,-11.9612424,0 -76.9089317,-11.8831417,0 -76.95596690000001,-11.8624791,0 -76.9849777,-11.896412,0 -76.99270249999999,-11.9138388,0 -77.0130444,-11.9274855,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Rimac I</name>
+			<styleUrl>#poly-DB4436-1-168-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0241594,-12.0291633,0 -77.0224857,-12.0140946,0 -77.029481,-11.997178,0 -77.0275927,-11.985088,0 -77.0425272,-12.013381,0 -77.0440722,-12.0282819,0 -77.03862190000001,-12.0221957,0 -77.02797889999999,-12.0322693,0 -77.0241594,-12.0291633,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Rimac II</name>
+			<styleUrl>#poly-0BA9CC-1-161-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0241594,-12.0291633,0 -77.02797889999999,-12.0322693,0 -77.03862190000001,-12.0221957,0 -77.0440722,-12.0282819,0 -77.04360010000001,-12.0381454,0 -77.0395661,-12.0393416,0 -77.0318413,-12.0428881,0 -77.0252323,-12.0450286,0 -77.0167994,-12.0449447,0 -77.01233619999999,-12.0412093,0 -77.0241594,-12.0291633,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+	<Folder>
+		<name>Capa sin nombre</name>
+		<Placemark>
+			<name>AGUSTINO I</name>
+			<styleUrl>#poly-009D57-1-201-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9878638,-12.0394884,0 -76.99155450000001,-12.0396983,0 -76.9954169,-12.0402439,0 -76.9974768,-12.0399501,0 -77.0048153,-12.0417549,0 -77.0112097,-12.0438954,0 -77.0112955,-12.0453224,0 -77.01215379999999,-12.0535905,0 -77.01348419999999,-12.0551853,0 -77.00939649999999,-12.0584903,0 -77.00728290000001,-12.0602635,0 -77.0047831,-12.0616589,0 -77.0025837,-12.0627815,0 -77.0015109,-12.0630123,0 -76.99996590000001,-12.0633691,0 -76.99785230000001,-12.0635843,0 -76.9897735,-12.0645022,0 -76.9846666,-12.0637678,0 -76.9817698,-12.0632642,0 -76.9783795,-12.0610189,0 -76.973294,-12.0586477,0 -76.9751823,-12.054304,0 -76.9757831,-12.0528141,0 -76.97610490000001,-12.0519956,0 -76.9772208,-12.0509254,0 -76.97887299999999,-12.0493935,0 -76.9803857,-12.0479245,0 -76.981641,-12.0465395,0 -76.98588959999999,-12.0427622,0 -76.9878638,-12.0394884,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>AGUSTINO II</name>
+			<styleUrl>#poly-A61B4A-1-79-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.00480460000001,-12.0417549,0 -76.9974661,-12.0399501,0 -76.99540620000001,-12.0402439,0 -76.99154380000002,-12.0396983,0 -76.9878531,-12.0394884,0 -76.9895911,-12.0338222,0 -76.99660780000001,-12.0274634,0 -77.01042649999999,-12.0319125,0 -77.0087314,-12.0343679,0 -77.0057273,-12.0379985,0 -77.00480460000001,-12.0417549,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>AGUSTINO III</name>
+			<styleUrl>#poly-62AF44-1-99-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.99660780000001,-12.0274634,0 -76.9895911,-12.0338222,0 -76.98759560000001,-12.0396983,0 -76.9816732,-12.0404118,0 -76.9763088,-12.0404118,0 -76.97334770000001,-12.0397403,0 -76.9615459,-12.0305484,0 -76.9577694,-12.0297509,0 -76.9555807,-12.0294151,0 -76.954658,-12.0274424,0 -76.95772650000002,-12.0226154,0 -76.96347710000001,-12.0244623,0 -76.9696569,-12.026435,0 -76.9812441,-12.0256795,0 -76.9882393,-12.0268128,0 -76.9923592,-12.0268967,0 -76.99660780000001,-12.0274634,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>INDEPENDENCIA</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0612383,-12.0086797,0 -77.05364230000001,-12.0073364,0 -77.0551443,-11.9958766,0 -77.0571613,-11.9924764,0 -77.0566893,-11.9887822,0 -77.0597363,-11.976524,0 -77.0662165,-11.9766919,0 -77.0677614,-11.9769858,0 -77.06810470000001,-11.9781193,0 -77.0663881,-11.9792948,0 -77.06535820000001,-11.9852979,0 -77.0627403,-12.0017535,0 -77.0617962,-12.0086377,0 -77.0612383,-12.0086797,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Lima II</name>
+			<styleUrl>#poly-3F5BA9-1-196-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0457887,-12.0652576,0 -77.0336652,-12.0636629,0 -77.03548910000001,-12.0597389,0 -77.02980280000001,-12.0591303,0 -77.0304251,-12.0549545,0 -77.0252323,-12.0450286,0 -77.0318413,-12.0428881,0 -77.0395661,-12.0393416,0 -77.04360010000001,-12.0381454,0 -77.04162599999999,-12.0604733,0 -77.0457887,-12.0652576,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Lima III</name>
+			<styleUrl>#poly-F4B400-1-156-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.02980280000001,-12.0591303,0 -77.0171857,-12.0576195,0 -77.0154261,-12.0613966,0 -77.0072722,-12.0602635,0 -77.0134735,-12.0551853,0 -77.0121431,-12.0535905,0 -77.01119900000001,-12.0438954,0 -77.0046973,-12.0417969,0 -77.00561999999999,-12.0380405,0 -77.0106626,-12.0315558,0 -77.01092010000001,-12.0303386,0 -77.0116925,-12.0284917,0 -77.01240060000001,-12.0350604,0 -77.01233619999999,-12.0412093,0 -77.0167994,-12.0449447,0 -77.0202863,-12.0449866,0 -77.0252323,-12.0450286,0 -77.0304251,-12.0549545,0 -77.02980280000001,-12.0591303,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Lima IV</name>
+			<styleUrl>#poly-A61B4A-1-145-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0425272,-12.0509464,0 -77.04347129999999,-12.0391107,0 -77.0488787,-12.0353123,0 -77.05177550000001,-12.0372849,0 -77.0662165,-12.0353332,0 -77.0652723,-12.0485121,0 -77.05963970000001,-12.0488794,0 -77.0540714,-12.0491837,0 -77.0425272,-12.0509464,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Lima V</name>
+			<styleUrl>#poly-795046-1-158-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.07763199999999,-12.0682372,0 -77.0609379,-12.0674819,0 -77.05724720000001,-12.0551013,0 -77.05364230000001,-12.0492676,0 -77.0652723,-12.0485121,0 -77.0765591,-12.0499076,0 -77.0874381,-12.0517857,0 -77.0881677,-12.0615855,0 -77.0789624,-12.0600535,0 -77.07763199999999,-12.0682372,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Lima VI</name>
+			<styleUrl>#poly-CDDC39-1-176-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0765591,-12.0499076,0 -77.0652723,-12.0485121,0 -77.0662165,-12.0353332,0 -77.0718813,-12.0348296,0 -77.0829749,-12.0368023,0 -77.0826101,-12.0392366,0 -77.0803571,-12.0389218,0 -77.0796275,-12.0466445,0 -77.0767307,-12.0465081,0 -77.0765591,-12.0499076,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Breña I</name>
+			<styleUrl>#poly-EE9C96-1-179-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0609379,-12.0674819,0 -77.05424309999999,-12.0663068,0 -77.0498443,-12.0701048,0 -77.04162599999999,-12.0604733,0 -77.0425272,-12.0509464,0 -77.05364230000001,-12.0492676,0 -77.0553589,-12.0521425,0 -77.05724720000001,-12.0551013,0 -77.0609379,-12.0674819,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Luis I</name>
+			<styleUrl>#poly-0BA9CC-1-158-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0105982,-12.0777216,0 -77.01016900000001,-12.0789386,0 -77.00501920000001,-12.0812887,0 -77.0043325,-12.0841842,0 -76.9976377,-12.0827574,0 -76.9936895,-12.0811628,0 -76.9889688,-12.0778475,0 -76.9910288,-12.0752037,0 -76.9881535,-12.0727277,0 -76.9889259,-12.0715946,0 -76.9870162,-12.064135,0 -76.98976279999999,-12.0645022,0 -77.0000142,-12.0634006,0 -76.9962645,-12.0682373,0 -77.0028734,-12.0721402,0 -77.0099115,-12.0769243,0 -77.0105982,-12.0777216,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Borja I</name>
+			<styleUrl>#poly-009D57-1-117-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9970798,-12.0825476,0 -76.9944191,-12.1033613,0 -76.99193,-12.1069699,0 -76.9935608,-12.1113338,0 -76.9779396,-12.1102429,0 -76.9812012,-12.0875833,0 -76.982317,-12.0849816,0 -76.9840336,-12.0845619,0 -76.9889688,-12.0778475,0 -76.9944191,-12.0815405,0 -76.9970798,-12.0825476,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Borja II</name>
+			<styleUrl>#poly-F4B400-1-117-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.009697,-12.1123409,0 -76.9935608,-12.1113338,0 -76.99193,-12.1069699,0 -76.9944191,-12.1033613,0 -76.9970798,-12.0825476,0 -77.0043325,-12.0841842,0 -77.00501920000001,-12.0812887,0 -77.0079803,-12.0824637,0 -77.0082378,-12.084436,0 -77.0074654,-12.0884646,0 -77.01248649999999,-12.098158,0 -77.009697,-12.1123409,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Santa Anita I</name>
+			<styleUrl>#poly-3F5BA9-1-130-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.97328330000001,-12.0586477,0 -76.96095579999999,-12.0531288,0 -76.96553710000001,-12.0416709,0 -76.96841240000001,-12.035711,0 -76.9695175,-12.0367708,0 -76.9707513,-12.0377047,0 -76.97334770000001,-12.0397403,0 -76.9763088,-12.0404118,0 -76.9816732,-12.0404118,0 -76.9878531,-12.0394884,0 -76.9858789,-12.0427622,0 -76.9797421,-12.0483862,0 -76.97609420000001,-12.0519956,0 -76.97328330000001,-12.0586477,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Santa Anita II</name>
+			<styleUrl>#poly-DB4436-1-120-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9609451,-12.0531761,0 -76.94952960000001,-12.0482603,0 -76.9577694,-12.0297509,0 -76.9615459,-12.0305484,0 -76.96841240000001,-12.035711,0 -76.9645072,-12.044378,0 -76.9609451,-12.0531761,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>Santa Anita III</name>
+			<styleUrl>#poly-A61B4A-1-125-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-76.9577694,-12.0297509,0 -76.94952960000001,-12.0482603,0 -76.93764210000001,-12.0437275,0 -76.94317820000001,-12.03122,0 -76.9442511,-12.0274004,0 -76.9577694,-12.0297509,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Martin de Porres I</name>
+			<styleUrl>#poly-3F5BA9-1-168-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0777607,-12.0358369,0 -77.0718813,-12.0348296,0 -77.0662165,-12.0353332,0 -77.05177550000001,-12.0372849,0 -77.0488787,-12.0353123,0 -77.04347129999999,-12.0391107,0 -77.0440722,-12.0282819,0 -77.05025200000002,-12.0231611,0 -77.05801959999999,-12.0287016,0 -77.0602512,-12.0300027,0 -77.0651436,-12.0292472,0 -77.06720350000001,-12.0278201,0 -77.0687485,-12.0279041,0 -77.0699072,-12.0284078,0 -77.0754862,-12.0260573,0 -77.07754610000001,-12.0318495,0 -77.0784903,-12.0345358,0 -77.0777607,-12.0358369,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Martin de Porres II</name>
+			<styleUrl>#poly-FAD199-1-201-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.0754862,-12.0260573,0 -77.0699072,-12.0284078,0 -77.0687485,-12.0279041,0 -77.06720350000001,-12.0278201,0 -77.0651436,-12.0292472,0 -77.0602512,-12.0300027,0 -77.0579498,-12.0286675,0 -77.0564773,-12.0276116,0 -77.0551442,-12.0266554,0 -77.05025200000002,-12.0231296,0 -77.0508528,-12.0221537,0 -77.05364230000001,-12.0073364,0 -77.0612383,-12.0086797,0 -77.0617962,-12.0086377,0 -77.0628691,-12.0087217,0 -77.0711517,-12.0110303,0 -77.07990650000001,-12.0125415,0 -77.0744562,-12.0226994,0 -77.0746279,-12.0240845,0 -77.0754862,-12.0260573,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Martin de Porres III</name>
+			<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.09767340000001,-12.0398137,0 -77.0829749,-12.0368023,0 -77.0777607,-12.0358369,0 -77.0784903,-12.0345358,0 -77.0754862,-12.0260573,0 -77.080164,-12.0242104,0 -77.08625790000001,-12.0212303,0 -77.08891869999999,-12.020055,0 -77.09767340000001,-12.0398137,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Martin de Porres IV</name>
+			<styleUrl>#poly-4186F0-1-194-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.08891869999999,-12.020055,0 -77.0869553,-12.0209364,0 -77.084949,-12.0218703,0 -77.080164,-12.0242104,0 -77.0754862,-12.0260573,0 -77.0746279,-12.0240845,0 -77.0744562,-12.0226994,0 -77.07540040000001,-12.0210624,0 -77.07990650000001,-12.0125415,0 -77.0816713,-12.0125966,0 -77.08304459999999,-12.0126595,0 -77.08396190000001,-12.0126727,0 -77.0845413,-12.0125729,0 -77.08489539999999,-12.0124798,0 -77.0850402,-12.0124496,0 -77.08594669999999,-12.012232,0 -77.0873522,-12.0118725,0 -77.0873308,-12.0121217,0 -77.08782429999999,-12.0173476,0 -77.08891869999999,-12.020055,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>San Martin de Porres V</name>
+			<styleUrl>#poly-7C3592-1-166-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							-77.08782429999999,-12.0173476,0 -77.08756680000001,-12.0149235,0 -77.0873308,-12.0121217,0 -77.0873522,-12.0118725,0 -77.08396190000001,-12.0126727,0 -77.0816713,-12.0125966,0 -77.07990650000001,-12.0125415,0 -77.08196640000001,-12.0086797,0 -77.0846272,-11.9958347,0 -77.0807648,-11.9885304,0 -77.0785332,-11.9839966,0 -77.0781898,-11.9829051,0 -77.08685869999999,-11.9822334,0 -77.0969868,-11.9814777,0 -77.10531229999999,-11.9888662,0 -77.1069431,-11.9907133,0 -77.104969,-11.9946593,0 -77.10393910000001,-11.9962544,0 -77.10271590000001,-11.9986682,0 -77.0977915,-12.0059197,0 -77.09527559999999,-12.0095769,0 -77.09402830000001,-12.0113477,0 -77.0933457,-12.0123381,0 -77.0930493,-12.0126831,0 -77.08782429999999,-12.0173476,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

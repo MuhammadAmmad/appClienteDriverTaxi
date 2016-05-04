@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <!--   <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>-->
+
+    <color name="colorPrimary">#056B11</color>
+    <color name="colorPrimaryDark">#138b21</color>
+    <color name="colorAccent">#363738</color>
+   <color name="hintColorText">#c4c3c3</color>
+
+    <color name="btnFalse">#34CE34</color>
+    <color name="btnTrue">#6bed6b</color>
+    <color name="colorVerder">#34CE34</color>
+    <color name="white">#FFFFFF</color>
+    <color name="cabeceratxt">#5d5d5d</color>
+    <color name="progress">#5a03d06d</color>
+    <color name="black">#000</color>
+    <color name="txtColor">#3da3d2</color>
+    <color name="radioButonsTransparente">#00FFFFFF</color>
+    <color name="textColorHint">#c1c0c0</color>
+    <color name="btnCancelFalse">#a1a0a0</color>
+    <color name="btnCancelTrue">#c63333</color>
+    <color name="btnSearchFalse">#fcf9f9</color>
+    <color name="btnSearchTrue">#d1d0d0</color>
+</resources>
