@@ -287,17 +287,12 @@ public class MainActivity extends AppCompatActivity
                 if(wsListVehiculos.listVehiculos!=null){
                     List<beansVehiculoConductor> lista=wsListVehiculos.listVehiculos;
                     idVehiculo[0] =lista.get(position).getIdVehiculo();
-
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
-
-
         alertDialogBuilder.setNegativeButton(R.string.CANCEL,
                 new DialogInterface.OnClickListener() {
                     @Override
