@@ -59,4 +59,34 @@ public class PreferencesDriver {
         return prefs.getString("id","dato");
 
     }
+
+    public void InsertarIdVehiculo(String idvehiculo){
+
+        SharedPreferences prefs =
+                context.getSharedPreferences("idVehiculo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("idAuto",idvehiculo);
+        editor.commit();
+    }
+
+    public String ExtraerIdVehiculo(){
+        SharedPreferences prefs =
+                context.getSharedPreferences("idVehiculo", Context.MODE_PRIVATE);
+        return prefs.getString("idAuto","-1");
+    }
+
+
+    public void InsertarIdTurno(String idTurno){
+        SharedPreferences prefs =
+                context.getSharedPreferences("Turno", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("idTurno",idTurno);
+        editor.commit();
+    }
+
+    public String ExtraerIdTurno(){
+        SharedPreferences prefs =
+                context.getSharedPreferences("Turno", Context.MODE_PRIVATE);
+        return prefs.getString("idTurno","-1");
+    }
 }

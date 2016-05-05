@@ -28,12 +28,14 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
     private Context context;
     private PreferencesDriver preferencesDriver;
     private componentesR compR;
+
     public wsDesactivarTurno(Context context) {
         this.context = context;
         Activity activity=(Activity)context;
         preferencesDriver=new PreferencesDriver(context);
         compR=new componentesR(context);
         compR.Contros_main_activity(activity);
+        Log.d("idConductor",preferencesDriver.OpenIdDriver());
 
     }
 
@@ -74,7 +76,8 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
 
         } catch (Exception e) {
             e.printStackTrace();
-            //Log.d("error", e.printStackTrace());
+            Log.d("error---->",e.getMessage());
+
         }
         return dataSalida;
     }

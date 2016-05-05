@@ -37,6 +37,8 @@ public class beansHistorialServiciosCreados {
     private String importePeaje;
     private String numeroMinutoTiempoEspera;
     private String importeTiempoEspera;
+    private String nameDistritoInicio;
+    private String nameDistritoFin;
     private String DireccionIncio;
     private String direccionFinal;
     private String nombreConductor;
@@ -46,6 +48,31 @@ public class beansHistorialServiciosCreados {
     private String Hora;
     private String infoAddress;
     private Drawable imageHistorico;
+    private int imagenOptional;
+
+    public String getNameDistritoInicio() {
+        return nameDistritoInicio;
+    }
+
+    public void setNameDistritoInicio(String nameDistritoInicio) {
+        this.nameDistritoInicio = nameDistritoInicio;
+    }
+
+    public String getNameDistritoFin() {
+        return nameDistritoFin;
+    }
+
+    public void setNameDistritoFin(String nameDistritoFin) {
+        this.nameDistritoFin = nameDistritoFin;
+    }
+
+    public int getImagenOptional() {
+        return imagenOptional;
+    }
+
+    public void setImagenOptional(int imagenOptional) {
+        this.imagenOptional = imagenOptional;
+    }
 
     public Drawable getImageHistorico() {
         return imageHistorico;

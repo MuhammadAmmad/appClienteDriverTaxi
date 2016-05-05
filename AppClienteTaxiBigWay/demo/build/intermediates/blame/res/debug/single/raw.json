@@ -1,19 +1,19 @@
 [
     {
-        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_inline_style.kml",
-        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\raw\\amu_inline_style.kml"
-    },
-    {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_basic_placemark.kml",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\raw\\amu_basic_placemark.kml"
     },
     {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\map_bit_way_taxi.kml",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\raw\\map_bit_way_taxi.kml"
+        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_inline_style.kml",
+        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\raw\\amu_inline_style.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_unknwown_folder.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\raw\\amu_unknwown_folder.kml"
+    },
+    {
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\map_bit_way_taxi.kml",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\raw\\map_bit_way_taxi.kml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_draw_order_ground_overlay.kml",
@@ -24,12 +24,12 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\raw\\amu_multigeometry_placemarks.kml"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_poly_style_boolean_alpha.kml",
-        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\raw\\amu_poly_style_boolean_alpha.kml"
-    },
-    {
         "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_draw_order_ground_overlay.kml",
         "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\raw\\amu_draw_order_ground_overlay.kml"
+    },
+    {
+        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_poly_style_boolean_alpha.kml",
+        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\raw\\amu_poly_style_boolean_alpha.kml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\raw\\amu_visibility_ground_overlay.kml",

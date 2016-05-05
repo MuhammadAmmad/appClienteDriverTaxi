@@ -26,4 +26,7 @@
     <color name="btnTraslucerTrue">#b3015601</color>
     <color name="black">#000000</color>
 
+    <color name="selectorNotificacion_pressed_false">#cbcaca</color>
+    <color name="selectorNotificacion_pressed_true">#e9e8e8</color>
+
 </resources>

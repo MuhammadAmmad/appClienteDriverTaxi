@@ -91,6 +91,8 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
             compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
             Intent intent=new Intent(context,locationDriver.class);
             context.startService(intent);
+            preferencesDriver.InsertarIdVehiculo(String.valueOf(idVehiculo));
+            Log.d("extraerIdAuto",preferencesDriver.ExtraerIdVehiculo());
         }else if(data[0].equals("2")){
             compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
             compR.getBtnDesactivarTurno().setVisibility(View.GONE);

@@ -6,12 +6,14 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -47,8 +49,9 @@ public class componentesR  {
     private  TextView lblElijaSuVehiculo;
     private  EditText editUser;
     private  EditText editPass;
+    private TextView textNotificaciones;
     private  Button btnSigIn;
-
+    private ImageButton btnDismisNotificaciones;
     private Button btnActivarTurno;
     private Button btnDesactivarTurno;
     EditText editHistoriaCarrera;
@@ -66,6 +69,8 @@ public class componentesR  {
     private CheckBox  chxBoxFecha;
     private Spinner spinerVehiculo;
     private ImageView imageDriver;
+
+    private  RecyclerView recycler;
     public componentesR(Context context) {
         this.context = context;
         appCompatActivity= (AppCompatActivity) context;
@@ -174,10 +179,39 @@ public class componentesR  {
         spinerVehiculo=(Spinner)view.findViewById(R.id.spinnerVehiculoElejir);
 
     }
-
+    public void Controls_notificaciones(View view) {
+        recycler = (RecyclerView) view.findViewById(R.id.reciclador);
+        textNotificaciones=(TextView)view.findViewById(R.id.txtNotificaciones);
+        textNotificaciones.setTypeface(myTypeFace.openRobotoLight());
+        btnDismisNotificaciones=(ImageButton)view.findViewById(R.id.btnDismisNotificaciones);
+    }
     public GridViewWithHeaderAndFooter getGrid() {
 
         return grid;
+    }
+
+    public TextView getTextNotificaciones() {
+        return textNotificaciones;
+    }
+
+    public void setTextNotificaciones(TextView textNotificaciones) {
+        this.textNotificaciones = textNotificaciones;
+    }
+
+    public ImageButton getBtnDismisNotificaciones() {
+        return btnDismisNotificaciones;
+    }
+
+    public void setBtnDismisNotificaciones(ImageButton btnDismisNotificaciones) {
+        this.btnDismisNotificaciones = btnDismisNotificaciones;
+    }
+
+    public RecyclerView getRecycler() {
+        return recycler;
+    }
+
+    public void setRecycler(RecyclerView recycler) {
+        this.recycler = recycler;
     }
 
     public TextView getLblElijaSuVehiculo() {
@@ -447,6 +481,7 @@ public class componentesR  {
     public void setImageDriver(ImageView imageDriver) {
         this.imageDriver = imageDriver;
     }
+
 
 
 }

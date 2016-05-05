@@ -28,12 +28,12 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_nested_folders.kml"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_basic_placemark.kml",
-        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_basic_placemark.kml"
-    },
-    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_document_nest.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_document_nest.kml"
+    },
+    {
+        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_basic_placemark.kml",
+        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_basic_placemark.kml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_ground_overlay_color.kml",
@@ -108,20 +108,20 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_extended_data.kml"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_unknwown_folder.kml",
-        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_unknwown_folder.kml"
-    },
-    {
-        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_document_nest.kml",
-        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_document_nest.kml"
+        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_nested_folders.kml",
+        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_nested_folders.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_ballon_gx_prefix.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_ballon_gx_prefix.kml"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_nested_folders.kml",
-        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_nested_folders.kml"
+        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_document_nest.kml",
+        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_document_nest.kml"
+    },
+    {
+        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_unknwown_folder.kml",
+        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\bundles\\debug\\res\\raw\\amu_unknwown_folder.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\amu_unsupported.kml",

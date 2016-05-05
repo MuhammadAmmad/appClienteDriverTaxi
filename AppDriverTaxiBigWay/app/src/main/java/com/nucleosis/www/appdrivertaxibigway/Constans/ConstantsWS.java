@@ -33,6 +33,16 @@ public class ConstantsWS {
     private static final String METHODO_8="WS_TURNO_OBTENER_TURNO_ACTUAL";
     private static final String SOAP_ACTION_8=NAME_SPACE+"/"+METHODO_8;
 
+    private static final String METHODO_9="WS_SERVICIO_ASIGNAR_CONDUCTOR";
+    private static final String SOAP_ACTION_9=NAME_SPACE+"/"+METHODO_9;
+
+    public static String getMethodo9() {
+        return METHODO_9;
+    }
+
+    public static String getSoapAction9() {
+        return SOAP_ACTION_9;
+    }
 
     public static String getMethodo8() {
         return METHODO_8;

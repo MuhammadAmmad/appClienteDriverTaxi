@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -20,6 +22,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -41,6 +45,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appdrivertaxibigway.Adapters.AdapterListVehiculos;
+import com.nucleosis.www.appdrivertaxibigway.Adapters.AdapterNotificaciones;
+import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansVehiculoConductor;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Alerta;
@@ -79,7 +85,7 @@ import java.util.Vector;
  * Created by karlos on 21/03/2016.
  */
 public class MainActivity extends AppCompatActivity
-    implements OnMapReadyCallback,View.OnClickListener {
+    implements OnMapReadyCallback,View.OnClickListener, AdapterNotificaciones.OnItemClickListener {
     private componentesR compR;
     public static Activity MAIN_ACTIVITY;
     private LatLng mapCenter;
@@ -87,12 +93,12 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout linearFragment;
     private LayerDrawable icon;
     private MenuItem item;
-
-  /*  private Button btnActivarTurno;
-    private Button btnDesactivarTurno;*/
+    private int NumeroNotificacion;
     private MyTypeFace myTypeFace;
     private PreferencesDriver preferencesDriver;
-    //private List<beansVehiculoConductor> listVehiculos;
+    private Menu menuNoti;
+    private int swTurno=0;
+    private List<beansHistorialServiciosCreados>ListaServiciosCreados;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +121,7 @@ public class MainActivity extends AppCompatActivity
         linearFragment=(LinearLayout)findViewById(R.id.LinearFragment);
         mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        ListaServiciosCreados=new ArrayList<beansHistorialServiciosCreados>();
         levantarServicioBackground();
         CreaBroadcasReceiver();
 
@@ -149,23 +155,124 @@ public class MainActivity extends AppCompatActivity
         startService(intent);
 
     }
+
+    @Override
+    public void onClick(AdapterNotificaciones.ViewHolder holder, String posicion) {
+
+        /*Toast.makeText(getApplicationContext(),ListaServiciosCreados.get(Integer.parseInt(posicion)).getIdServicio(),
+                Toast.LENGTH_SHORT).show();*/
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final View view = this.getLayoutInflater().inflate(R.layout.view_alert_tomar_servicio, null);
+
+        TextView lbldireccion1=(TextView)view.findViewById(R.id.txtDireccion1);
+        TextView lbldireccion2=(TextView)view.findViewById(R.id.txtDireccion2);
+
+        TextView lblDistrito1=(TextView)view.findViewById(R.id.txtDistrito1);
+        TextView lblDistrito2=(TextView)view.findViewById(R.id.txtDistrito2);
+
+        TextView lblfecha=(TextView)view.findViewById(R.id.txtFecha);
+        TextView lblHora=(TextView)view.findViewById(R.id.txtHora);
+        TextView lblImporteServicio=(TextView)view.findViewById(R.id.txtImporteServicio);
+
+        int posicion_=Integer.parseInt(posicion);
+
+        lbldireccion1.setText("\t\t"+ListaServiciosCreados.get(posicion_).getDireccionIncio());
+        lbldireccion2.setText("\t\t"+ListaServiciosCreados.get(posicion_).getDireccionFinal());
+
+        lblDistrito1.setText("\t\t"+ListaServiciosCreados.get(posicion_).getNameDistritoInicio());
+        lblDistrito2.setText("\t\t"+ListaServiciosCreados.get(posicion_).getNameDistritoFin());
+
+        lblfecha.setText("\t\t"+ListaServiciosCreados.get(posicion_).getFecha());
+        lblHora.setText("\t\t"+ListaServiciosCreados.get(posicion_).getHora());
+        lblImporteServicio.setText("\t\t"+"S/."+ListaServiciosCreados.get(posicion_).getImporteServicio());
+
+        String lblDetalle=  "Direccion 1:"+"\n"+"\t\t"+ListaServiciosCreados.get(posicion_).getDireccionIncio()+"\n"+
+                            "Direccion 2:"+"\n"+"\t\t"+ListaServiciosCreados.get(posicion_).getDireccionFinal()+"\n"+
+                            "Distrito 1:"+"\n"+"\t\t"+ListaServiciosCreados.get(posicion_).getNameDistritoInicio()+"\n"+
+                            "Distrito 2:"+"\n"+"\t\t"+ ListaServiciosCreados.get(posicion_).getNameDistritoFin()+"\n"+
+                            ListaServiciosCreados.get(posicion_).getFecha()+"\n"+
+                            ListaServiciosCreados.get(posicion_).getHora()+"\n"+
+                            "S/."+ListaServiciosCreados.get(posicion_).getImporteServicio();
+
+    //    lblDetalleServicio.setText(lblDetalle);
+        alertDialogBuilder.setView(view);
+        final AlertDialog alertDialog;
+
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
+                dialogo1.setTitle("Importante");
+                dialogo1.setMessage("¿ Esta seguro de aceptar este servicio ?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+
+                    }
+                });
+                dialogo1.show();
+
+                // Create the AlertDialog object and return it
+
+            }
+        }).setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
     private class ResponseReceiverListarServiciosCreados extends BroadcastReceiver{
 
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()){
                 case Utils.ACTION_RUN_SERVICE_2:
-                    Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
+                  ListaServiciosCreados.clear();
                     String json=intent.getStringExtra(Utils.EXTRA_MEMORY_2);
-                    try {
-                        JSONArray jsonArray=new JSONArray(json);
-                        for(int i=0; i<jsonArray.length();i++){
-                            
+                        beansHistorialServiciosCreados row=null;
+                        try {
+                            JSONArray jsonArray=new JSONArray(json);
+                            NumeroNotificacion=jsonArray.length();
+                            item = menuNoti.findItem(R.id.menuAlert);
+                            icon = (LayerDrawable) item.getIcon();
+                            Alerta.setBadgeCount(getApplicationContext(), icon, NumeroNotificacion);
+                            for(int i=0; i<jsonArray.length();i++){
+                                row=new beansHistorialServiciosCreados();
+                                row.setFecha(jsonArray.getJSONObject(i).getString("Fecha"));
+                                row.setHora(jsonArray.getJSONObject(i).getString("Hora"));
+                                row.setNombreStadoServicio(jsonArray.getJSONObject(i).getString("nombreStadoServicio"));
+                                row.setImporteTiempoEspera(jsonArray.getJSONObject(i).getString("importeTiempoEspera"));
+                                row.setNameDistritoInicio(jsonArray.getJSONObject(i).getString("nameDistritoInicio"));
+                                row.setNameDistritoFin(jsonArray.getJSONObject(i).getString("nameDistritoFin"));
+                                row.setDireccionIncio(jsonArray.getJSONObject(i).getString("DireccionIncio"));
+                                row.setDireccionFinal(jsonArray.getJSONObject(i).getString("direccionFinal"));
+                                row.setNumeroMinutoTiempoEspera(jsonArray.getJSONObject(i).getString("numeroMinutoTiempoEspera"));
+                                row.setImporteServicio(jsonArray.getJSONObject(i).getString("importeServicio"));
+                                row.setIdServicio(jsonArray.getJSONObject(i).getString("idServicio"));
+                                row.setStatadoServicio(jsonArray.getJSONObject(i).getString("statadoServicio"));
+                                row.setDescripcionServicion(jsonArray.getJSONObject(i).getString("DescripcionServicion"));
+                                row.setImporteAireAcondicionado(jsonArray.getJSONObject(i).getString("importeAireAcondicionado"));
+                                row.setImportePeaje(jsonArray.getJSONObject(i).getString("importePeaje"));
+                                row.setInfoAddress(jsonArray.getJSONObject(i).getString("infoAddress"));
+                             //   row.setImagenOptional(R.mipmap.ic_notifica_send);
+                                ListaServiciosCreados.add(row);
+
+                            }
+                           // Log.d("x_array", String.valueOf(jsonArray.length()));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        Log.d("x_array", String.valueOf(jsonArray.length()));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+
                     break;
                 case Utils.ACTION_MEMORY_EXIT_2:
                     break;
@@ -183,9 +290,11 @@ public class MainActivity extends AppCompatActivity
                     if(data.equals("0")){
                         compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnDesactivarTurno().setVisibility(View.GONE);
+                        swTurno=2;
                     }else if(data.equals("1")){
                         compR.getBtnActivarTurno().setVisibility(View.GONE);
                         compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+                        swTurno=1;
                     }
                     ///compR.getBtnDesactivarTurno().setText(data);
                     break;
@@ -200,10 +309,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        menuNoti=menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
         item = menu.findItem(R.id.menuAlert);
         icon = (LayerDrawable) item.getIcon();
-        Alerta.setBadgeCount(this, icon, 4);
+        Alerta.setBadgeCount(this, icon, NumeroNotificacion);
 
 
         return true;
@@ -230,12 +340,45 @@ public class MainActivity extends AppCompatActivity
 
                 return true;
             case R.id.menuAlert:
-                Toast.makeText(MainActivity.this,"hoala",Toast.LENGTH_LONG).show();
+                if(swTurno==1){
+                    cargarAlertNotificaciones();
+                }else {
+                    Toast.makeText(MainActivity.this,"Debe activar un turno",Toast.LENGTH_SHORT).show();
+                }
+
                 return  true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private void cargarAlertNotificaciones() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final View view = this.getLayoutInflater().inflate(R.layout.view_notificaicon_recycler, null);
+        //   RecyclerView.Adapter adapter;
+        RecyclerView.Adapter adapter;
+        RecyclerView.LayoutManager lManager;
+        compR.Controls_notificaciones(view);
+        //requestWindowFeature
+        compR.getRecycler().setClipToPadding(true);
+        compR.getRecycler().setHasFixedSize(true);
+        // Usar un administrador para LinearLayout
+        lManager = new LinearLayoutManager(this);
+        compR.getRecycler().setLayoutManager(lManager);
+        // Crear un nuevo adaptador
+
+        adapter=new AdapterNotificaciones(ListaServiciosCreados,this,this);
+        compR.getRecycler().setAdapter(adapter);
+        alertDialogBuilder.setView(view);
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        compR.getBtnDismisNotificaciones().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        //alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.show();
+    }
 
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {
@@ -326,8 +469,6 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
@@ -345,6 +486,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.btnActivarTurno:
                // Toast.makeText(MainActivity.this,String.valueOf(preferencesDriver.OpenIdDriver()),Toast.LENGTH_LONG).show();
                Alert_Elegir_taxi_conductor();
+
                 break;
             case R.id.btnDesactivarTurno:
                 new wsDesactivarTurno(MainActivity.this).execute();
