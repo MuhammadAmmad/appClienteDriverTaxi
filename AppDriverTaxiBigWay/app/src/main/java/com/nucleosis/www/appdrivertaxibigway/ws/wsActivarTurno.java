@@ -2,6 +2,7 @@ package com.nucleosis.www.appdrivertaxibigway.ws;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 
 import org.ksoap2.HeaderProperty;
@@ -87,6 +89,8 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
         if(data[0].equals("1")){
             compR.getBtnActivarTurno().setVisibility(View.GONE);
             compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+            Intent intent=new Intent(context,locationDriver.class);
+            context.startService(intent);
         }else if(data[0].equals("2")){
             compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
             compR.getBtnDesactivarTurno().setVisibility(View.GONE);

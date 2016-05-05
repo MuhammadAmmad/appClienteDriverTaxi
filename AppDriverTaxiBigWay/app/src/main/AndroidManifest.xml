@@ -34,6 +34,17 @@
             android:enabled="true"
             android:exported="true" >
         </service>
+
+        <service
+            android:name=".ServiceDriver.ServiceTurno"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        <service
+            android:name=".ServiceDriver.ServiceListarServiciosCreados"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

@@ -1,22 +1,28 @@
 package com.nucleosis.www.appdrivertaxibigway;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,10 +43,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appdrivertaxibigway.Adapters.AdapterListVehiculos;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansVehiculoConductor;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Alerta;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.DonwloadImage.CircleTransform;
 import com.nucleosis.www.appdrivertaxibigway.Fragments.FragmentDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Fragments.FragmentHistoriNew;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceListarServiciosCreados;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActivarTurno;
@@ -48,6 +58,9 @@ import com.nucleosis.www.appdrivertaxibigway.ws.wsDesactivarTurno;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListVehiculos;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.kobjects.util.Util;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -59,6 +72,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 
 /**
@@ -71,6 +85,9 @@ public class MainActivity extends AppCompatActivity
     private LatLng mapCenter;
     private MapFragment mapFragment;
     private LinearLayout linearFragment;
+    private LayerDrawable icon;
+    private MenuItem item;
+
   /*  private Button btnActivarTurno;
     private Button btnDesactivarTurno;*/
     private MyTypeFace myTypeFace;
@@ -99,10 +116,97 @@ public class MainActivity extends AppCompatActivity
         mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-     /*   btnActivarTurno =(Button)findViewById(R.id.btnActivarTurno);
-        btnActivarTurno.setOnClickListener(this);
-        btnDesactivarTurno=(Button)findViewById(R.id.btnDesactivarTurno);
-        btnDesactivarTurno.setOnClickListener(this);*/
+        levantarServicioBackground();
+        CreaBroadcasReceiver();
+
+        levantarServicioBackground_ListaServiciosCreados();
+
+    }
+
+
+    private void levantarServicioBackground_ListaServiciosCreados(){
+        Intent intent=new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
+        startService(intent);
+    }
+    private void CreaBroadcasReceiver(){
+        IntentFilter filter = new IntentFilter(Utils.ACTION_RUN_SERVICE);
+        // Crear un nuevo ResponseReceiver
+        ResponseReceiver receiver =       new ResponseReceiver();
+        // Registrar el receiver y su filtro
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                receiver,
+                filter);
+
+        IntentFilter filter1=new IntentFilter(Utils.ACTION_RUN_SERVICE_2);
+        ResponseReceiverListarServiciosCreados receiver2=new
+                ResponseReceiverListarServiciosCreados();
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver2,filter1);
+
+
+    }
+    private void levantarServicioBackground(){
+        Intent intent=new Intent(MainActivity.this, ServiceTurno.class);
+        startService(intent);
+
+    }
+    private class ResponseReceiverListarServiciosCreados extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch (intent.getAction()){
+                case Utils.ACTION_RUN_SERVICE_2:
+                    Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
+                    String json=intent.getStringExtra(Utils.EXTRA_MEMORY_2);
+                    try {
+                        JSONArray jsonArray=new JSONArray(json);
+                        for(int i=0; i<jsonArray.length();i++){
+                            
+                        }
+                        Log.d("x_array", String.valueOf(jsonArray.length()));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case Utils.ACTION_MEMORY_EXIT_2:
+                    break;
+            }
+        }
+    }
+    private class ResponseReceiver extends BroadcastReceiver {
+        private ResponseReceiver() {        }
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch (intent.getAction()) {
+                case Utils.ACTION_RUN_SERVICE:
+                    String data=intent.getStringExtra(Utils.EXTRA_MEMORY);
+                //   Toast.makeText(MainActivity.this,data,Toast.LENGTH_LONG).show();
+                    if(data.equals("0")){
+                        compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
+                        compR.getBtnDesactivarTurno().setVisibility(View.GONE);
+                    }else if(data.equals("1")){
+                        compR.getBtnActivarTurno().setVisibility(View.GONE);
+                        compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+                    }
+                    ///compR.getBtnDesactivarTurno().setText(data);
+                    break;
+
+                case Utils.ACTION_MEMORY_EXIT:
+                   // lblCoordenada.setText("coordendas");
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        item = menu.findItem(R.id.menuAlert);
+        icon = (LayerDrawable) item.getIcon();
+        Alerta.setBadgeCount(this, icon, 4);
+
+
+        return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -125,25 +229,14 @@ public class MainActivity extends AppCompatActivity
                         .into(imageDriver);
 
                 return true;
-
+            case R.id.menuAlert:
+                Toast.makeText(MainActivity.this,"hoala",Toast.LENGTH_LONG).show();
+                return  true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private Bitmap donwloadaImage (String imageHttpAddress){
-        URL imageUrl = null;
-        Bitmap imagen = null;
-        try{
-            imageUrl = new URL(imageHttpAddress);
-            HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
-            conn.connect();
-            imagen = BitmapFactory.decodeStream(conn.getInputStream());
-        }catch(IOException ex){
-            ex.printStackTrace();
-        }
 
-        return imagen;
-    }
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -218,33 +311,21 @@ public class MainActivity extends AppCompatActivity
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location pos) {
-               /// Toast.makeText(getApplicationContext(),String.valueOf(pos.getLatitude()+"****"+pos.getLongitude()),Toast.LENGTH_SHORT).show();
+                /// Toast.makeText(getApplicationContext(),String.valueOf(pos.getLatitude()+"****"+pos.getLongitude()),Toast.LENGTH_SHORT).show();
                 lat[0] = pos.getLatitude();
                 lon[0] = pos.getLongitude();
-               // Log.d("lat-->",String.valueOf(lat[0]));
-                CameraUpdate cam = CameraUpdateFactory.newLatLng(new LatLng(
-                        lat[0], lon[0]));
-                /*CameraUpdate cam=CameraUpdateFactory.newLatLngZoom(new LatLng(
-                        lat[0], lon[0]),13);*/
+                // Log.d("lat-->",String.valueOf(lat[0]));
+                /*CameraUpdate cam = CameraUpdateFactory.newLatLng(new LatLng(
+                        lat[0], lon[0]));*/
+                CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
+                        lat[0], lon[0]), 13);
                 map.moveCamera(cam);
 
 
             }
         });
-
-
-        Marcardor(map);
     }
 
-    private void Marcardor(GoogleMap mapa){
-        LatLng sydney = new LatLng(-12.1464, -77.0428);
-        mapa.setMyLocationEnabled(true);
-        mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-        mapa.addMarker(new MarkerOptions()
-                .title("Sydney")
-                .snippet("The most populous city in Australia.")
-                .position(sydney));
-    }
 
 
     @Override
@@ -266,10 +347,21 @@ public class MainActivity extends AppCompatActivity
                Alert_Elegir_taxi_conductor();
                 break;
             case R.id.btnDesactivarTurno:
-                //new wsDesactivarTurno(MainActivity.this).execute();
+                new wsDesactivarTurno(MainActivity.this).execute();
                 break;
 
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("acatividad", "Destrudia");
+        Intent intent=new Intent(MainActivity.this,ServiceTurno.class);
+        stopService(intent);
+
+        Intent intent1=new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
+        stopService(intent1);
     }
 
     private void Alert_Elegir_taxi_conductor() {
@@ -284,11 +376,12 @@ public class MainActivity extends AppCompatActivity
         compR.getSpinerVehiculo().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(wsListVehiculos.listVehiculos!=null){
-                    List<beansVehiculoConductor> lista=wsListVehiculos.listVehiculos;
-                    idVehiculo[0] =lista.get(position).getIdVehiculo();
+                if (wsListVehiculos.listVehiculos != null) {
+                    List<beansVehiculoConductor> lista = wsListVehiculos.listVehiculos;
+                    idVehiculo[0] = lista.get(position).getIdVehiculo();
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -303,10 +396,13 @@ public class MainActivity extends AppCompatActivity
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int iii) {
-                        new wsActivarTurno(MainActivity.this, idVehiculo[0]).execute();
+                        if (idVehiculo[0] != 0) {
+                            new wsActivarTurno(MainActivity.this, idVehiculo[0]).execute();
+                        }
+
 
                     }
-        });
+                });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();

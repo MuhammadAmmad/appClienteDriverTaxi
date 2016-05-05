@@ -23,6 +23,41 @@ public class ConstantsWS {
     private static final String METHODO_5="WS_AUTO_LISTAR";
     private static final String SOAP_ACTION_5=NAME_SPACE+"/"+METHODO_5;
 
+    private static final String METHODO_6="WS_TURNO_DESACTIVAR";
+    private static final String SOAP_ACTION_6=NAME_SPACE+"/"+METHODO_6;
+
+    private static final String METHODO_7="WS_SERVICIO_LISTAR";
+    private static final String SOAP_ACTION_7=NAME_SPACE+"/"+METHODO_7;
+
+
+    private static final String METHODO_8="WS_TURNO_OBTENER_TURNO_ACTUAL";
+    private static final String SOAP_ACTION_8=NAME_SPACE+"/"+METHODO_8;
+
+
+    public static String getMethodo8() {
+        return METHODO_8;
+    }
+
+    public static String getSoapAction8() {
+        return SOAP_ACTION_8;
+    }
+
+    public static String getMethodo7() {
+        return METHODO_7;
+    }
+
+    public static String getSoapAction7() {
+        return SOAP_ACTION_7;
+    }
+
+    public static String getSoapAction6() {
+        return SOAP_ACTION_6;
+    }
+
+    public static String getMethodo6() {
+        return METHODO_6;
+    }
+
     public static String getMethodo5() {
         return METHODO_5;
     }

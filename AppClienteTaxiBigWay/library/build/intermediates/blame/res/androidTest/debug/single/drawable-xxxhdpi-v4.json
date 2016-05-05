@@ -1,27 +1,15 @@
 [
     {
-        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_clear.png",
-        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_clear.png"
-    },
-    {
-        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
-        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
-    },
-    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_light.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_light.png"
     },
     {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_light.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_light.png"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
-        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
-    },
-    {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_dark.png",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_dark.png"
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_clear.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_clear.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_light.png",
@@ -36,20 +24,52 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_light.png"
     },
     {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_clear.png",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_clear.png"
-    },
-    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_dark.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_dark.png"
     },
     {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
-    },
-    {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_clear.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_clear.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_dark.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_dark.png"
+    },
+    {
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_dark.png",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_dark.png"
+    },
+    {
+        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_clear.png",
+        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_clear.png"
+    },
+    {
+        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
+        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
+    },
+    {
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
+    },
+    {
+        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
+        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
+    },
+    {
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_dark.png",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_dark.png"
+    },
+    {
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_clear.png",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_clear.png"
+    },
+    {
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_search.png",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\places_ic_search.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_light.png",
@@ -70,10 +90,6 @@
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_dark.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_dark.png"
-    },
-    {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\powered_by_google_dark.png",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xxxhdpi\\powered_by_google_dark.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4\\places_ic_clear.png",

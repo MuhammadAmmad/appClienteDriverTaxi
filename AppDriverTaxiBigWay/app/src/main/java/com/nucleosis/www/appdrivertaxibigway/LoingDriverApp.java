@@ -22,25 +22,26 @@ private componentesR compR;
         compR = new componentesR(LoingDriverApp.this);
         compR.cargar_toolbar(LoingDriverApp);
         compR.Controls_LoginDriverApp(LoingDriverApp);
-        compR.getEditUser().setText("43432432");
+        compR.getEditUser().setText("45845785");
+        //compR.getEditUser().setText("43432432");
         compR.getEditPass().setText("123456");
        // compR.getBtnSigIn().setOnClickListener(this);
          }
 
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
-    @Override
+*/
+/*    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.Historial_ubi) {
+   *//*     if (id == R.id.Historial_ubi) {
             return true;
-        }
+        }*//*
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     public void onClick(View v) {

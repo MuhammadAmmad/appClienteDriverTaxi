@@ -8,6 +8,10 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\res\\layout\\distance_demo.xml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_prediction.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_prediction.xml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\res\\layout\\main.xml"
     },
@@ -18,6 +22,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\amu_webview.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\layout\\amu_webview.xml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\heatmaps_demo.xml",
@@ -40,16 +48,24 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\geojson_demo.xml"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
-        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\distance_demo.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\distance_demo.xml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\amu_webview.xml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\layout\\amu_webview.xml"
     },
     {
+        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
+        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\map.xml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\res\\layout\\map.xml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\main.xml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
@@ -80,6 +96,14 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_progress.xml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_powered_by_google.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\multi_profile.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\multi_profile.xml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\geojson_demo.xml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\res\\layout\\geojson_demo.xml"
     },
@@ -90,6 +114,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\distance_demo.xml",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\distance_demo.xml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\amu_info_window.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\layout\\amu_info_window.xml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
@@ -112,12 +140,24 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\distance_demo.xml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\heatmaps_demo.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\heatmaps_demo.xml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\kml_demo.xml",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\kml_demo.xml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\geojson_demo.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\geojson_demo.xml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\kml_demo.xml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\res\\layout\\kml_demo.xml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\kml_demo.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\kml_demo.xml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\amu_webview.xml",
@@ -134,6 +174,10 @@
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_progress.xml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_progress.xml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\amu_text_bubble.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\layout\\amu_text_bubble.xml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\distance_demo.xml",
@@ -188,6 +232,10 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_prediction.xml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\map.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\map.xml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_prediction.xml",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_prediction.xml"
     },
@@ -202,6 +250,10 @@
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\kml_demo.xml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\kml_demo.xml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\places_demo.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\places_demo.xml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_powered_by_google.xml",
@@ -276,6 +328,10 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\multi_profile.xml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\multi_profile.xml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\layout\\multi_profile.xml"
     },
@@ -298,5 +354,9 @@
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_progress.xml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_progress.xml"
     }
 ]

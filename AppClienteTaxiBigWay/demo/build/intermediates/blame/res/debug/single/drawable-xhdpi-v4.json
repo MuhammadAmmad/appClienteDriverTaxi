@@ -1,11 +1,11 @@
 [
     {
-        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\mechanic.jpg",
-        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\mechanic.jpg"
-    },
-    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_focused.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_light_focused.9.png"
+    },
+    {
+        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\mechanic.jpg",
+        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\mechanic.jpg"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_normal.9.png",
@@ -36,6 +36,10 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\mechanic.jpg"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_focused.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_light_focused.9.png"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_disabled.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_disabled.9.png"
     },
@@ -46,6 +50,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_pressed.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_disabled.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_disabled.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_focused.9.png",
@@ -68,12 +76,12 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_pressed.9.png"
     },
     {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_pressed.9.png",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_pressed.9.png"
-    },
-    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_pressed.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_pressed.9.png",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_pressed.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_focused.9.png",
@@ -88,12 +96,20 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\ruth.jpg"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ruth.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\ruth.jpg"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_disabled.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_disabled.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\teacher.jpg",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\res\\drawable-xhdpi\\teacher.jpg"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_disabled.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_light_disabled.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_normal.9.png",
@@ -108,12 +124,12 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_light_normal.9.png"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_normal.9.png",
-        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_normal.9.png"
-    },
-    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_focused.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_focused.9.png"
+    },
+    {
+        "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_normal.9.png",
+        "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_normal.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\places_ic_search.png",
@@ -150,6 +166,10 @@
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\powered_by_google_light.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\powered_by_google_light.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_focused.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_light_focused.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_pressed.9.png",
@@ -208,6 +228,14 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_normal.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_focused.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_focused.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_normal.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_normal.9.png"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_normal.9.png"
     },
@@ -232,20 +260,28 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_pressed.9.png"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\yeats.jpg",
-        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\yeats.jpg"
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_normal.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_normal.9.png"
     },
     {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\gran.jpg",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\gran.jpg"
+        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\yeats.jpg",
+        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\yeats.jpg"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_normal.9.png"
     },
     {
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\gran.jpg",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\gran.jpg"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_pressed.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_pressed.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_pressed.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_disabled.9.png",
@@ -288,6 +324,10 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\stefan.jpg"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\mechanic.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\mechanic.jpg"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\places_ic_clear.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\places_ic_clear.png"
     },
@@ -298,6 +338,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_disabled.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_disabled.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\turtle.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\turtle.jpg"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_normal.9.png",
@@ -316,8 +360,16 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_disabled.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\teacher.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\teacher.jpg"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_pressed.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_pressed.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_pressed.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_pressed.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_disabled.9.png",
@@ -352,12 +404,20 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_light_disabled.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_pressed.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_pressed.9.png"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_normal.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_focused.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_focused.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_normal.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_normal.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_launcher.png",
@@ -372,6 +432,10 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_focused.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_pressed.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_light_pressed.9.png"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_focused.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_light_focused.9.png"
     },
@@ -384,6 +448,10 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_disabled.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_disabled.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_disabled.9.png"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_disabled.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_disabled.9.png"
     },
@@ -394,6 +462,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\powered_by_google_light.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\powered_by_google_light.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_pressed.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_pressed.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_pressed.9.png",
@@ -428,8 +500,16 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_light_focused.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\yeats.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\yeats.jpg"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_normal.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_normal.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\amu_bubble_mask.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\drawable-xhdpi-v4\\amu_bubble_mask.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_disabled.9.png",
@@ -438,6 +518,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_pressed.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_pressed.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\powered_by_google_dark.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\powered_by_google_dark.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_pressed.9.png",
@@ -460,12 +544,20 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_disabled.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_disabled.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_disabled.9.png"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_disabled.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_disabled.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_focused.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_focused.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_focused.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_light_focused.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_normal.9.png",
@@ -544,6 +636,10 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_normal.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_launcher.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_normal.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_normal.9.png"
     },
@@ -604,8 +700,16 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\drawable-xhdpi-v4\\amu_bubble_mask.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_normal.9.png"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_pressed.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_full_open_on_phone.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_full_open_on_phone.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\john.jpg",
@@ -636,6 +740,10 @@
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_disabled.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_focused.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_focused.9.png"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\yeats.jpg",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\yeats.jpg"
     },
@@ -646,6 +754,10 @@
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_normal.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_dark_normal.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\stefan.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\stefan.jpg"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_normal.9.png",
@@ -700,8 +812,16 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\gran.jpg"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_focused.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_focused.9.png"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\places_ic_clear.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\places_ic_clear.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_normal.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_light_normal.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_normal.9.png",
@@ -740,6 +860,10 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_focused.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\walter.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\walter.jpg"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_normal.9.png"
     },
@@ -748,8 +872,16 @@
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_light_pressed.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_normal.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_light_normal.9.png"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\amu_bubble_mask.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\drawable-xhdpi-v4\\amu_bubble_mask.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\gran.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\gran.jpg"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_pressed.9.png",
@@ -762,6 +894,14 @@
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_focused.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_light_focused.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\places_ic_search.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\places_ic_search.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\powered_by_google_light.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\powered_by_google_light.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_disabled.9.png",
@@ -804,8 +944,16 @@
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_full_open_on_phone.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\john.jpg",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\john.jpg"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_launcher.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_disabled.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_light_disabled.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\amu_bubble_shadow.9.png",
@@ -818,6 +966,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_normal.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_light_normal.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_pressed.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_pressed.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_normal.9.png",
@@ -864,6 +1016,10 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\places_ic_clear.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_disabled.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_light_disabled.9.png"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\amu_bubble_shadow.9.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\drawable-xhdpi-v4\\amu_bubble_shadow.9.png"
     },
@@ -874,6 +1030,14 @@
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_disabled.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_light_disabled.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\places_ic_clear.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\places_ic_clear.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_dark_disabled.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_disabled.9.png"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\amu_bubble_shadow.9.png",
@@ -888,6 +1052,10 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\teacher.jpg"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_light_pressed.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_light_pressed.9.png"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_normal.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_normal.9.png"
     },
@@ -898,6 +1066,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_normal.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_light_normal.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_pressed.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_light_pressed.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_dark_normal.9.png",
@@ -920,6 +1092,10 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\res\\drawable-xhdpi\\walter.jpg"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\amu_bubble_shadow.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.maps.android\\library\\unspecified\\res\\drawable-xhdpi-v4\\amu_bubble_shadow.9.png"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_disabled.9.png",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_disabled.9.png"
     },
@@ -930,6 +1106,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_normal.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_normal.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_focused.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_focused.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\places_ic_clear.png",
@@ -950,6 +1130,14 @@
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_pressed.9.png",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_pressed.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_focused.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_icon_dark_focused.9.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_google_signin_btn_text_light_normal.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_light_normal.9.png"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_light_pressed.9.png",
@@ -976,7 +1164,15 @@
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_google_signin_btn_text_dark_normal.9.png"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_text_dark_normal.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_text_dark_normal.9.png"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\powered_by_google_dark.png",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\powered_by_google_dark.png"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\common_plus_signin_btn_icon_light_disabled.9.png",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\demo\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_disabled.9.png"
     }
 ]

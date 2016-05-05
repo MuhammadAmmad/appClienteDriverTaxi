@@ -8,6 +8,10 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_multiple_placemarks.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_unsupported.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_unsupported.kml"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_inline_style.kml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_inline_style.kml"
     },
@@ -32,12 +36,20 @@
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_ground_overlay.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_cdata.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_cdata.kml"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ballon_gx_prefix.kml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_ballon_gx_prefix.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_visibility_ground_overlay.kml",
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_visibility_ground_overlay.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_default_balloon.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_default_balloon.kml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ground_overlay.kml",
@@ -68,6 +80,10 @@
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_multiple_placemarks.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ground_overlay.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_ground_overlay.kml"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_nested_multigeometry.kml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_nested_multigeometry.kml"
     },
@@ -84,6 +100,10 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\res\\raw\\amu_basic_folder.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_nested_folders.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_nested_folders.kml"
+    },
+    {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_poly_style_boolean_alpha.kml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_poly_style_boolean_alpha.kml"
     },
@@ -98,6 +118,10 @@
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_inline_style.kml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_inline_style.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_visibility_ground_overlay.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_visibility_ground_overlay.kml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_visibility_ground_overlay.kml",
@@ -132,6 +156,26 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_ground_overlay.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_draw_order_ground_overlay.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_draw_order_ground_overlay.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_extended_data.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_extended_data.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_poly_style_boolean_alpha.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_poly_style_boolean_alpha.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_document_nest.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_document_nest.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ground_overlay_color.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_ground_overlay_color.kml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_draw_order_ground_overlay.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\res\\raw\\amu_draw_order_ground_overlay.kml"
     },
@@ -148,16 +192,16 @@
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_nested_multigeometry.kml"
     },
     {
-        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_document_nest.kml",
-        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_document_nest.kml"
+        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_cdata.kml",
+        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_cdata.kml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_document_nest.kml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_document_nest.kml"
     },
     {
-        "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_cdata.kml",
-        "source": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_cdata.kml"
+        "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_document_nest.kml",
+        "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_document_nest.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_default_balloon.kml",
@@ -200,6 +244,10 @@
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_ballon_gx_prefix.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_basic_placemark.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_basic_placemark.kml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_extended_data.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\res\\raw\\amu_extended_data.kml"
     },
@@ -228,6 +276,10 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_extended_data.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_poly_style_boolean_numeric.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_poly_style_boolean_numeric.kml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ground_overlay.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\res\\raw\\amu_ground_overlay.kml"
     },
@@ -246,6 +298,10 @@
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_multiple_placemarks.kml",
         "source": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_multiple_placemarks.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_nested_multigeometry.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_nested_multigeometry.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_unsupported.kml",
@@ -296,12 +352,20 @@
         "source": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_poly_style_boolean_alpha.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_basic_folder.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_basic_folder.kml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_nested_folders.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_nested_folders.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_unsupported.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\res\\raw\\amu_unsupported.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_inline_style.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_inline_style.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_cdata.kml",
@@ -324,8 +388,16 @@
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\res\\raw\\amu_multigeometry_placemarks.kml"
     },
     {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ballon_gx_prefix.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_ballon_gx_prefix.kml"
+    },
+    {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ground_overlay_color.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\res\\raw\\amu_ground_overlay_color.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_multigeometry_placemarks.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_multigeometry_placemarks.kml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ground_overlay_color.kml",
@@ -334,6 +406,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_unknwown_folder.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay 02-05-2016\\library\\res\\raw\\amu_unknwown_folder.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_multiple_placemarks.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_multiple_placemarks.kml"
     },
     {
         "merged": "D:\\Carlos Lopez\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_nested_folders.kml",
@@ -362,6 +438,10 @@
     {
         "merged": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_default_balloon.kml",
         "source": "D:\\CL\\GitHub\\appDriver\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_default_balloon.kml"
+    },
+    {
+        "merged": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_unknwown_folder.kml",
+        "source": "E:\\GitHub_\\appClienteDriverTaxi\\AppClienteTaxiBigWay\\library\\res\\raw\\amu_unknwown_folder.kml"
     },
     {
         "merged": "D:\\CL\\GitHub\\appClienteTaxi\\AppClienteTaxiBigWay\\library\\build\\intermediates\\res\\merged\\release\\raw\\amu_ballon_gx_prefix.kml",

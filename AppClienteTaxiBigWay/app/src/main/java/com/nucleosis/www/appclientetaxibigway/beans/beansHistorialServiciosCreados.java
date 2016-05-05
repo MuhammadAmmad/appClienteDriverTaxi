@@ -8,7 +8,6 @@ import android.os.StrictMode;
  */
 public class  beansHistorialServiciosCreados {
 /*
-
     <ID_SERVICIO xsi:type="xsd:string">30</ID_SERVICIO>
     <FEC_SERVICIO xsi:type="xsd:string">02/05/2016</FEC_SERVICIO>
     <DES_HORA xsi:type="xsd:string">16:50:00</DES_HORA>
