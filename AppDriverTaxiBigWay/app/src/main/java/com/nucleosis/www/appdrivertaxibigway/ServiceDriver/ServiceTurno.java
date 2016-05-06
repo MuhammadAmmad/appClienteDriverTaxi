@@ -68,7 +68,7 @@ public class ServiceTurno extends Service {
                             // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
                             SoapObject response1= (SoapObject) envelope.bodyIn;
                             SoapObject response2= (SoapObject)response1.getProperty("return");
-                            Log.d("aaaTurno", response2.toString());
+                          //  Log.d("aaaTurno", response2.toString());
                             if(response2.hasProperty("IND_ESTADO_TURNO")){
                                 StadoTurno=response2.getPropertyAsString("IND_ESTADO_TURNO");
                                 dataTurno[0]=response2.getPropertyAsString("IND_ESTADO_TURNO");
@@ -90,7 +90,7 @@ public class ServiceTurno extends Service {
                         super.onPostExecute(data);
                         if(data[0].length()!=0){
                             preferencesDriver.InsertarIdTurno(data[1]);
-                            Log.d("idTurno...",preferencesDriver.ExtraerIdTurno());
+                          //  Log.d("idTurno...",preferencesDriver.ExtraerIdTurno());
                             Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE)
                                     .putExtra(Utils.EXTRA_MEMORY,data[0]);
                             LocalBroadcastManager.

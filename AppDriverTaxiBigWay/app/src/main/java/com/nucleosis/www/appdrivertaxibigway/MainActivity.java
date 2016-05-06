@@ -60,8 +60,10 @@ import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActivarTurno;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsDesactivarTurno;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListVehiculos;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsListVehiculosJson;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -122,9 +124,12 @@ public class MainActivity extends AppCompatActivity
         mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         ListaServiciosCreados=new ArrayList<beansHistorialServiciosCreados>();
+
+       //LLENAR LISTA DE VEHICULOS
+      //  new wsListVehiculosJson(MainActivity.this).execute();
+
         levantarServicioBackground();
         CreaBroadcasReceiver();
-
         levantarServicioBackground_ListaServiciosCreados();
 
     }
@@ -172,9 +177,9 @@ public class MainActivity extends AppCompatActivity
 
         TextView lblfecha=(TextView)view.findViewById(R.id.txtFecha);
         TextView lblHora=(TextView)view.findViewById(R.id.txtHora);
-        TextView lblImporteServicio=(TextView)view.findViewById(R.id.txtImporteServicio);
+        final TextView lblImporteServicio=(TextView)view.findViewById(R.id.txtImporteServicio);
 
-        int posicion_=Integer.parseInt(posicion);
+        final int posicion_=Integer.parseInt(posicion);
 
         lbldireccion1.setText("\t\t"+ListaServiciosCreados.get(posicion_).getDireccionIncio());
         lbldireccion2.setText("\t\t"+ListaServiciosCreados.get(posicion_).getDireccionFinal());
@@ -207,7 +212,7 @@ public class MainActivity extends AppCompatActivity
                 dialogo1.setCancelable(false);
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
-
+                        new wsAsignarServicioConductor(MainActivity.this,ListaServiciosCreados.get(posicion_).getIdServicio()).execute();
                     }
                 });
                 dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

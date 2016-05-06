@@ -3,6 +3,7 @@ package com.nucleosis.www.appdrivertaxibigway.ws;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by carlos.lopez on 05/05/2016.
  */
-public class wsAsignarServicioConductor extends AsyncTask<String,String,String> {
+public class wsAsignarServicioConductor extends AsyncTask<String,String,String[]> {
     private Context context;
     private PreferencesDriver preferencesDriver;
     private String idServicio;
@@ -37,21 +38,15 @@ public class wsAsignarServicioConductor extends AsyncTask<String,String,String> 
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String[] doInBackground(String... params) {
+        String[] data=new String[2];
 
-
-       /* <idServicio xsi:type="xsd:int">?</idServicio>
-        <idTurno xsi:type="xsd:int">?</idTurno>
-        <idConductor xsi:type="xsd:int">?</idConductor>
-        <idAuto xsi:type="xsd:int">?</idAuto>
-        <usrActualizacion xsi:type="xsd:int">?</usrActualizacion>*/
-
-                SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo9());
+        SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo9());
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
 
         request.addProperty("idServicio", Integer.parseInt(idServicio));
-        request.addProperty("idTurno", "");
+        request.addProperty("idTurno", Integer.parseInt(preferencesDriver.ExtraerIdTurno()));
         request.addProperty("idConductor",preferencesDriver.OpenIdDriver());
         request.addProperty("idAuto", preferencesDriver.ExtraerIdVehiculo());
         request.addProperty("usrActualizacion", "");
@@ -65,14 +60,32 @@ public class wsAsignarServicioConductor extends AsyncTask<String,String,String> 
             // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             SoapObject response2= (SoapObject)response1.getProperty("return");
+            if(response2.hasProperty("IND_OPERACION")){
+                data[0]=response2.getPropertyAsString("IND_OPERACION");
+                data[1]=response2.getPropertyAsString("DES_MENSAJE");
+            }else {
+                data[0]="";
+                data[1]="";
+            }
 
-
-
-            //  Log.d("response",response2.toString());
+             Log.d("response",response1.toString());
         } catch (Exception e) {
             e.printStackTrace();
             //Log.d("error", e.printStackTrace());
         }
-        return null;
+        return data;
+    }
+
+    @Override
+    protected void onPostExecute(String[] dataS) {
+        super.onPostExecute(dataS);
+
+        if(dataS[0].equals("1")){
+            Toast.makeText(context,dataS[1],Toast.LENGTH_LONG).show();
+        }else if(dataS[0].equals("2")){
+            Toast.makeText(context,dataS[1],Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(context,"Error !!!",Toast.LENGTH_LONG).show();
+        }
     }
 }

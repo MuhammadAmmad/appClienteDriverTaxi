@@ -69,7 +69,7 @@ public class locationDriver extends Service implements LocationListener {
                         .execute();
             }
         };
-        timer.scheduleAtFixedRate(timerTask, 0, 1000);
+        timer.scheduleAtFixedRate(timerTask, 0, 30000);
         return super.onStartCommand(intent, flags, startId);
 
     }

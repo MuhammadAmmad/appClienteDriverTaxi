@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.nucleosis.www.appdrivertaxibigway.Constans.Cripto;
 
+import org.json.JSONArray;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -20,48 +22,31 @@ public class Fichero {
         this.context = context;
         cifrarString=new Cripto();
     }
-    public void InsertDatosUser(String[] datos){
-        try  { OutputStreamWriter idUser =new OutputStreamWriter(
-                context.openFileOutput("idUser.txt", Context.MODE_PRIVATE));
-            OutputStreamWriter nameUser =new OutputStreamWriter(
-                context.openFileOutput("nameUser.txt", Context.MODE_PRIVATE));
-            idUser.write(cifrarString.Encriptar(datos[0]));
-            nameUser.write(cifrarString.Encriptar(datos[1]));
-            idUser.close();
-            nameUser.close();
-            Log.d("fichero_", "fichero_creado");
+
+    public void InsertardataVehiculos(String jsonArray){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("dataVehiculos.txt", Context.MODE_PRIVATE));
+            json.write(jsonArray);
+            json.close();
         }
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
-
     }
-    public String[] ExtraerDatosUser(){
-        String[] nameFicheroIdUser=new String[2];
-        nameFicheroIdUser[0]="";
-        nameFicheroIdUser[1]="";
+
+    public String  ExtraerDataVehiculos(){
+        String dataVehiculos="";
         try
         {
-            BufferedReader getIdUser =
+            BufferedReader getDataVehiculos =
                     new BufferedReader(
                             new InputStreamReader(
-                                    context.openFileInput("idUser.txt")));
-            nameFicheroIdUser[0] = cifrarString.Desencriptar(getIdUser.readLine());
-            getIdUser.close();
-
-            BufferedReader getNameUser =
-                    new BufferedReader(
-                            new InputStreamReader(
-                                    context.openFileInput("nameUser.txt")));
-            nameFicheroIdUser[1]= cifrarString.Desencriptar(getNameUser.readLine());
-            getNameUser.close();
+                                    context.openFileInput("dataVehiculos.txt")));
+            dataVehiculos = getDataVehiculos.readLine();
+            getDataVehiculos.close();
         }
         catch (Exception ex)
         {
             Log.d("look_","No se puede leer fichero");   }
-
-        return nameFicheroIdUser;
+        return dataVehiculos;
     }
-
-
-
 }

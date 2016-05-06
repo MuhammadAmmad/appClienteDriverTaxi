@@ -100,6 +100,8 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
             intent=new Intent(ACTIVITY, MainActivity.class);
             ACTIVITY.startActivity(intent);
             ACTIVITY.finish();
+            //LLENAR LISTA DE VEHICULOS
+            new wsListVehiculosJson(context).execute();
             //cargar datatos  usuario
             new DonwloadDataUser(context).execute(user.getUser());
         } else if(sw==0){
