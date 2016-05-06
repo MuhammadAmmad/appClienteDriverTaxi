@@ -1,0 +1,145 @@
+package com.nucleosis.www.appdrivertaxibigway.ws;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.view.View;
+
+import com.nucleosis.www.appdrivertaxibigway.Adapters.GridAdapterHistorialCarrera;
+import com.nucleosis.www.appdrivertaxibigway.Adapters.GriddAdapterServiciosTomadosConductor;
+import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
+import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
+import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
+
+import org.ksoap2.HeaderProperty;
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+import com.nucleosis.www.appdrivertaxibigway.R;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
+import in.srain.cube.views.GridViewWithHeaderAndFooter;
+
+/**
+ * Created by carlos.lopez on 06/05/2016.
+ */
+public class wsListaServiciosTomadosConductor
+        extends AsyncTask<String,String,List<beansHistorialServiciosCreados>>
+implements OnItemClickListener{
+
+    private Context context;
+    private String fecha;
+    private PreferencesDriver preferencesDriver;
+    private GridViewWithHeaderAndFooter grid;
+    private Drawable drawable;
+    public static List<beansHistorialServiciosCreados> ListServicios;
+    public wsListaServiciosTomadosConductor(Context context,String fecha,GridViewWithHeaderAndFooter grid) {
+        this.context = context;
+        this.fecha=fecha;
+        this.grid=grid;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        preferencesDriver=new PreferencesDriver(context);
+        ListServicios=new ArrayList<beansHistorialServiciosCreados>();
+    }
+    @SuppressWarnings("deprecation")
+    @Override
+    protected List<beansHistorialServiciosCreados> doInBackground(String... params) {
+        beansHistorialServiciosCreados row=null;
+        SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo7());
+        SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet = false;
+        //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
+        request.addProperty("idCliente", "");
+        request.addProperty("fecServicio", fecha);
+        request.addProperty("idConductor", Integer.parseInt(preferencesDriver.OpenIdDriver()));
+        request.addProperty("idEstadoServicio", 2);
+        envelope.setOutputSoapObject(request);
+        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
+
+        try {
+            ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
+            headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
+            httpTransport.call(ConstantsWS.getSoapAction7(), envelope, headerPropertyArrayList);
+            // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
+            SoapObject response1= (SoapObject) envelope.bodyIn;
+            Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
+            int countVector=responseVector.size();
+            for(int i=0;i<countVector;i++){
+                SoapObject dataVector=(SoapObject)responseVector.get(i);
+                row=new beansHistorialServiciosCreados();
+                row.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
+                row.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
+                row.setHora(dataVector.getProperty("DES_HORA").toString());
+                row.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
+                row.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
+                row.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
+                row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
+                row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
+                row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
+                row.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                row.setNameDistritoFin(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
+                row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
+                row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                row.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
+                row.setStatadoServicio(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
+                row.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
+                row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
+                row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                row.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
+                + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                //  row.setImageHistorico(drawable);
+                int idStatus=Integer.parseInt(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
+
+                if(idStatus==2){
+                    //STATDO ACEPTADO
+                    drawable=context.getResources().getDrawable(R.drawable.shape_stado_aceptado);
+                    row.setImageStatusServicio(drawable);
+                    row.setStatusServicioTomadoColor(Color.rgb(255,144,247));
+                }else if(idStatus==3){
+                    //STADO EN RUTA CON CLIENTE
+                    drawable=context.getResources().getDrawable(R.drawable.shape_red);
+                    row.setStatusServicioTomadoColor(Color.rgb(9,217,158));
+                }else if(idStatus==4){
+                    //TERMINADO CORRECTARMENTE EL SERVCIO
+                    row.setStatusServicioTomadoColor(Color.rgb(242,223,49));
+                }else if(idStatus==5){
+                   //CANCELADO POR EL CONDUCTOR
+                    row.setStatusServicioTomadoColor(Color.rgb(142,1,3));
+                }else  if( idStatus==6){
+                    //CANCELADO POR EL CLIENTE
+                    row.setStatusServicioTomadoColor(Color.rgb(252,29,118));
+                }
+                ListServicios.add(row);
+            }
+            // SoapObject response2=(SoapObject)response1.getProperty("return");
+           // Log.d("listaxxx", responseVector.toString());
+          //  Log.d("sizeVector", String.valueOf(responseVector.size()));
+        } catch (Exception e) {
+            e.printStackTrace();
+//            Log.d("error", e.getMessage());
+        }
+        return ListServicios;
+    }
+
+    @Override
+    protected void onPostExecute(List<beansHistorialServiciosCreados> listServics) {
+        super.onPostExecute(listServics);
+        grid.setAdapter(new GriddAdapterServiciosTomadosConductor(context,listServics));
+    }
+
+
+    @Override
+    public void onClick(Context context,String id) {
+
+    }
+}

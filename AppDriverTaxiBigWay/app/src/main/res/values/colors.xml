@@ -21,6 +21,7 @@
 
     <color name="btnButtonNotificacionFalse">#abb4b5b4</color>
     <color name="btnButtonNotificacionTrue">#ab777877</color>
+    <color name="blackTwo">#3e3e3e</color>
 
     <color name="btnTraslucerFalse">#e0025002</color>
     <color name="btnTraslucerTrue">#b3015601</color>
@@ -28,5 +29,14 @@
 
     <color name="selectorNotificacion_pressed_false">#cbcaca</color>
     <color name="selectorNotificacion_pressed_true">#e9e8e8</color>
+    <color name="btnSearchFalse">#fcf9f9</color>
+    <color name="btnSearchTrue">#d1d0d0</color>
+    <color name="statoAceptado">#e190f7</color>
+    <color name="stadoEnruta">#09d99e</color>
+    <color name="stadoTerminadoCorrecto">#f2df31</color>
+    <color name="stadoCanceladoCliente">#fc1d76</color>
+    <color name="stadoCanceladoConductor">#8e0103</color>
 
+    <color name="btnCancelServicioFalse">#d4080b</color>
+    <color name="btnCancelServicioTrue">#f16264</color>
 </resources>

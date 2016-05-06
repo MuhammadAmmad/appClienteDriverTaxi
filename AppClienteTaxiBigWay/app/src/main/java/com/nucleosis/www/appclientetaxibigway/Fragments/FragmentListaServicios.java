@@ -91,7 +91,9 @@ public class FragmentListaServicios extends Fragment{
 
             }
         });
+
         formatoEntradaFecha(mYear,mMonth,mDay);
+
         if(compR.getEditHistoricoServiciosCreados().getText().length()!=0){
             String fecha=compR.getEditHistoricoServiciosCreados().getText().toString();
             new wsListaServiciosCliente(getActivity(),grid,fecha).execute();

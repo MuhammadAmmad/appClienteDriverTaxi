@@ -65,4 +65,8 @@ public class GridAdapterHistoricoServicios extends BaseAdapter {
 
         return view;
     }
+
+
+
+
 }

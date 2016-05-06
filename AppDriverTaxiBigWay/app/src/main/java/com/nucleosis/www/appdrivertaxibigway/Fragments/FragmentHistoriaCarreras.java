@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.MapFragment;
-import com.nucleosis.www.appdrivertaxibigway.Adapters.AdapterHistoriaCarreras;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistoriaCarrera;
 import com.nucleosis.www.appdrivertaxibigway.MainActivity;
 import com.nucleosis.www.appdrivertaxibigway.R;
@@ -22,7 +20,9 @@ import java.util.List;
 /**
  * Created by karlos on 03/04/2016.
  */
-public class FragmentHistoriaCarreras extends Fragment implements AdapterHistoriaCarreras.OnItemClickListener{
+public class FragmentHistoriaCarreras extends Fragment {
+
+    ///implements AdapterHistoriaCarreras.OnItemClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +50,13 @@ public class FragmentHistoriaCarreras extends Fragment implements AdapterHistori
             row.setName("Historia carrera  "+String.valueOf(i)+"A");
             items.add(row);
         }
-        adapter=new AdapterHistoriaCarreras(items,getActivity(),this);
-        recycler.setAdapter(adapter);
+/*        adapter=new AdapterHistoriaCarreras(items,getActivity(),this);
+        recycler.setAdapter(adapter);*/
         return rootView;
     }
 
-    @Override
+  /*  @Override
     public void onClick(AdapterHistoriaCarreras.ViewHolder holder, String id) {
         Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }

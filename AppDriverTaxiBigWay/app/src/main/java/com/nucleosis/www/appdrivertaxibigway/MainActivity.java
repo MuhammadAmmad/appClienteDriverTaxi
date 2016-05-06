@@ -206,6 +206,8 @@ public class MainActivity extends AppCompatActivity
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
                 dialogo1.setTitle("Importante");
                 dialogo1.setMessage("¿ Esta seguro de aceptar este servicio ?");

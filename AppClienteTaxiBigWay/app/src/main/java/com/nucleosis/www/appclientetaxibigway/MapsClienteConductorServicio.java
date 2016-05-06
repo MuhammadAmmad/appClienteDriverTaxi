@@ -42,6 +42,7 @@ public class MapsClienteConductorServicio extends AppCompatActivity
         setContentView(R.layout.view_maps_cliente_conductor_servicio);
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
         lblCoordenada = (TextView) findViewById(R.id.lblCoordenada);
         btnCoordenada = (Button) findViewById(R.id.btnCoordenadas);
         btnStopCoordenada = (Button) findViewById(R.id.btnStopCoordenadas);

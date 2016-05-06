@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistoriaCarrera;
+import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.R;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class AdapterHistoriaCarreras extends RecyclerView.Adapter<AdapterHistoriaCarreras.ViewHolder> {
     private final Context contexto;
-    private List<beansHistoriaCarrera> items;
+    private List<beansHistorialServiciosCreados> items;
 
     private OnItemClickListener escucha;
     public static MyTypeFace myTypeFace;
@@ -31,17 +32,20 @@ public class AdapterHistoriaCarreras extends RecyclerView.Adapter<AdapterHistori
     public class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         // Referencias UI
-        public ImageView imagen;
-        public TextView nombre;
-        public ImageButton imageButtonVerNotificacion;
+        public TextView fechaHora;
+        public TextView info;
+        public TextView lblButton;
+        public ImageView imageViewStatus;
 
         public ViewHolder(View v) {
             super(v);
-            imagen = (ImageView) v.findViewById(R.id.imagen);
-            nombre = (TextView) v.findViewById(R.id.nombre);
-            imageButtonVerNotificacion=(ImageButton)v.findViewById(R.id.imageVerNotificacion);
-            nombre.setTypeface(myTypeFace.openRobotoLight());
-            imageButtonVerNotificacion.setOnClickListener(this);
+            fechaHora = (TextView) v.findViewById(R.id.txtFechaHora);
+            info = (TextView) v.findViewById(R.id.nombre);
+            lblButton=(TextView)v.findViewById(R.id.lblCancelarServicio);
+            imageViewStatus=(ImageView)v.findViewById(R.id.imageStatusServicio);
+          //  imageButtonVerNotificacion=(ImageButton)v.findViewById(R.id.imageVerNotificacion);
+            info.setTypeface(myTypeFace.openRobotoLight());
+            lblButton.setOnClickListener(this);
             // v.setOnClickListener(this);
             // visitas.setOnClickListener(this);
         }
@@ -54,14 +58,14 @@ public class AdapterHistoriaCarreras extends RecyclerView.Adapter<AdapterHistori
 
     private String obtenerNotificacion(int posicion) {
         if (items != null) {
-            return items.get(posicion).getName();
+            return items.get(posicion).getFecha();
         }
 
         return null     ;
     }
 
     public AdapterHistoriaCarreras(
-            List<beansHistoriaCarrera> items,Context contexto,OnItemClickListener escucha) {
+            List<beansHistorialServiciosCreados> items,Context contexto,OnItemClickListener escucha) {
         this.contexto = contexto;
         this.items = items;
         this.escucha = escucha;
@@ -70,15 +74,18 @@ public class AdapterHistoriaCarreras extends RecyclerView.Adapter<AdapterHistori
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.view_items_historia_carreras, parent, false);
+
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        viewHolder.imagen.setImageResource(items.get(i).getImageHistoria());
-        viewHolder.nombre.setText(items.get(i).getName());
+
+        //viewHolder.imagen.setImageResource(items.get(i).getImageHistoria());
+       // viewHolder.nombre.setText(items.get(i).getName());
     }
 
     @Override

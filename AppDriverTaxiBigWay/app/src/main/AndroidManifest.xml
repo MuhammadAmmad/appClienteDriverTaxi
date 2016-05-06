@@ -29,6 +29,11 @@
           android:screenOrientation="portrait"
           android:label="@string/app_name"
           android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".MapsConductorClienteServicio"
+            android:screenOrientation="portrait"
+            android:label="@string/UbicacionCliente"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <service
             android:name=".ServiceDriver.locationDriver"
             android:enabled="true"

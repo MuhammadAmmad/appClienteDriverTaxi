@@ -1,5 +1,6 @@
 package com.nucleosis.www.appdrivertaxibigway.Beans;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
 /**
@@ -48,7 +49,25 @@ public class beansHistorialServiciosCreados {
     private String Hora;
     private String infoAddress;
     private Drawable imageHistorico;
+    private Drawable imageStatusServicio;
     private int imagenOptional;
+    private int statusServicioTomadoColor;
+
+    public int getStatusServicioTomadoColor() {
+        return statusServicioTomadoColor;
+    }
+
+    public void setStatusServicioTomadoColor(int statusServicioTomadoColor) {
+        this.statusServicioTomadoColor = statusServicioTomadoColor;
+    }
+
+    public Drawable getImageStatusServicio() {
+        return imageStatusServicio;
+    }
+
+    public void setImageStatusServicio(Drawable imageStatusServicio) {
+        this.imageStatusServicio = imageStatusServicio;
+    }
 
     public String getNameDistritoInicio() {
         return nameDistritoInicio;
