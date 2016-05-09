@@ -3,8 +3,10 @@ package com.nucleosis.www.appdrivertaxibigway.ServiceDriver;
 import android.app.ActivityManager;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
 import android.support.v4.content.LocalBroadcastManager;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -54,22 +57,20 @@ public class ServiceListarServiciosCreados extends Service {
         TimerCronometro=new TimerTask() {
             @Override
             public void run() {
-
-
-                new AsyncTask<String, String, List<beansHistorialServiciosCreados>>() {
-                     List<beansHistorialServiciosCreados> ListServicios;
+                new AsyncTask<String, String, List<beansListaServiciosCreadosPorFecha>>() {
+                     List<beansListaServiciosCreadosPorFecha> ListServicios;
                     SimpleDateFormat formatIngreso;
                     Date fechaServer=null;
                     Date fechaServicio=null;
                     @Override
                     protected void onPreExecute() {
                         super.onPreExecute();
-                        ListServicios=new ArrayList<beansHistorialServiciosCreados>();
+                        ListServicios=new ArrayList<beansListaServiciosCreadosPorFecha>();
                         formatIngreso = new SimpleDateFormat("yyyy-MM-dd");
                     }
 
                     @Override
-                    protected List<beansHistorialServiciosCreados> doInBackground(String... params) {
+                    protected List<beansListaServiciosCreadosPorFecha> doInBackground(String... params) {
                         Calendar c = new GregorianCalendar();
                         int mYear = c.get(Calendar.YEAR);
                         int mMonth = c.get(Calendar.MONTH);
@@ -85,7 +86,7 @@ public class ServiceListarServiciosCreados extends Service {
                              FechaSend=String.valueOf(mYear)+"-0"+String.valueOf(mMonth+1)+"-0"+String.valueOf(mDay);
                         }
                         Log.d("fechaend",FechaSend);
-                        beansHistorialServiciosCreados row=null;
+                        beansListaServiciosCreadosPorFecha row=null;
                         SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo7());
                         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
                         envelope.dotNet = false;
@@ -110,12 +111,12 @@ public class ServiceListarServiciosCreados extends Service {
                             Log.d("respmseVecptr",responseVector.toString());
                             for(int i=0;i<countVector;i++){
                                 SoapObject dataVector=(SoapObject)responseVector.get(i);
-                                row=new beansHistorialServiciosCreados();
+                                row=new beansListaServiciosCreadosPorFecha();
 
-                                String fecha1= dataVector.getPropertyAsString("FEC_ACTUAL_SERVER").toString();
+                                String fecha1= dataVector.getPropertyAsString("FEC_ACTUAL").toString();
                                 String fecha2=dataVector.getPropertyAsString("FEC_SERVICIO_YMD").toString();
 
-                                String horaServer= dataVector.getPropertyAsString("DES_HORA_SERVER").toString();
+                                String horaServer= dataVector.getPropertyAsString("DES_HORA_ACTUAL").toString();
                                 String horaServicio=dataVector.getProperty("DES_HORA").toString();
 
                                 fechaServer=formatIngreso.parse(fecha1);
@@ -123,62 +124,66 @@ public class ServiceListarServiciosCreados extends Service {
                                 int diferenciaDias=diferenciaDias(fechaServicio,fechaServer);
                                 int diferenciaHoras=diferenciaHoras(horaServer,horaServicio);
                                 Log.d("diferenciaDisaHoras",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
+
                                 if(diferenciaDias==0 && diferenciaHoras<=60 && diferenciaHoras>=-20){
+                                    Log.d("TiempoDifer",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
+
                                     row.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
                                     row.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
                                     row.setFechaFormat(dataVector.getProperty("FEC_SERVICIO_YMD").toString());
+
                                     row.setHora(dataVector.getProperty("DES_HORA").toString());
                                     row.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
                                     row.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
+
                                     row.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
                                     row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                     row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
+
                                     row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                                     row.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
                                     row.setNameDistritoFin(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
+
                                     row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
                                     row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
                                     row.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
+
                                     row.setStatadoServicio(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
                                     row.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
                                     row.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
                                             + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
                                     //  row.setImageHistorico(drawable);
                                     ListServicios.add(row);
+
                                 }
+                                Log.d("siseU",String.valueOf(ListServicios.size()));
 
 
                             }
-                            // SoapObject response2=(SoapObject)response1.getProperty("return");
-                            //Log.d("listaxxx", responseVector.toString());
-                           // Log.d("sizeVector", String.valueOf(responseVector.size()));
                         } catch (Exception e) {
                             e.printStackTrace();
-//            Log.d("error", e.getMessage());
                         }
                         return ListServicios;
                     }
 
                     @Override
-                    protected void onPostExecute(List<beansHistorialServiciosCreados> listServiceiosCreados) {
-                        super.onPostExecute(listServiceiosCreados);
+                    protected void onPostExecute(List<beansListaServiciosCreadosPorFecha> listServiceiosCreados) {
+                       // Log.d("siseListReturn",String.valueOf(listServiceiosCreados.size()+"  "+listServiceiosCreados.get(0).getDireccionIncio()));
+                        Gson gson = new Gson();
+                        String json = gson.toJson(listServiceiosCreados);
                         String ObjetoJsonArray=new Gson().toJson(listServiceiosCreados);
-                       Log.d("jsonArray", ObjetoJsonArray.toString());
                         Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE_2)
-                                .putExtra(Utils.EXTRA_MEMORY_2, ObjetoJsonArray);
+                                .putExtra(Utils.EXTRA_MEMORY_2, json);
                         LocalBroadcastManager.
                                 getInstance(ServiceListarServiciosCreados.this).sendBroadcast(localIntent);
 
-
-
-
-
+                        super.onPostExecute(listServiceiosCreados);
 
                     }
                 }.execute();
             }
         };
-        timerCola.scheduleAtFixedRate(TimerCronometro, 0,30000);
+        timerCola.scheduleAtFixedRate(TimerCronometro, 0,5000);
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -210,5 +215,176 @@ public class ServiceListarServiciosCreados extends Service {
 
         int minutos=TotalMinutos1-TotalMinutos2;
         return  minutos;
+    }
+
+
+}
+class  beansListaServiciosCreadosPorFecha{
+    private String idServicio; //ID_SERVICIO
+    private String importeServicio;  //IMP_SERVICIO
+    private String DescripcionServicion;  //DES_SERVICIO
+
+    private String importeAireAcondicionado;  //IMP_AIRE_ACONDICIONADO
+    private String importePeaje;                //IMP_PEAJE
+    private String numeroMinutoTiempoEspera;    //NUM_MINUTO_TIEMPO_ESPERA
+
+    private String importeTiempoEspera;   //IMP_TIEMPO_ESPERA
+    private String nameDistritoInicio;      //NOM_DISTRITO_INICIO
+    private String nameDistritoFin;         //NOM_DISTRITO_FIN
+
+    private String DireccionIncio;          //DES_DIRECCION_INICIO
+    private String direccionFinal;            //
+    private String nombreConductor;         //
+
+    private String nombreStadoServicio;
+    private String statadoServicio;
+    private String Fecha;   //FEC_SERVICIO
+
+    private String FechaFormat; //FEC_SERVICIO_YMD
+    private String Hora;       //DES_HORA
+    private String infoAddress;
+
+    public String getIdServicio() {
+        return idServicio;
+    }
+
+    public void setIdServicio(String idServicio) {
+        this.idServicio = idServicio;
+    }
+
+    public String getInfoAddress() {
+        return infoAddress;
+    }
+
+    public void setInfoAddress(String infoAddress) {
+        this.infoAddress = infoAddress;
+    }
+
+    public String getHora() {
+        return Hora;
+    }
+
+    public void setHora(String hora) {
+        Hora = hora;
+    }
+
+    public String getFechaFormat() {
+        return FechaFormat;
+    }
+
+    public void setFechaFormat(String fechaFormat) {
+        FechaFormat = fechaFormat;
+    }
+
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String fecha) {
+        Fecha = fecha;
+    }
+
+    public String getStatadoServicio() {
+        return statadoServicio;
+    }
+
+    public void setStatadoServicio(String statadoServicio) {
+        this.statadoServicio = statadoServicio;
+    }
+
+    public String getNombreStadoServicio() {
+        return nombreStadoServicio;
+    }
+
+    public void setNombreStadoServicio(String nombreStadoServicio) {
+        this.nombreStadoServicio = nombreStadoServicio;
+    }
+
+    public String getNombreConductor() {
+        return nombreConductor;
+    }
+
+    public void setNombreConductor(String nombreConductor) {
+        this.nombreConductor = nombreConductor;
+    }
+
+    public String getDireccionFinal() {
+        return direccionFinal;
+    }
+
+    public void setDireccionFinal(String direccionFinal) {
+        this.direccionFinal = direccionFinal;
+    }
+
+    public String getDireccionIncio() {
+        return DireccionIncio;
+    }
+
+    public void setDireccionIncio(String direccionIncio) {
+        DireccionIncio = direccionIncio;
+    }
+
+    public String getNameDistritoFin() {
+        return nameDistritoFin;
+    }
+
+    public void setNameDistritoFin(String nameDistritoFin) {
+        this.nameDistritoFin = nameDistritoFin;
+    }
+
+    public String getNameDistritoInicio() {
+        return nameDistritoInicio;
+    }
+
+    public void setNameDistritoInicio(String nameDistritoInicio) {
+        this.nameDistritoInicio = nameDistritoInicio;
+    }
+
+    public String getImporteTiempoEspera() {
+        return importeTiempoEspera;
+    }
+
+    public void setImporteTiempoEspera(String importeTiempoEspera) {
+        this.importeTiempoEspera = importeTiempoEspera;
+    }
+
+    public String getNumeroMinutoTiempoEspera() {
+        return numeroMinutoTiempoEspera;
+    }
+
+    public void setNumeroMinutoTiempoEspera(String numeroMinutoTiempoEspera) {
+        this.numeroMinutoTiempoEspera = numeroMinutoTiempoEspera;
+    }
+
+    public String getImportePeaje() {
+        return importePeaje;
+    }
+
+    public void setImportePeaje(String importePeaje) {
+        this.importePeaje = importePeaje;
+    }
+
+    public String getImporteAireAcondicionado() {
+        return importeAireAcondicionado;
+    }
+
+    public void setImporteAireAcondicionado(String importeAireAcondicionado) {
+        this.importeAireAcondicionado = importeAireAcondicionado;
+    }
+
+    public String getDescripcionServicion() {
+        return DescripcionServicion;
+    }
+
+    public void setDescripcionServicion(String descripcionServicion) {
+        DescripcionServicion = descripcionServicion;
+    }
+
+    public String getImporteServicio() {
+        return importeServicio;
+    }
+
+    public void setImporteServicio(String importeServicio) {
+        this.importeServicio = importeServicio;
     }
 }

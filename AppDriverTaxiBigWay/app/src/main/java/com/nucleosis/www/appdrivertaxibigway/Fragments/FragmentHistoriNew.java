@@ -35,6 +35,8 @@ import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListaServiciosTomadosConductor;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -105,15 +107,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
             }
 
         }
-        /*compR.getImageButonListarServicios().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String fecha=compR.getEditHistoriaCarrera().getText().toString();
-                if(fecha.length()!=0){
-                    new wsListaServiciosTomadosConductor(getActivity(),fecha,grid).execute();
-                }
-            }
-        });*/
+
         compR.getChxBoxFecha().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -134,6 +128,11 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
 
                     if(lista.get(position).getStatadoServicio().equals("2")){
                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                        intent.putExtra("idServicio",lista.get(position).getIdServicio());
+                        startActivity(intent);
+                    }else  if(lista.get(position).getStatadoServicio().equals("3")){
+                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                        intent.putExtra("idServicio",lista.get(position).getIdServicio());
                         startActivity(intent);
                     }
                 }
@@ -212,66 +211,30 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
     @SuppressWarnings("deprecation")
     @Override
     public void onClick(final Context context, final String idServicio,final String stadoServicio) {
+        Activity activity;
         Log.d("idGrid",stadoServicio);
         int id=Integer.parseInt(stadoServicio);
         switch (id){
             case 1:
                 break;
             case 2:
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context);
+                activity=(Activity)context;
+                AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(context);
+                final View view1 = activity.getLayoutInflater().inflate(R.layout.view_cancelar_servicio, null);
+                final EditText editText=(EditText)view1.findViewById(R.id.editCancelServicio) ;
+                final TextView lblmensaje=(TextView) view1.findViewById(R.id.lblMensajeCancelarServicio);
+                alertDialogBuilder1.setView(view1);
+                // alertDialogBuilder.setTitle(R.string.addContacto);
+                alertDialogBuilder1.setNegativeButton(R.string.CANCEL,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                dialogo1.setTitle("Importante");
-                dialogo1.setMessage("¿Esta seguro de cancelar este servicio ?");
-                dialogo1.setCancelable(false);
-                final EditText editText1=new EditText(context);
-                editText1.setWidth(120);
-                editText1.setHeight(45);
-                editText1.setHint("Motivo ??");
-                //layout_marginLeft
-                editText1.layout(10,10,10,10);
-                //aba9a9
-                editText1.setHintTextColor(Color.rgb(171,169,169));
-                //left,top,rigth,button
-                editText1.setPadding(20,5,8,20);
-                dialogo1.setView(editText1);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        //PreferencesDriver preferencesDriver=new PreferencesDriver(getActivity());
-                        preferencesDriver=new PreferencesDriver(context);
-                        Log.d("idDriverA",preferencesDriver.OpenIdDriver());
-                        idDriver=preferencesDriver.OpenIdDriver();
-                        final String msn=editText1.getText().toString();
-                        if(msn.length()!=0){
-                            new wsActualizarStadoServicio(context,idDriver,idServicio,"7",msn).execute();
-                        }else{
-                            Toast.makeText(context,"Escriba su movito !!",Toast.LENGTH_LONG).show();
-                        }
+                            }
+                        }).setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int iii) {
 
-                    }
-                });
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-
-                    }
-                });
-                dialogo1.show();
-                break;
-            case 3:
-                AlertDialog.Builder dialogo2 = new AlertDialog.Builder(context);
-                dialogo2.setTitle("Importante");
-                dialogo2.setMessage("¿Esta seguro de cancelar este servicio ?");
-                final EditText editText=new EditText(getActivity());
-                editText.setWidth(150);
-                editText.setHeight(45);
-                editText.layout(10,10,10,10);
-                //left,top,rigth,button
-                editText.setPadding(20,5,8,20);
-                dialogo2.setView(editText);
-              //  final TextView lblMontivoCancelar=(TextView)
-                dialogo2.setCancelable(false);
-                dialogo2.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        //PreferencesDriver preferencesDriver=new PreferencesDriver(getActivity());
                         preferencesDriver=new PreferencesDriver(context);
                         Log.d("idDriverA",preferencesDriver.OpenIdDriver());
                         idDriver=preferencesDriver.OpenIdDriver();
@@ -281,14 +244,37 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
                         }else{
                             Toast.makeText(context,"Escriba su movito !!",Toast.LENGTH_LONG).show();
                         }
-                    }
-                });
-                dialogo2.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
 
                     }
                 });
-                dialogo2.show();
+
+                AlertDialog alertDialog1 = alertDialogBuilder1.create();
+                alertDialog1.show();
+
+                break;
+            case 3:
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                final View view = getActivity().getLayoutInflater().inflate(R.layout.view_cancelar_servicio, null);
+
+                alertDialogBuilder.setView(view);
+                // alertDialogBuilder.setTitle(R.string.addContacto);
+                alertDialogBuilder.setNegativeButton(R.string.CANCEL,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int iii) {
+
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
                 break;
             case 4:
                 Toast.makeText(context,"El serivio fue termindo con exito",Toast.LENGTH_LONG).show();
@@ -305,8 +291,10 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
 
         }
 
+    }
 
 
+    private void cancelarServicio(){
 
     }
 }

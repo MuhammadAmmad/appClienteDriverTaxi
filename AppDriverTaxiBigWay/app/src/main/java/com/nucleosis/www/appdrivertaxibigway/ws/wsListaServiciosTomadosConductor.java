@@ -52,6 +52,7 @@ implements OnItemClickListener{
         preferencesDriver=new PreferencesDriver(context);
         ListServicios=new ArrayList<beansHistorialServiciosCreados>();
         ListServicios.clear();
+        Log.d("size_clear",String.valueOf(ListServicios.size()));
     }
     @SuppressWarnings("deprecation")
     @Override

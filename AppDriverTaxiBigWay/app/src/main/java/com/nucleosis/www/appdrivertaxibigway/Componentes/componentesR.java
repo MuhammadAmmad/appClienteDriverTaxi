@@ -205,6 +205,25 @@ public class componentesR  {
         textNotificaciones.setTypeface(myTypeFace.openRobotoLight());
         btnDismisNotificaciones=(ImageButton)view.findViewById(R.id.btnDismisNotificaciones);
     }
+
+    public void Controls_Maps_conducotor_cliente(Activity activity) {
+        btnActivarTurno=(Button)activity.findViewById(R.id.btnActivarTurno);
+        btnActivarTurno.setOnClickListener((View.OnClickListener) activity);
+        btnDesactivarTurno=(Button)activity.findViewById(R.id.btnDesactivarTurno);
+        btnDesactivarTurno.setOnClickListener((View.OnClickListener) activity);
+        btnAdicionales=(ImageView)activity.findViewById(R.id.btnAdicionales);
+        btnAdicionales.setOnClickListener((View.OnClickListener) activity);
+
+        btnClienteEncontrado=(ImageView)activity.findViewById(R.id.btnClienteEncontrado);
+        btnClienteEncontrado.setOnClickListener((View.OnClickListener) activity);
+
+        btnServicioTerminadoOk=(ImageView)activity.findViewById(R.id.btnServicioTerminadoOk);
+        btnServicioTerminadoOk.setOnClickListener((View.OnClickListener) activity);
+
+
+        btnIrAServicios=(ImageView)activity.findViewById(R.id.btnIrA_Servicios);
+        btnIrAServicios.setOnClickListener((View.OnClickListener) activity);
+    }
     public GridViewWithHeaderAndFooter getGrid() {
 
         return grid;
@@ -542,4 +561,6 @@ public class componentesR  {
     public void setBtnServicioTerminadoOk(ImageView btnServicioTerminadoOk) {
         this.btnServicioTerminadoOk = btnServicioTerminadoOk;
     }
+
+
 }

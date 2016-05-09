@@ -237,7 +237,13 @@ public class MainActivity extends AppCompatActivity
                 case Utils.ACTION_RUN_SERVICE_2:
                   //  Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
                   ListaServiciosCreados.clear();
-                    String json=intent.getStringExtra(Utils.EXTRA_MEMORY_2);
+                   String json=intent.getStringExtra(Utils.EXTRA_MEMORY_2);
+                 //   List<beansHistorialServiciosCreados> lista=intent.getParcelableArrayListExtra(Utils.EXTRA_MEMORY_2);
+                  /*  if(json==null){
+                        Log.d("jsonOBS","nulll");
+                    }else{
+                        Log.d("jsonOBS","difernte null");
+                    }*/
 
                         try {
                             final JSONArray jsonArray=new JSONArray(json);

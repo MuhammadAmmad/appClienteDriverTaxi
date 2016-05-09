@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="19dp"
+            android:textColor="@color/black"
+            android:text="¿Desea cancelar el servicio?"
+            android:id="@+id/lblMensajeCancelarServicio"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="15dp"
+            android:paddingLeft="@dimen/marginLeftDiez"
+            android:hint="Escriba el motivo"
+            android:background="@drawable/shape_border"
+            android:textColorHint="@color/hintColor"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:id="@+id/editCancelServicio"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</LinearLayout>
