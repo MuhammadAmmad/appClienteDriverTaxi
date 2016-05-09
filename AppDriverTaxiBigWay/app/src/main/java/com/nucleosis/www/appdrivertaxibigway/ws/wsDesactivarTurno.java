@@ -63,20 +63,20 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
             // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             SoapObject response2= (SoapObject)response1.getProperty("return");
-            Log.d("responseTurno", response2.toString());
+            Log.d("responseDesactivarTurno", response2.toString());
             if(response2.hasProperty("IND_OPERACION")){
-                if(response2.getPropertyAsString("IND_OPERACION").equals("1")){
-                    dataSalida[0]=response2.getPropertyAsString("IND_OPERACION");
-                    dataSalida[1]=response2.getPropertyAsString("DES_MENSAJE");
-                }else if(response2.getPropertyAsString("IND_OPERACION").equals("2")){
-                    dataSalida[0]=response2.getPropertyAsString("IND_OPERACION");
-                    dataSalida[1]=response2.getPropertyAsString("DES_MENSAJE");
-                }
+                dataSalida[0]=response2.getPropertyAsString("IND_OPERACION");
+                dataSalida[1]=response2.getPropertyAsString("DES_MENSAJE");
+            }else{
+                dataSalida[0]="";
+                dataSalida[1]="";
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("error---->",e.getMessage());
+          //  Log.d("error---->",e.getMessage());
+            dataSalida[0]="";
+            dataSalida[1]="";
 
         }
         return dataSalida;
@@ -85,15 +85,17 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
     @Override
     protected void onPostExecute(String[] data) {
         super.onPostExecute(data);
-        Toast.makeText(context, data[1], Toast.LENGTH_SHORT).show();
-        if(data[0].equals("1")){
-            compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
-            compR.getBtnDesactivarTurno().setVisibility(View.GONE);
-            Intent intent=new Intent(context,locationDriver.class);
-            context.stopService(intent);
-        }else if(data[0].equals("2")){
-            compR.getBtnActivarTurno().setVisibility(View.GONE);
-            compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+        if(data!=null){
+            if(data[0].equals("1")){
+                Intent intent=new Intent(context,locationDriver.class);
+                context.stopService(intent);
+                Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
+            }else if(data[0].equals("2")){
+                Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(context, "Errorl al desactivar turno !!!", Toast.LENGTH_LONG).show();
+            }
         }
+
     }
 }

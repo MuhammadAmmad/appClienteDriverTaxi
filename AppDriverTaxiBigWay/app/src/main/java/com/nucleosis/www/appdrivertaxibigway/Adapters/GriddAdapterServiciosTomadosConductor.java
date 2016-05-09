@@ -85,7 +85,7 @@ public class GriddAdapterServiciosTomadosConductor extends BaseAdapter {
         holder.getLblButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ON_CLICK_LISTENER.onClick(mContext,items.get(position).getStatadoServicio());
+               ON_CLICK_LISTENER.onClick(mContext,items.get(position).getIdServicio(),items.get(position).getStatadoServicio());
             }
         });
 

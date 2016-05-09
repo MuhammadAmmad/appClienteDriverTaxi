@@ -43,6 +43,7 @@ implements OnItemClickListener{
         this.context = context;
         this.fecha=fecha;
         this.grid=grid;
+        Log.d("fecha_servicio",fecha);
     }
 
     @Override
@@ -50,29 +51,31 @@ implements OnItemClickListener{
         super.onPreExecute();
         preferencesDriver=new PreferencesDriver(context);
         ListServicios=new ArrayList<beansHistorialServiciosCreados>();
+        ListServicios.clear();
     }
     @SuppressWarnings("deprecation")
     @Override
     protected List<beansHistorialServiciosCreados> doInBackground(String... params) {
         beansHistorialServiciosCreados row=null;
-        SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo7());
+        SoapObject request = new SoapObject("http://taxibigway.com/soap","WS_SERVICIO_LISTAR");
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
-        request.addProperty("idCliente", "");
+        request.addProperty("idCliente", 0);
         request.addProperty("fecServicio", fecha);
         request.addProperty("idConductor", Integer.parseInt(preferencesDriver.OpenIdDriver()));
-        request.addProperty("idEstadoServicio", 2);
+        request.addProperty("idEstadoServicio", 0);
         envelope.setOutputSoapObject(request);
-        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
+        HttpTransportSE httpTransport = new HttpTransportSE("http://taxibigway.com/soap");
 
         try {
             ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
-            httpTransport.call(ConstantsWS.getSoapAction7(), envelope, headerPropertyArrayList);
-            // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
+            httpTransport.call("http://taxibigway.com/soap/WS_SERVICIO_LISTAR", envelope, headerPropertyArrayList);
+           //  httpTransport.call("http://taxibigway.com/soap/WS_SERVICIO_LISTAR", envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
+            Log.d("vectorServicisListar",responseVector.toString());
             int countVector=responseVector.size();
             for(int i=0;i<countVector;i++){
                 SoapObject dataVector=(SoapObject)responseVector.get(i);
@@ -99,7 +102,7 @@ implements OnItemClickListener{
                 + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
                 //  row.setImageHistorico(drawable);
                 int idStatus=Integer.parseInt(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
-
+                Log.d("stadoServicios-->",String.valueOf(idStatus));
                 if(idStatus==2){
                     //STATDO ACEPTADO
                     drawable=context.getResources().getDrawable(R.drawable.shape_stado_aceptado);
@@ -107,23 +110,28 @@ implements OnItemClickListener{
                     row.setStatusServicioTomadoColor(Color.rgb(255,144,247));
                 }else if(idStatus==3){
                     //STADO EN RUTA CON CLIENTE
-                    drawable=context.getResources().getDrawable(R.drawable.shape_red);
+                    drawable=context.getResources().getDrawable(R.drawable.shape_green);
+                    row.setImageStatusServicio(drawable);
                     row.setStatusServicioTomadoColor(Color.rgb(9,217,158));
                 }else if(idStatus==4){
                     //TERMINADO CORRECTARMENTE EL SERVCIO
                     row.setStatusServicioTomadoColor(Color.rgb(242,223,49));
                 }else if(idStatus==5){
-                   //CANCELADO POR EL CONDUCTOR
-                    row.setStatusServicioTomadoColor(Color.rgb(142,1,3));
+
+                    // NO TERMINADO
                 }else  if( idStatus==6){
                     //CANCELADO POR EL CLIENTE
+                    drawable=context.getResources().getDrawable(R.drawable.shape_red_cliente);
+                    row.setImageStatusServicio(drawable);
                     row.setStatusServicioTomadoColor(Color.rgb(252,29,118));
+                }
+
+                else if(idStatus==7){
+                   //CANCELADO POR EL CONDUCTOR
+                    row.setStatusServicioTomadoColor(Color.rgb(142,1,3));
                 }
                 ListServicios.add(row);
             }
-            // SoapObject response2=(SoapObject)response1.getProperty("return");
-           // Log.d("listaxxx", responseVector.toString());
-          //  Log.d("sizeVector", String.valueOf(responseVector.size()));
         } catch (Exception e) {
             e.printStackTrace();
 //            Log.d("error", e.getMessage());
@@ -139,7 +147,7 @@ implements OnItemClickListener{
 
 
     @Override
-    public void onClick(Context context,String id) {
+    public void onClick(Context context,String id,String statdoServicio) {
 
     }
 }

@@ -54,6 +54,11 @@ public class componentesR  {
     private ImageButton btnDismisNotificaciones;
     private Button btnActivarTurno;
     private Button btnDesactivarTurno;
+    private ImageView btnClienteEncontrado;
+    private ImageView btnServicioTerminadoOk;
+    private ImageView btnIrAServicios;
+
+    private ImageView btnAdicionales;
     EditText editHistoriaCarrera;
     private  LinearLayout linearLayoutLoading;
     private  LinearLayout linearLayoutLogin;
@@ -69,6 +74,7 @@ public class componentesR  {
     private CheckBox  chxBoxFecha;
     private Spinner spinerVehiculo;
     private ImageView imageDriver;
+    private ImageView imageButonListarServicios;
 
     private  RecyclerView recycler;
     public componentesR(Context context) {
@@ -104,6 +110,18 @@ public class componentesR  {
         btnActivarTurno.setOnClickListener((View.OnClickListener) activity);
         btnDesactivarTurno=(Button)activity.findViewById(R.id.btnDesactivarTurno);
         btnDesactivarTurno.setOnClickListener((View.OnClickListener) activity);
+        btnAdicionales=(ImageView)activity.findViewById(R.id.btnAdicionales);
+        btnAdicionales.setOnClickListener((View.OnClickListener) activity);
+
+        btnClienteEncontrado=(ImageView)activity.findViewById(R.id.btnClienteEncontrado);
+        btnClienteEncontrado.setOnClickListener((View.OnClickListener) activity);
+
+        btnServicioTerminadoOk=(ImageView)activity.findViewById(R.id.btnServicioTerminadoOk);
+        btnServicioTerminadoOk.setOnClickListener((View.OnClickListener) activity);
+
+
+        btnIrAServicios=(ImageView)activity.findViewById(R.id.btnIrA_Servicios);
+        btnIrAServicios.setOnClickListener((View.OnClickListener) activity);
     }
     public Toolbar cargar_toolbar(Activity activity) {
         toolbar = (Toolbar) activity.findViewById(R.id.appbar);
@@ -170,6 +188,8 @@ public class componentesR  {
     public void Controls_fragment_Historia_Carreras_createHeader(View rootView) {
         editHistoriaCarrera=(EditText)rootView.findViewById(R.id.editHistoriaCarrera);
         chxBoxFecha=(CheckBox)rootView.findViewById(R.id.chxFecha);
+        imageButonListarServicios=(ImageView)rootView.findViewById(R.id.imageButtonSearch);
+  //      imageButonListarServicios.setOnClickListener((View.OnClickListener) rootView);
         //chxBoxFecha.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) context);
 
     }
@@ -190,8 +210,24 @@ public class componentesR  {
         return grid;
     }
 
+    public ImageView getBtnAdicionales() {
+        return btnAdicionales;
+    }
+
+    public void setBtnAdicionales(ImageView btnAdicionales) {
+        this.btnAdicionales = btnAdicionales;
+    }
+
     public TextView getTextNotificaciones() {
         return textNotificaciones;
+    }
+
+    public ImageView getImageButonListarServicios() {
+        return imageButonListarServicios;
+    }
+
+    public void setImageButonListarServicios(ImageView imageButonListarServicios) {
+        this.imageButonListarServicios = imageButonListarServicios;
     }
 
     public void setTextNotificaciones(TextView textNotificaciones) {
@@ -212,6 +248,15 @@ public class componentesR  {
 
     public void setRecycler(RecyclerView recycler) {
         this.recycler = recycler;
+    }
+
+
+    public ImageView getBtnIrAServicios() {
+        return btnIrAServicios;
+    }
+
+    public void setBtnIrAServicios(ImageView btnIrAServicios) {
+        this.btnIrAServicios = btnIrAServicios;
     }
 
     public TextView getLblElijaSuVehiculo() {
@@ -482,6 +527,19 @@ public class componentesR  {
         this.imageDriver = imageDriver;
     }
 
+    public ImageView getBtnClienteEncontrado() {
+        return btnClienteEncontrado;
+    }
 
+    public void setBtnClienteEncontrado(ImageView btnClienteEncontrado) {
+        this.btnClienteEncontrado = btnClienteEncontrado;
+    }
 
+    public ImageView getBtnServicioTerminadoOk() {
+        return btnServicioTerminadoOk;
+    }
+
+    public void setBtnServicioTerminadoOk(ImageView btnServicioTerminadoOk) {
+        this.btnServicioTerminadoOk = btnServicioTerminadoOk;
+    }
 }

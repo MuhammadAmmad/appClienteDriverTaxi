@@ -51,8 +51,6 @@ public class ServiceTurno extends Service {
                     @Override
                     protected String[] doInBackground(String... params) {
                         String[] dataTurno=new String[2];
-
-                        String StadoTurno="";
                         SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo8());
                         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
                         envelope.dotNet = false;
@@ -70,7 +68,6 @@ public class ServiceTurno extends Service {
                             SoapObject response2= (SoapObject)response1.getProperty("return");
                           //  Log.d("aaaTurno", response2.toString());
                             if(response2.hasProperty("IND_ESTADO_TURNO")){
-                                StadoTurno=response2.getPropertyAsString("IND_ESTADO_TURNO");
                                 dataTurno[0]=response2.getPropertyAsString("IND_ESTADO_TURNO");
                                 dataTurno[1]=response2.getPropertyAsString("ID_TURNO");
                             }else {
@@ -80,6 +77,8 @@ public class ServiceTurno extends Service {
                             //  Log.d("response",response2.toString());
                         } catch (Exception e) {
                             e.printStackTrace();
+                            dataTurno[0]="0";
+                            dataTurno[1]="-1";
                             //Log.d("error", e.printStackTrace());
                         }
                         return dataTurno;
@@ -88,14 +87,17 @@ public class ServiceTurno extends Service {
                     @Override
                     protected void onPostExecute(String[] data) {
                         super.onPostExecute(data);
-                        if(data[0].length()!=0){
-                            preferencesDriver.InsertarIdTurno(data[1]);
-                          //  Log.d("idTurno...",preferencesDriver.ExtraerIdTurno());
-                            Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE)
-                                    .putExtra(Utils.EXTRA_MEMORY,data[0]);
-                            LocalBroadcastManager.
-                                    getInstance(ServiceTurno.this).sendBroadcast(localIntent);
+                        if(data!=null){
+                            if(data[0].length()!=0){
+                                preferencesDriver.InsertarIdTurno(data[1]);
+                                //  Log.d("idTurno...",preferencesDriver.ExtraerIdTurno());
+                                Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE)
+                                        .putExtra(Utils.EXTRA_MEMORY,data[0]);
+                                LocalBroadcastManager.
+                                        getInstance(ServiceTurno.this).sendBroadcast(localIntent);
+                            }
                         }
+
                     }
                 }.execute();
 

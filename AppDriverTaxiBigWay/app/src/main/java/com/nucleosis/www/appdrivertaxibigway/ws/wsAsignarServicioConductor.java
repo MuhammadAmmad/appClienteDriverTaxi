@@ -46,7 +46,8 @@ public class wsAsignarServicioConductor extends AsyncTask<String,String,String[]
         envelope.dotNet = false;
 
         request.addProperty("idServicio", Integer.parseInt(idServicio));
-        request.addProperty("idTurno", Integer.parseInt(preferencesDriver.ExtraerIdTurno()));
+        //request.addProperty("idTurno", Integer.parseInt(preferencesDriver.ExtraerIdTurno()));
+        request.addProperty("idTurno", 0);
         request.addProperty("idConductor",preferencesDriver.OpenIdDriver());
         request.addProperty("idAuto", preferencesDriver.ExtraerIdVehiculo());
         request.addProperty("usrActualizacion", "");

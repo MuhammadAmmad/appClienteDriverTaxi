@@ -47,6 +47,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
         super.onPreExecute();
         preferencesCliente=new PreferencesCliente(context);
         ListServicios=new ArrayList<beansHistorialServiciosCreados>();
+        ListServicios.clear();
     }
 
     @Override

@@ -80,14 +80,11 @@ public class wsListVehiculosJson extends AsyncTask<String,String,List<beansVehic
                 row.setNameConductor(dataVector.getPropertyAsString("NOM_COMPLETO_CONDUCTOR"));
                 listVehiculos.add(row);
             }
-                    /*Log.d("responseCoducntor",responseVector.toString());
-                    Log.d("lista", String.valueOf(listVehiculos.size()));*/
-            //  Log.d("response",response2.toString());
+
         } catch (Exception e) {
             e.printStackTrace();
             //Log.d("error", e.printStackTrace());
         }
-     //   Log.d("sise-->", String.valueOf(listVehiculos.size()));
         return listVehiculos;
     }
 

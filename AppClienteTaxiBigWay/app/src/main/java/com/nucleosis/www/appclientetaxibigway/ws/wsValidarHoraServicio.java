@@ -130,11 +130,12 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                 String M2=dateServer[1].substring(3, 5);
                 int Tminutos_2=Integer.parseInt(H2)*60+Integer.parseInt(M2);
                 int DiferenciaMinutos=Tminutos_1-Tminutos_2;
-                if(DiferenciaMinutos>=-2){
+                Log.d("diferenciaOK",String.valueOf(DiferenciaMinutos));
+                if(DiferenciaMinutos>=-10){
                     Toast.makeText(context,"Solicitando servicio",Toast.LENGTH_LONG).show();
                     AlertaCreacionServicio(context,fechaUp,HoraIngreso);
                 }else{
-                    Toast.makeText(context,"Ingrese una hora valida",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"Ingrese una hora valida/Revise la hora en su celular",Toast.LENGTH_LONG).show();
                 }
             }else if(diferenciaDias>0 && diferenciaDias<=2){
                 Toast.makeText(context,"Solicitando servicio",Toast.LENGTH_SHORT).show();

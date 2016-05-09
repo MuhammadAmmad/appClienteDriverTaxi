@@ -162,6 +162,7 @@ public class ComponentesR {
         editHistoricoServiciosCreados=(EditText)view.findViewById(R.id.editHistoriaServiciosCreados);
         checkBoxFecha=(CheckBox) view.findViewById(R.id.chxFecha);
         imageButtonBuscar=(ImageButton)view.findViewById(R.id.imageButtonSearch);
+
     }
 
     public GridViewWithHeaderAndFooter getGrid() {

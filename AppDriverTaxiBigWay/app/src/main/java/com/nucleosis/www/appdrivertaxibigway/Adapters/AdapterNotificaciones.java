@@ -89,8 +89,9 @@ public class AdapterNotificaciones extends RecyclerView.Adapter<AdapterNotificac
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.imagen.setImageResource(items.get(i).getImagenOptional());
         viewHolder.addres.setText("Incio: "+items.get(i).getDireccionIncio()+"\n"+"Fin: "+items.get(i).getDireccionFinal());
-        viewHolder.fecha.setText(items.get(i).getFecha());
+        viewHolder.fecha.setText(items.get(i).getFecha()+"\n"+items.get(i).getHora());
         viewHolder.distritos.setText(items.get(i).getNameDistritoInicio()+" / "+items.get(i).getNameDistritoFin());
+
     }
 
     @Override

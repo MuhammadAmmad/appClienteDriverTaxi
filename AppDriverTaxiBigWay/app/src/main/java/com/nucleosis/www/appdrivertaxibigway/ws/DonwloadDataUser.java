@@ -84,6 +84,7 @@ public class DonwloadDataUser extends
     @Override
     protected void onPostExecute(List<beansDataDriver> beansDataDrivers) {
         preferencesDriver.InsertDataDriver(beansDataDrivers);
+        new wsListVehiculosJson(context).execute();
         super.onPostExecute(beansDataDrivers);
     }
 }

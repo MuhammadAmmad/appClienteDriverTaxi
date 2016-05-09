@@ -36,6 +36,40 @@ public class ConstantsWS {
     private static final String METHODO_9="WS_SERVICIO_ASIGNAR_CONDUCTOR";
     private static final String SOAP_ACTION_9=NAME_SPACE+"/"+METHODO_9;
 
+    private static final String METHODO_10="WS_OBTENER_FECHA_HORA_ACTUAL";
+    private static final String SOAP_ACTION_10=NAME_SPACE+"/"+METHODO_10;
+
+    private static final String METHODO_11="WS_SERVICIO_ACTUALIZAR_ID_ESTADO_SERVICIO";
+    private static final String SOAP_ACTION_11=NAME_SPACE+"/"+METHODO_11;
+
+    private static final String METHODO_12="WS_OBTENER_FECHA_HORA_ACTUAL";
+    private static final String SOAP_ACTION_12=NAME_SPACE+"/"+METHODO_12;
+
+
+    public static String getMethodo12() {
+        return METHODO_12;
+    }
+
+    public static String getSoapAction12() {
+        return SOAP_ACTION_12;
+    }
+
+    public static String getMethodo11() {
+        return METHODO_11;
+    }
+
+    public static String getSoapAction11() {
+        return SOAP_ACTION_11;
+    }
+
+    public static String getMethodo10() {
+        return METHODO_10;
+    }
+
+    public static String getSoapAction10() {
+        return SOAP_ACTION_10;
+    }
+
     public static String getMethodo9() {
         return METHODO_9;
     }

@@ -91,7 +91,14 @@ public class FragmentListaServicios extends Fragment{
 
             }
         });
-
+        compR.getImageButtonBuscar().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fecha=compR.getEditHistoricoServiciosCreados().getText().toString();
+                if(fecha.length()!=0){
+                new wsListaServiciosCliente(getActivity(),grid,fecha).execute();}
+            }
+        });
         formatoEntradaFecha(mYear,mMonth,mDay);
 
         if(compR.getEditHistoricoServiciosCreados().getText().length()!=0){
@@ -109,6 +116,7 @@ public class FragmentListaServicios extends Fragment{
 
             }
         });
+
         compR.getGrid().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -168,7 +176,7 @@ public class FragmentListaServicios extends Fragment{
 
                             }else if(dayOfMonth>=10 && (monthOfYear+1)<10){
                                 compR.getEditHistoricoServiciosCreados().setText(year
-                                        + (monthOfYear + 1) + "-" + dayOfMonth + "-0");
+                                        + "-0"+(monthOfYear + 1) + "-" + dayOfMonth);
                             }else if(dayOfMonth<10 && (monthOfYear+1)>=10){
                                 compR.getEditHistoricoServiciosCreados().setText( year + "-"
                                         + (monthOfYear + 1) + "-" + "0"+dayOfMonth);

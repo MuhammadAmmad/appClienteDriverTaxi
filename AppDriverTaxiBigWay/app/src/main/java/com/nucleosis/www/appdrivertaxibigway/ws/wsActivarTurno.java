@@ -87,15 +87,17 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
         super.onPostExecute(data);
         Toast.makeText(context,data[1],Toast.LENGTH_SHORT).show();
         if(data[0].equals("1")){
-            compR.getBtnActivarTurno().setVisibility(View.GONE);
-            compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+          //  compR.getBtnActivarTurno().setVisibility(View.GONE);
+          //  compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+         //   compR.getBtnAdicionales().setVisibility(View.VISIBLE);
             Intent intent=new Intent(context,locationDriver.class);
             context.startService(intent);
             preferencesDriver.InsertarIdVehiculo(String.valueOf(idVehiculo));
             Log.d("extraerIdAuto",preferencesDriver.ExtraerIdVehiculo());
         }else if(data[0].equals("2")){
-            compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
-            compR.getBtnDesactivarTurno().setVisibility(View.GONE);
+           // compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
+          //  compR.getBtnDesactivarTurno().setVisibility(View.GONE);
+          //  compR.getBtnAdicionales().setVisibility(View.GONE);
         }
     }
 }

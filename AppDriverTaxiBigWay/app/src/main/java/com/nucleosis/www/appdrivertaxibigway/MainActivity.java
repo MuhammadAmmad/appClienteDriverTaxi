@@ -6,10 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -46,6 +42,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appdrivertaxibigway.Adapters.AdapterListVehiculos;
 import com.nucleosis.www.appdrivertaxibigway.Adapters.AdapterNotificaciones;
+import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansVehiculoConductor;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
@@ -62,26 +59,22 @@ import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActivarTurno;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsDesactivarTurno;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerHoraServer;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListVehiculos;
-import com.nucleosis.www.appdrivertaxibigway.ws.wsListVehiculosJson;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.kobjects.util.Util;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Random;
-import java.util.Vector;
 
 /**
  * Created by karlos on 21/03/2016.
@@ -100,6 +93,7 @@ public class MainActivity extends AppCompatActivity
     private PreferencesDriver preferencesDriver;
     private Menu menuNoti;
     private int swTurno=0;
+    private  SimpleDateFormat formatIngreso;
     private List<beansHistorialServiciosCreados>ListaServiciosCreados;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,8 +127,6 @@ public class MainActivity extends AppCompatActivity
         levantarServicioBackground_ListaServiciosCreados();
 
     }
-
-
     private void levantarServicioBackground_ListaServiciosCreados(){
         Intent intent=new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
         startService(intent);
@@ -246,16 +238,18 @@ public class MainActivity extends AppCompatActivity
                   //  Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
                   ListaServiciosCreados.clear();
                     String json=intent.getStringExtra(Utils.EXTRA_MEMORY_2);
-                        beansHistorialServiciosCreados row=null;
+
                         try {
-                            JSONArray jsonArray=new JSONArray(json);
+                            final JSONArray jsonArray=new JSONArray(json);
                             NumeroNotificacion=jsonArray.length();
+                            Alerta.setBadgeCount(getApplicationContext(), icon, NumeroNotificacion);
                             item = menuNoti.findItem(R.id.menuAlert);
                             icon = (LayerDrawable) item.getIcon();
-                            Alerta.setBadgeCount(getApplicationContext(), icon, NumeroNotificacion);
-                            for(int i=0; i<jsonArray.length();i++){
+                            beansHistorialServiciosCreados row=null;
+                          for(int i=0; i<jsonArray.length();i++){
                                 row=new beansHistorialServiciosCreados();
                                 row.setFecha(jsonArray.getJSONObject(i).getString("Fecha"));
+                                row.setFechaFormat(jsonArray.getJSONObject(i).getString("FechaFormat"));
                                 row.setHora(jsonArray.getJSONObject(i).getString("Hora"));
                                 row.setNombreStadoServicio(jsonArray.getJSONObject(i).getString("nombreStadoServicio"));
                                 row.setImporteTiempoEspera(jsonArray.getJSONObject(i).getString("importeTiempoEspera"));
@@ -286,6 +280,12 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
+    private int diferenciaDias(Date fechaMayor,Date fechaMenor){
+        long diferenciaEn_ms = fechaMayor.getTime()- fechaMenor.getTime();
+        long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
+        return (int) dias;
+    }
     private class ResponseReceiver extends BroadcastReceiver {
         private ResponseReceiver() {        }
         @Override
@@ -297,11 +297,20 @@ public class MainActivity extends AppCompatActivity
                     if(data.equals("0")){
                         compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnDesactivarTurno().setVisibility(View.GONE);
+                        compR.getBtnIrAServicios().setVisibility(View.GONE);
+                       // compR.getBtnAdicionales().setVisibility(View.GONE);
+                      //  compR.getBtnClienteEncontrado().setVisibility(View.GONE);
+                      //  compR.getBtnServicioTerminadoOk().setVisibility(View.GONE);
                         swTurno=2;
                     }else if(data.equals("1")){
                         compR.getBtnActivarTurno().setVisibility(View.GONE);
                         compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+                        compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
+                      //  compR.getBtnAdicionales().setVisibility(View.VISIBLE);
+                      //  compR.getBtnServicioTerminadoOk().setVisibility(View.VISIBLE);
+                      //  compR.getBtnClienteEncontrado().setVisibility(View.VISIBLE);
                         swTurno=1;
+
                     }
                     ///compR.getBtnDesactivarTurno().setText(data);
                     break;
@@ -364,6 +373,8 @@ public class MainActivity extends AppCompatActivity
         //   RecyclerView.Adapter adapter;
         RecyclerView.Adapter adapter;
         RecyclerView.LayoutManager lManager;
+        //onLayoutChildren
+
         compR.Controls_notificaciones(view);
         //requestWindowFeature
         compR.getRecycler().setClipToPadding(true);
@@ -386,7 +397,6 @@ public class MainActivity extends AppCompatActivity
         //alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
     }
-
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -470,8 +480,6 @@ public class MainActivity extends AppCompatActivity
                 CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
                         lat[0], lon[0]), 13);
                 map.moveCamera(cam);
-
-
             }
         });
     }
@@ -496,7 +504,28 @@ public class MainActivity extends AppCompatActivity
 
                 break;
             case R.id.btnDesactivarTurno:
-                new wsDesactivarTurno(MainActivity.this).execute();
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
+                dialogo1.setTitle("Importante");
+                dialogo1.setMessage("¿ Esta seguro de desactivar su turno ?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    //new wsExtraerHoraServer(MainActivity.this).execute();
+                    new wsDesactivarTurno(MainActivity.this).execute();
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+
+                    }
+                });
+                dialogo1.show();
+
+                break;
+            case R.id.btnIrA_Servicios:
+                //Toast.makeText(MainActivity.this,"hola",Toast.LENGTH_LONG).show();
+                linearFragment.setVisibility(View.GONE);
+                setFragment(0);
                 break;
 
         }

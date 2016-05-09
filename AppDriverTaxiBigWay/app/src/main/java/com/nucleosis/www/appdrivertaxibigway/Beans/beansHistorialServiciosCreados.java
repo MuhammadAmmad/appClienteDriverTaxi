@@ -46,12 +46,30 @@ public class beansHistorialServiciosCreados {
     private String nombreStadoServicio;
     private String statadoServicio;
     private String Fecha;
+    private String FechaFormat;
     private String Hora;
     private String infoAddress;
     private Drawable imageHistorico;
     private Drawable imageStatusServicio;
     private int imagenOptional;
     private int statusServicioTomadoColor;
+    private String idTurno;
+
+    public String getFechaFormat() {
+        return FechaFormat;
+    }
+
+    public void setFechaFormat(String fechaFormat) {
+        FechaFormat = fechaFormat;
+    }
+
+    public String getIdTurno() {
+        return idTurno;
+    }
+
+    public void setIdTurno(String idTurno) {
+        this.idTurno = idTurno;
+    }
 
     public int getStatusServicioTomadoColor() {
         return statusServicioTomadoColor;
