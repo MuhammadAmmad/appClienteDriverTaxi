@@ -6,6 +6,10 @@ import android.util.Log;
 
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,6 +91,63 @@ public class PreferencesDriver {
     public String ExtraerIdTurno(){
         SharedPreferences prefs =
                 context.getSharedPreferences("Turno", Context.MODE_PRIVATE);
-        return prefs.getString("idTurno","-1");
+        return prefs.getString("idTurno","0");
+    }
+
+    public void InsertarDataTurno(String idTurno,String fecha,String hora){
+        SharedPreferences prefs =
+                context.getSharedPreferences("dataTurno", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("idTurno",idTurno);
+        editor.putString("Fecha_Pref",fecha);
+        editor.putString("Hora_Pref",hora);
+        editor.commit();
+    }
+    public JSONObject ExtraerDataTurno(){
+        JSONObject dataTurnoJson=new JSONObject();
+        SharedPreferences prefs =
+                context.getSharedPreferences("dataTurno", Context.MODE_PRIVATE);
+
+        try {
+            dataTurnoJson.put("idTurnoJson",prefs.getString("idTurno","0"));
+            dataTurnoJson.put("FechaTurnoJson",prefs.getString("Fecha_Pref","0000-00-00"));
+            dataTurnoJson.put("HoraTurnoJson",prefs.getString("Hora_Pref","00:00"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return dataTurnoJson;
+    }
+    public  void InsertarFechaHoraActual(String fecha,String hora){
+        SharedPreferences prefs =
+                context.getSharedPreferences("FechaHoraActual", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("fecha_sis",fecha);
+        editor.putString("hora_sis",hora);
+        editor.commit();
+    }
+
+    public JSONObject ExtraerHoraSistema(){
+        SharedPreferences prefs =
+                context.getSharedPreferences("FechaHoraActual", Context.MODE_PRIVATE);
+
+        JSONObject jsonFechaHora= new JSONObject();
+        try {
+            jsonFechaHora.put("fechaServidor",prefs.getString("fecha_sis","0000-00-00"));
+            jsonFechaHora.put("horaServidor",prefs.getString("hora_sis","00:00"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonFechaHora;
+    }
+
+    public void InsertaListServiciosCreados(String json){
+        SharedPreferences prefs =
+                context.getSharedPreferences("jsonListaServiciosCreados", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("jsonList",json);
+        editor.commit();
+    }
+    public JSONArray ExtarerListServiciosCreados(){
+        return null;
     }
 }

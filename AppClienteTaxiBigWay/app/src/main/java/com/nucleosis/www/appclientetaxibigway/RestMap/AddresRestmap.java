@@ -38,6 +38,7 @@ public class AddresRestmap extends AsyncTask<String,String,String> {
         this.casoMarker=casoMarker;
         compR=new ComponentesR(context);
         compR.Contros_MainActivity(CX_MAIN_ACTIVITY.MAIN_ACTIVITY);
+        Log.d("adress_inicio_fin",lat+"****"+lng);
         Url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=";
     }
 

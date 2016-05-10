@@ -113,7 +113,7 @@
             <ImageView
                 android:layout_width="12dp"
                 android:layout_height="12dp"
-                android:background="#2e47ec"/>
+                android:background="#2788f1"/>
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"

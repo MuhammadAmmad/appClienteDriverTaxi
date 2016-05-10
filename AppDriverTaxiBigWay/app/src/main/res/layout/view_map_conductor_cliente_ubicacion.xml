@@ -76,6 +76,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:visibility="visible"
+                            android:background="@drawable/selector_button_service_no_terminado"
+                            android:id="@+id/btnSercioNoTerminado"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:visibility="visible"
                             android:background="@drawable/selector_button_servicio_terminado_ok"
                             android:id="@+id/btnServicioTerminadoOk"/>
                         <ImageView

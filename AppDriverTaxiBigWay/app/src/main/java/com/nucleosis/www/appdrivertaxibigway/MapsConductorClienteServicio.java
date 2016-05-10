@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
 
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
@@ -43,6 +45,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     private componentesR compR;
     Activity MAPS_CONDUCTOR_CLIENTE;
     private   String idServicio="";
+
     private PreferencesDriver preferencesDriver;
     private String idDriver="";
     @Override
@@ -56,9 +59,18 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         compR.Controls_Maps_conducotor_cliente(MAPS_CONDUCTOR_CLIENTE);
         if(getIntent()!=null){
             idServicio=  getIntent().getStringExtra("idServicio");
-
-
+            String stadoServicio=getIntent().getStringExtra("stadoService");
+            Log.d("idServicio_stadoSevcio",idServicio+"-->"+stadoServicio);
+            switch (Integer.parseInt(stadoServicio)){
+                case 3:
+                    compR.getBtnClienteEncontrado().setEnabled(false);
+                    break;
+                default:
+                    compR.getBtnClienteEncontrado().setEnabled(true);
+                    break;
+            }
         }
+
         preferencesDriver=new PreferencesDriver(MapsConductorClienteServicio.this);
         idDriver=preferencesDriver.OpenIdDriver();
 
@@ -85,19 +97,34 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         });
     }
     private void MarcadorServicio(GoogleMap googleMap,double lat,double lon){
-
-    }
+              }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnClienteEncontrado:
+              Log.d("idTurnoVehiculo-->",preferencesDriver.ExtraerIdTurno()+"***"+preferencesDriver.ExtraerIdVehiculo());
                clienteEcontrado();
+               /* int idTurno=Integer.parseInt(preferencesDriver.ExtraerIdTurno());
+                int idAuto=Integer.parseInt(preferencesDriver.ExtraerIdVehiculo());
+                new wsActualizarStadoServicio(MapsConductorClienteServicio.this,
+                        idDriver,idServicio,idTurno,idAuto,"3","").execute();*/
                 break;
             case R.id.btnAdicionales:
+
              //   adicionales();
                 break;
+            case R.id.btnSercioNoTerminado:
+                compR.getBtnServicioTerminadoOk().setEnabled(false);
+                compR.getBtnClienteEncontrado().setEnabled(false);
+                //id SWITH
+                String ms="mensaje";
+                ActualizarStadosServicio("5",ms,10);
+                break;
             case R.id.btnServicioTerminadoOk:
+                compR.getBtnClienteEncontrado().setEnabled(false);
+                compR.getBtnServicioNoTerminado().setEnabled(false);
+                ActualizarStadosServicio("4","",11);
                 break;
             case R.id.btnIrA_Servicios:
                 Intent intent=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
@@ -106,9 +133,10 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         }
     }
 
-
-    private void clienteEcontrado() {
+    private void ActualizarStadosServicio(String idStadoService, String motivo, final int idObjetos) {
         new AsyncTask<String, String, String[]>() {
+
+
             @Override
             protected  String[] doInBackground(String... params) {
 
@@ -119,11 +147,11 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 envelope.dotNet = false;
 
                 request.addProperty("idServicio", Integer.parseInt(idServicio));
-                request.addProperty("idTurno", 0);
+                request.addProperty("idTurno",Integer.parseInt(preferencesDriver.ExtraerIdTurno()));
                 request.addProperty("idConductor",Integer.parseInt(idDriver));
-                request.addProperty("idAuto", 0);
-                request.addProperty("idEstadoServicio",3);
-                request.addProperty("desMotivo", "");
+                request.addProperty("idAuto",Integer.parseInt(preferencesDriver.ExtraerIdVehiculo()));
+                request.addProperty("idEstadoServicio",Integer.parseInt(params[0].toString()));
+                request.addProperty("desMotivo", params[1].toString());
                 request.addProperty("usrActualizacion", 0);
                 envelope.setOutputSoapObject(request);
                 HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
@@ -135,6 +163,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                     // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
                     SoapObject response1= (SoapObject) envelope.bodyIn;
                     SoapObject response2= (SoapObject)response1.getProperty("return");
+                    Log.d("respOk",response2.toString());
                     if(response2.hasProperty("IND_OPERACION")){
                         data[0]=response2.getProperty("IND_OPERACION").toString();
                         data[1]=response2.getProperty("DES_MENSAJE").toString();
@@ -158,9 +187,89 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             }
 
             @Override
-            protected void onPostExecute(String[] strings) {
-                super.onPostExecute(strings);
-                Toast.makeText(getApplicationContext(),"Se actualizo",Toast.LENGTH_SHORT).show();
+            protected void onPostExecute(String[] data) {
+                super.onPostExecute(data);
+                if(data!=null){
+                    if(data[0].equals("1")){
+                        Toast.makeText(getApplicationContext(),data[1],Toast.LENGTH_SHORT).show();
+                        switch (idObjetos){
+                            case 10:
+                                compR.getBtnServicioNoTerminado().setEnabled(false);
+                                break;
+                            case 11:
+                                compR.getBtnServicioTerminadoOk().setEnabled(false);
+                                break;
+                        }
+
+                    }
+                }
+
+            }
+        }.execute(idStadoService,motivo);//paramaretro
+    }
+
+
+    private void clienteEcontrado() {
+        new AsyncTask<String, String, String[]>() {
+            @Override
+            protected  String[] doInBackground(String... params) {
+
+                Log.d("eta_aqui","doInBackGround");
+                String[] data=new String[2];
+                SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo11());
+                SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
+                envelope.dotNet = false;
+
+                request.addProperty("idServicio", Integer.parseInt(idServicio));
+                request.addProperty("idTurno",Integer.parseInt(preferencesDriver.ExtraerIdTurno()));
+                request.addProperty("idConductor",Integer.parseInt(idDriver));
+                request.addProperty("idAuto",Integer.parseInt(preferencesDriver.ExtraerIdVehiculo()));
+                request.addProperty("idEstadoServicio",3);
+                request.addProperty("desMotivo", "");
+                request.addProperty("usrActualizacion", 0);
+                envelope.setOutputSoapObject(request);
+                HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
+
+                try {
+                    ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
+                    headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
+                    httpTransport.call(ConstantsWS.getSoapAction11(), envelope, headerPropertyArrayList);
+                    // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
+                    SoapObject response1= (SoapObject) envelope.bodyIn;
+                    SoapObject response2= (SoapObject)response1.getProperty("return");
+                    Log.d("respOk",response2.toString());
+                    if(response2.hasProperty("IND_OPERACION")){
+                        data[0]=response2.getProperty("IND_OPERACION").toString();
+                        data[1]=response2.getProperty("DES_MENSAJE").toString();
+
+                    }else{
+                        data[0]="";
+                        data[1]="";
+                    }
+
+                    // Log.d("actualizarServicio", response2.toString());
+
+
+                    //  Log.d("response",response2.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    data[0]="";
+                    data[1]="";
+                    //Log.d("error", e.printStackTrace());
+                }
+                return data;
+            }
+
+            @Override
+            protected void onPostExecute(String[] data) {
+                super.onPostExecute(data);
+                if(data!=null){
+                    if(data[0].equals("1")){
+                        Toast.makeText(getApplicationContext(),data[1],Toast.LENGTH_SHORT).show();
+                        compR.getBtnClienteEncontrado().setEnabled(false);
+                    }
+                }
+
             }
         }.execute();
     }
@@ -168,5 +277,13 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
 
     private void adicionales() {
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

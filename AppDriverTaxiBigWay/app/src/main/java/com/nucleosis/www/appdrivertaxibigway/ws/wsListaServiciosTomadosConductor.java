@@ -116,9 +116,13 @@ implements OnItemClickListener{
                     row.setStatusServicioTomadoColor(Color.rgb(9,217,158));
                 }else if(idStatus==4){
                     //TERMINADO CORRECTARMENTE EL SERVCIO
+                    drawable=context.getResources().getDrawable(R.drawable.shape_blue);
+                    row.setImageStatusServicio(drawable);
                     row.setStatusServicioTomadoColor(Color.rgb(242,223,49));
-                }else if(idStatus==5){
 
+                }else if(idStatus==5){
+                    drawable=context.getResources().getDrawable(R.drawable.shape_yellow);
+                    row.setImageStatusServicio(drawable);
                     // NO TERMINADO
                 }else  if( idStatus==6){
                     //CANCELADO POR EL CLIENTE

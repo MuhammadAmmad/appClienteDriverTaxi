@@ -6,7 +6,9 @@ import android.util.Log;
 
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
@@ -21,8 +23,10 @@ import java.util.List;
  * Created by karlos on 06/05/2016.
  */
 public class wsExtraerHoraServer extends AsyncTask<String,String,JSONObject> {
+    private PreferencesDriver preferencesDriver;
     public wsExtraerHoraServer(Context context) {
         this.context = context;
+        preferencesDriver=new PreferencesDriver(context);
     }
 
     private Context context;
@@ -61,7 +65,15 @@ public class wsExtraerHoraServer extends AsyncTask<String,String,JSONObject> {
     @Override
     protected void onPostExecute(JSONObject json) {
         super.onPostExecute(json);
-        new wsVerificarServicioActivo(context,json).execute();
+        try {
+           preferencesDriver.InsertarFechaHoraActual(
+                   json.getString("Fecha").toString(),
+                   json.getString("Hora").toString());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //new wsVerificarServicioActivo(context,json).execute();
         Log.d("json..", json.toString());
     }
 }

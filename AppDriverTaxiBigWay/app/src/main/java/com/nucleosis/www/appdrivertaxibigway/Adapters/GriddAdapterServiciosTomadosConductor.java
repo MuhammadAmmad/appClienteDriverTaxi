@@ -2,6 +2,7 @@ package com.nucleosis.www.appdrivertaxibigway.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,11 @@ import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
 import com.nucleosis.www.appdrivertaxibigway.R;
 import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 import static com.nucleosis.www.appdrivertaxibigway.Constans.Utils.ON_CLICK_LISTENER;
+import static com.nucleosis.www.appdrivertaxibigway.Constans.Utils.ON_ITEM_CLICK_LISTENER_DETALLE;
 /**
  * Created by carlos.lopez on 06/05/2016.
  */
@@ -65,6 +69,7 @@ public class GriddAdapterServiciosTomadosConductor extends BaseAdapter {
             holder.setInfo((TextView)view.findViewById(R.id.txtInfoAddres));
             holder.setLblButton((TextView)view.findViewById(R.id.lblCancelarServicio));
             holder.setImageViewStatus((ImageView)view.findViewById(R.id.imageStatusServicio));
+            holder.setLblButtonDetalleService((TextView)view.findViewById(R.id.lblDetalleServicio));
             view.setTag(holder);
 
         }else {
@@ -80,12 +85,37 @@ public class GriddAdapterServiciosTomadosConductor extends BaseAdapter {
         holder.getImageViewStatus().setImageDrawable(item.getImageStatusServicio());
        // holder.getImageViewStatus().setBackgroundColor(item.getStatusServicioTomadoColor());
         //holder.getImageViewStatus().setBackground(item.getImageStatusServicio());
-        holder.getLblButton().setOnClickListener((View.OnClickListener) activity);
+      //  holder.getLblButton().setOnClickListener((View.OnClickListener) activity);
         holder.getLblButton().setTypeface(myTypeFace.openRobotoLight());
+
+        holder.getLblButton().setVisibility(View.GONE);
+        holder.getLblButtonDetalleService().setVisibility(View.GONE);
+
+        if(items.get(position).getStatadoServicio().equals("3")){
+            Log.d("stado",items.get(position).getStatadoServicio());
+            holder.getLblButton().setVisibility(View.GONE);
+            holder.getLblButtonDetalleService().setVisibility(View.VISIBLE);
+        }else if(items.get(position).getStatadoServicio().equals("2")){
+            Log.d("stado",items.get(position).getStatadoServicio());
+            holder.getLblButton().setVisibility(View.VISIBLE);
+            holder.getLblButtonDetalleService().setVisibility(View.GONE);
+        }else {
+            holder.getLblButton().setVisibility(View.GONE);
+            holder.getLblButtonDetalleService().setVisibility(View.VISIBLE);
+        }
         holder.getLblButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ON_CLICK_LISTENER.onClick(mContext,items.get(position).getIdServicio(),items.get(position).getStatadoServicio());
+               ON_CLICK_LISTENER.onClick(mContext,items.get(position).getIdServicio(),
+                                            items.get(position).getStatadoServicio());
+            }
+        });
+
+        holder.getLblButtonDetalleService().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ON_ITEM_CLICK_LISTENER_DETALLE.onClickDetalle(mContext,items.get(position).getIdServicio(),
+                        items.get(position).getStatadoServicio());
             }
         });
 
@@ -98,6 +128,16 @@ public class GriddAdapterServiciosTomadosConductor extends BaseAdapter {
         private TextView info;
         private TextView lblButton;
         private ImageView imageViewStatus;
+        private TextView lblButtonDetalleService;
+
+        public TextView getLblButtonDetalleService() {
+            return lblButtonDetalleService;
+        }
+
+        public void setLblButtonDetalleService(TextView lblButtonDetalleService) {
+            this.lblButtonDetalleService = lblButtonDetalleService;
+        }
+
         public TextView getFechaHora() {
             return fechaHora;
         }

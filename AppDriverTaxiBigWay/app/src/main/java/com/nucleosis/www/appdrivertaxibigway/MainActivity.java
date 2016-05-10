@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity
         compR.cargar_toolbar_2(MAIN_ACTIVITY);
         preferencesDriver=new PreferencesDriver(MainActivity.this);
         //|compR.getToolbar_2().setTitle("Mi ubicacion");
-
         compR.Contros_main_activity(MAIN_ACTIVITY);
 
         if (compR.getNavigationView() != null) {

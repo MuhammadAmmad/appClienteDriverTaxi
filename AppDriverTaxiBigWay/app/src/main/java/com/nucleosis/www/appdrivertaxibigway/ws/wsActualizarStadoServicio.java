@@ -29,11 +29,21 @@ public class wsActualizarStadoServicio extends AsyncTask<String,String,String[]>
     private String idServicio;
     private String IdStadoServicio;
     private String desMovito;
-    public wsActualizarStadoServicio(Context context,String idDriver,String idServicio, String idStadoServicio, String desMovito) {
+    private int idTurno;
+    private int idAuto;
+    public wsActualizarStadoServicio(Context context,
+                                     String idDriver,
+                                     String idServicio,
+                                     int idTurno,
+                                     int idAuto,
+                                     String idStadoServicio,
+                                     String desMovito) {
         this.context = context;
         IdStadoServicio = idStadoServicio;
         this.desMovito = desMovito;
         this.idServicio=idServicio;
+        this.idTurno=idTurno;
+        this.idAuto=idAuto;
         this.idDriver=idDriver;
         Log.d("idObtener",idDriver);
     }
@@ -52,9 +62,9 @@ public class wsActualizarStadoServicio extends AsyncTask<String,String,String[]>
         envelope.dotNet = false;
 
         request.addProperty("idServicio", Integer.parseInt(idServicio));
-        request.addProperty("idTurno", 0);
+        request.addProperty("idTurno", idTurno);
         request.addProperty("idConductor",Integer.parseInt(idDriver));
-        request.addProperty("idAuto", 0);
+        request.addProperty("idAuto", idAuto);
         request.addProperty("idEstadoServicio", Integer.parseInt(IdStadoServicio));
         request.addProperty("desMotivo", desMovito);
         request.addProperty("usrActualizacion", 0);
@@ -95,7 +105,7 @@ public class wsActualizarStadoServicio extends AsyncTask<String,String,String[]>
         super.onPostExecute(data);
         if(data!=null){
             if(data[0].equals("1")){
-                Toast.makeText(context,"El servicio fue cancelado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,data[1], Toast.LENGTH_SHORT).show();
             }
         }else {
             Toast.makeText(context,"Error al cancelar el servicio",Toast.LENGTH_LONG).show();

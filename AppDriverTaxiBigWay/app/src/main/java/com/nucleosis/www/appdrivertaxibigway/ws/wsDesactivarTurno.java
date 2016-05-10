@@ -92,8 +92,8 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
             }else if(data[0].equals("2")){
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(context, "Errorl al desactivar turno !!!", Toast.LENGTH_LONG).show();
+            }else if(data[0].equals("3")){
+                Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
             }
         }
 

@@ -57,7 +57,7 @@ public class componentesR  {
     private ImageView btnClienteEncontrado;
     private ImageView btnServicioTerminadoOk;
     private ImageView btnIrAServicios;
-
+    private ImageView btnServicioNoTerminado;
     private ImageView btnAdicionales;
     EditText editHistoriaCarrera;
     private  LinearLayout linearLayoutLoading;
@@ -220,10 +220,15 @@ public class componentesR  {
         btnServicioTerminadoOk=(ImageView)activity.findViewById(R.id.btnServicioTerminadoOk);
         btnServicioTerminadoOk.setOnClickListener((View.OnClickListener) activity);
 
+        btnServicioNoTerminado=(ImageView)activity.findViewById(R.id.btnSercioNoTerminado);
+        btnServicioNoTerminado.setOnClickListener((View.OnClickListener) activity);
 
         btnIrAServicios=(ImageView)activity.findViewById(R.id.btnIrA_Servicios);
         btnIrAServicios.setOnClickListener((View.OnClickListener) activity);
     }
+
+
+
     public GridViewWithHeaderAndFooter getGrid() {
 
         return grid;
@@ -284,6 +289,14 @@ public class componentesR  {
 
     public void setLblElijaSuVehiculo(TextView lblElijaSuVehiculo) {
         this.lblElijaSuVehiculo = lblElijaSuVehiculo;
+    }
+
+    public ImageView getBtnServicioNoTerminado() {
+        return btnServicioNoTerminado;
+    }
+
+    public void setBtnServicioNoTerminado(ImageView btnServicioNoTerminado) {
+        this.btnServicioNoTerminado = btnServicioNoTerminado;
     }
 
     public Spinner getSpinerVehiculo() {

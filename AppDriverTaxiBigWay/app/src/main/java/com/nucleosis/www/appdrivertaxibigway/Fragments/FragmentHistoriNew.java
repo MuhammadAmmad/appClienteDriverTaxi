@@ -27,6 +27,7 @@ import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistoriaCarrera;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
+import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListenerDetalle;
 import com.nucleosis.www.appdrivertaxibigway.MainActivity;
 import com.nucleosis.www.appdrivertaxibigway.MapsConductorClienteServicio;
 import com.nucleosis.www.appdrivertaxibigway.R;
@@ -47,7 +48,7 @@ import in.srain.cube.views.GridViewWithHeaderAndFooter;
 /**
  * Created by carlos.lopez on 05/04/2016.
  */
-public class FragmentHistoriNew extends Fragment implements OnItemClickListener {
+public class FragmentHistoriNew extends Fragment implements OnItemClickListener,OnItemClickListenerDetalle {
     private int mYear, mMonth, mDay;
     private List<beansHistorialServiciosCreados> ITEMS_HISTORIAL;
     private componentesR compR;
@@ -129,10 +130,12 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
                     if(lista.get(position).getStatadoServicio().equals("2")){
                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                         intent.putExtra("idServicio",lista.get(position).getIdServicio());
+                        intent.putExtra("stadoService",lista.get(position).getStatadoServicio());
                         startActivity(intent);
                     }else  if(lista.get(position).getStatadoServicio().equals("3")){
                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                         intent.putExtra("idServicio",lista.get(position).getIdServicio());
+                        intent.putExtra("stadoService",lista.get(position).getStatadoServicio());
                         startActivity(intent);
                     }
                 }
@@ -240,7 +243,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
                         idDriver=preferencesDriver.OpenIdDriver();
                         final String msn=editText.getText().toString();
                         if(msn.length()!=0){
-                            new wsActualizarStadoServicio(context,idDriver,idServicio,"7",msn).execute();
+                            int idTurno=0;
+                            int idAuto=0;
+                            new wsActualizarStadoServicio(context,idDriver,idServicio,idTurno,idAuto,"7",msn).execute();
                         }else{
                             Toast.makeText(context,"Escriba su movito !!",Toast.LENGTH_LONG).show();
                         }
@@ -253,9 +258,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
 
                 break;
             case 3:
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-                final View view = getActivity().getLayoutInflater().inflate(R.layout.view_cancelar_servicio, null);
+                activity=(Activity)context;
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                final View view = activity.getLayoutInflater().inflate(R.layout.view_cancelar_servicio, null);
 
                 alertDialogBuilder.setView(view);
                 // alertDialogBuilder.setTitle(R.string.addContacto);
@@ -292,9 +297,13 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener 
         }
 
     }
-
-
     private void cancelarServicio(){
 
+    }
+
+    @Override
+    public void onClickDetalle(Context context, String idServicio, String stadoServicio) {
+        Log.d("stadoSevcioLog",stadoServicio);
+        Toast.makeText(context,"detalle de servicio",Toast.LENGTH_SHORT).show();
     }
 }
