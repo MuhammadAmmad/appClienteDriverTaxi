@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
+import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 
 import org.json.JSONArray;
@@ -42,10 +43,13 @@ import java.util.Vector;
  */
 public class ServiceListarServiciosCreados extends Service {
     private TimerTask TimerCronometro;
+    private PreferencesDriver preferencesDriver;
+    private Fichero fichero;
     @Override
     public void onCreate() {
         super.onCreate();
-
+        preferencesDriver=new PreferencesDriver(ServiceListarServiciosCreados.this);
+        fichero=new Fichero(ServiceListarServiciosCreados.this);
         Log.d("servicioCronometro", "CREADO");
     }
 
@@ -59,6 +63,7 @@ public class ServiceListarServiciosCreados extends Service {
             public void run() {
                 new AsyncTask<String, String, List<beansListaServiciosCreadosPorFecha>>() {
                      List<beansListaServiciosCreadosPorFecha> ListServicios;
+                    List<beansListaServiciosCreadosPorFecha> ListServiciosAsignadoConductor;
                     SimpleDateFormat formatIngreso;
                     Date fechaServer=null;
                     Date fechaServicio=null;
@@ -66,6 +71,7 @@ public class ServiceListarServiciosCreados extends Service {
                     protected void onPreExecute() {
                         super.onPreExecute();
                         ListServicios=new ArrayList<beansListaServiciosCreadosPorFecha>();
+                        ListServiciosAsignadoConductor=new ArrayList<beansListaServiciosCreadosPorFecha>();
                         formatIngreso = new SimpleDateFormat("yyyy-MM-dd");
                     }
 
@@ -87,6 +93,7 @@ public class ServiceListarServiciosCreados extends Service {
                         }
                         Log.d("fechaend",FechaSend);
                         beansListaServiciosCreadosPorFecha row=null;
+                        beansListaServiciosCreadosPorFecha row2=null;
                         SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo7());
                         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
                         envelope.dotNet = false;
@@ -94,7 +101,7 @@ public class ServiceListarServiciosCreados extends Service {
                         request.addProperty("idCliente", 0);
                         request.addProperty("fecServicio", FechaSend);
                         request.addProperty("idConductor", 0);
-                        request.addProperty("idEstadoServicio", 1);
+                        request.addProperty("idEstadoServicio", 0);
                         envelope.setOutputSoapObject(request);
                         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 
@@ -112,54 +119,91 @@ public class ServiceListarServiciosCreados extends Service {
                             for(int i=0;i<countVector;i++){
                                 SoapObject dataVector=(SoapObject)responseVector.get(i);
                                 row=new beansListaServiciosCreadosPorFecha();
+                                row2=new beansListaServiciosCreadosPorFecha();
+                                String stadoServicio=dataVector.getPropertyAsString("ID_ESTADO_SERVICIO");
+                            //    String idConductor=dataVector.getPropertyAsString("")
+                                if(stadoServicio.equals("1")){
+                                    String fecha1= dataVector.getPropertyAsString("FEC_ACTUAL").toString();
+                                    String fecha2=dataVector.getPropertyAsString("FEC_SERVICIO_YMD").toString();
 
-                                String fecha1= dataVector.getPropertyAsString("FEC_ACTUAL").toString();
-                                String fecha2=dataVector.getPropertyAsString("FEC_SERVICIO_YMD").toString();
+                                    String horaServer= dataVector.getPropertyAsString("DES_HORA_ACTUAL").toString();
+                                    String horaServicio=dataVector.getProperty("DES_HORA").toString();
 
-                                String horaServer= dataVector.getPropertyAsString("DES_HORA_ACTUAL").toString();
-                                String horaServicio=dataVector.getProperty("DES_HORA").toString();
+                                    fechaServer=formatIngreso.parse(fecha1);
+                                    fechaServicio=formatIngreso.parse(fecha2);
+                                    int diferenciaDias=diferenciaDias(fechaServicio,fechaServer);
+                                    int diferenciaHoras=diferenciaHoras(horaServer,horaServicio);
+                                    Log.d("diferenciaDisaHoras",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
 
-                                fechaServer=formatIngreso.parse(fecha1);
-                                fechaServicio=formatIngreso.parse(fecha2);
-                                int diferenciaDias=diferenciaDias(fechaServicio,fechaServer);
-                                int diferenciaHoras=diferenciaHoras(horaServer,horaServicio);
-                                Log.d("diferenciaDisaHoras",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
+                                    if(diferenciaDias==0 && diferenciaHoras<=60 && diferenciaHoras>=-20){
+                                        Log.d("TiempoDifer",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
 
-                                if(diferenciaDias==0 && diferenciaHoras<=60 && diferenciaHoras>=-20){
-                                    Log.d("TiempoDifer",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
+                                        row.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
+                                        row.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
+                                        row.setFechaFormat(dataVector.getProperty("FEC_SERVICIO_YMD").toString());
 
-                                    row.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
-                                    row.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
-                                    row.setFechaFormat(dataVector.getProperty("FEC_SERVICIO_YMD").toString());
+                                        row.setHora(dataVector.getProperty("DES_HORA").toString());
+                                        row.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
+                                        row.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
 
-                                    row.setHora(dataVector.getProperty("DES_HORA").toString());
-                                    row.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
-                                    row.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
+                                        row.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
+                                        row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
+                                        row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
-                                    row.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
-                                    row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
-                                    row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
+                                        row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
+                                        row.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                                        row.setNameDistritoFin(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
 
-                                    row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
-                                    row.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
-                                    row.setNameDistritoFin(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
+                                        row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
+                                        row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                                        row.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
 
-                                    row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
-                                    row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
-                                    row.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
+                                        row.setStatadoServicio(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
+                                        row.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
+                                        row.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
+                                                + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                                        //  row.setImageHistorico(drawable);
+                                        ListServicios.add(row);
 
-                                    row.setStatadoServicio(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
-                                    row.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
-                                    row.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
+                                    }
+
+
+                                }else if(stadoServicio.equals("2")){
+                                    row2.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
+                                    row2.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
+                                    row2.setFechaFormat(dataVector.getProperty("FEC_SERVICIO_YMD").toString());
+
+                                    row2.setHora(dataVector.getProperty("DES_HORA").toString());
+                                    row2.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
+                                    row2.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
+
+                                    row2.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
+                                    row2.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
+                                    row2.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
+
+                                    row2.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
+                                    row2.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                                    row2.setNameDistritoFin(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
+
+                                    row2.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
+                                    row2.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                                    row2.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
+
+                                    row2.setStatadoServicio(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
+                                    row2.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
+                                    row2.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
                                             + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
                                     //  row.setImageHistorico(drawable);
-                                    ListServicios.add(row);
-
+                                    ListServiciosAsignadoConductor.add(row2);
                                 }
-                                Log.d("siseU",String.valueOf(ListServicios.size()));
+
+                                Log.d("siseU",String.valueOf(ListServiciosAsignadoConductor.size()));
 
 
                             }
+                            String ObjetoJsonArray=new Gson().toJson(ListServiciosAsignadoConductor);
+                            preferencesDriver.InsertaListServiciosCreados(ObjetoJsonArray);
+                            fichero.InsertarListaServiciosTomadosConductor(ObjetoJsonArray);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -171,7 +215,7 @@ public class ServiceListarServiciosCreados extends Service {
                        // Log.d("siseListReturn",String.valueOf(listServiceiosCreados.size()+"  "+listServiceiosCreados.get(0).getDireccionIncio()));
                         Gson gson = new Gson();
                         String json = gson.toJson(listServiceiosCreados);
-                        String ObjetoJsonArray=new Gson().toJson(listServiceiosCreados);
+
                         Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE_2)
                                 .putExtra(Utils.EXTRA_MEMORY_2, json);
                         LocalBroadcastManager.

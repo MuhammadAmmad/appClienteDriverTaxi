@@ -49,4 +49,33 @@ public class Fichero {
             Log.d("look_","No se puede leer fichero");   }
         return dataVehiculos;
     }
+
+    public void InsertarListaServiciosTomadosConductor(String data){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("jsonListaServiciosTomadosConductor.txt", Context.MODE_PRIVATE));
+            json.write(data);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
+
+    public JSONArray ExtraerListaServiciosTomadoConductor(){
+
+       JSONArray jsonArray=null;
+        try
+        {
+            BufferedReader getDataServicios =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("jsonListaServiciosTomadosConductor.txt")));
+        String    dataServicios = getDataServicios.readLine();
+            jsonArray=new JSONArray(dataServicios);
+            getDataServicios.close();
+        }
+        catch (Exception ex)
+        {
+            Log.d("look_","No se puede leer fichero");   }
+        return jsonArray;
+    }
 }
