@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
+import com.nucleosis.www.appdrivertaxibigway.Beans.beansListaServiciosCreadosPorFecha;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
@@ -102,6 +103,7 @@ public class ServiceListarServiciosCreados extends Service {
                         request.addProperty("fecServicio", FechaSend);
                         request.addProperty("idConductor", 0);
                         request.addProperty("idEstadoServicio", 0);
+                        request.addProperty("idAutoTipo", 0);
                         envelope.setOutputSoapObject(request);
                         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 
@@ -121,7 +123,7 @@ public class ServiceListarServiciosCreados extends Service {
                                 row=new beansListaServiciosCreadosPorFecha();
                                 row2=new beansListaServiciosCreadosPorFecha();
                                 String stadoServicio=dataVector.getPropertyAsString("ID_ESTADO_SERVICIO");
-                            //    String idConductor=dataVector.getPropertyAsString("")
+                                String idConductor=dataVector.getPropertyAsString("ID_CONDUCTOR");
                                 if(stadoServicio.equals("1")){
                                     String fecha1= dataVector.getPropertyAsString("FEC_ACTUAL").toString();
                                     String fecha2=dataVector.getPropertyAsString("FEC_SERVICIO_YMD").toString();
@@ -146,6 +148,7 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
                                         row.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
 
+
                                         row.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
                                         row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                         row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
@@ -162,13 +165,20 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
                                         row.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
                                                 + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
-                                        //  row.setImageHistorico(drawable);
+
+                                        row.setIdCliente(dataVector.getProperty("ID_CLIENTE").toString());
+                                        row.setIdConductor(dataVector.getProperty("ID_CONDUCTOR").toString());
+                                        row.setIdTipoAuto(dataVector.getProperty("ID_AUTO_TIPO").toString());
+                                        row.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
+                                        row.setDesAutoTipo(dataVector.getProperty("DES_AUTO_TIPO").toString());
+                                        row.setNumeroMovilTaxi(dataVector.getProperty("NUM_MOVIL").toString());
+
                                         ListServicios.add(row);
 
                                     }
 
 
-                                }else if(stadoServicio.equals("2")){
+                                }else if(idConductor.equals(preferencesDriver.OpenIdDriver())){
                                     row2.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
                                     row2.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
                                     row2.setFechaFormat(dataVector.getProperty("FEC_SERVICIO_YMD").toString());
@@ -193,7 +203,14 @@ public class ServiceListarServiciosCreados extends Service {
                                     row2.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
                                     row2.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
                                             + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
-                                    //  row.setImageHistorico(drawable);
+
+                                    row2.setIdCliente(dataVector.getProperty("ID_CLIENTE").toString());
+                                    row2.setIdConductor(dataVector.getProperty("ID_CONDUCTOR").toString());
+                                    row2.setIdTipoAuto(dataVector.getProperty("ID_AUTO_TIPO").toString());
+                                    row2.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
+                                    row2.setDesAutoTipo(dataVector.getProperty("DES_AUTO_TIPO").toString());
+                                    row2.setNumeroMovilTaxi(dataVector.getProperty("NUM_MOVIL").toString());
+
                                     ListServiciosAsignadoConductor.add(row2);
                                 }
 
@@ -255,180 +272,11 @@ public class ServiceListarServiciosCreados extends Service {
 
         String H2=HoraServicio.substring(0,2);
         String M2=HoraServicio.substring(3,5);
-    int TotalMinutos2=Integer.parseInt(H2)*60+Integer.parseInt(M2);
 
+    int TotalMinutos2=Integer.parseInt(H2)*60+Integer.parseInt(M2);
         int minutos=TotalMinutos1-TotalMinutos2;
         return  minutos;
     }
 
 
-}
-class  beansListaServiciosCreadosPorFecha{
-    private String idServicio; //ID_SERVICIO
-    private String importeServicio;  //IMP_SERVICIO
-    private String DescripcionServicion;  //DES_SERVICIO
-
-    private String importeAireAcondicionado;  //IMP_AIRE_ACONDICIONADO
-    private String importePeaje;                //IMP_PEAJE
-    private String numeroMinutoTiempoEspera;    //NUM_MINUTO_TIEMPO_ESPERA
-
-    private String importeTiempoEspera;   //IMP_TIEMPO_ESPERA
-    private String nameDistritoInicio;      //NOM_DISTRITO_INICIO
-    private String nameDistritoFin;         //NOM_DISTRITO_FIN
-
-    private String DireccionIncio;          //DES_DIRECCION_INICIO
-    private String direccionFinal;            //
-    private String nombreConductor;         //
-
-    private String nombreStadoServicio;
-    private String statadoServicio;
-    private String Fecha;   //FEC_SERVICIO
-
-    private String FechaFormat; //FEC_SERVICIO_YMD
-    private String Hora;       //DES_HORA
-    private String infoAddress;
-
-    public String getIdServicio() {
-        return idServicio;
-    }
-
-    public void setIdServicio(String idServicio) {
-        this.idServicio = idServicio;
-    }
-
-    public String getInfoAddress() {
-        return infoAddress;
-    }
-
-    public void setInfoAddress(String infoAddress) {
-        this.infoAddress = infoAddress;
-    }
-
-    public String getHora() {
-        return Hora;
-    }
-
-    public void setHora(String hora) {
-        Hora = hora;
-    }
-
-    public String getFechaFormat() {
-        return FechaFormat;
-    }
-
-    public void setFechaFormat(String fechaFormat) {
-        FechaFormat = fechaFormat;
-    }
-
-    public String getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(String fecha) {
-        Fecha = fecha;
-    }
-
-    public String getStatadoServicio() {
-        return statadoServicio;
-    }
-
-    public void setStatadoServicio(String statadoServicio) {
-        this.statadoServicio = statadoServicio;
-    }
-
-    public String getNombreStadoServicio() {
-        return nombreStadoServicio;
-    }
-
-    public void setNombreStadoServicio(String nombreStadoServicio) {
-        this.nombreStadoServicio = nombreStadoServicio;
-    }
-
-    public String getNombreConductor() {
-        return nombreConductor;
-    }
-
-    public void setNombreConductor(String nombreConductor) {
-        this.nombreConductor = nombreConductor;
-    }
-
-    public String getDireccionFinal() {
-        return direccionFinal;
-    }
-
-    public void setDireccionFinal(String direccionFinal) {
-        this.direccionFinal = direccionFinal;
-    }
-
-    public String getDireccionIncio() {
-        return DireccionIncio;
-    }
-
-    public void setDireccionIncio(String direccionIncio) {
-        DireccionIncio = direccionIncio;
-    }
-
-    public String getNameDistritoFin() {
-        return nameDistritoFin;
-    }
-
-    public void setNameDistritoFin(String nameDistritoFin) {
-        this.nameDistritoFin = nameDistritoFin;
-    }
-
-    public String getNameDistritoInicio() {
-        return nameDistritoInicio;
-    }
-
-    public void setNameDistritoInicio(String nameDistritoInicio) {
-        this.nameDistritoInicio = nameDistritoInicio;
-    }
-
-    public String getImporteTiempoEspera() {
-        return importeTiempoEspera;
-    }
-
-    public void setImporteTiempoEspera(String importeTiempoEspera) {
-        this.importeTiempoEspera = importeTiempoEspera;
-    }
-
-    public String getNumeroMinutoTiempoEspera() {
-        return numeroMinutoTiempoEspera;
-    }
-
-    public void setNumeroMinutoTiempoEspera(String numeroMinutoTiempoEspera) {
-        this.numeroMinutoTiempoEspera = numeroMinutoTiempoEspera;
-    }
-
-    public String getImportePeaje() {
-        return importePeaje;
-    }
-
-    public void setImportePeaje(String importePeaje) {
-        this.importePeaje = importePeaje;
-    }
-
-    public String getImporteAireAcondicionado() {
-        return importeAireAcondicionado;
-    }
-
-    public void setImporteAireAcondicionado(String importeAireAcondicionado) {
-        this.importeAireAcondicionado = importeAireAcondicionado;
-    }
-
-    public String getDescripcionServicion() {
-        return DescripcionServicion;
-    }
-
-    public void setDescripcionServicion(String descripcionServicion) {
-        DescripcionServicion = descripcionServicion;
-    }
-
-    public String getImporteServicio() {
-        return importeServicio;
-    }
-
-    public void setImporteServicio(String importeServicio) {
-        this.importeServicio = importeServicio;
-    }
 }

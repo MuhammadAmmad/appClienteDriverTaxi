@@ -60,7 +60,7 @@ public class PreferencesDriver {
         SharedPreferences prefs =
                 context.getSharedPreferences("dataDriver", Context.MODE_PRIVATE);
 
-        return prefs.getString("id","dato");
+        return prefs.getString("id","0");
 
     }
 

@@ -1,16 +1,20 @@
 package com.nucleosis.www.appdrivertaxibigway;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
+import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
 
 import org.ksoap2.HeaderProperty;
@@ -45,6 +50,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     private componentesR compR;
     Activity MAPS_CONDUCTOR_CLIENTE;
     private   String idServicio="";
+    private MyTypeFace myTypeFace;
 
     private PreferencesDriver preferencesDriver;
     private String idDriver="";
@@ -55,6 +61,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         MAPS_CONDUCTOR_CLIENTE=this;
+        myTypeFace=new MyTypeFace(MapsConductorClienteServicio.this);
         compR=new componentesR(MapsConductorClienteServicio.this);
         compR.Controls_Maps_conducotor_cliente(MAPS_CONDUCTOR_CLIENTE);
         if(getIntent()!=null){
@@ -104,27 +111,27 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         switch (v.getId()){
             case R.id.btnClienteEncontrado:
               Log.d("idTurnoVehiculo-->",preferencesDriver.ExtraerIdTurno()+"***"+preferencesDriver.ExtraerIdVehiculo());
-               clienteEcontrado();
+             /*  clienteEcontrado();*/
                /* int idTurno=Integer.parseInt(preferencesDriver.ExtraerIdTurno());
                 int idAuto=Integer.parseInt(preferencesDriver.ExtraerIdVehiculo());
                 new wsActualizarStadoServicio(MapsConductorClienteServicio.this,
                         idDriver,idServicio,idTurno,idAuto,"3","").execute();*/
                 break;
             case R.id.btnAdicionales:
-
+                alert();
              //   adicionales();
                 break;
             case R.id.btnSercioNoTerminado:
-                compR.getBtnServicioTerminadoOk().setEnabled(false);
+              /*  compR.getBtnServicioTerminadoOk().setEnabled(false);
                 compR.getBtnClienteEncontrado().setEnabled(false);
                 //id SWITH
                 String ms="mensaje";
-                ActualizarStadosServicio("5",ms,10);
+                ActualizarStadosServicio("5",ms,10);*/
                 break;
             case R.id.btnServicioTerminadoOk:
-                compR.getBtnClienteEncontrado().setEnabled(false);
+             /*   compR.getBtnClienteEncontrado().setEnabled(false);
                 compR.getBtnServicioNoTerminado().setEnabled(false);
-                ActualizarStadosServicio("4","",11);
+                ActualizarStadosServicio("4","",11);*/
                 break;
             case R.id.btnIrA_Servicios:
                 Intent intent=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
@@ -132,6 +139,8 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 break;
         }
     }
+
+
 
     private void ActualizarStadosServicio(String idStadoService, String motivo, final int idObjetos) {
         new AsyncTask<String, String, String[]>() {
@@ -276,6 +285,23 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
 
 
     private void adicionales() {
+    }
+
+    private void alert(){
+      final Activity activity=MapsConductorClienteServicio.this;
+        AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(activity);
+        final View view1 = activity.getLayoutInflater().inflate(R.layout.view_alert_actualizar_stado, null);
+        TextView lblTitutlo=(TextView) view1.findViewById(R.id.lblTxtTituloAlert) ;
+        lblTitutlo.setTypeface(myTypeFace.openRounded_elegance());
+        TextView lblMensaje=(TextView) view1.findViewById(R.id.lblMensajeAlert) ;
+        lblMensaje.setTypeface(myTypeFace.openRobotoLight());
+        Button  btnOk=(Button)view1.findViewById(R.id.btnOk);
+        alertDialogBuilder1.setView(view1);
+        // alertDialogBuilder.setTitle(R.string.addContacto);
+
+
+        AlertDialog alertDialog1 = alertDialogBuilder1.create();
+        alertDialog1.show();
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

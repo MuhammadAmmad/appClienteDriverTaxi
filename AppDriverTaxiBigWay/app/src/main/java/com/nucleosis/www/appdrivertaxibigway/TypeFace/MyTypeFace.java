@@ -47,4 +47,10 @@ public class MyTypeFace {
         return mTf;
     }
 
+    public Typeface openRounded_elegance(){
+        mTf=Typeface.createFromAsset(context.getAssets(),ConstantesTypeFace.getRounded_Elegance());
+
+       return mTf;
+    }
+
 }

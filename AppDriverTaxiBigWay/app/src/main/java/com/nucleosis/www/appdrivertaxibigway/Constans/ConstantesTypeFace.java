@@ -12,6 +12,7 @@ public static final String CodeLight="code_light.otf";
 public static final String Galderglynn="galderglynn_titling_rg.ttf";
 public static final String SlabTallX_Normal="slabtallx.ttf";
 public static final String SlabTallX_Medium="slabtallx_medium.ttf";
+ public static final String Rounded_Elegance="rounded_elegance.ttf";
 
         public static String getGalderglynn() {
             return Galderglynn;
@@ -40,4 +41,8 @@ public static final String SlabTallX_Medium="slabtallx_medium.ttf";
         public static String getSlabTallX_Medium() {
             return SlabTallX_Medium;
         }
+
+    public static String getRounded_Elegance() {
+        return Rounded_Elegance;
+    }
 }

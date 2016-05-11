@@ -54,44 +54,52 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
-                        android:gravity="right">
-                        <ImageView
+                        android:gravity="center">
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/btnAdicionales"
-                            android:layout_marginLeft="10dp"
-                            android:visibility="visible"
-                            android:background="@drawable/selector_buton_adicionales"
-                            android:textColor="@color/white"
-                            android:textSize="16dp"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:visibility="visible"
-                            android:background="@drawable/selector_button_cliente_encontrado"
-                            android:id="@+id/btnClienteEncontrado"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:visibility="visible"
-                            android:background="@drawable/selector_button_service_no_terminado"
-                            android:id="@+id/btnSercioNoTerminado"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:visibility="visible"
-                            android:background="@drawable/selector_button_servicio_terminado_ok"
-                            android:id="@+id/btnServicioTerminadoOk"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:visibility="visible"
-                            android:background="@drawable/selector_button_ir_a_servicios"
-                            android:id="@+id/btnIrA_Servicios"/>
+                            android:orientation="horizontal"
+                            android:background="#25969696">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/btnAdicionales"
+                                android:layout_marginLeft="10dp"
+                                android:visibility="visible"
+                                android:background="@drawable/selector_buton_adicionales"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"/>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:visibility="visible"
+                                android:background="@drawable/selector_button_cliente_encontrado"
+                                android:id="@+id/btnClienteEncontrado"/>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:visibility="visible"
+                                android:background="@drawable/selector_button_service_no_terminado"
+                                android:id="@+id/btnSercioNoTerminado"/>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:visibility="visible"
+                                android:background="@drawable/selector_button_servicio_terminado_ok"
+                                android:id="@+id/btnServicioTerminadoOk"/>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="10dp"
+                                android:visibility="visible"
+                                android:background="@drawable/selector_button_ir_a_servicios"
+                                android:id="@+id/btnIrA_Servicios"/>
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <Button
