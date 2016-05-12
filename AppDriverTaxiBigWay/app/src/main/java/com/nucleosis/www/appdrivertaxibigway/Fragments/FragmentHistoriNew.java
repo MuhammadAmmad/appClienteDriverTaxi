@@ -67,7 +67,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        new wsListarServiciosTomadoConductorDiaActual(getActivity()).execute();
+
 
     }
     public FragmentHistoriNew() {
@@ -105,7 +105,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         if(compR.getEditHistoriaCarrera().getText().length()!=0){
             String fecha=compR.getEditHistoriaCarrera().getText().toString();
             if(fecha.length()!=0){
-                new wsListaServiciosTomadosConductor(getActivity(),fecha,grid).execute();
+                new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+               // new wsListaServiciosTomadosConductor(getActivity(),fecha,grid).execute();
             }
 
         }
@@ -125,20 +126,34 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         compR.getGrid().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(wsListaServiciosTomadosConductor.ListServicios!=null){
-                    List<beansHistorialServiciosCreados> lista=wsListaServiciosTomadosConductor.ListServicios;
 
-                    if(lista.get(position).getStatadoServicio().equals("2")){
+                if(wsListaServiciosTomadosConductor.ListServicios!=null){
+                    List<beansHistorialServiciosCreados> lista1=wsListaServiciosTomadosConductor.ListServicios;
+
+                    if(lista1.get(position).getStatadoServicio().equals("2")){
                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
-                        intent.putExtra("idServicio",lista.get(position).getIdServicio());
-                        intent.putExtra("stadoService",lista.get(position).getStatadoServicio());
+                        intent.putExtra("idServicio",lista1.get(position).getIdServicio());
+                        intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
                         startActivity(intent);
-                    }else  if(lista.get(position).getStatadoServicio().equals("3")){
+                    }else  if(lista1.get(position).getStatadoServicio().equals("3")){
                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
-                        intent.putExtra("idServicio",lista.get(position).getIdServicio());
-                        intent.putExtra("stadoService",lista.get(position).getStatadoServicio());
+                        intent.putExtra("idServicio",lista1.get(position).getIdServicio());
+                        intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
                         startActivity(intent);
                     }
+                }else if(wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor!=null){
+                    List<beansHistorialServiciosCreados> lista2=
+                            wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor;
+                    if(lista2.get(position).getStatadoServicio().equals("2")){
+                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                        intent.putExtra("idServicio",lista2.get(position).getIdServicio());
+                        intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
+                        startActivity(intent);
+                    }else  if(lista2.get(position).getStatadoServicio().equals("3")){
+                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                        intent.putExtra("idServicio",lista2.get(position).getIdServicio());
+                        intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
+                        startActivity(intent);}
                 }
             }
         });

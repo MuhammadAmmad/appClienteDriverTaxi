@@ -59,7 +59,6 @@ import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActivarTurno;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsDesactivarTurno;
-import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerHoraServer;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListVehiculos;
 import com.squareup.picasso.Picasso;
 

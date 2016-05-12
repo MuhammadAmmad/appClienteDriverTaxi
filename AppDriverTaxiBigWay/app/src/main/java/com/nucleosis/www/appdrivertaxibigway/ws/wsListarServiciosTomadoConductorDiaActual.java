@@ -2,14 +2,18 @@ package com.nucleosis.www.appdrivertaxibigway.ws;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 
+import com.nucleosis.www.appdrivertaxibigway.Adapters.GriddAdapterServiciosTomadosConductor;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
+import com.nucleosis.www.appdrivertaxibigway.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,18 +22,24 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.GridViewWithHeaderAndFooter;
+
 /**
  * Created by carlos.lopez on 11/05/2016.
  */
-public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,String,String> {
+public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,String,List<beansHistorialServiciosCreados>> {
     private Context context;
     private Fichero fichero;
+    private GridViewWithHeaderAndFooter grid;
     JSONArray   jsonListaServicios=null;
     beansHistorialServiciosCreados row=null;
-    private List<beansHistorialServiciosCreados> listServiciosFechaActualConducor;
-    public wsListarServiciosTomadoConductorDiaActual(Context context) {
+    public static List<beansHistorialServiciosCreados> listServiciosFechaActualConducor;
+    private Drawable drawable;
+    public wsListarServiciosTomadoConductorDiaActual(Context context,GridViewWithHeaderAndFooter grid) {
         this.context = context;
+        this.grid=grid;
         fichero=new Fichero(context);
+        Log.d("constructor","Sfsdfasdfasdf");
     }
 
 
@@ -37,20 +47,18 @@ public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,
     protected void onPreExecute() {
         super.onPreExecute();
         listServiciosFechaActualConducor=new ArrayList<beansHistorialServiciosCreados>();
-
         jsonListaServicios=fichero.ExtraerListaServiciosTomadoConductor();
 
     }
-
+    @SuppressWarnings("deprecation")
     @Override
-    protected String doInBackground(String... params) {
+    protected List<beansHistorialServiciosCreados> doInBackground(String... params) {
+
+
         for(int i=0; i<jsonListaServicios.length();i++){
             row=new beansHistorialServiciosCreados();
+            Log.d("ListaSixe", jsonListaServicios.toString());
             try {
-
-                String dataJson=jsonListaServicios.getJSONObject(i).getString("sdfd");
-
-
                 row.setIdServicio(jsonListaServicios.getJSONObject(i).getString("idServicio"));
                 row.setFecha(jsonListaServicios.getJSONObject(i).getString("Fecha").toString());
                 row.setHora(jsonListaServicios.getJSONObject(i).getString("Hora").toString());
@@ -60,22 +68,73 @@ public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,
                 row.setImportePeaje(jsonListaServicios.getJSONObject(i).getString("importePeaje").toString());
                 row.setNumeroMinutoTiempoEspera(jsonListaServicios.getJSONObject(i).getString("numeroMinutoTiempoEspera").toString());
                 row.setImporteTiempoEspera(jsonListaServicios.getJSONObject(i).getString("importeTiempoEspera").toString());
-                row.setNameDistritoInicio(jsonListaServicios.getJSONObject(i).getString("nameDistritoInicio\n").toString());
-                row.setNameDistritoFin(jsonListaServicios.getJSONObject(i).getString("nameDistritoFin\n").toString());
+                row.setNameDistritoInicio(jsonListaServicios.getJSONObject(i).getString("nameDistritoInicio").toString());
+                row.setNameDistritoFin(jsonListaServicios.getJSONObject(i).getString("nameDistritoFin").toString());
                 row.setDireccionIncio(jsonListaServicios.getJSONObject(i).getString("DireccionIncio").toString());
                 row.setDireccionFinal(jsonListaServicios.getJSONObject(i).getString("direccionFinal").toString());
                 row.setNombreConductor(jsonListaServicios.getJSONObject(i).getString("nombreConductor").toString());
                 row.setStatadoServicio(jsonListaServicios.getJSONObject(i).getString("statadoServicio").toString());
                 row.setNombreStadoServicio(jsonListaServicios.getJSONObject(i).getString("nombreStadoServicio").toString());
-               /* row.setDireccionIncio(jsonListaServicios.getJSONObject(i).getString("").toString());
-                row.setDireccionFinal(jsonListaServicios.getJSONObject(i).getString("").toString());*/
+
                 row.setInfoAddress(jsonListaServicios.getJSONObject(i).getString("DireccionIncio").toString()
                         + "\n" + jsonListaServicios.getJSONObject(i).getString("direccionFinal").toString());
+                int idStatus=Integer.parseInt(jsonListaServicios.getJSONObject(i).getString("statadoServicio").toString());
+                Log.d("stadoServiciosxxxx-->",String.valueOf(idStatus));
+                if(idStatus==2){
+                    //STATDO ACEPTADO
+                    drawable=context.getResources().getDrawable(R.drawable.shape_stado_aceptado);
+                    row.setImageStatusServicio(drawable);
+                    row.setStatusServicioTomadoColor(Color.rgb(255,144,247));
+                }else if(idStatus==3){
+                    //STADO EN RUTA CON CLIENTE
+                    drawable=context.getResources().getDrawable(R.drawable.shape_green);
+                    row.setImageStatusServicio(drawable);
+                    row.setStatusServicioTomadoColor(Color.rgb(9,217,158));
+                }else if(idStatus==4){
+                    //TERMINADO CORRECTARMENTE EL SERVCIO
+                    drawable=context.getResources().getDrawable(R.drawable.shape_blue);
+                    row.setImageStatusServicio(drawable);
+                    row.setStatusServicioTomadoColor(Color.rgb(242,223,49));
 
+                }else if(idStatus==5){
+                    drawable=context.getResources().getDrawable(R.drawable.shape_yellow);
+                    row.setImageStatusServicio(drawable);
+                    // NO TERMINADO
+                }else  if( idStatus==6){
+                    //CANCELADO POR EL CLIENTE
+                    drawable=context.getResources().getDrawable(R.drawable.shape_red_cliente);
+                    row.setImageStatusServicio(drawable);
+                    row.setStatusServicioTomadoColor(Color.rgb(252,29,118));
+                }
+
+                else if(idStatus==7){
+                    //CANCELADO POR EL CONDUCTOR
+                    row.setStatusServicioTomadoColor(Color.rgb(142,1,3));
+                }
+
+                listServiciosFechaActualConducor.add(row);
+            Log.d("xxx_", String.valueOf(listServiciosFechaActualConducor.size()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        return null;
+
+
+        return listServiciosFechaActualConducor;
     }
+
+    @Override
+    protected void onPostExecute(List<beansHistorialServiciosCreados> listaSeriviciosConductor) {
+        super.onPostExecute(listaSeriviciosConductor);
+        if(listaSeriviciosConductor!=null){
+           grid.setAdapter(new GriddAdapterServiciosTomadosConductor(context,listaSeriviciosConductor));
+        }else{
+            Log.d("stamos_Aqui","sdjfldsakjj");
+        }
+
+    }
+
+    //
+
+
 }

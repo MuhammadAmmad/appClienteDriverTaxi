@@ -22,6 +22,7 @@ import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -124,20 +125,30 @@ public class ServiceListarServiciosCreados extends Service {
                                 row2=new beansListaServiciosCreadosPorFecha();
                                 String stadoServicio=dataVector.getPropertyAsString("ID_ESTADO_SERVICIO");
                                 String idConductor=dataVector.getPropertyAsString("ID_CONDUCTOR");
+
+                                String fecha1= dataVector.getPropertyAsString("FEC_ACTUAL").toString();
+                                String fecha2=dataVector.getPropertyAsString("FEC_SERVICIO_YMD").toString();
+                                String horaServer= dataVector.getPropertyAsString("DES_HORA_ACTUAL").toString();
+                                String horaServicio=dataVector.getProperty("DES_HORA").toString();
+                                //ACTUALIZA LA HORA EN FORMATO JSON
+                                JSONObject jsonObject =new JSONObject();
+                                jsonObject.put("Fecha",fecha1);
+                                jsonObject.put("Hora",horaServer);
+                                InsertHoraFechaServidor(jsonObject);
+
+                                fechaServer=formatIngreso.parse(fecha1);
+                                fechaServicio=formatIngreso.parse(fecha2);
                                 if(stadoServicio.equals("1")){
-                                    String fecha1= dataVector.getPropertyAsString("FEC_ACTUAL").toString();
-                                    String fecha2=dataVector.getPropertyAsString("FEC_SERVICIO_YMD").toString();
 
-                                    String horaServer= dataVector.getPropertyAsString("DES_HORA_ACTUAL").toString();
-                                    String horaServicio=dataVector.getProperty("DES_HORA").toString();
 
-                                    fechaServer=formatIngreso.parse(fecha1);
-                                    fechaServicio=formatIngreso.parse(fecha2);
+
                                     int diferenciaDias=diferenciaDias(fechaServicio,fechaServer);
                                     int diferenciaHoras=diferenciaHoras(horaServer,horaServicio);
-                                    Log.d("diferenciaDisaHoras",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
+                                    Log.d("diferenciaDisaHoras",String.valueOf(diferenciaDias)+"**"
+                                            +String.valueOf(diferenciaHoras));
 
                                     if(diferenciaDias==0 && diferenciaHoras<=60 && diferenciaHoras>=-20){
+
                                         Log.d("TiempoDifer",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
 
                                         row.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
@@ -278,5 +289,15 @@ public class ServiceListarServiciosCreados extends Service {
         return  minutos;
     }
 
+    private void InsertHoraFechaServidor(JSONObject json){
+        try {
+            preferencesDriver.InsertarFechaHoraActual(
+                    json.getString("Fecha").toString(),
+                    json.getString("Hora").toString());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -248,31 +248,34 @@ public class ServiceTurno extends Service {
     }
     private int diferenciaHoras(String  HoraServer, String HoraTurno ){
         int minutos=0;
-        /*HoraServer="23:50";//135 //HORA ACTUAL 22:50
+        if(HoraServer.length()==5 && HoraTurno.length()==5){
+             /*HoraServer="23:50";//135 //HORA ACTUAL 22:50
         HoraTurno="11:19";//1130 // HORA DEL TURNO*/
-        int minutosFormales=12*60;
+            int minutosFormales=12*60;
 
-        int H1=Integer.parseInt(HoraServer.substring(0,2));
-        int M1=Integer.parseInt(HoraServer.substring(3,5));
-        int TotalMinutos1=H1*60+M1;
+            int H1=Integer.parseInt(HoraServer.substring(0,2));
+            int M1=Integer.parseInt(HoraServer.substring(3,5));
+            int TotalMinutos1=H1*60+M1;
 
-        int H2=Integer.parseInt(HoraTurno.substring(0,2));
-        int M2=Integer.parseInt(HoraTurno.substring(3,5));
+            int H2=Integer.parseInt(HoraTurno.substring(0,2));
+            int M2=Integer.parseInt(HoraTurno.substring(3,5));
 
-        int TotalMinutos2=H2*60+M2;
+            int TotalMinutos2=H2*60+M2;
 
-        if(H1<H2 ){
-            int diaMinutos=24*60;
-            int RestaParcialMinutos=diaMinutos-TotalMinutos2;
-            Log.d("horaTermino",String.valueOf(RestaParcialMinutos));
-            int SumaTotal=RestaParcialMinutos+TotalMinutos1;
-            Log.d("TotalMintuos",String.valueOf(SumaTotal));
+            if(H1<H2 ){
+                int diaMinutos=24*60;
+                int RestaParcialMinutos=diaMinutos-TotalMinutos2;
+                Log.d("horaTermino",String.valueOf(RestaParcialMinutos));
+                int SumaTotal=RestaParcialMinutos+TotalMinutos1;
+                Log.d("TotalMintuos",String.valueOf(SumaTotal));
 
-            minutos=SumaTotal;
-        }else if(H1>=H2){
-            minutos=TotalMinutos1-TotalMinutos2;
-            Log.d("TotalMintuos",String.valueOf(minutos));
+                minutos=SumaTotal;
+            }else if(H1>=H2){
+                minutos=TotalMinutos1-TotalMinutos2;
+                Log.d("TotalMintuos",String.valueOf(minutos));
+            }
         }
+
 
     //    int minutos=TotalMinutos1-TotalMinutos2;
         return  minutos;
