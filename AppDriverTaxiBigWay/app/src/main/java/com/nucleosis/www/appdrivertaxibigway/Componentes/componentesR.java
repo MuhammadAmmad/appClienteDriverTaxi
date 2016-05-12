@@ -75,7 +75,7 @@ public class componentesR  {
     private Spinner spinerVehiculo;
     private ImageView imageDriver;
     private ImageView imageButonListarServicios;
-
+    private LinearLayout linearFragment;
     private  RecyclerView recycler;
     public componentesR(Context context) {
         this.context = context;
@@ -122,6 +122,8 @@ public class componentesR  {
 
         btnIrAServicios=(ImageView)activity.findViewById(R.id.btnIrA_Servicios);
         btnIrAServicios.setOnClickListener((View.OnClickListener) activity);
+
+        linearFragment=(LinearLayout)activity.findViewById(R.id.LinearFragment);
     }
     public Toolbar cargar_toolbar(Activity activity) {
         toolbar = (Toolbar) activity.findViewById(R.id.appbar);
@@ -274,6 +276,13 @@ public class componentesR  {
         this.recycler = recycler;
     }
 
+    public LinearLayout getLinearFragment() {
+        return linearFragment;
+    }
+
+    public void setLinearFragment(LinearLayout linearFragment) {
+        this.linearFragment = linearFragment;
+    }
 
     public ImageView getBtnIrAServicios() {
         return btnIrAServicios;

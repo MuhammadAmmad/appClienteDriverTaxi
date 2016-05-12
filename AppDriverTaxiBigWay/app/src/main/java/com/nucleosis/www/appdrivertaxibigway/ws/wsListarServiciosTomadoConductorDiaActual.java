@@ -1,6 +1,7 @@
 package com.nucleosis.www.appdrivertaxibigway.ws;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -9,6 +10,7 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.nucleosis.www.appdrivertaxibigway.Adapters.GriddAdapterServiciosTomadosConductor;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
@@ -21,13 +23,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import in.srain.cube.views.GridViewWithHeaderAndFooter;
 
 /**
  * Created by carlos.lopez on 11/05/2016.
  */
-public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,String,List<beansHistorialServiciosCreados>> {
+public class wsListarServiciosTomadoConductorDiaActual extends
+        AsyncTask<String,String,List<beansHistorialServiciosCreados>> {
+
     private Context context;
     private Fichero fichero;
     private GridViewWithHeaderAndFooter grid;
@@ -35,6 +41,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,
     beansHistorialServiciosCreados row=null;
     public static List<beansHistorialServiciosCreados> listServiciosFechaActualConducor;
     private Drawable drawable;
+    private ProgressDialog progressDialog;
     public wsListarServiciosTomadoConductorDiaActual(Context context,GridViewWithHeaderAndFooter grid) {
         this.context = context;
         this.grid=grid;
@@ -47,13 +54,17 @@ public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,
     protected void onPreExecute() {
         super.onPreExecute();
         listServiciosFechaActualConducor=new ArrayList<beansHistorialServiciosCreados>();
-        jsonListaServicios=fichero.ExtraerListaServiciosTomadoConductor();
-
+        listServiciosFechaActualConducor.clear();
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setMessage("cargando.....");
+      //  progressDialog.setCancelable(false);
+        progressDialog.show();
     }
     @SuppressWarnings("deprecation")
     @Override
     protected List<beansHistorialServiciosCreados> doInBackground(String... params) {
-
+        //tareaLarga();
+        jsonListaServicios=fichero.ExtraerListaServiciosTomadoConductor();
 
         for(int i=0; i<jsonListaServicios.length();i++){
             row=new beansHistorialServiciosCreados();
@@ -75,9 +86,13 @@ public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,
                 row.setNombreConductor(jsonListaServicios.getJSONObject(i).getString("nombreConductor").toString());
                 row.setStatadoServicio(jsonListaServicios.getJSONObject(i).getString("statadoServicio").toString());
                 row.setNombreStadoServicio(jsonListaServicios.getJSONObject(i).getString("nombreStadoServicio").toString());
-
                 row.setInfoAddress(jsonListaServicios.getJSONObject(i).getString("DireccionIncio").toString()
                         + "\n" + jsonListaServicios.getJSONObject(i).getString("direccionFinal").toString());
+
+                row.setIdCliente(jsonListaServicios.getJSONObject(i).getString("idCliente").toString());
+                row.setNumCelular(jsonListaServicios.getJSONObject(i).getString("nucCelularCliente").toString());
+                row.setNunMovilTaxi(jsonListaServicios.getJSONObject(i).getString("numeroMovilTaxi").toString());
+
                 int idStatus=Integer.parseInt(jsonListaServicios.getJSONObject(i).getString("statadoServicio").toString());
                 Log.d("stadoServiciosxxxx-->",String.valueOf(idStatus));
                 if(idStatus==2){
@@ -127,6 +142,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,
     protected void onPostExecute(List<beansHistorialServiciosCreados> listaSeriviciosConductor) {
         super.onPostExecute(listaSeriviciosConductor);
         if(listaSeriviciosConductor!=null){
+            progressDialog.dismiss();
            grid.setAdapter(new GriddAdapterServiciosTomadosConductor(context,listaSeriviciosConductor));
         }else{
             Log.d("stamos_Aqui","sdjfldsakjj");
@@ -134,7 +150,11 @@ public class wsListarServiciosTomadoConductorDiaActual extends AsyncTask<String,
 
     }
 
-    //
-
+    private void tareaLarga()
+    {
+        try {
+            Thread.sleep(8000);
+        } catch(InterruptedException e) {}
+    }
 
 }

@@ -55,6 +55,34 @@ public class beansHistorialServiciosCreados {
     private int statusServicioTomadoColor;
     private String idTurno;
 
+    private String idCliente;
+    private String numCelular;
+    private String  nunMovilTaxi;
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getNunMovilTaxi() {
+        return nunMovilTaxi;
+    }
+
+    public void setNunMovilTaxi(String nunMovilTaxi) {
+        this.nunMovilTaxi = nunMovilTaxi;
+    }
+
+    public String getNumCelular() {
+        return numCelular;
+    }
+
+    public void setNumCelular(String numCelular) {
+        this.numCelular = numCelular;
+    }
+
     public String getFechaFormat() {
         return FechaFormat;
     }

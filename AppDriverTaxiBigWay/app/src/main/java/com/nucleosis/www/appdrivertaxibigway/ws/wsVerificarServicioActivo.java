@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
+import com.nucleosis.www.appdrivertaxibigway.Beans.beansVerificadorDeServicioActivio;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 
@@ -98,33 +99,4 @@ public class wsVerificarServicioActivo extends AsyncTask<String,String,List<bean
 
 
 
-}
-class beansVerificadorDeServicioActivio{
-    private String idServicio;
-    private String fechaServicio;
-    private String horaServicio;
-
-    public String getIdServicio() {
-        return idServicio;
-    }
-
-    public void setIdServicio(String idServicio) {
-        this.idServicio = idServicio;
-    }
-
-    public String getFechaServicio() {
-        return fechaServicio;
-    }
-
-    public void setFechaServicio(String fechaServicio) {
-        this.fechaServicio = fechaServicio;
-    }
-
-    public String getHoraServicio() {
-        return horaServicio;
-    }
-
-    public void setHoraServicio(String horaServicio) {
-        this.horaServicio = horaServicio;
-    }
 }

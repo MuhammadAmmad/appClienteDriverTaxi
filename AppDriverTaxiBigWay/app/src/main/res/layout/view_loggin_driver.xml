@@ -38,6 +38,7 @@
             android:textColorHint="@color/hintColor"
             android:inputType="number"
             android:ems="10"
+            android:maxLength="8"
             android:hint="@string/usuario"
             android:id="@+id/editUser"
             android:layout_gravity="center_horizontal" />

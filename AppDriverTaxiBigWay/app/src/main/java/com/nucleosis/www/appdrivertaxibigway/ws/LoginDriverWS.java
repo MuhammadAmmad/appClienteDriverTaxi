@@ -58,19 +58,19 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
         Log.d("eta_aqui","doInBackGround");
         String codLogin="";
         String msnLogin="";
-        SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo1());
+        SoapObject request = new SoapObject("http://taxibigway.com/soap","WS_CONDUCTOR_ACCESAR");
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
         Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
         request.addProperty("numDocumento", user.getUser());
         request.addProperty("desPassword", user.getPassword());
         envelope.setOutputSoapObject(request);
-        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
+        HttpTransportSE httpTransport = new HttpTransportSE("http://taxibigway.com/soap");
 
         try {
             ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
-            httpTransport.call(ConstantsWS.getSoapAction1(), envelope, headerPropertyArrayList);
+            httpTransport.call("http://taxibigway.com/soap/WS_CONDUCTOR_ACCESAR", envelope, headerPropertyArrayList);
           // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             Log.d("response1_",response1.toString());

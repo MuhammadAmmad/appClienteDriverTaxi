@@ -1,6 +1,7 @@
 package com.nucleosis.www.appdrivertaxibigway.ws;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 
@@ -28,6 +30,7 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
     private Context context;
     private PreferencesDriver preferencesDriver;
     private componentesR compR;
+    private ProgressDialog progressDialog;
 
     public wsDesactivarTurno(Context context) {
         this.context = context;
@@ -42,6 +45,10 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setMessage("Espere....");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 
     @Override
@@ -85,14 +92,35 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
     @Override
     protected void onPostExecute(String[] data) {
         super.onPostExecute(data);
+        progressDialog.dismiss();
         if(data!=null){
+            Intent intent;
             if(data[0].equals("1")){
-                Intent intent=new Intent(context,locationDriver.class);
-                context.stopService(intent);
+                compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
+                compR.getBtnDesactivarTurno().setVisibility(View.GONE);
+                compR.getBtnIrAServicios().setVisibility(View.GONE);
+                //compR.getBtnAdicionales().setVisibility(View.GONE);
+
+                 intent=new Intent(context,locationDriver.class);
+                 context.stopService(intent);
+                  Log.d("stopLocation","xxxx");
+                new UpdateLocationDriver(context,"","").execute();
+
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
+                intent=new Intent(context, ServiceTurno.class);
+                context.stopService(intent);
+
             }else if(data[0].equals("2")){
+                compR.getBtnActivarTurno().setVisibility(View.GONE);
+                compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+                compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
+               // compR.getBtnAdicionales().setVisibility(View.VISIBLE);
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
             }else if(data[0].equals("3")){
+                compR.getBtnActivarTurno().setVisibility(View.GONE);
+                compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+                compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
+             //   compR.getBtnAdicionales().setVisibility(View.VISIBLE);
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
             }
         }

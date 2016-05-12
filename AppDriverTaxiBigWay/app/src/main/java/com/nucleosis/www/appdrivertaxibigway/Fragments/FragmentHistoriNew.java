@@ -33,10 +33,11 @@ import com.nucleosis.www.appdrivertaxibigway.MapsConductorClienteServicio;
 import com.nucleosis.www.appdrivertaxibigway.R;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
-import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListaServiciosTomadosConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListarServiciosTomadoConductorDiaActual;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -55,7 +56,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
     private componentesR compR;
     private String Fecha;
     private  PreferencesDriver preferencesDriver;
-
+    private View rootView;
+    public static GridViewWithHeaderAndFooter GRID_CANCEL;
     private String idDriver;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         ((MainActivity) getActivity()).getSupportActionBar()
                 .setTitle("Historial Servicios");
 
-        View rootView = inflater.inflate(R.layout.view_container, container, false);
+        rootView = inflater.inflate(R.layout.view_container, container, false);
         compR.Controls_fragment_Historia_Carrearas_new(rootView);
         setUpGridView(compR.getGrid());
 
@@ -96,6 +98,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         View view;
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.view_cabecera_historial_carreras, null, false);
+        GRID_CANCEL=grid;
             compR.Controls_fragment_Historia_Carreras_createHeader(view);
             compR.getEditHistoriaCarrera().setText(mDay + "-"
                 + (mMonth + 1) + "-" + mYear);
@@ -129,31 +132,38 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
 
                 if(wsListaServiciosTomadosConductor.ListServicios!=null){
                     List<beansHistorialServiciosCreados> lista1=wsListaServiciosTomadosConductor.ListServicios;
-
+                if(lista1.size()!=0){
                     if(lista1.get(position).getStatadoServicio().equals("2")){
                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                         intent.putExtra("idServicio",lista1.get(position).getIdServicio());
                         intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
+                        intent.putExtra("idCliente",lista1.get(position).getIdServicio());
                         startActivity(intent);
                     }else  if(lista1.get(position).getStatadoServicio().equals("3")){
                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                         intent.putExtra("idServicio",lista1.get(position).getIdServicio());
                         intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
+                        intent.putExtra("idCliente",lista1.get(position).getIdServicio());
                         startActivity(intent);
                     }
+                }
+
                 }else if(wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor!=null){
                     List<beansHistorialServiciosCreados> lista2=
                             wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor;
-                    if(lista2.get(position).getStatadoServicio().equals("2")){
-                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
-                        intent.putExtra("idServicio",lista2.get(position).getIdServicio());
-                        intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
-                        startActivity(intent);
-                    }else  if(lista2.get(position).getStatadoServicio().equals("3")){
-                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
-                        intent.putExtra("idServicio",lista2.get(position).getIdServicio());
-                        intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
-                        startActivity(intent);}
+                    if(lista2.size()!=0){
+                        if(lista2.get(position).getStatadoServicio().equals("2")){
+                            Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                            intent.putExtra("idServicio",lista2.get(position).getIdServicio());
+                            intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
+                            startActivity(intent);
+                        }else  if(lista2.get(position).getStatadoServicio().equals("3")){
+                            Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                            intent.putExtra("idServicio",lista2.get(position).getIdServicio());
+                            intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
+                            startActivity(intent);}
+                    }
+
                 }
             }
         });
@@ -197,8 +207,23 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
 
                         z[0]++;
                         if(z[0]==2){
+                            preferencesDriver=new PreferencesDriver(getActivity());
+                            JSONObject jsonObject =preferencesDriver.ExtraerHoraSistema();
+                            String fecha=compR.getEditHistoriaCarrera().getText().toString();
+                            try {
+                               if(fecha.equals(jsonObject.getString("fechaServidor"))){
+                                new   wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+                                   Log.d("aquiFecha","xxxx");
+                               }else{
+                                   new wsListaServiciosTomadosConductor(getActivity(),compR.getEditHistoriaCarrera().getText().toString(),grid).execute();
+                               }
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                             //  Toast.makeText(getActivity(),String.valueOf(z[0]),Toast.LENGTH_LONG).show();
-                           new wsListaServiciosTomadosConductor(getActivity(),compR.getEditHistoriaCarrera().getText().toString(),grid).execute();
+
                             //z[0]=0;
                         }
                     }

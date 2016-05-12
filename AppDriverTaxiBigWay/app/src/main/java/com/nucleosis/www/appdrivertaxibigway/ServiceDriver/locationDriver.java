@@ -49,7 +49,7 @@ public class locationDriver extends Service implements LocationListener {
         }*/
         LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         updateLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 30000, 0, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
 
     }
 
@@ -69,7 +69,7 @@ public class locationDriver extends Service implements LocationListener {
                         .execute();
             }
         };
-        timer.scheduleAtFixedRate(timerTask, 0, 30000);
+        timer.scheduleAtFixedRate(timerTask, 0, 10000);
         return super.onStartCommand(intent, flags, startId);
 
     }

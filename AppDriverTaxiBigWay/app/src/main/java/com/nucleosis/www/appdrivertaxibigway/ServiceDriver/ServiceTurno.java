@@ -39,15 +39,17 @@ public class ServiceTurno extends Service {
     private TimerTask TimerCronometro;
     private PreferencesDriver preferencesDriver;
     private static int sw=0;
+    private static int swLocation=0;
     @Override
     public void onCreate() {
         super.onCreate();
         preferencesDriver=new PreferencesDriver(ServiceTurno.this);
         Log.d("servicioCronometro", "CREADO");
+        Log.d("idTaxista",preferencesDriver.OpenIdDriver());
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(final Intent intent, int flags, int startId) {
         final ActivityManager activityManager =
                 (ActivityManager) getSystemService(ACTIVITY_SERVICE);
         final Timer timerCola=new Timer();
@@ -115,6 +117,11 @@ public class ServiceTurno extends Service {
                                         .putExtra(Utils.EXTRA_MEMORY,data[0]);
                                 LocalBroadcastManager.
                                         getInstance(ServiceTurno.this).sendBroadcast(localIntent);
+
+                                if(swLocation==0){
+                                    swLocation=1;
+
+                                }
 
                             }
                         }
@@ -249,8 +256,8 @@ public class ServiceTurno extends Service {
     private int diferenciaHoras(String  HoraServer, String HoraTurno ){
         int minutos=0;
         if(HoraServer.length()==5 && HoraTurno.length()==5){
-             /*HoraServer="23:50";//135 //HORA ACTUAL 22:50
-        HoraTurno="11:19";//1130 // HORA DEL TURNO*/
+            /* HoraServer="18:01";//135 //HORA ACTUAL 22:50
+             HoraTurno="06:00";//1130 // HORA DEL TURNO*/
             int minutosFormales=12*60;
 
             int H1=Integer.parseInt(HoraServer.substring(0,2));

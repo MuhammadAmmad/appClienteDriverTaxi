@@ -1,5 +1,7 @@
 package com.nucleosis.www.appdrivertaxibigway.ws;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -38,11 +40,14 @@ implements OnItemClickListener{
     private PreferencesDriver preferencesDriver;
     private GridViewWithHeaderAndFooter grid;
     private Drawable drawable;
+    private ProgressDialog progressDialog;
+    private Activity activity;
     public static List<beansHistorialServiciosCreados> ListServicios;
     public wsListaServiciosTomadosConductor(Context context,String fecha,GridViewWithHeaderAndFooter grid) {
         this.context = context;
         this.fecha=fecha;
         this.grid=grid;
+        activity=(Activity)context;
         Log.d("fecha_servicio",fecha);
     }
 
@@ -52,6 +57,10 @@ implements OnItemClickListener{
         preferencesDriver=new PreferencesDriver(context);
         ListServicios=new ArrayList<beansHistorialServiciosCreados>();
         ListServicios.clear();
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setMessage("cargando.....");
+       // progressDialog.setCancelable(false);
+        progressDialog.show();
         Log.d("size_clear",String.valueOf(ListServicios.size()));
     }
     @SuppressWarnings("deprecation")
@@ -147,6 +156,7 @@ implements OnItemClickListener{
     @Override
     protected void onPostExecute(List<beansHistorialServiciosCreados> listServics) {
         super.onPostExecute(listServics);
+        progressDialog.dismiss();
         grid.setAdapter(new GriddAdapterServiciosTomadosConductor(context,listServics));
     }
 

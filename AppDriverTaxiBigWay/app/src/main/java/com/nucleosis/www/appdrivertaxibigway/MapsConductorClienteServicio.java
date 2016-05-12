@@ -27,11 +27,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
-import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
 
+import org.json.JSONArray;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -51,11 +52,11 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     Activity MAPS_CONDUCTOR_CLIENTE;
     private   String idServicio="";
     private MyTypeFace myTypeFace;
-
+    private Fichero fichero;
     private PreferencesDriver preferencesDriver;
     private String idDriver="";
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_map_conductor_cliente_ubicacion);
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
@@ -64,6 +65,8 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         myTypeFace=new MyTypeFace(MapsConductorClienteServicio.this);
         compR=new componentesR(MapsConductorClienteServicio.this);
         compR.Controls_Maps_conducotor_cliente(MAPS_CONDUCTOR_CLIENTE);
+        fichero=new Fichero(MapsConductorClienteServicio.this);
+        JSONArray jsonServicios=fichero.ExtraerListaServiciosTomadoConductor();
         if(getIntent()!=null){
             idServicio=  getIntent().getStringExtra("idServicio");
             String stadoServicio=getIntent().getStringExtra("stadoService");
@@ -219,6 +222,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
 
 
     private void clienteEcontrado() {
+
         new AsyncTask<String, String, String[]>() {
             @Override
             protected  String[] doInBackground(String... params) {

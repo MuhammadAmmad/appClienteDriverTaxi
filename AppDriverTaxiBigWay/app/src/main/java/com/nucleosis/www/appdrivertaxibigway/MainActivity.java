@@ -50,10 +50,13 @@ import com.nucleosis.www.appdrivertaxibigway.Constans.Alerta;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.DonwloadImage.CircleTransform;
+import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.Fragments.FragmentDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Fragments.FragmentHistoriNew;
+import com.nucleosis.www.appdrivertaxibigway.Fragments.FragmentMiUbicacion;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceListarServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActivarTurno;
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity
     public static Activity MAIN_ACTIVITY;
     private LatLng mapCenter;
     private MapFragment mapFragment;
-    private LinearLayout linearFragment;
+
     private LayerDrawable icon;
     private MenuItem item;
     private int NumeroNotificacion;
@@ -92,8 +95,11 @@ public class MainActivity extends AppCompatActivity
     private PreferencesDriver preferencesDriver;
     private Menu menuNoti;
     private int swTurno=0;
+    private int swPermiteSoloUnServicioTomado=0;
+    private Fichero fichero;
     private  SimpleDateFormat formatIngreso;
     private List<beansHistorialServiciosCreados>ListaServiciosCreados;
+    private int swLocation=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +118,7 @@ public class MainActivity extends AppCompatActivity
         }
             setupNavigationDrawerContent(compR.getNavigationView());
 
-        linearFragment=(LinearLayout)findViewById(R.id.LinearFragment);
+        fichero=new Fichero(MainActivity.this);
         mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         ListaServiciosCreados=new ArrayList<beansHistorialServiciosCreados>();
@@ -148,6 +154,8 @@ public class MainActivity extends AppCompatActivity
     private void levantarServicioBackground(){
         Intent intent=new Intent(MainActivity.this, ServiceTurno.class);
         startService(intent);
+
+
 
     }
 
@@ -285,11 +293,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private int diferenciaDias(Date fechaMayor,Date fechaMenor){
-        long diferenciaEn_ms = fechaMayor.getTime()- fechaMenor.getTime();
-        long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
-        return (int) dias;
-    }
+
     private class ResponseReceiver extends BroadcastReceiver {
         private ResponseReceiver() {        }
         @Override
@@ -297,7 +301,7 @@ public class MainActivity extends AppCompatActivity
             switch (intent.getAction()) {
                 case Utils.ACTION_RUN_SERVICE:
                     String data=intent.getStringExtra(Utils.EXTRA_MEMORY);
-                //   Toast.makeText(MainActivity.this,data,Toast.LENGTH_LONG).show();
+                   //Toast.makeText(MainActivity.this,data,Toast.LENGTH_LONG).show();
                     if(data.equals("0")){
                         compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnDesactivarTurno().setVisibility(View.GONE);
@@ -307,6 +311,33 @@ public class MainActivity extends AppCompatActivity
                       //  compR.getBtnServicioTerminadoOk().setVisibility(View.GONE);
                         swTurno=2;
                     }else if(data.equals("1")){
+                        if(swLocation==0){
+                            Intent intent1=new Intent(MainActivity.this, locationDriver.class);
+                            startService(intent1);
+                            swLocation=1;
+
+                        }
+
+                        JSONArray jsonArray=fichero.ExtraerListaServiciosTomadoConductor();
+                        if(jsonArray!=null){
+                            for(int i=0;i<jsonArray.length();i++){
+                                try {
+                                    if( jsonArray.getJSONObject(i).getString("statadoServicio").equals("2")
+                                            || jsonArray.getJSONObject(i).getString("statadoServicio").equals("3")){
+                                        swPermiteSoloUnServicioTomado=0;
+                                        i=jsonArray.length();
+                                    }else {
+                                        swPermiteSoloUnServicioTomado=1;
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            if(jsonArray.length()==0){
+                                swPermiteSoloUnServicioTomado=1;
+                            }
+                        }
+
                         compR.getBtnActivarTurno().setVisibility(View.GONE);
                         compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
@@ -361,9 +392,15 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.menuAlert:
                 if(swTurno==1){
-                    cargarAlertNotificaciones();
+                    if(swPermiteSoloUnServicioTomado==1){
+                        cargarAlertNotificaciones();
+                    }else{
+                        Toast.makeText(MainActivity.this,"Tiene servicios tomados, Termine los servicios !!!",
+                                Toast.LENGTH_LONG).show();
+                    }
+
                 }else {
-                    Toast.makeText(MainActivity.this,"Debe activar un turno",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Debe activar un turno",Toast.LENGTH_LONG).show();
                 }
 
                 return  true;
@@ -412,20 +449,21 @@ public class MainActivity extends AppCompatActivity
                                 //Toast.makeText(getApplicationContext(), "HOLA", Toast.LENGTH_SHORT).show();
                                 menuItem.setChecked(true);
                                 compR.getDrawer().closeDrawer(GravityCompat.START);
-                                linearFragment.setVisibility(View.VISIBLE);
+                                compR.getLinearFragment().setVisibility(View.VISIBLE);
                                 getSupportActionBar().setTitle("Mi Ubicacion");
+                                setFragment(0);
                                 return true;
                             case R.id.HistorialCarreras:
                                 menuItem.setChecked(true);
                                 compR.getDrawer().closeDrawer(GravityCompat.START);
-                                linearFragment.setVisibility(View.GONE);
-                                 setFragment(0);
+                                compR.getLinearFragment().setVisibility(View.GONE);
+                                 setFragment(1);
                                 break;
                             case R.id.misDatos:
                                 menuItem.setChecked(true);
                                 compR.getDrawer().closeDrawer(GravityCompat.START);
-                                linearFragment.setVisibility(View.GONE);
-                                setFragment(1);
+                                compR.getLinearFragment().setVisibility(View.GONE);
+                                setFragment(2);
                                 break;
                         }
                         return true;
@@ -448,6 +486,14 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction;
         switch (position) {
             case 0:
+                fragmentManager =getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentMiUbicacion fragmentMiUbicacion=new
+                        FragmentMiUbicacion();
+                fragmentTransaction.replace(R.id.fragment, fragmentMiUbicacion);
+                fragmentTransaction.commit();
+                break;
+            case 1:
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
 //                FragmentHistoriaCarreras HistorialCarreras = new FragmentHistoriaCarreras();
@@ -456,7 +502,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.fragment, fragmentHistoriNew);
                 fragmentTransaction.commit();
                 break;
-            case 1:
+            case 2:
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 FragmentDataDriver dataDriver = new FragmentDataDriver();
@@ -514,8 +560,15 @@ public class MainActivity extends AppCompatActivity
                 dialogo1.setCancelable(false);
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
-                    //new wsExtraerHoraServer(MainActivity.this).execute();
-                    new wsDesactivarTurno(MainActivity.this).execute();
+
+                        new wsDesactivarTurno(MainActivity.this).execute();
+                       /* if(swPermiteSoloUnServicioTomado==1){
+                           // new wsDesactivarTurno(MainActivity.this).execute();
+                        }else{
+                            Toast.makeText(MainActivity.this,"Tiene servicios tomados, Termine los servicios !!!",
+                                    Toast.LENGTH_LONG).show();
+                        }*/
+
                     }
                 });
                 dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -528,8 +581,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.btnIrA_Servicios:
                 //Toast.makeText(MainActivity.this,"hola",Toast.LENGTH_LONG).show();
-                linearFragment.setVisibility(View.GONE);
-                setFragment(0);
+                compR.getLinearFragment().setVisibility(View.GONE);
+                setFragment(1);
                 break;
 
         }
