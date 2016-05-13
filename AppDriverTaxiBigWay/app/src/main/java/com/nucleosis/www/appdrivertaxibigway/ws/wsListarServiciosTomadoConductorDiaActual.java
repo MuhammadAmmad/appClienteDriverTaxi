@@ -141,6 +141,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends
     @Override
     protected void onPostExecute(List<beansHistorialServiciosCreados> listaSeriviciosConductor) {
         super.onPostExecute(listaSeriviciosConductor);
+        progressDialog.dismiss();
         if(listaSeriviciosConductor!=null){
             progressDialog.dismiss();
            grid.setAdapter(new GriddAdapterServiciosTomadosConductor(context,listaSeriviciosConductor));
