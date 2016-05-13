@@ -108,7 +108,7 @@ public class ServiceTurno extends Service {
                         if(data!=null){
                             if(data[0].length()!=0){
                                 preferencesDriver.InsertarIdTurno(data[1]);
-                                preferencesDriver.InsertarDataTurno(data[1],data[2],data[3]);
+                                preferencesDriver.InsertarDataTurno(data[1],data[2],data[3],data[0]);
                                 JSONObject jsonTurno=preferencesDriver.ExtraerDataTurno();
                                 JSONObject jsonFechaServer=preferencesDriver.ExtraerHoraSistema();
                                 //  Log.d("idTurno...",preferencesDriver.ExtraerIdTurno());
@@ -120,7 +120,6 @@ public class ServiceTurno extends Service {
 
                                 if(swLocation==0){
                                     swLocation=1;
-
                                 }
 
                             }
@@ -159,6 +158,9 @@ public class ServiceTurno extends Service {
 
             int diferenciaMinutos=   diferenciaHoras(jsonFechaServer.getString("horaServidor"),
                     jsonTurno.getString("HoraTurnoJson"));
+
+
+
             //TIEMPO MAXIMO QUE DURA EL SERVICIO  720 MINUTOS  2 HORAS
             if(diferenciaMinutos>720 && sw==0){
               //  Toast.makeText(ServiceTurno.this,"Su Turno esta a punto de desactivarse",Toast.LENGTH_SHORT).show();

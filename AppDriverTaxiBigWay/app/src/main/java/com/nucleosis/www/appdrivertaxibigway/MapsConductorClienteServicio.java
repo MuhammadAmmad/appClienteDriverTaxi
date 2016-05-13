@@ -1,6 +1,7 @@
 package com.nucleosis.www.appdrivertaxibigway;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
@@ -55,6 +56,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     private Fichero fichero;
     private PreferencesDriver preferencesDriver;
     private String idDriver="";
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         compR=new componentesR(MapsConductorClienteServicio.this);
         compR.Controls_Maps_conducotor_cliente(MAPS_CONDUCTOR_CLIENTE);
         fichero=new Fichero(MapsConductorClienteServicio.this);
+        progressDialog=new ProgressDialog(MapsConductorClienteServicio.this);
         JSONArray jsonServicios=fichero.ExtraerListaServiciosTomadoConductor();
         if(getIntent()!=null){
             idServicio=  getIntent().getStringExtra("idServicio");
@@ -112,33 +115,57 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.btnAdicionales:
+                ///alert("");
+                //   adicionales();
+
+                /*compR.getBtnServicioNoTerminado().setEnabled(false);
+                compR.getBtnServicioTerminadoOk().setEnabled(false);
+                compR.getBtnIrAServicios().setEnabled(false);
+                compR.getBtnClienteEncontrado().setEnabled(false);*/
+
+                break;
+
             case R.id.btnClienteEncontrado:
-              Log.d("idTurnoVehiculo-->",preferencesDriver.ExtraerIdTurno()+"***"+preferencesDriver.ExtraerIdVehiculo());
+                String mensaje1="Encontro al cliente ?";
+                alert("3",mensaje1,9);
+               Log.d("idTurnoVehiculo-->",preferencesDriver.ExtraerIdTurno()+"***"+preferencesDriver.ExtraerIdVehiculo());
              /*  clienteEcontrado();*/
                /* int idTurno=Integer.parseInt(preferencesDriver.ExtraerIdTurno());
                 int idAuto=Integer.parseInt(preferencesDriver.ExtraerIdVehiculo());
                 new wsActualizarStadoServicio(MapsConductorClienteServicio.this,
                         idDriver,idServicio,idTurno,idAuto,"3","").execute();*/
+
+                compR.getBtnServicioNoTerminado().setEnabled(false);
+                compR.getBtnServicioTerminadoOk().setEnabled(false);
+                compR.getBtnIrAServicios().setEnabled(false);
+                compR.getBtnAdicionales().setEnabled(false);
                 break;
-            case R.id.btnAdicionales:
-                alert();
-             //   adicionales();
-                break;
+
             case R.id.btnSercioNoTerminado:
-              /*  compR.getBtnServicioTerminadoOk().setEnabled(false);
+                String mensaje2="No termino el servicio ?";
+                alert("5",mensaje2,10);
+
                 compR.getBtnClienteEncontrado().setEnabled(false);
-                //id SWITH
-                String ms="mensaje";
-                ActualizarStadosServicio("5",ms,10);*/
+                compR.getBtnServicioTerminadoOk().setEnabled(false);
+                compR.getBtnIrAServicios().setEnabled(false);
+                compR.getBtnAdicionales().setEnabled(false);
+
                 break;
             case R.id.btnServicioTerminadoOk:
-             /*   compR.getBtnClienteEncontrado().setEnabled(false);
+                String mensaje3="Termino el servicio correctamente ?";
+                alert("4",mensaje3,11);
+
+                compR.getBtnClienteEncontrado().setEnabled(false);
                 compR.getBtnServicioNoTerminado().setEnabled(false);
-                ActualizarStadosServicio("4","",11);*/
+                compR.getBtnIrAServicios().setEnabled(false);
+                compR.getBtnAdicionales().setEnabled(false);
+
                 break;
             case R.id.btnIrA_Servicios:
                 Intent intent=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }
@@ -148,6 +175,12 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     private void ActualizarStadosServicio(String idStadoService, String motivo, final int idObjetos) {
         new AsyncTask<String, String, String[]>() {
 
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog.setMessage("Cargando...");
+                progressDialog.show();
+            }
 
             @Override
             protected  String[] doInBackground(String... params) {
@@ -201,15 +234,30 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             @Override
             protected void onPostExecute(String[] data) {
                 super.onPostExecute(data);
+                progressDialog.dismiss();
                 if(data!=null){
                     if(data[0].equals("1")){
                         Toast.makeText(getApplicationContext(),data[1],Toast.LENGTH_SHORT).show();
                         switch (idObjetos){
+                            case 9:
+                                compR.getBtnClienteEncontrado().setEnabled(false);
+
+                                compR.getBtnServicioNoTerminado().setEnabled(true);
+                                compR.getBtnServicioTerminadoOk().setEnabled(true);
+                                compR.getBtnIrAServicios().setEnabled(true);
+                                compR.getBtnAdicionales().setEnabled(true);
+                                break;
                             case 10:
-                                compR.getBtnServicioNoTerminado().setEnabled(false);
+                                //compR.getBtnServicioNoTerminado().setEnabled(false);
+                                Intent intent=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
+                                startActivity(intent);
+                                finish();
                                 break;
                             case 11:
-                                compR.getBtnServicioTerminadoOk().setEnabled(false);
+                               // compR.getBtnServicioTerminadoOk().setEnabled(false);
+                                Intent intent1=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
+                                startActivity(intent1);
+                                finish();
                                 break;
                         }
 
@@ -288,23 +336,60 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     }
 
 
-    private void adicionales() {
-    }
 
-    private void alert(){
+
+    private void alert(final String stadoServicio, final String mensaje, final int caseObjeto){
       final Activity activity=MapsConductorClienteServicio.this;
-        AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(activity);
+        final AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(activity);
         final View view1 = activity.getLayoutInflater().inflate(R.layout.view_alert_actualizar_stado, null);
         TextView lblTitutlo=(TextView) view1.findViewById(R.id.lblTxtTituloAlert) ;
         lblTitutlo.setTypeface(myTypeFace.openRounded_elegance());
         TextView lblMensaje=(TextView) view1.findViewById(R.id.lblMensajeAlert) ;
+        lblMensaje.setText(mensaje);
         lblMensaje.setTypeface(myTypeFace.openRobotoLight());
         Button  btnOk=(Button)view1.findViewById(R.id.btnOk);
+        ImageView imageVieButtonCerrarAlert=(ImageView)view1.findViewById(R.id.ImgButtonCancelAlert);
+
+
         alertDialogBuilder1.setView(view1);
         // alertDialogBuilder.setTitle(R.string.addContacto);
 
 
-        AlertDialog alertDialog1 = alertDialogBuilder1.create();
+        final AlertDialog alertDialog1 = alertDialogBuilder1.create();
+        alertDialog1.setCancelable(false);
+        imageVieButtonCerrarAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog1.dismiss();
+                switch (caseObjeto){
+                    case 9:
+                        compR.getBtnServicioNoTerminado().setEnabled(true);
+                        compR.getBtnServicioTerminadoOk().setEnabled(true);
+                        compR.getBtnIrAServicios().setEnabled(true);
+                        compR.getBtnAdicionales().setEnabled(true);
+                        break;
+                    case 10:
+                        compR.getBtnClienteEncontrado().setEnabled(true);
+                        compR.getBtnServicioTerminadoOk().setEnabled(true);
+                        compR.getBtnIrAServicios().setEnabled(true);
+                        compR.getBtnAdicionales().setEnabled(true);
+                        break;
+                    case 11:
+                        compR.getBtnClienteEncontrado().setEnabled(true);
+                        compR.getBtnServicioNoTerminado().setEnabled(true);
+                        compR.getBtnIrAServicios().setEnabled(true);
+                        compR.getBtnAdicionales().setEnabled(true);
+                        break;
+                }
+            }
+        });
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActualizarStadosServicio(stadoServicio,mensaje,caseObjeto);
+                alertDialog1.dismiss();
+            }
+        });
         alertDialog1.show();
     }
     @Override

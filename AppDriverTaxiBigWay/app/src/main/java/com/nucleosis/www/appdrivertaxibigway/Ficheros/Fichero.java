@@ -7,6 +7,7 @@ import android.util.Log;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Cripto;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -77,5 +78,60 @@ public class Fichero {
         {
             Log.d("look_","No se puede leer fichero");   }
         return jsonArray;
+    }
+
+    public void InsertarFechaHoraUltimaDeCoordenadas(String FechaHoraCoordenadas){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("fechaHoraCoordenadas.txt", Context.MODE_PRIVATE));
+            json.write(FechaHoraCoordenadas);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
+
+    public JSONObject ExtraerFechaHoraUltimaDeCoordenadas(){
+        JSONObject jsonObject=null;
+        try
+        {
+            BufferedReader getDataServicios =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("fechaHoraCoordenadas.txt")));
+            String    dataServicios = getDataServicios.readLine();
+            jsonObject=new JSONObject(dataServicios);
+            getDataServicios.close();
+        }
+        catch (Exception ex)
+        {
+            Log.d("look_","No se puede leer fichero");   }
+        return jsonObject;
+    }
+
+    public void InsertarStadoTurno(String stadoTurno){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("stadoTurno.txt", Context.MODE_PRIVATE));
+            json.write(stadoTurno);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
+
+    public String ExtraerStadoTurno(){
+        String stado="";
+        try
+        {
+            BufferedReader getDataVehiculos =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("stadoTurno.txt")));
+            stado = getDataVehiculos.readLine();
+            getDataVehiculos.close();
+        }
+        catch (Exception ex)
+        {
+            Log.d("look_","No se puede leer fichero");   }
+        return stado;
     }
 }

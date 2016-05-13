@@ -67,15 +67,10 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.ksoap2.HeaderProperty;
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -87,7 +82,6 @@ public class MainActivity extends AppCompatActivity
     public static Activity MAIN_ACTIVITY;
     private LatLng mapCenter;
     private MapFragment mapFragment;
-
     private LayerDrawable icon;
     private MenuItem item;
     private int NumeroNotificacion;
@@ -293,6 +287,41 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private int validarUltimaCoordenadaEnviada(String  HoraServer, String HoraCoordenada ){
+        Log.d("horaServer",HoraServer+"--->Coor: "+HoraCoordenada);
+        int minutos=0;
+        if(HoraServer.length()==5 && HoraCoordenada.length()==5){
+            /* HoraServer="18:01";//135 //HORA ACTUAL 22:50
+             HoraTurno="06:00";//1130 // HORA DEL TURNO*/
+            int minutosFormales=12*60;
+
+            int H1=Integer.parseInt(HoraServer.substring(0,2));
+            int M1=Integer.parseInt(HoraServer.substring(3,5));
+            int TotalMinutos1=H1*60+M1;
+
+            int H2=Integer.parseInt(HoraCoordenada.substring(0,2));
+            int M2=Integer.parseInt(HoraCoordenada.substring(3,5));
+
+            int TotalMinutos2=H2*60+M2;
+
+            if(H1<H2 ){
+                int diaMinutos=24*60;
+                int RestaParcialMinutos=diaMinutos-TotalMinutos2;
+                Log.d("horaTermino",String.valueOf(RestaParcialMinutos));
+                int SumaTotal=RestaParcialMinutos+TotalMinutos1;
+                Log.d("TotalMintuos",String.valueOf(SumaTotal));
+
+                minutos=SumaTotal;
+            }else if(H1>=H2){
+                minutos=TotalMinutos1-TotalMinutos2;
+                Log.d("TotalMintuos",String.valueOf(minutos));
+            }
+        }
+
+
+      Log.d("minutosRetorno",String.valueOf(minutos));
+        return  minutos;
+    }
 
     private class ResponseReceiver extends BroadcastReceiver {
         private ResponseReceiver() {        }
@@ -303,20 +332,34 @@ public class MainActivity extends AppCompatActivity
                     String data=intent.getStringExtra(Utils.EXTRA_MEMORY);
                    //Toast.makeText(MainActivity.this,data,Toast.LENGTH_LONG).show();
                     if(data.equals("0")){
+                        Log.d("EstadoTurno","-->inactivo");
                         compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnDesactivarTurno().setVisibility(View.GONE);
                         compR.getBtnIrAServicios().setVisibility(View.GONE);
-                       // compR.getBtnAdicionales().setVisibility(View.GONE);
-                      //  compR.getBtnClienteEncontrado().setVisibility(View.GONE);
-                      //  compR.getBtnServicioTerminadoOk().setVisibility(View.GONE);
                         swTurno=2;
                     }else if(data.equals("1")){
-                        if(swLocation==0){
-                            Intent intent1=new Intent(MainActivity.this, locationDriver.class);
-                            startService(intent1);
-                            swLocation=1;
 
+                        Log.d("EstadoTurno","-->activo");
+
+                        try {
+                            JSONObject jsonSever=preferencesDriver.ExtraerHoraSistema();
+                            JSONObject jsonCoordendas=fichero.ExtraerFechaHoraUltimaDeCoordenadas();
+                            if(jsonSever!=null && jsonCoordendas!=null){
+                                int tiempoUltimaCoordenada=     validarUltimaCoordenadaEnviada(
+                                        jsonSever.getString("horaServidor").toString(),
+                                        jsonCoordendas.getString("HoraCoordenda").toString());
+                                Log.d("tiempoUltimaCoordenad",String.valueOf(tiempoUltimaCoordenada));
+                                if(tiempoUltimaCoordenada>=2){
+                                    Intent intent1=new Intent(MainActivity.this,locationDriver.class);
+                                    startService(intent1);
+                                }
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+
 
                         JSONArray jsonArray=fichero.ExtraerListaServiciosTomadoConductor();
                         if(jsonArray!=null){
@@ -341,11 +384,7 @@ public class MainActivity extends AppCompatActivity
                         compR.getBtnActivarTurno().setVisibility(View.GONE);
                         compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
-                      //  compR.getBtnAdicionales().setVisibility(View.VISIBLE);
-                      //  compR.getBtnServicioTerminadoOk().setVisibility(View.VISIBLE);
-                      //  compR.getBtnClienteEncontrado().setVisibility(View.VISIBLE);
                         swTurno=1;
-
                     }
                     ///compR.getBtnDesactivarTurno().setText(data);
                     break;
@@ -560,15 +599,7 @@ public class MainActivity extends AppCompatActivity
                 dialogo1.setCancelable(false);
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
-
                         new wsDesactivarTurno(MainActivity.this).execute();
-                       /* if(swPermiteSoloUnServicioTomado==1){
-                           // new wsDesactivarTurno(MainActivity.this).execute();
-                        }else{
-                            Toast.makeText(MainActivity.this,"Tiene servicios tomados, Termine los servicios !!!",
-                                    Toast.LENGTH_LONG).show();
-                        }*/
-
                     }
                 });
                 dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

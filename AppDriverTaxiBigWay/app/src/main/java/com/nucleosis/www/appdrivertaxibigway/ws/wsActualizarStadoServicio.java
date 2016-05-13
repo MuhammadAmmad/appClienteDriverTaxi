@@ -119,7 +119,7 @@ public class wsActualizarStadoServicio extends AsyncTask<String,String,String[]>
             data[1]="";
             //Log.d("error", e.printStackTrace());
         }
-        tareaLarga();
+    //   tareaLarga();
         return data;
     }
 

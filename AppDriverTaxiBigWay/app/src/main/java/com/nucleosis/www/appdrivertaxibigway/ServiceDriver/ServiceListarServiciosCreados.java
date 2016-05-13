@@ -19,6 +19,7 @@ import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerHoraServer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -119,6 +120,8 @@ public class ServiceListarServiciosCreados extends Service {
                             Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
                             int countVector=responseVector.size();
                             Log.d("respmseVecptr",responseVector.toString());
+
+
                             for(int i=0;i<countVector;i++){
                                 SoapObject dataVector=(SoapObject)responseVector.get(i);
                                 row=new beansListaServiciosCreadosPorFecha();
@@ -241,6 +244,10 @@ public class ServiceListarServiciosCreados extends Service {
                     @Override
                     protected void onPostExecute(List<beansListaServiciosCreadosPorFecha> listServiceiosCreados) {
                        // Log.d("siseListReturn",String.valueOf(listServiceiosCreados.size()+"  "+listServiceiosCreados.get(0).getDireccionIncio()));
+
+                        if(listServiceiosCreados.size()==0){
+                            new wsExtraerHoraServer(ServiceListarServiciosCreados.this).execute();
+                        }
                         Gson gson = new Gson();
                         String json = gson.toJson(listServiceiosCreados);
 
@@ -255,7 +262,7 @@ public class ServiceListarServiciosCreados extends Service {
                 }.execute();
             }
         };
-        timerCola.scheduleAtFixedRate(TimerCronometro, 0,5000);
+        timerCola.scheduleAtFixedRate(TimerCronometro, 0,10000);
         return super.onStartCommand(intent, flags, startId);
     }
 

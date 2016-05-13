@@ -47,7 +47,7 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
         super.onPreExecute();
         progressDialog=new ProgressDialog(context);
         progressDialog.setMessage("Espere....");
-        progressDialog.setCancelable(false);
+      //  progressDialog.setCancelable(false);
         progressDialog.show();
     }
 

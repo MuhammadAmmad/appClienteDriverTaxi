@@ -94,13 +94,14 @@ public class PreferencesDriver {
         return prefs.getString("idTurno","0");
     }
 
-    public void InsertarDataTurno(String idTurno,String fecha,String hora){
+    public void InsertarDataTurno(String idTurno,String fecha,String hora,String stado){
         SharedPreferences prefs =
                 context.getSharedPreferences("dataTurno", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("idTurno",idTurno);
         editor.putString("Fecha_Pref",fecha);
         editor.putString("Hora_Pref",hora);
+        editor.putString("stado_Turno_Pref",stado);
         editor.commit();
     }
     public JSONObject ExtraerDataTurno(){
@@ -112,6 +113,7 @@ public class PreferencesDriver {
             dataTurnoJson.put("idTurnoJson",prefs.getString("idTurno","0"));
             dataTurnoJson.put("FechaTurnoJson",prefs.getString("Fecha_Pref","0000-00-00"));
             dataTurnoJson.put("HoraTurnoJson",prefs.getString("Hora_Pref","00:00"));
+            dataTurnoJson.put("stadoTurnoJson",prefs.getString("stado_Turno_Pref","0"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

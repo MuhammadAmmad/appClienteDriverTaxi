@@ -69,8 +69,6 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-
-
     }
     public FragmentHistoriNew() {
     }
@@ -129,42 +127,74 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         compR.getGrid().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String Fecha_=compR.getEditHistoriaCarrera().getText().toString();
+                preferencesDriver=new PreferencesDriver(getActivity());
+                JSONObject jsonObject =preferencesDriver.ExtraerHoraSistema();
+                JSONObject jsonDataTurno= preferencesDriver.ExtraerDataTurno();
 
-                if(wsListaServiciosTomadosConductor.ListServicios!=null){
-                    List<beansHistorialServiciosCreados> lista1=wsListaServiciosTomadosConductor.ListServicios;
-                if(lista1.size()!=0){
-                    if(lista1.get(position).getStatadoServicio().equals("2")){
-                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
-                        intent.putExtra("idServicio",lista1.get(position).getIdServicio());
-                        intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
-                        intent.putExtra("idCliente",lista1.get(position).getIdServicio());
-                        startActivity(intent);
-                    }else  if(lista1.get(position).getStatadoServicio().equals("3")){
-                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
-                        intent.putExtra("idServicio",lista1.get(position).getIdServicio());
-                        intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
-                        intent.putExtra("idCliente",lista1.get(position).getIdServicio());
-                        startActivity(intent);
+                if(jsonObject!=null && jsonDataTurno!=null){
+                    try {
+                        //FECHA DIFERENTE DE LA FECHA ACTUAL
+                        int stado=Integer.parseInt(jsonDataTurno.getString("stadoTurnoJson").toString());
+                        Log.d("StasdoTurno_",String.valueOf(stado));
+                        if(stado==1){
+                            if(wsListaServiciosTomadosConductor.ListServicios!=null &&
+                                    !Fecha_.equals(jsonObject.getString("fechaServidor")) ){
+                                List<beansHistorialServiciosCreados> lista1=wsListaServiciosTomadosConductor.ListServicios;
+                                Log.d("aquiListaServicio","fueraDeFechaActual");
+                                if(lista1.size()!=0){
+                                    if(lista1.get(position).getStatadoServicio().equals("2")){
+                                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                                        intent.putExtra("idServicio",lista1.get(position).getIdServicio());
+                                        intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
+                                        intent.putExtra("idCliente",lista1.get(position).getIdServicio());
+                                        startActivity(intent);
+                                    }else  if(lista1.get(position).getStatadoServicio().equals("3")){
+                                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                                        intent.putExtra("idServicio",lista1.get(position).getIdServicio());
+                                        intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
+                                        intent.putExtra("idCliente",lista1.get(position).getIdServicio());
+                                        startActivity(intent);
+                                    }
+                                }
+
+                            }
+
+                            if(wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor!=null &&
+                                    Fecha_.equals(jsonObject.getString("fechaServidor"))){
+                                Log.d("aquiListaServicio","En la fecha");
+                                List<beansHistorialServiciosCreados> lista2=wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor;
+                                if(lista2.size()!=0){
+                                    if(lista2.get(position).getStatadoServicio().equals("2")){
+                                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                                        intent.putExtra("idServicio",lista2.get(position).getIdServicio());
+                                        intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
+                                        intent.putExtra("idCliente",lista2.get(position).getIdServicio());
+                                        startActivity(intent);
+                                    }else  if(lista2.get(position).getStatadoServicio().equals("3")){
+                                        Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
+                                        intent.putExtra("idServicio",lista2.get(position).getIdServicio());
+                                        intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
+                                        intent.putExtra("idCliente",lista2.get(position).getIdServicio());
+                                        startActivity(intent);
+                                    }
+                                }
+
+
+                            }
+                        }else {
+                            Toast.makeText(getActivity(),"Debe acativar un turno para ir al servicio !!!",Toast.LENGTH_LONG).show();
+                        }
+
+                        //FECHA IGUAL A LA FECHA ACTUAL
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 }
 
-                }else if(wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor!=null){
-                    List<beansHistorialServiciosCreados> lista2=
-                            wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor;
-                    if(lista2.size()!=0){
-                        if(lista2.get(position).getStatadoServicio().equals("2")){
-                            Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
-                            intent.putExtra("idServicio",lista2.get(position).getIdServicio());
-                            intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
-                            startActivity(intent);
-                        }else  if(lista2.get(position).getStatadoServicio().equals("3")){
-                            Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
-                            intent.putExtra("idServicio",lista2.get(position).getIdServicio());
-                            intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
-                            startActivity(intent);}
-                    }
 
-                }
+
             }
         });
 
@@ -209,9 +239,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                         if(z[0]==2){
                             preferencesDriver=new PreferencesDriver(getActivity());
                             JSONObject jsonObject =preferencesDriver.ExtraerHoraSistema();
-                            String fecha=compR.getEditHistoriaCarrera().getText().toString();
+                            String Fecha_=compR.getEditHistoriaCarrera().getText().toString();
                             try {
-                               if(fecha.equals(jsonObject.getString("fechaServidor"))){
+                               if(Fecha_.equals(jsonObject.getString("fechaServidor"))){
                                 new   wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
                                    Log.d("aquiFecha","xxxx");
                                }else{

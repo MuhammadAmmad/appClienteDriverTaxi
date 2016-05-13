@@ -44,4 +44,8 @@
     <color name="btnDetalleServiceTrue">#46eef7</color>
     <color name="greenButton">#2ca43e</color>
 
+    <color name="textColorAlertFalse">#2ca43e</color>
+    <color name="textColorAlertTrue">#e2fde6</color>
+
+
 </resources>

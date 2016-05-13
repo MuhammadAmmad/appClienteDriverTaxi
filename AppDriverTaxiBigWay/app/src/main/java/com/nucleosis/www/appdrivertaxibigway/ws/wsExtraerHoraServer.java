@@ -65,14 +65,17 @@ public class wsExtraerHoraServer extends AsyncTask<String,String,JSONObject> {
     @Override
     protected void onPostExecute(JSONObject json) {
         super.onPostExecute(json);
-        try {
-           preferencesDriver.InsertarFechaHoraActual(
-                   json.getString("Fecha").toString(),
-                   json.getString("Hora").toString());
+        if(json!=null){
+            try {
+                preferencesDriver.InsertarFechaHoraActual(
+                        json.getString("Fecha").toString(),
+                        json.getString("Hora").toString());
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+
         //new wsVerificarServicioActivo(context,json).execute();
         Log.d("json..", json.toString());
     }

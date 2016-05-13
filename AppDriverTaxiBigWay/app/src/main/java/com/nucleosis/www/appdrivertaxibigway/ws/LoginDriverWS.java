@@ -68,10 +68,10 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
         HttpTransportSE httpTransport = new HttpTransportSE("http://taxibigway.com/soap");
 
         try {
-            ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
+           /* ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
-            httpTransport.call("http://taxibigway.com/soap/WS_CONDUCTOR_ACCESAR", envelope, headerPropertyArrayList);
-          // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
+            httpTransport.call("http://taxibigway.com/soap/WS_CONDUCTOR_ACCESAR", envelope, headerPropertyArrayList);*/
+            httpTransport.call("http://taxibigway.com/soap/WS_CONDUCTOR_ACCESAR", envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             Log.d("response1_",response1.toString());
             SoapObject response2=(SoapObject)response1.getProperty("return");

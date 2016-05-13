@@ -31,8 +31,8 @@
             android:layout_height="wrap_content"
             android:gravity="center">
             <ImageButton
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="#00FFFFFF"
                 android:src="@mipmap/ic_alert_img"/>
         </LinearLayout>
@@ -58,8 +58,8 @@
             android:gravity="center"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/lblMensajeAlert"
@@ -67,17 +67,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="@dimen/marginLeftDiez"
             android:orientation="horizontal"
             android:gravity="center">
             <Button
                 android:layout_width="130dp"
-                android:layout_height="48dp"
-                android:textColor="@color/greenButton"
-                android:background="@drawable/shape_border_button_alert"
+                android:layout_height="35dp"
+                android:textColor="@color/selector_text_colort_alert"
+                android:background="@drawable/selector_button_alert"
                 android:id="@+id/btnOk"
-                android:text="OK"/>
+                android:text="@string/OK"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
