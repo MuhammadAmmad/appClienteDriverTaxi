@@ -62,6 +62,7 @@ import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActivarTurno;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsDesactivarTurno;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerConfiguracionAdicionales;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListVehiculos;
 import com.squareup.picasso.Picasso;
 
@@ -80,7 +81,6 @@ public class MainActivity extends AppCompatActivity
     implements OnMapReadyCallback,View.OnClickListener, AdapterNotificaciones.OnItemClickListener {
     private componentesR compR;
     public static Activity MAIN_ACTIVITY;
-    private LatLng mapCenter;
     private MapFragment mapFragment;
     private LayerDrawable icon;
     private MenuItem item;
@@ -91,9 +91,8 @@ public class MainActivity extends AppCompatActivity
     private int swTurno=0;
     private int swPermiteSoloUnServicioTomado=0;
     private Fichero fichero;
-    private  SimpleDateFormat formatIngreso;
     private List<beansHistorialServiciosCreados>ListaServiciosCreados;
-    private int swLocation=0;
+    private AlertDialog alertDialogPanelNotificacion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,8 +112,12 @@ public class MainActivity extends AppCompatActivity
             setupNavigationDrawerContent(compR.getNavigationView());
 
         fichero=new Fichero(MainActivity.this);
+
         mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        //OBTIENE INFORMACION DE COSTOS GENERALES   TIEMPO ESPERA/PEAJE/VIP/ECONOMICO/AIREACONDICIONADO
+        //RUTA DE LA URL FOTO CONDUCTOR
+        new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
         ListaServiciosCreados=new ArrayList<beansHistorialServiciosCreados>();
 
        //LLENAR LISTA DE VEHICULOS
@@ -193,7 +196,7 @@ public class MainActivity extends AppCompatActivity
 
     //    lblDetalleServicio.setText(lblDetalle);
         alertDialogBuilder.setView(view);
-        final AlertDialog alertDialog;
+        AlertDialog alertDialog;
 
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -206,7 +209,9 @@ public class MainActivity extends AppCompatActivity
                 dialogo1.setCancelable(false);
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
-                        new wsAsignarServicioConductor(MainActivity.this,ListaServiciosCreados.get(posicion_).getIdServicio()).execute();
+                        alertDialogPanelNotificacion.dismiss();
+                        new wsAsignarServicioConductor(MainActivity.this,
+                                ListaServiciosCreados.get(posicion_).getIdServicio()).execute();
                     }
                 });
                 dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -238,12 +243,6 @@ public class MainActivity extends AppCompatActivity
                   //  Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
                   ListaServiciosCreados.clear();
                    String json=intent.getStringExtra(Utils.EXTRA_MEMORY_2);
-                 //   List<beansHistorialServiciosCreados> lista=intent.getParcelableArrayListExtra(Utils.EXTRA_MEMORY_2);
-                  /*  if(json==null){
-                        Log.d("jsonOBS","nulll");
-                    }else{
-                        Log.d("jsonOBS","difernte null");
-                    }*/
 
                         try {
                             final JSONArray jsonArray=new JSONArray(json);
@@ -467,15 +466,15 @@ public class MainActivity extends AppCompatActivity
         adapter=new AdapterNotificaciones(ListaServiciosCreados,this,this);
         compR.getRecycler().setAdapter(adapter);
         alertDialogBuilder.setView(view);
-        final AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialogPanelNotificacion = alertDialogBuilder.create();
         compR.getBtnDismisNotificaciones().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialog.dismiss();
+                alertDialogPanelNotificacion.dismiss();
             }
         });
         //alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.show();
+        alertDialogPanelNotificacion.show();
     }
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {
@@ -551,7 +550,7 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
     }
-
+    @SuppressWarnings("deprecation")
     @Override
     public void onMapReady(final GoogleMap map) {
         final double[] lat = new double[1];

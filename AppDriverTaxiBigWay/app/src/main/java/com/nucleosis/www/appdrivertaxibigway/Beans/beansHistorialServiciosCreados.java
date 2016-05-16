@@ -34,12 +34,15 @@ public class beansHistorialServiciosCreados {
     private String idServicio;
     private String importeServicio;
     private String DescripcionServicion;
+    private String indAireAcondicionado;
     private String importeAireAcondicionado;
     private String importePeaje;
     private String numeroMinutoTiempoEspera;
     private String importeTiempoEspera;
     private String nameDistritoInicio;
     private String nameDistritoFin;
+    private String nameZonaIncio;
+    private String nameZonaFin;
     private String DireccionIncio;
     private String direccionFinal;
     private String nombreConductor;
@@ -54,10 +57,33 @@ public class beansHistorialServiciosCreados {
     private int imagenOptional;
     private int statusServicioTomadoColor;
     private String idTurno;
-
     private String idCliente;
     private String numCelular;
     private String  nunMovilTaxi;
+
+    public String getIndAireAcondicionado() {
+        return indAireAcondicionado;
+    }
+
+    public void setIndAireAcondicionado(String indAireAcondicionado) {
+        this.indAireAcondicionado = indAireAcondicionado;
+    }
+
+    public String getNameZonaFin() {
+        return nameZonaFin;
+    }
+
+    public void setNameZonaFin(String nameZonaFin) {
+        this.nameZonaFin = nameZonaFin;
+    }
+
+    public String getNameZonaIncio() {
+        return nameZonaIncio;
+    }
+
+    public void setNameZonaIncio(String nameZonaIncio) {
+        this.nameZonaIncio = nameZonaIncio;
+    }
 
     public String getIdCliente() {
         return idCliente;

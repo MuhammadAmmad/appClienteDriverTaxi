@@ -46,6 +46,77 @@ public class ConstantsWS {
     private static final String SOAP_ACTION_12=NAME_SPACE+"/"+METHODO_12;
 
 
+    private static final String METHODO_13="WS_CONFIGURACION_OBTENER";
+    private static final String SOAP_ACTION_13=NAME_SPACE+"/"+METHODO_13;
+
+    private static final String METHODO_14="WS_ZONA_ENTREGAR_POR_NOM_ZONA";
+    private static final String SOAP_ACTION_14=NAME_SPACE+"/"+METHODO_14;
+
+    //EXTRAER  PRECIO ZONA X ZONA
+    private static final String METHODO_15="WS_TARIFA_ZONAL_OBTENER_IMP_ZONAL";
+    private static final String SOAP_ACTION_15=NAME_SPACE+"/"+METHODO_15;
+
+    //LISTAR_DISTRITOS
+    private static final String METHODO_16="WS_DISTRITO_ENTREGAR_NOM_DISTRITO";
+    private static final String SOAP_ACTION_16=NAME_SPACE+"/"+METHODO_16;
+
+    //ACUTALIZAR_SERVICIO
+    private static final String METHODO_17="WS_SERVICIO_ACTUALIZAR";
+    private static final String SOAP_ACTION_17=NAME_SPACE+"/"+METHODO_17;
+
+    //ACUTALIZAR_SERVICIO
+    private static final String METHODO_18="WS_CLIENTE_OBTENER_POSICION";
+    private static final String SOAP_ACTION_18=NAME_SPACE+"/"+METHODO_18;
+
+
+    public static String getSoapAction18() {
+        return SOAP_ACTION_18;
+    }
+
+    public static String getMethodo18() {
+        return METHODO_18;
+    }
+
+    public static String getMethodo17() {
+        return METHODO_17;
+    }
+
+    public static String getSoapAction17() {
+        return SOAP_ACTION_17;
+    }
+
+    public static String getSoapAction16() {
+        return SOAP_ACTION_16;
+    }
+
+    public static String getMethodo16() {
+        return METHODO_16;
+    }
+
+    public static String getMethodo15() {
+        return METHODO_15;
+    }
+
+    public static String getSoapAction15() {
+        return SOAP_ACTION_15;
+    }
+
+    public static String getMethodo14() {
+        return METHODO_14;
+    }
+
+    public static String getSoapAction14() {
+        return SOAP_ACTION_14;
+    }
+
+    public static String getMethodo13() {
+        return METHODO_13;
+    }
+
+    public static String getSoapAction13() {
+        return SOAP_ACTION_13;
+    }
+
     public static String getMethodo12() {
         return METHODO_12;
     }

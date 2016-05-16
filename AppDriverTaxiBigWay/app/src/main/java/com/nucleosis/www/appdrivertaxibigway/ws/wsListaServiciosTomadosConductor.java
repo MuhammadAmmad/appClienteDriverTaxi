@@ -100,6 +100,8 @@ implements OnItemClickListener{
                 row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
                 row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                 row.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                row.setNameZonaIncio(dataVector.getProperty("NOM_ZONA_INICIO").toString());
+                row.setNameZonaFin(dataVector.getProperty("NOM_ZONA_FIN").toString());
                 row.setNameDistritoFin(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
                 row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
                 row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());

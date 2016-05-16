@@ -102,6 +102,7 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
             ACTIVITY.finish();
             new DonwloadDataUser(context).execute(user.getUser());
             new wsExtraerHoraServer(context).execute();
+            new wsExtraerDistritos(context).execute();
         } else if(sw==0){
             Toast.makeText(context,msn,Toast.LENGTH_SHORT).show();
         }

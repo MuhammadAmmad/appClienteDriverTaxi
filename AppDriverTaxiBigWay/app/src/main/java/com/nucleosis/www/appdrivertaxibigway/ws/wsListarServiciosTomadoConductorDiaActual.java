@@ -37,8 +37,8 @@ public class wsListarServiciosTomadoConductorDiaActual extends
     private Context context;
     private Fichero fichero;
     private GridViewWithHeaderAndFooter grid;
-    JSONArray   jsonListaServicios=null;
-    beansHistorialServiciosCreados row=null;
+    private JSONArray   jsonListaServicios=null;
+    private beansHistorialServiciosCreados row=null;
     public static List<beansHistorialServiciosCreados> listServiciosFechaActualConducor;
     private Drawable drawable;
     private ProgressDialog progressDialog;
@@ -75,12 +75,19 @@ public class wsListarServiciosTomadoConductorDiaActual extends
                 row.setHora(jsonListaServicios.getJSONObject(i).getString("Hora").toString());
                 row.setImporteServicio(jsonListaServicios.getJSONObject(i).getString("importeServicio").toString());
                 row.setDescripcionServicion(jsonListaServicios.getJSONObject(i).getString("DescripcionServicion").toString());
+
+                row.setIndAireAcondicionado(jsonListaServicios.getJSONObject(i).getString("indAireAcondicionado"));
                 row.setImporteAireAcondicionado(jsonListaServicios.getJSONObject(i).getString("importeAireAcondicionado").toString());
                 row.setImportePeaje(jsonListaServicios.getJSONObject(i).getString("importePeaje").toString());
                 row.setNumeroMinutoTiempoEspera(jsonListaServicios.getJSONObject(i).getString("numeroMinutoTiempoEspera").toString());
                 row.setImporteTiempoEspera(jsonListaServicios.getJSONObject(i).getString("importeTiempoEspera").toString());
+
                 row.setNameDistritoInicio(jsonListaServicios.getJSONObject(i).getString("nameDistritoInicio").toString());
+                row.setNameZonaIncio(jsonListaServicios.getJSONObject(i).getString("nameZonaIncio"));
+
                 row.setNameDistritoFin(jsonListaServicios.getJSONObject(i).getString("nameDistritoFin").toString());
+                row.setNameZonaFin(jsonListaServicios.getJSONObject(i).getString("nameZonaFin"));
+
                 row.setDireccionIncio(jsonListaServicios.getJSONObject(i).getString("DireccionIncio").toString());
                 row.setDireccionFinal(jsonListaServicios.getJSONObject(i).getString("direccionFinal").toString());
                 row.setNombreConductor(jsonListaServicios.getJSONObject(i).getString("nombreConductor").toString());
@@ -92,6 +99,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends
                 row.setIdCliente(jsonListaServicios.getJSONObject(i).getString("idCliente").toString());
                 row.setNumCelular(jsonListaServicios.getJSONObject(i).getString("nucCelularCliente").toString());
                 row.setNunMovilTaxi(jsonListaServicios.getJSONObject(i).getString("numeroMovilTaxi").toString());
+
 
                 int idStatus=Integer.parseInt(jsonListaServicios.getJSONObject(i).getString("statadoServicio").toString());
                 Log.d("stadoServiciosxxxx-->",String.valueOf(idStatus));

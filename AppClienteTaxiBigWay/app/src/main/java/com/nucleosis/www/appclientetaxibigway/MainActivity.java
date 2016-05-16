@@ -64,9 +64,14 @@ import com.nucleosis.www.appclientetaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appclientetaxibigway.beans.beansListaPolygono;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
 import com.nucleosis.www.appclientetaxibigway.kmlPolygonos.KmlCreatorPolygono;
+import com.nucleosis.www.appclientetaxibigway.ws.wsEnviarLatLonClienteDireccionIncio;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerIdZonaIdDistrito;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerPrecioZonaDistrito;
 import com.nucleosis.www.appclientetaxibigway.ws.wsValidarHoraServicio;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -337,6 +342,21 @@ public class MainActivity extends AppCompatActivity
                     new AddresRestmap(MainActivity.this, lat, lng, casoMarker).execute();
                     final int sisePoligonos = listPolyGo.size();
                     ZonaIncio=  DeterminaZona(sisePoligonos,marker.getPosition());
+                    LatLng coordenada=marker.getPosition();
+                    Log.d("latitudLongidu_",String.valueOf(coordenada));
+                    /*coordenada.latitude;
+                    coordenada.longitude;*/
+                    JSONObject jsonCoordenadaIncioAddres=new JSONObject();
+                    try {
+                        jsonCoordenadaIncioAddres.put("latitud",String.valueOf(coordenada.latitude));
+                        jsonCoordenadaIncioAddres.put("longitud",String.valueOf(coordenada.longitude));
+                        fichero.InsertarCoordendaDirrecionIncio(jsonCoordenadaIncioAddres.toString());
+                        new wsEnviarLatLonClienteDireccionIncio(MainActivity.this).execute();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     new wsExtraerIdZonaIdDistrito(MainActivity.this,ZonaIncio,1).execute();
 
                 } else if (marker.getId().equals("m1")) {

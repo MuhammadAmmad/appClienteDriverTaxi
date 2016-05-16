@@ -7,15 +7,16 @@ public class beansListaServiciosCreadosPorFecha {
     private String idServicio; //ID_SERVICIO
     private String importeServicio;  //IMP_SERVICIO
     private String DescripcionServicion;  //DES_SERVICIO
-
+    private String indAireAcondicionado;//IND_AIRE_ACONDICIONADO
     private String importeAireAcondicionado;  //IMP_AIRE_ACONDICIONADO
     private String importePeaje;                //IMP_PEAJE
     private String numeroMinutoTiempoEspera;    //NUM_MINUTO_TIEMPO_ESPERA
 
     private String importeTiempoEspera;   //IMP_TIEMPO_ESPERA
     private String nameDistritoInicio;      //NOM_DISTRITO_INICIO
+    private String nameZonaIncio;           //NOM ZONA INICIO
     private String nameDistritoFin;         //NOM_DISTRITO_FIN
-
+    private String nameZonaFin;             //NON ZONA FIN
     private String DireccionIncio;          //DES_DIRECCION_INICIO
     private String direccionFinal;            //
     private String nombreConductor;         //
@@ -34,7 +35,31 @@ public class beansListaServiciosCreadosPorFecha {
     private String idTipoAuto;
     private String desAutoTipo;
 
+    public String getIndAireAcondicionado() {
+        return indAireAcondicionado;
+    }
+
+    public void setIndAireAcondicionado(String indAireAcondicionado) {
+        this.indAireAcondicionado = indAireAcondicionado;
+    }
+
     private String numeroMovilTaxi; //numero de la movil
+
+    public String getNameZonaIncio() {
+        return nameZonaIncio;
+    }
+
+    public void setNameZonaIncio(String nameZonaIncio) {
+        this.nameZonaIncio = nameZonaIncio;
+    }
+
+    public String getNameZonaFin() {
+        return nameZonaFin;
+    }
+
+    public void setNameZonaFin(String nameZonaFin) {
+        this.nameZonaFin = nameZonaFin;
+    }
 
     public String getNumeroMovilTaxi() {
         return numeroMovilTaxi;

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -35,6 +36,7 @@ import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListaServiciosTomadosConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListarServiciosTomadoConductorDiaActual;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsObtenerDireccionIncioCliente;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,7 +96,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
 
     private View createHeaderView(final GridViewWithHeaderAndFooter grid) {
         View view;
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.view_cabecera_historial_carreras, null, false);
         GRID_CANCEL=grid;
             compR.Controls_fragment_Historia_Carreras_createHeader(view);
@@ -127,6 +129,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         compR.getGrid().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), String.valueOf(id),Toast.LENGTH_SHORT);
                 String Fecha_=compR.getEditHistoriaCarrera().getText().toString();
                 preferencesDriver=new PreferencesDriver(getActivity());
                 JSONObject jsonObject =preferencesDriver.ExtraerHoraSistema();
@@ -143,17 +146,23 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                 List<beansHistorialServiciosCreados> lista1=wsListaServiciosTomadosConductor.ListServicios;
                                 Log.d("aquiListaServicio","fueraDeFechaActual");
                                 if(lista1.size()!=0){
+                                    Toast.makeText(getActivity(),String.valueOf(lista1.get(position).getIdServicio()),Toast.LENGTH_SHORT).show();
                                     if(lista1.get(position).getStatadoServicio().equals("2")){
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                                         intent.putExtra("idServicio",lista1.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
-                                        intent.putExtra("idCliente",lista1.get(position).getIdServicio());
+                                        intent.putExtra("idCliente",lista1.get(position).getIdCliente());
+                                        intent.putExtra("idZonaIncio",lista1.get(position).getNameZonaIncio());
+                                        intent.putExtra("idZonaFin",lista1.get(position).getNameZonaFin());
                                         startActivity(intent);
+
                                     }else  if(lista1.get(position).getStatadoServicio().equals("3")){
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                                         intent.putExtra("idServicio",lista1.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
-                                        intent.putExtra("idCliente",lista1.get(position).getIdServicio());
+                                        intent.putExtra("idCliente",lista1.get(position).getIdCliente());
+                                        intent.putExtra("idZonaIncio",lista1.get(position).getNameZonaIncio());
+                                        intent.putExtra("idZonaFin",lista1.get(position).getNameZonaFin());
                                         startActivity(intent);
                                     }
                                 }
@@ -165,18 +174,27 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                 Log.d("aquiListaServicio","En la fecha");
                                 List<beansHistorialServiciosCreados> lista2=wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor;
                                 if(lista2.size()!=0){
+                                    Toast.makeText(getActivity(),String.valueOf(lista2.get(position).getIdServicio()),Toast.LENGTH_SHORT).show();
                                     if(lista2.get(position).getStatadoServicio().equals("2")){
+                                        new wsObtenerDireccionIncioCliente(getActivity(),lista2.get(position).getIdCliente()).execute();
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                                         intent.putExtra("idServicio",lista2.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
-                                        intent.putExtra("idCliente",lista2.get(position).getIdServicio());
+                                        intent.putExtra("idCliente",lista2.get(position).getIdCliente());
+                                        intent.putExtra("idZonaIncio",lista2.get(position).getNameZonaIncio());
+                                        intent.putExtra("idZonaFin",lista2.get(position).getNameZonaFin());
                                         startActivity(intent);
+
                                     }else  if(lista2.get(position).getStatadoServicio().equals("3")){
+                                        new wsObtenerDireccionIncioCliente(getActivity(),lista2.get(position).getIdCliente()).execute();
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                                         intent.putExtra("idServicio",lista2.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
-                                        intent.putExtra("idCliente",lista2.get(position).getIdServicio());
+                                        intent.putExtra("idCliente",lista2.get(position).getIdCliente());
+                                        intent.putExtra("idZonaIncio",lista2.get(position).getNameZonaIncio());
+                                        intent.putExtra("idZonaFin",lista2.get(position).getNameZonaFin());
                                         startActivity(intent);
+
                                     }
                                 }
 
@@ -191,6 +209,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }else{
+                    Toast.makeText(getActivity(),"campos nulos",Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -377,4 +397,6 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         Log.d("stadoSevcioLog",stadoServicio);
         Toast.makeText(context,"detalle de servicio",Toast.LENGTH_SHORT).show();
     }
+
+
 }

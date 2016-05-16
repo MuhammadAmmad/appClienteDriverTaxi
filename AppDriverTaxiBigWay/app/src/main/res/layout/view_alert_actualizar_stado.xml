@@ -20,35 +20,25 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginRight="@dimen/dimenCinco"
+                android:layout_marginTop="@dimen/dimenCinco"
                 android:clickable="true"
                 android:id="@+id/ImgButtonCancelAlert"
                 android:background="@android:drawable/ic_menu_close_clear_cancel"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="#00FFFFFF"
-                android:src="@mipmap/ic_alert_img"/>
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginTop="@dimen/marginLeftDiez"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="25dp"
-            android:text="IMPORTANTE !!"
+            android:text="@string/importante"
             android:id="@+id/lblTxtTituloAlert"
             android:layout_gravity="center_horizontal" />
 
@@ -56,14 +46,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginTop="@dimen/marginLeftDiez"
             android:textSize="20dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/lblMensajeAlert"
             android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginTop="@dimen/marginLeftDiez"
+            android:paddingLeft="@dimen/marginLeftDiez"
+            android:hint="@string/motivo"
+            android:textColorHint="@color/hintColor"
+            android:background="@drawable/shape_border"
+            android:id="@+id/editMotivo"
+            android:layout_gravity="center_horizontal" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

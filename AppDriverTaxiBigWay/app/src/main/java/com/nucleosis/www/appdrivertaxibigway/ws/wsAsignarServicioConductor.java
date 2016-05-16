@@ -49,7 +49,8 @@ public class wsAsignarServicioConductor extends AsyncTask<String,String,String[]
         //request.addProperty("idTurno", Integer.parseInt(preferencesDriver.ExtraerIdTurno()));
         request.addProperty("idTurno", 0);
         request.addProperty("idConductor",preferencesDriver.OpenIdDriver());
-        request.addProperty("idAuto", preferencesDriver.ExtraerIdVehiculo());
+        //request.addProperty("idAuto", preferencesDriver.ExtraerIdVehiculo());
+        request.addProperty("idAuto",0);
         request.addProperty("usrActualizacion", "");
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());

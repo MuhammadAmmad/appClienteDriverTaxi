@@ -194,6 +194,8 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                         <idRegistroTipo xsi:type="xsd:int">?</idRegistroTipo>*/
 
                                 JSONObject jsonObject=fichero.ExtraerDireccionIncioFin();
+                                JSONObject jsonCoordenadas=fichero.ExtraerCoordendaDirrecionIncio();
+                        Log.d("coorLaLn",jsonCoordenadas.toString());
                         try {
                             request.addProperty("fecServicio", fecha);
                             request.addProperty("desHora", hora);
@@ -216,8 +218,8 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
 
                             request.addProperty("idDistritoInicio", Integer.parseInt(jsonOrigen.getString("idDistrito").toString()));
                             request.addProperty("idZonaInicio", Integer.parseInt(jsonOrigen.getString("idZona").toString()));
-                            request.addProperty("desDireccionInicio", jsonObject.getString("addresIncio").toString());
-
+                            request.addProperty("desDireccionInicio", jsonObject.getString("addresIncio").toString() );
+                        //"/"+jsonCoordenadas.toString()
                             request.addProperty("idDistritoFinal", Integer.parseInt(jsonDestino.getString("idDistrito").toString()));
                             request.addProperty("idZonaFinal", Integer.parseInt(jsonDestino.getString("idZona").toString()));
                             request.addProperty("desDireccionFinal", jsonObject.getString("addresfin").toString());

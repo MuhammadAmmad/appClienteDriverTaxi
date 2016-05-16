@@ -131,4 +131,32 @@ public class Fichero {
         return jsonObject;
     }
 
+    public void InsertarCoordendaDirrecionIncio(String latlong){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("latlonAddresInicio.txt", Context.MODE_PRIVATE));
+            json.write(latlong);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());
+        }
+    }
+
+    public JSONObject ExtraerCoordendaDirrecionIncio(){
+        JSONObject jsonAddresLatLon=null;
+        try
+        {
+            BufferedReader addres =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("latlonAddresInicio.txt")));
+            jsonAddresLatLon=new JSONObject(addres.readLine());
+            addres.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonAddresLatLon;
+    }
+
 }

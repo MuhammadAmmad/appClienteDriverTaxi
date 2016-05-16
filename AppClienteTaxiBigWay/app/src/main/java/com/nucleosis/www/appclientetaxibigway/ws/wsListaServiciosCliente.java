@@ -77,19 +77,37 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
                 row=new beansHistorialServiciosCreados();
                 row.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
                 row.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
+                row.setFechaFormat(dataVector.getProperty("FEC_SERVICIO_YMD").toString());
                 row.setHora(dataVector.getProperty("DES_HORA").toString());
                 row.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
                 row.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
+
+                row.setIndAireAcondicionado(dataVector.getProperty("IND_AIRE_ACONDICIONADO").toString());
                 row.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
-               // row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
-               // row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
-               // row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
+                row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
+                row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
+                row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
+
+                row.setNameDistritoIncio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                row.setNameZonaIncio(dataVector.getProperty("NOM_ZONA_INICIO").toString());
                 row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
+
+                row.setNameDistritoFIn(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
+                row.setNameZonaFin(dataVector.getProperty("NOM_ZONA_FIN").toString());
                 row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
-              //  row.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
+
+                row.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
+
                 row.setStatadoServicio(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
                 row.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
+
+                row.setIdTipoAutoPidioCliente(dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
+                row.setDesAutoTipoCliente(dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
+                row.setIdCliente(dataVector.getProperty("ID_CLIENTE").toString());
+                row.setIdConductor(dataVector.getProperty("ID_CONDUCTOR").toString());
+                row.setNumberCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
                 row.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
+
                         +"\n"+dataVector.getProperty("DES_DIRECCION_FINAL").toString());
                 row.setImageHistorico(drawable);
                 ListServicios.add(row);

@@ -7,6 +7,7 @@ import android.util.Log;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Cripto;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -108,30 +109,289 @@ public class Fichero {
         return jsonObject;
     }
 
-    public void InsertarStadoTurno(String stadoTurno){
+    public void InsertarConfiguraciones(String configuracion){
         try  { OutputStreamWriter json =new OutputStreamWriter(
-                context.openFileOutput("stadoTurno.txt", Context.MODE_PRIVATE));
-            json.write(stadoTurno);
+                context.openFileOutput("configuracion.txt", Context.MODE_PRIVATE));
+            json.write(configuracion);
             json.close();
         }
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
 
-    public String ExtraerStadoTurno(){
-        String stado="";
+    public JSONObject ExtraerConfiguraciones(){
+        JSONObject jsonObject=null;
         try
         {
-            BufferedReader getDataVehiculos =
+
+            BufferedReader getConfiguracion =
                     new BufferedReader(
                             new InputStreamReader(
-                                    context.openFileInput("stadoTurno.txt")));
-            stado = getDataVehiculos.readLine();
-            getDataVehiculos.close();
+                                    context.openFileInput("configuracion.txt")));
+            String data = getConfiguracion.readLine();
+            Log.d("daa",data.toString());
+            jsonObject =new JSONObject(data);
+            getConfiguracion.close();
         }
         catch (Exception ex)
         {
             Log.d("look_","No se puede leer fichero");   }
-        return stado;
+
+        return jsonObject;
+    }
+    public void InsertIdZonaIdDistrito_Origen(String[] datos){
+        JSONObject jsonOrigen=new JSONObject();
+
+        try  {
+            jsonOrigen.put("idDistrito",datos[0].toString());
+            jsonOrigen.put("idZona",datos[1].toString());
+            OutputStreamWriter OrigenId =new OutputStreamWriter(
+                context.openFileOutput("idOrigen.txt", Context.MODE_PRIVATE));
+            OrigenId.write(jsonOrigen.toString());
+            OrigenId.close();
+            Log.d("fichero_", "fichero_creado"+"-->"+jsonOrigen.toString());
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage()); }
+
+    }
+
+    public JSONObject ExtraerZonaIdDistrito_Origen(){
+        JSONObject jsonObject=null;
+        try
+        {
+            BufferedReader emailT =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("idOrigen.txt")));
+            jsonObject=new JSONObject(emailT.readLine());
+            emailT.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonObject;
+    }
+    public void InsertIdZonaIdDistrito_Destino(String[] datos){
+        JSONObject jsonOrigen=new JSONObject();
+
+        try  {
+            jsonOrigen.put("idDistrito",datos[0].toString());
+            jsonOrigen.put("idZona",datos[1].toString());
+            OutputStreamWriter OrigenId =new OutputStreamWriter(
+                context.openFileOutput("idDestino.txt", Context.MODE_PRIVATE));
+            OrigenId.write(jsonOrigen.toString());
+            OrigenId.close();
+            Log.d("fichero_", "fichero_creado" + "-->" + jsonOrigen.toString());
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage()); }
+
+    }
+
+    public JSONObject ExtraerZonaIdDistrito_Destino(){
+        JSONObject jsonObject=null;
+        try
+        {
+            BufferedReader emailT =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("idDestino.txt")));
+            jsonObject=new JSONObject(emailT.readLine());
+            emailT.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonObject;
+    }
+    public void InsertarListaDistritos(String listaDitritos){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("listDistritos.txt", Context.MODE_PRIVATE));
+            json.write(listaDitritos);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());
+        }
+    }
+    public JSONArray ExtraerListDistritos(){
+        JSONArray jsonDistritos=null;
+        try
+        {
+            BufferedReader distritosList =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("listDistritos.txt")));
+            jsonDistritos=new JSONArray(distritosList.readLine());
+            distritosList.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonDistritos;
+    }
+    public void InsertaDireccionIncio(String addresIncio){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("addresInicio.txt", Context.MODE_PRIVATE));
+            json.write(addresIncio);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());
+        }
+    }
+    public JSONObject ExtraerDireccionIncio(){
+        JSONObject jsonAddres=null;
+        try
+        {
+            BufferedReader addres =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("addresInicio.txt")));
+            jsonAddres=new JSONObject(addres.readLine());
+            addres.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonAddres;
+    }
+    public void InsertaDireccionFin(String addresFin){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("addresFin.txt", Context.MODE_PRIVATE));
+            json.write(addresFin);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());
+        }
+    }
+    public JSONObject ExtraerDireccionFin(){
+        JSONObject jsonAddres=null;
+        try
+        {
+            BufferedReader addres =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("addresFin.txt")));
+            jsonAddres=new JSONObject(addres.readLine());
+            addres.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonAddres;
+    }
+
+
+    public void InsertarServicioUnico(String servicio){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("servicioUncio.txt", Context.MODE_PRIVATE));
+            json.write(servicio);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
+
+    public JSONObject ExtraerServicioUnico(){
+        JSONObject json=null;
+        try
+        {
+            BufferedReader service =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("servicioUncio.txt")));
+            json=new JSONObject(service.readLine());
+            service.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return json;
+    }
+
+    public void INSERTAR_IdZONA_IDDISTRITO_INCIO(String idDistritoIdZona_inicio){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("idDistritoIdZonaJsonIncio.txt", Context.MODE_PRIVATE));
+            json.write(idDistritoIdZona_inicio);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
+
+    public JSONObject EXTRAER_IdZONA_IDDISTRITO_INCIO(){
+        JSONObject json=null;
+        try
+        {
+            BufferedReader service =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("idDistritoIdZonaJsonIncio.txt")));
+            json=new JSONObject(service.readLine());
+            service.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return json;
+    }
+
+
+    public void INSERTAR_IdZONA_IDDISTRITO_FIN(String idDistritoIdZona_Fin){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("idDistritoIdZonaJsonFin.txt", Context.MODE_PRIVATE));
+            json.write(idDistritoIdZona_Fin);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
+
+    public JSONObject EXTRAER_IdZONA_IDDISTRITO_FIN(){
+        JSONObject json=null;
+        try
+        {
+            BufferedReader service =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("idDistritoIdZonaJsonFin.txt")));
+            json=new JSONObject(service.readLine());
+            service.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return json;
+    }
+
+    public void InsertarCoordendaDirrecionIncioCliente(String latlong){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("latlonAddresInicioCliente.txt", Context.MODE_PRIVATE));
+            json.write(latlong);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());
+        }
+    }
+
+    public JSONObject ExtraerCoordendaDirrecionIncioCliente(){
+        JSONObject jsonAddresLatLon=null;
+        try
+        {
+            BufferedReader addres =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("latlonAddresInicioCliente.txt")));
+            jsonAddresLatLon=new JSONObject(addres.readLine());
+            addres.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonAddresLatLon;
     }
 }

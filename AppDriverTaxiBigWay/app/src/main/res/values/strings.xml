@@ -16,4 +16,12 @@
     <string name="Notificacion">Notificacion</string>
     <string name="Notification">Notificacion</string>
     <string name="UbicacionCliente">Ubicacion cliente</string>
+    <string name="motivo">Motivo</string>
+    <string name="importante">IMPORTANTE !!</string>
+    <string name="ServicioAdicionales">Servicio Adicional</string>
+    <string name="aireAcondicionado">Aire acondicionado</string>
+    <string name="peaje">PEAJE</string>
+    <string name="tiempoEspera">TIEMPO DE ESPERA</string>
+    <string name="modificarRuta">MODIFICAR RUTA</string>
+    <string name="minutos"># minutos</string>
 </resources>

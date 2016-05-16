@@ -18,4 +18,5 @@
     <dimen name="marginLeftDiez">10dp</dimen>
     <dimen name="badge_text_size">10sp</dimen>
     <dimen name="padinLeft">5dp</dimen>
+    <dimen name="dimenCinco">5dp</dimen>
 </resources>

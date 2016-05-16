@@ -61,6 +61,18 @@ public class ConstantsWS {
     private static final String METHODO_12="WS_CONDUCTOR_OBTENER_POSICION";
     private static final String SOAP_ACTION_12=NAME_SPACE+"/"+METHODO_12;
 
+    //ACTUALIZAR UBICION RUTA INICIO CLIENTE
+    private static final String METHODO_13="WS_CLIENTE_ACTUALIZAR_POSICION";
+    private static final String SOAP_ACTION_13=NAME_SPACE+"/"+METHODO_13;
+
+    public static String getMethodo13() {
+        return METHODO_13;
+    }
+
+    public static String getSoapAction13() {
+        return SOAP_ACTION_13;
+    }
+
     public static String getMethodo12() {
         return METHODO_12;
     }

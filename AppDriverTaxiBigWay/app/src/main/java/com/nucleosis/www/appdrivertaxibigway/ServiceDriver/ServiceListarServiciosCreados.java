@@ -161,16 +161,17 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setHora(dataVector.getProperty("DES_HORA").toString());
                                         row.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
                                         row.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
-
-
+                                        //IND_AIRE_ACONDICIONADO
+                                        row.setIndAireAcondicionado(dataVector.getProperty("IND_AIRE_ACONDICIONADO").toString());
                                         row.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
                                         row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                         row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
                                         row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                                         row.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                                        row.setNameZonaIncio(dataVector.getProperty("NOM_ZONA_INICIO").toString());
                                         row.setNameDistritoFin(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
-
+                                        row.setNameZonaFin(dataVector.getProperty("NOM_ZONA_FIN").toString());
                                         row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
                                         row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
                                         row.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
@@ -201,14 +202,16 @@ public class ServiceListarServiciosCreados extends Service {
                                     row2.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
                                     row2.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());
 
+                                    row2.setIndAireAcondicionado(dataVector.getProperty("IND_AIRE_ACONDICIONADO").toString());
                                     row2.setImporteAireAcondicionado(dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
                                     row2.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                     row2.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
                                     row2.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                                     row2.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                                    row2.setNameZonaIncio(dataVector.getProperty("NOM_ZONA_INICIO").toString());
                                     row2.setNameDistritoFin(dataVector.getProperty("NOM_DISTRITO_FIN").toString());
-
+                                    row2.setNameZonaFin(dataVector.getProperty("NOM_ZONA_FIN").toString());
                                     row2.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
                                     row2.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
                                     row2.setNombreConductor(dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
@@ -233,7 +236,6 @@ public class ServiceListarServiciosCreados extends Service {
 
                             }
                             String ObjetoJsonArray=new Gson().toJson(ListServiciosAsignadoConductor);
-                            preferencesDriver.InsertaListServiciosCreados(ObjetoJsonArray);
                             fichero.InsertarListaServiciosTomadosConductor(ObjetoJsonArray);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -262,7 +264,7 @@ public class ServiceListarServiciosCreados extends Service {
                 }.execute();
             }
         };
-        timerCola.scheduleAtFixedRate(TimerCronometro, 0,10000);
+        timerCola.scheduleAtFixedRate(TimerCronometro, 0,15000);
         return super.onStartCommand(intent, flags, startId);
     }
 

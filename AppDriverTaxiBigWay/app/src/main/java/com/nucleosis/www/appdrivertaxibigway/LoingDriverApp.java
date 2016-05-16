@@ -28,16 +28,15 @@ private componentesR compR;
        // compR.getBtnSigIn().setOnClickListener(this);
          }
 
-  /*  @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-*/
-/*    @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-   *//*     if (id == R.id.Historial_ubi) {
+       *//* if (id == R.id.Historial_ubi) {
             return true;
         }*//*
         return super.onOptionsItemSelected(item);
