@@ -34,6 +34,24 @@ public class beansListaServiciosCreadosPorFecha {
     private String idConductor;
     private String idTipoAuto;
     private String desAutoTipo;
+    private String desAutoTipoPidioCliente;
+    private String idAutoTipoPidioCliente;
+
+    public String getIdAutoTipoPidioCliente() {
+        return idAutoTipoPidioCliente;
+    }
+
+    public void setIdAutoTipoPidioCliente(String idAutoTipoPidioCliente) {
+        this.idAutoTipoPidioCliente = idAutoTipoPidioCliente;
+    }
+
+    public String getDesAutoTipoPidioCliente() {
+        return desAutoTipoPidioCliente;
+    }
+
+    public void setDesAutoTipoPidioCliente(String desAutoTipoPidioCliente) {
+        this.desAutoTipoPidioCliente = desAutoTipoPidioCliente;
+    }
 
     public String getIndAireAcondicionado() {
         return indAireAcondicionado;

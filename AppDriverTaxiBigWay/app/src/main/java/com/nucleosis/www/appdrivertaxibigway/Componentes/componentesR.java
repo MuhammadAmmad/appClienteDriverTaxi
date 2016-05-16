@@ -51,6 +51,7 @@ public class componentesR  {
     private  EditText editPass;
     private TextView textNotificaciones;
     private  Button btnSigIn;
+    private  Button btnDetalleServicio;
     private ImageButton btnDismisNotificaciones;
     private Button btnActivarTurno;
     private Button btnDesactivarTurno;
@@ -216,6 +217,8 @@ public class componentesR  {
         btnAdicionales=(ImageView)activity.findViewById(R.id.btnAdicionales);
         btnAdicionales.setOnClickListener((View.OnClickListener) activity);
 
+        btnDetalleServicio=(Button)activity.findViewById(R.id.btnDetalleServicio);
+        btnDetalleServicio.setOnClickListener((View.OnClickListener) activity);
         btnClienteEncontrado=(ImageView)activity.findViewById(R.id.btnClienteEncontrado);
         btnClienteEncontrado.setOnClickListener((View.OnClickListener) activity);
 
@@ -282,6 +285,14 @@ public class componentesR  {
 
     public void setLinearFragment(LinearLayout linearFragment) {
         this.linearFragment = linearFragment;
+    }
+
+    public Button getBtnDetalleServicio() {
+        return btnDetalleServicio;
+    }
+
+    public void setBtnDetalleServicio(Button btnDetalleServicio) {
+        this.btnDetalleServicio = btnDetalleServicio;
     }
 
     public ImageView getBtnIrAServicios() {

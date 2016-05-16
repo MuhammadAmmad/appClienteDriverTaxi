@@ -110,15 +110,32 @@ public class wsExtraerIdZonaIdDistrito extends AsyncTask<String,String, String[]
 
                 break;
             case 1:
-                fichero.InsertIdZonaIdDistrito_Origen(dataOrigenDestino);
-                jsonObject=fichero.ExtraerZonaIdDistrito_Origen();
-                Log.d("dataRetornoX-->",jsonObject.toString());
+                JSONObject jsonDataOrigen=new JSONObject();
+                try {
+                    jsonDataOrigen.put("idDistrito",dataOrigenDestino[0]);
+                    jsonDataOrigen.put("idZona",dataOrigenDestino[1]);
+                    fichero.InsertIdZonaIdDistrito_Origen(jsonDataOrigen.toString());
+                    jsonObject=fichero.ExtraerZonaIdDistrito_Origen();
+                    Log.d("dataRetornoX-->",jsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
                 break;
             case 2:
+                JSONObject jsonDestino=new JSONObject();
 
-                fichero.InsertIdZonaIdDistrito_Destino(dataOrigenDestino);
-                jsonObject=fichero.ExtraerZonaIdDistrito_Destino();
-                Log.d("dataRetornoY-->", jsonObject.toString());
+                try {
+                    jsonDestino.put("idDistrito",dataOrigenDestino[0]);
+                    jsonDestino.put("idZona",dataOrigenDestino[1]);
+                    fichero.InsertIdZonaIdDistrito_Destino(jsonDestino.toString());
+                    jsonObject=fichero.ExtraerZonaIdDistrito_Destino();
+                    Log.d("dataRetornoY-->", jsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 break;
 
             case 3:

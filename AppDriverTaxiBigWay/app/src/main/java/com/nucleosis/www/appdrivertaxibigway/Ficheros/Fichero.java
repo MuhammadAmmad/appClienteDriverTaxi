@@ -110,6 +110,9 @@ public class Fichero {
     }
 
     public void InsertarConfiguraciones(String configuracion){
+        if(configuracion!=null){
+            Log.d("configguracion_",configuracion);
+        }
         try  { OutputStreamWriter json =new OutputStreamWriter(
                 context.openFileOutput("configuracion.txt", Context.MODE_PRIVATE));
             json.write(configuracion);
@@ -139,17 +142,14 @@ public class Fichero {
 
         return jsonObject;
     }
-    public void InsertIdZonaIdDistrito_Origen(String[] datos){
-        JSONObject jsonOrigen=new JSONObject();
+    public void InsertIdZonaIdDistrito_Origen(String datosJsona){
 
         try  {
-            jsonOrigen.put("idDistrito",datos[0].toString());
-            jsonOrigen.put("idZona",datos[1].toString());
             OutputStreamWriter OrigenId =new OutputStreamWriter(
                 context.openFileOutput("idOrigen.txt", Context.MODE_PRIVATE));
-            OrigenId.write(jsonOrigen.toString());
+            OrigenId.write(datosJsona);
             OrigenId.close();
-            Log.d("fichero_", "fichero_creado"+"-->"+jsonOrigen.toString());
+            Log.d("fichero_", "fichero_creado"+"-->"+datosJsona);
         }
         catch (Exception ex)
         {	Log.d("error", ex.getMessage()); }
@@ -172,17 +172,15 @@ public class Fichero {
         }
         return jsonObject;
     }
-    public void InsertIdZonaIdDistrito_Destino(String[] datos){
-        JSONObject jsonOrigen=new JSONObject();
+    public void InsertIdZonaIdDistrito_Destino(String datosDestino){
+
 
         try  {
-            jsonOrigen.put("idDistrito",datos[0].toString());
-            jsonOrigen.put("idZona",datos[1].toString());
-            OutputStreamWriter OrigenId =new OutputStreamWriter(
+            OutputStreamWriter DestinoId =new OutputStreamWriter(
                 context.openFileOutput("idDestino.txt", Context.MODE_PRIVATE));
-            OrigenId.write(jsonOrigen.toString());
-            OrigenId.close();
-            Log.d("fichero_", "fichero_creado" + "-->" + jsonOrigen.toString());
+            DestinoId.write(datosDestino);
+            DestinoId.close();
+            Log.d("fichero_", "fichero_creado" + "-->" + datosDestino);
         }
         catch (Exception ex)
         {	Log.d("error", ex.getMessage()); }

@@ -181,6 +181,15 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
     @Override
     protected void onPostExecute(String[] data) {
         super.onPostExecute(data);
+        JSONObject jsonBorrarDatos=new JSONObject();
+        try {
+            jsonBorrarDatos.put("idDistrino","");
+            jsonBorrarDatos.put("idZona","");
+            fichero.InsertIdZonaIdDistrito_Origen(jsonBorrarDatos.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         Toast.makeText(context,data[1],Toast.LENGTH_SHORT).show();
         progressDialog.dismiss();
     }

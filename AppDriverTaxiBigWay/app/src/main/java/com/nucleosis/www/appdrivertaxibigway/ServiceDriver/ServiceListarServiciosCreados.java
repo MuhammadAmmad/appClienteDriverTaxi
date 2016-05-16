@@ -187,6 +187,8 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
                                         row.setDesAutoTipo(dataVector.getProperty("DES_AUTO_TIPO").toString());
                                         row.setNumeroMovilTaxi(dataVector.getProperty("NUM_MOVIL").toString());
+                                        row.setDesAutoTipoPidioCliente(dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
+                                        row.setIdAutoTipoPidioCliente(dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
 
                                         ListServicios.add(row);
 
@@ -226,6 +228,8 @@ public class ServiceListarServiciosCreados extends Service {
                                     row2.setIdTipoAuto(dataVector.getProperty("ID_AUTO_TIPO").toString());
                                     row2.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
                                     row2.setDesAutoTipo(dataVector.getProperty("DES_AUTO_TIPO").toString());
+                                    row2.setDesAutoTipoPidioCliente(dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
+                                    row2.setIdAutoTipoPidioCliente(dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
                                     row2.setNumeroMovilTaxi(dataVector.getProperty("NUM_MOVIL").toString());
 
                                     ListServiciosAsignadoConductor.add(row2);
@@ -252,11 +256,17 @@ public class ServiceListarServiciosCreados extends Service {
                         }
                         Gson gson = new Gson();
                         String json = gson.toJson(listServiceiosCreados);
-
+                        String jsonListServicioConductor=gson.toJson(ListServiciosAsignadoConductor);
+                        Log.d("jsonXXXX",jsonListServicioConductor.toString());
                         Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE_2)
                                 .putExtra(Utils.EXTRA_MEMORY_2, json);
                         LocalBroadcastManager.
                                 getInstance(ServiceListarServiciosCreados.this).sendBroadcast(localIntent);
+
+                        Intent SendIntent=new Intent(Utils.ACTION_RUN_SERVICE_3)
+                                .putExtra(Utils.EXTRA_MEMORY_3,jsonListServicioConductor);
+                        LocalBroadcastManager.getInstance(ServiceListarServiciosCreados.this).sendBroadcast(SendIntent);
+
 
                         super.onPostExecute(listServiceiosCreados);
 

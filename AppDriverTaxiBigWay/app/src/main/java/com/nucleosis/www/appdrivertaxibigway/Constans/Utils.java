@@ -20,7 +20,10 @@ public class Utils {
     public static final String ACTION_MEMORY_EXIT_2 = "com.nucleosis.www.appdrivertaxibigway.action.MEMORY_EXIT_2";
     public static final String EXTRA_MEMORY_2 = "com.nucleosis.www.appdrivertaxibigway.extra.MEMORY_2";
 
-
+    public static final String ACTION_RUN_SERVICE_3 = "com.nucleosis.www.appdrivertaxibigway.action.RUN_INTENT_SERVICE_3";
+    public static final String ACTION_PROGRESS_EXIT_3 = "com.nucleosis.www.appdrivertaxibigway.action.PROGRESS_EXIT_3";
+    public static final String ACTION_MEMORY_EXIT_3 = "com.nucleosis.www.appdrivertaxibigway.action.MEMORY_EXIT_3";
+    public static final String EXTRA_MEMORY_3 = "com.nucleosis.www.appdrivertaxibigway.extra.MEMORY_3";
 
 
     /*INTERFACESSSS*/

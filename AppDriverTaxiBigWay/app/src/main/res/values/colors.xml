@@ -26,7 +26,7 @@
     <color name="btnTraslucerFalse">#e0025002</color>
     <color name="btnTraslucerTrue">#b3015601</color>
     <color name="black">#000000</color>
-
+    <color name="grease">#5c5c5c</color>
     <color name="selectorNotificacion_pressed_false">#cbcaca</color>
     <color name="selectorNotificacion_pressed_true">#e9e8e8</color>
     <color name="btnSearchFalse">#fcf9f9</color>
@@ -47,5 +47,9 @@
     <color name="textColorAlertFalse">#2ca43e</color>
     <color name="textColorAlertTrue">#e2fde6</color>
 
+   <color name="colorPar">#11aebf</color>
+
+    <color name="btnDetalleFalse">#055ee4</color>
+    <color name="btnDetalleTrue">#4a84e7</color>
 
 </resources>

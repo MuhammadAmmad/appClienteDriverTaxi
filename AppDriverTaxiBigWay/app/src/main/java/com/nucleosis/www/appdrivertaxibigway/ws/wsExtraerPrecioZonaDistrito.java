@@ -31,12 +31,17 @@ import java.util.ArrayList;
 public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[]> {
     private Context context;
     private Fichero fichero;
+    private JSONObject jsonOrigenClienteIncial;
     private JSONObject jsonOrigen;
     private JSONObject jsonDestino;
     private AlertDialog alertDialog;
     private JSONArray jsonDistritos;
     private String idServicio;
     private Activity activity;
+    private String idDistritoIncio;
+    private String idZonaIncio;
+    private String idZonaFin;
+    private int sw=0;
     public wsExtraerPrecioZonaDistrito(Context context,AlertDialog alertDialog,String idServicio) {
         this.context = context;
         this.alertDialog=alertDialog;
@@ -50,9 +55,37 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
         super.onPreExecute();
         jsonOrigen=fichero.ExtraerZonaIdDistrito_Origen();
         jsonDestino=fichero.ExtraerZonaIdDistrito_Destino();
+
         jsonDistritos=fichero.ExtraerListDistritos();
-        Log.d("oringeAdrres_detnio",jsonOrigen.toString()+"--->"+jsonDestino.toString());
-        Log.d("distritosImpresos",jsonDistritos.toString());
+        if(jsonOrigen!=null && jsonDestino!=null){
+            Log.d("oringeAdrres_detnio",jsonOrigen.toString()+"--->"+jsonDestino.toString());
+            Log.d("distritosImpresos",jsonDistritos.toString());
+        }
+
+        try {
+            if(jsonOrigen==null){
+                jsonOrigenClienteIncial=fichero.EXTRAER_IdZONA_IDDISTRITO_INCIO();
+                Log.d("jsonCli_",jsonOrigenClienteIncial.toString());
+                idZonaIncio=jsonOrigenClienteIncial.getString("idZona");
+                idDistritoIncio=jsonOrigenClienteIncial.getString("idDistrito");
+                sw=1;
+            }else if(jsonOrigen.getString("idZona").length()==0){
+                jsonOrigenClienteIncial=fichero.EXTRAER_IdZONA_IDDISTRITO_INCIO();
+                Log.d("jsonCli_",jsonOrigenClienteIncial.toString());
+                idZonaIncio=jsonOrigenClienteIncial.getString("idZona");
+                idDistritoIncio=jsonOrigenClienteIncial.getString("idDistrito");
+                sw=1;
+
+            }else{
+                idZonaIncio=jsonOrigen.getString("idZona");
+                idDistritoIncio=jsonOrigen.getString("idDistrito");
+                sw=0;
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -63,7 +96,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
         try {
-            request.addProperty("idZonaInicio",Integer.parseInt(jsonOrigen.getString("idZona").toString()));
+            request.addProperty("idZonaInicio",Integer.parseInt(idZonaIncio));
             request.addProperty("idZonaFinal",Integer.parseInt(jsonDestino.getString("idZona").toString()));
             Log.d("requesDistritos",request.toString());
         } catch (JSONException e) {
@@ -86,24 +119,41 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
                     dataTarifa[0]=Tarifa;
                 } else {
                     Log.d("tarifaResponse", "nulos-->");
-                    dataTarifa[0]="No hay tarifas";
+                    dataTarifa[0]="";
                 }
             }
 
             int y=0;
             int z=0;
             for(int i=0;i<jsonDistritos.length();i++){
+                if(sw==0){
+                    if(jsonDistritos.getJSONObject(i).getString("IdDistrito").equals(jsonOrigen.getString("idDistrito"))){
+                        Log.d("NombreDistritoInicioA",jsonDistritos.getJSONObject(i).getString("NameDistrito"));
+                        dataTarifa[1]=jsonDistritos.getJSONObject(i).getString("NameDistrito");
+                        y=1;
+                    }
+                    if(jsonDistritos.getJSONObject(i).getString("IdDistrito").equals(jsonDestino.getString("idDistrito"))){
+                        Log.d("NombreDistritoFinA",jsonDistritos.getJSONObject(i).getString("NameDistrito"));
+                        dataTarifa[2]=jsonDistritos.getJSONObject(i).getString("NameDistrito");
+                        z=1;
+                    }
+                }
 
-                if(jsonDistritos.getJSONObject(i).getString("IdDistrito").equals(jsonOrigen.getString("idDistrito"))){
-                    Log.d("NombreDistritoInicio",jsonDistritos.getJSONObject(i).getString("NameDistrito"));
-                    dataTarifa[1]=jsonDistritos.getJSONObject(i).getString("NameDistrito");
-                    y=1;
+
+                if (sw==1){
+                    if(jsonDistritos.getJSONObject(i).getString("IdDistrito").equals(jsonOrigenClienteIncial.getString("idDistrito"))){
+                        Log.d("NombreDistritoInicioB",jsonDistritos.getJSONObject(i).getString("NameDistrito"));
+                        dataTarifa[1]=jsonDistritos.getJSONObject(i).getString("NameDistrito");
+                        y=1;
+                    }
+                    if(jsonDistritos.getJSONObject(i).getString("IdDistrito").equals(jsonDestino.getString("idDistrito"))){
+                        Log.d("NombreDistritoFinA",jsonDistritos.getJSONObject(i).getString("NameDistrito"));
+                        dataTarifa[2]=jsonDistritos.getJSONObject(i).getString("NameDistrito");
+                        z=1;
+                    }
+
                 }
-                if(jsonDistritos.getJSONObject(i).getString("IdDistrito").equals(jsonDestino.getString("idDistrito"))){
-                    Log.d("NombreDistritoFin",jsonDistritos.getJSONObject(i).getString("NameDistrito"));
-                    dataTarifa[2]=jsonDistritos.getJSONObject(i).getString("NameDistrito");
-                    z=1;
-                }
+
             }
             if(y==0){
                 dataTarifa[1]="Sin informacion";
@@ -115,7 +165,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
 
         } catch (Exception e) {
             e.printStackTrace();
-            dataTarifa[0]="No hay tarifas";
+            dataTarifa[0]="";
             dataTarifa[1]="vacio";
             dataTarifa[2]="vacio";
             Log.d("error", e.getMessage());
@@ -127,28 +177,29 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
     protected void onPostExecute(String[] dataTarifa) {
         super.onPostExecute(dataTarifa);
         if(dataTarifa!=null){
-           // Toast.makeText(context,dataTarifa[0],Toast.LENGTH_SHORT).show();
             LevantarAlert(dataTarifa);
         }
 
     }
-
-
-
     private void LevantarAlert(final String[] dataTarifa){
         AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context);
       //  final View view = activity.getLayoutInflater().inflate(R.layout.view_alert_adicionales, null);
         dialogo1.setTitle("Nuevas Direcciones !!");
         JSONObject jsonOrigenAddres=fichero.ExtraerDireccionIncio();
         JSONObject jsonFinAddres=fichero.ExtraerDireccionFin();
-
+        String tarifa_="";
+    if(dataTarifa[0].length()==0){
+        tarifa_="No hay tarifa !";
+    }else {
+        tarifa_=dataTarifa[0];
+    }
         try {
             dialogo1.setMessage("\n"+"• "+jsonOrigenAddres.getString("addresOrigen")+
                                 "\n\t\t"+"( "+dataTarifa[1]+" )"+
                                 "\n"+
                                 "\n"+"• "+jsonFinAddres.getString("addresDestino")+
                                 "\n\t\t"+"( "+dataTarifa[2]+" )"+
-                                "\n\n"+"S/. "+dataTarifa[0]);
+                                "\n\n"+"S/. "+tarifa_);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -156,26 +207,32 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
         dialogo1.setCancelable(false);
         dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
-                alertDialog.dismiss();
+
                 JSONObject jsonOrigenAddres=fichero.ExtraerDireccionIncio();
                 JSONObject jsonFinAddres=fichero.ExtraerDireccionFin();
                 try {
-                    new wsActualizarServicio(
-                            activity,
-                            idServicio,
-                            "",//indAireacondicionado
-                            "",//aireAcondicionado
-                            "",//peaje
-                            "",//importe tiempo espera
-                            "",//minutos tiempoEspera
-                            dataTarifa[0],//importe servicio
-                            jsonOrigen.getString("idDistrito"),//idDistritoIncio
-                            jsonOrigen.getString("idZona"),//idZonaIncio
-                            jsonOrigenAddres.getString("addresOrigen"),//DireccionIncio
-                            jsonDestino.getString("idDistrito"),//idDistritoFin
-                            jsonDestino.getString("idZona"),//idZonaFin
-                            jsonFinAddres.getString("addresDestino")//DireccionFin
-                    ).execute();
+                    if(dataTarifa[0].length()!=0){
+                        alertDialog.dismiss();
+                        new wsActualizarServicio(
+                                activity,
+                                idServicio,
+                                "",//indAireacondicionado
+                                "",//aireAcondicionado
+                                "",//peaje
+                                "",//importe tiempo espera
+                                "",//minutos tiempoEspera
+                                dataTarifa[0],//importe servicio
+                                idDistritoIncio,//idDistritoIncio
+                                idZonaIncio,//idZonaIncio
+                                jsonOrigenAddres.getString("addresOrigen"),//DireccionIncio
+                                jsonDestino.getString("idDistrito"),//idDistritoFin
+                                jsonDestino.getString("idZona"),//idZonaFin
+                                jsonFinAddres.getString("addresDestino")//DireccionFin
+                        ).execute();
+                    }else {
+                        Toast.makeText(context,"No tiene tarifa !!",Toast.LENGTH_LONG).show();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

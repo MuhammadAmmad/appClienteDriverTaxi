@@ -2,16 +2,22 @@ package com.nucleosis.www.appdrivertaxibigway;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -44,8 +50,11 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appdrivertaxibigway.Adapters.PlaceAutocompleteAdapter;
+import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansListaPolygono;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Alerta;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.PointPolygono.PointDentroPolygono;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceListarServiciosCreados;
@@ -84,7 +93,10 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     public static final String TAG = "SampleActivityBase";
     private KmlCreatorPolygono kmlCreatorPolygono;
     private JSONArray jsonServicioUnicoXid;
+    private String AddresIncioCliente;
     private List<beansListaPolygono> listPolyGo;
+    private  String jsonServiciosConductor;
+
     private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
             new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     //suereste  -12.34202, -77.04231-11.6818, -76.74636
@@ -100,7 +112,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         myTypeFace=new MyTypeFace(MapsConductorClienteServicio.this);
         compR=new componentesR(MapsConductorClienteServicio.this);
         compR.Controls_Maps_conducotor_cliente(MAPS_CONDUCTOR_CLIENTE);
-
+        compR.cargar_toolbar(MAPS_CONDUCTOR_CLIENTE);
         progressDialog=new ProgressDialog(MapsConductorClienteServicio.this);
         fichero=new Fichero(MapsConductorClienteServicio.this);
         if(fichero.ExtraerConfiguraciones()!=null){
@@ -111,13 +123,16 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 // .enableAutoManage(getActivity(), 0 /* clientId */, this)
                 .addApi(Places.GEO_DATA_API)
                 .build();
-
+        //CARGARMOS EL ESCUCHADOR PARA MODIFICAR LA DIRECCION INCIAL DEL CLIENTE
+        CreaBroadcasReceiver();
 
         if(getIntent()!=null){
             idServicio=  getIntent().getStringExtra("idServicio");
-            String zonaInicio=getIntent().getStringExtra("idZonaIncio");
-            String zonaFin=getIntent().getStringExtra("idZonaFin");
-            Log.d("zonAinicio_",zonaInicio+"**"+zonaFin);
+            String zonaInicio=getIntent().getStringExtra("ZonaIncio");
+            String zonaFin=getIntent().getStringExtra("ZonaFin");
+            AddresIncioCliente=getIntent().getStringExtra("addresIncio");
+
+            Log.d("zonAinicio_",AddresIncioCliente+"-->"+zonaInicio+"**"+zonaFin);
 
             new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaInicio, 3).execute();
             new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaFin, 4).execute();
@@ -149,17 +164,60 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         startService(intent);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    private void CreaBroadcasReceiver(){
+
+        IntentFilter filter=new IntentFilter(Utils.ACTION_RUN_SERVICE_3);
+        ResponseReceiverListarServiciosCreados receiver=new
+                ResponseReceiverListarServiciosCreados();
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver,filter);
+
+
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-       /* if (id == R.id.Historial_ubi) {
+
+    private class ResponseReceiverListarServiciosCreados extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch (intent.getAction()){
+                case Utils.ACTION_RUN_SERVICE_3:
+                      //Toast.makeText(MapsConductorClienteServicio.this,intent.getStringExtra(Utils.EXTRA_MEMORY_3),Toast.LENGTH_LONG).show();
+                    String  json=intent.getStringExtra(Utils.EXTRA_MEMORY_3);
+                        if(json!=null){
+                            jsonServiciosConductor=json;
+                            try {
+                                JSONArray jsonArray=new JSONArray(json);
+                                for(int i=0; i<jsonArray.length();i++){
+                                    if(idServicio.equals(jsonArray.getJSONObject(i).getString("idServicio"))){
+                                        AddresIncioCliente=jsonArray.getJSONObject(i).getString("DireccionIncio");
+                                        i=jsonArray.length();
+                                    }
+                                    //jsonArray.getJSONObject(i).getString("idServicio");
+                                    //jsonArray.getJSONObject(i).getString("DireccionIncio")
+                                }
+                                // Log.d("x_array", String.valueOf(jsonArray.length()));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    break;
+                case Utils.ACTION_MEMORY_EXIT_3:
+                    break;
+            }
+        }
+    }
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
-        }    */
+        }
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+     /*       int id = item.getItemId();
+            if (id == R.id.menuAlert) {
+            return true;
+        }*/
         return super.onOptionsItemSelected(item);
     }
     @Override
@@ -332,6 +390,15 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.btnDetalleServicio:
+                 //   Toast.makeText(MapsConductorClienteServicio.this,"hola",Toast.LENGTH_LONG).show();
+
+                if(jsonServiciosConductor!=null){
+
+                    Log.d("jsonSerxx",jsonServiciosConductor.toString());
+                }
+                DetalleServicio();
+                break;
             case R.id.btnAdicionales:
                     alertAdicionales();
                 break;
@@ -375,6 +442,168 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         }
     }
 
+
+
+    private void DetalleServicio(){
+        final JSONArray jsonServiciosConductor=fichero.ExtraerListaServiciosTomadoConductor();
+        new AsyncTask<String, String, JSONObject>() {
+            ProgressDialog progressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog=new ProgressDialog(MapsConductorClienteServicio.this);
+                progressDialog.setMessage("Cargando...");
+                progressDialog.show();
+
+            }
+
+            @Override
+            protected JSONObject doInBackground(String... params) {
+                JSONObject JsonObjecServiceConductor=new JSONObject();
+                if(jsonServiciosConductor!=null){
+                    for(int i=0;i<jsonServiciosConductor.length();i++){
+                        try {
+                            if(idServicio.equals(jsonServiciosConductor.getJSONObject(i).getString("idServicio"))){
+
+                                JsonObjecServiceConductor.put("importeServicio",jsonServiciosConductor.getJSONObject(i).getString("importeServicio"));
+                                JsonObjecServiceConductor.put("DescripcionServicion",jsonServiciosConductor.getJSONObject(i).getString("DescripcionServicion"));
+                                JsonObjecServiceConductor.put("Fecha",jsonServiciosConductor.getJSONObject(i).getString("Fecha"));
+                                JsonObjecServiceConductor.put("Hora",jsonServiciosConductor.getJSONObject(i).getString("Hora"));
+                                JsonObjecServiceConductor.put("nombreConductor",jsonServiciosConductor.getJSONObject(i).getString("nombreConductor"));
+                                JsonObjecServiceConductor.put("nucCelularCliente",jsonServiciosConductor.getJSONObject(i).getString("nucCelularCliente"));
+                                JsonObjecServiceConductor.put("importeAireAcondicionado",jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"));
+
+                                JsonObjecServiceConductor.put("numeroMinutoTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("numeroMinutoTiempoEspera"));
+                                JsonObjecServiceConductor.put("importeTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"));
+                                JsonObjecServiceConductor.put("importePeaje",jsonServiciosConductor.getJSONObject(i).getString("importePeaje"));
+                                JsonObjecServiceConductor.put("nameDistritoInicio",jsonServiciosConductor.getJSONObject(i).getString("nameDistritoInicio"));
+                                JsonObjecServiceConductor.put("DireccionIncio",jsonServiciosConductor.getJSONObject(i).getString("DireccionIncio"));
+                                JsonObjecServiceConductor.put("nameDistritoFin",jsonServiciosConductor.getJSONObject(i).getString("nameDistritoFin"));
+                                JsonObjecServiceConductor.put("direccionFinal",jsonServiciosConductor.getJSONObject(i).getString("direccionFinal"));
+                                JsonObjecServiceConductor.put("numeroMovilTaxi",jsonServiciosConductor.getJSONObject(i).getString("numeroMovilTaxi"));
+                                JsonObjecServiceConductor.put("nombreStadoServicio",jsonServiciosConductor.getJSONObject(i).getString("nombreStadoServicio"));
+                                JsonObjecServiceConductor.put("idAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente"));
+                                JsonObjecServiceConductor.put("desAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("desAutoTipoPidioCliente"));
+
+                                String importeTipoAuto="0.00";
+                                //1 VIP
+                                //2 ECONOMICO
+                                if(jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente").equals("1")){
+
+                                    JSONObject configuracionJson=fichero.ExtraerConfiguraciones();
+                                    if(configuracionJson!=null){
+                                        JsonObjecServiceConductor.put("importeTipoAuto",configuracionJson.getString("impAutoVip"));
+                                        importeTipoAuto=configuracionJson.getString("impAutoVip");
+                                    }else {
+                                        JsonObjecServiceConductor.put("importeTipoAuto","0.00");
+                                        importeTipoAuto="0.00";
+                                    }
+
+                                }else{
+                                    JsonObjecServiceConductor.put("importeTipoAuto","0.00");
+                                    importeTipoAuto="0.00";
+                                }
+
+                                double sumaImportes=Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeServicio"))+
+                                        Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"))+
+                                        Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"))+
+                                        Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importePeaje"))+
+                                        Double.parseDouble(importeTipoAuto);
+
+                                JsonObjecServiceConductor.put("importeTotalServicio",String.valueOf(sumaImportes));
+
+                                i=jsonServiciosConductor.length();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                return JsonObjecServiceConductor;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject jsonDetalle) {
+                super.onPostExecute(jsonDetalle);
+                progressDialog.dismiss();
+                if(jsonDetalle!=null){
+
+                    AlertDialog.Builder alerDialogoBilder = new AlertDialog.Builder(MapsConductorClienteServicio.this);
+
+                    final View view = getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
+                    //  dialogo1.setTitle("Detalle del Servicio");
+                    TextView txtDetalle=(TextView)view.findViewById(R.id.txtDetalleServicio);
+
+                    alerDialogoBilder.setView(view);
+
+                    String detalle = "";
+                    AlertDialog alertDialog;
+                    try {
+                        detalle=
+                                "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
+                                        +"\t"+jsonDetalle.getString("Fecha")+"<br>"
+                                        +"<font color=\"#11aebf\"><bold>Hora:&nbsp;</bold></font>"
+                                        +jsonDetalle.getString("Hora")+"<br>"
+                                        +"<font color=\"#11aebf\"><bold>Distri Incio:&nbsp;</bold></font>"
+                                        +jsonDetalle.getString("nameDistritoInicio")+"<br>"
+                                        +"<font color=\"#11aebf\"><bold>Direccion Incio:&nbsp;</bold></font>"
+                                        +jsonDetalle.getString("DireccionIncio")+"<br>"
+                                        +"<font color=\"#11aebf\"><bold>Distri Fin:&nbsp;</bold></font>"
+                                        +jsonDetalle.getString("nameDistritoFin")+"<br>"
+                                        +"<font color=\"#11aebf\"><bold>Direccion Fin:&nbsp;</bold></font>"
+                                        +jsonDetalle.getString("direccionFinal")+"<br>"
+                                        +"<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
+                                        +jsonDetalle.getString("numeroMinutoTiempoEspera")+"\t"+" min"+"<br>"
+                                        +"<font color=\"#11aebf\"><bold>Tipo de Auto:&nbsp;</bold></font>"
+                                        +"( "+jsonDetalle.getString("desAutoTipoPidioCliente")+" )"+"<br><br>"
+
+                                        +"<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
+                                        +"S/."+jsonDetalle.getString("importeServicio")+"<br>"
+
+                                        +"<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
+                                        +"S/."+jsonDetalle.getString("importeAireAcondicionado")+"<br>"
+
+                                        +"<font color=\"#11aebf\"><bold>Import Tiem espera:&nbsp;</bold></font>"
+                                        +"S/."+jsonDetalle.getString("importeTiempoEspera")+"<br>"
+
+                                        +"<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
+                                        +"S/."+jsonDetalle.getString("importePeaje")+"<br>"
+
+                                        +"<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
+                                        +"S/."+jsonDetalle.getString("importeTipoAuto")+"<br><br>"
+
+                                        +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
+                                        +"S/."+jsonDetalle.getString("importeTotalServicio")+"<br><br>"
+                                        //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
+
+                                        +"<font color=\"#11aebf\"><bold>Estado del servicio:&nbsp;</bold></font>"
+                                        +jsonDetalle.getString("nombreStadoServicio");
+
+
+                        txtDetalle.setText(Html.fromHtml(detalle));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //alerDialogoBilder.setMessage(detalle);
+                    // alerDialogoBilder.setCancelable(false);
+                    alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+
+
+                        }
+                    });
+                    alertDialog = alerDialogoBilder.create();
+                    alertDialog.show();
+                }else{
+                    Toast.makeText(MapsConductorClienteServicio.this,"No hay detalle para este servicio",Toast.LENGTH_LONG).show();
+                }
+
+
+
+
+            }
+        }.execute();
+    }
     @SuppressWarnings("deprecation")
     private void alertAdicionales(){
         final Activity activity=MapsConductorClienteServicio.this;
@@ -583,8 +812,6 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                             btnTiempoEspera1.setVisibility(View.VISIBLE);
                             btnTiempoEspera2.setVisibility(View.GONE);
                             lienarTiempoEspera.setVisibility(View.GONE);
-
-
                                 new wsActualizarServicio(
                                         activity,
                                         idServicio,
@@ -639,6 +866,8 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 btnModificarRuta1.setVisibility(View.GONE);
                 btnModificarRuta2.setVisibility(View.VISIBLE);
                 linearContenedor.setVisibility(View.VISIBLE);
+                //SETENADO LA DIRECCION INCIAL DEL CLIENTE
+                editDestino1.setText(AddresIncioCliente);
             }
         });
 

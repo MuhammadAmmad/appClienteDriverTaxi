@@ -6,11 +6,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +32,7 @@ import com.nucleosis.www.appdrivertaxibigway.Adapters.GriddAdapterServiciosTomad
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistoriaCarrera;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
+import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListenerDetalle;
 import com.nucleosis.www.appdrivertaxibigway.MainActivity;
@@ -34,10 +40,12 @@ import com.nucleosis.www.appdrivertaxibigway.MapsConductorClienteServicio;
 import com.nucleosis.www.appdrivertaxibigway.R;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListaServiciosTomadosConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListarServiciosTomadoConductorDiaActual;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsObtenerDireccionIncioCliente;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -61,6 +69,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
     private View rootView;
     public static GridViewWithHeaderAndFooter GRID_CANCEL;
     private String idDriver;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,8 +161,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("idServicio",lista1.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
                                         intent.putExtra("idCliente",lista1.get(position).getIdCliente());
-                                        intent.putExtra("idZonaIncio",lista1.get(position).getNameZonaIncio());
-                                        intent.putExtra("idZonaFin",lista1.get(position).getNameZonaFin());
+                                        intent.putExtra("ZonaIncio",lista1.get(position).getNameZonaIncio());
+                                        intent.putExtra("addresIncio",lista1.get(position).getDireccionIncio());
+                                        intent.putExtra("ZonaFin",lista1.get(position).getNameZonaFin());
                                         startActivity(intent);
 
                                     }else  if(lista1.get(position).getStatadoServicio().equals("3")){
@@ -161,8 +171,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("idServicio",lista1.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista1.get(position).getStatadoServicio());
                                         intent.putExtra("idCliente",lista1.get(position).getIdCliente());
-                                        intent.putExtra("idZonaIncio",lista1.get(position).getNameZonaIncio());
-                                        intent.putExtra("idZonaFin",lista1.get(position).getNameZonaFin());
+                                        intent.putExtra("ZonaIncio",lista1.get(position).getNameZonaIncio());
+                                        intent.putExtra("addresIncio",lista1.get(position).getDireccionIncio());
+                                        intent.putExtra("ZonaFin",lista1.get(position).getNameZonaFin());
                                         startActivity(intent);
                                     }
                                 }
@@ -181,8 +192,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("idServicio",lista2.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
                                         intent.putExtra("idCliente",lista2.get(position).getIdCliente());
-                                        intent.putExtra("idZonaIncio",lista2.get(position).getNameZonaIncio());
-                                        intent.putExtra("idZonaFin",lista2.get(position).getNameZonaFin());
+                                        intent.putExtra("ZonaIncio",lista2.get(position).getNameZonaIncio());
+                                        intent.putExtra("addresIncio",lista2.get(position).getDireccionIncio());
+                                        intent.putExtra("ZonaFin",lista2.get(position).getNameZonaFin());
                                         startActivity(intent);
 
                                     }else  if(lista2.get(position).getStatadoServicio().equals("3")){
@@ -191,8 +203,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("idServicio",lista2.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
                                         intent.putExtra("idCliente",lista2.get(position).getIdCliente());
-                                        intent.putExtra("idZonaIncio",lista2.get(position).getNameZonaIncio());
-                                        intent.putExtra("idZonaFin",lista2.get(position).getNameZonaFin());
+                                        intent.putExtra("ZonaIncio",lista2.get(position).getNameZonaIncio());
+                                        intent.putExtra("addresIncio",lista2.get(position).getDireccionIncio());
+                                        intent.putExtra("ZonaFin",lista2.get(position).getNameZonaFin());
                                         startActivity(intent);
 
                                     }
@@ -393,9 +406,164 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
     }
 
     @Override
-    public void onClickDetalle(Context context, String idServicio, String stadoServicio) {
+    public void onClickDetalle(final Context context, final String idServicio, String stadoServicio) {
         Log.d("stadoSevcioLog",stadoServicio);
-        Toast.makeText(context,"detalle de servicio",Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(context,"detalle de servicio",Toast.LENGTH_SHORT).show();
+        final Fichero fichero=new Fichero(context);
+
+        final JSONArray jsonServiciosConductor=fichero.ExtraerListaServiciosTomadoConductor();
+      if(jsonServiciosConductor!=null){
+
+        Log.d("jsonSerxx",jsonServiciosConductor.toString());
+        }
+
+        new AsyncTask<String, String, JSONObject>() {
+            @Override
+            protected JSONObject doInBackground(String... params) {
+                JSONObject JsonObjecServiceConductor=new JSONObject();
+                if(jsonServiciosConductor!=null){
+                    for(int i=0;i<jsonServiciosConductor.length();i++){
+                        try {
+                            if(idServicio.equals(jsonServiciosConductor.getJSONObject(i).getString("idServicio"))){
+
+                                JsonObjecServiceConductor.put("importeServicio",jsonServiciosConductor.getJSONObject(i).getString("importeServicio"));
+                                JsonObjecServiceConductor.put("DescripcionServicion",jsonServiciosConductor.getJSONObject(i).getString("DescripcionServicion"));
+                                JsonObjecServiceConductor.put("Fecha",jsonServiciosConductor.getJSONObject(i).getString("Fecha"));
+                                JsonObjecServiceConductor.put("Hora",jsonServiciosConductor.getJSONObject(i).getString("Hora"));
+                                JsonObjecServiceConductor.put("nombreConductor",jsonServiciosConductor.getJSONObject(i).getString("nombreConductor"));
+                                JsonObjecServiceConductor.put("nucCelularCliente",jsonServiciosConductor.getJSONObject(i).getString("nucCelularCliente"));
+                                JsonObjecServiceConductor.put("importeAireAcondicionado",jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"));
+
+                                JsonObjecServiceConductor.put("numeroMinutoTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("numeroMinutoTiempoEspera"));
+                                JsonObjecServiceConductor.put("importeTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"));
+                                JsonObjecServiceConductor.put("importePeaje",jsonServiciosConductor.getJSONObject(i).getString("importePeaje"));
+                                JsonObjecServiceConductor.put("nameDistritoInicio",jsonServiciosConductor.getJSONObject(i).getString("nameDistritoInicio"));
+                                JsonObjecServiceConductor.put("DireccionIncio",jsonServiciosConductor.getJSONObject(i).getString("DireccionIncio"));
+                                JsonObjecServiceConductor.put("nameDistritoFin",jsonServiciosConductor.getJSONObject(i).getString("nameDistritoFin"));
+                                JsonObjecServiceConductor.put("direccionFinal",jsonServiciosConductor.getJSONObject(i).getString("direccionFinal"));
+                                JsonObjecServiceConductor.put("numeroMovilTaxi",jsonServiciosConductor.getJSONObject(i).getString("numeroMovilTaxi"));
+                                JsonObjecServiceConductor.put("nombreStadoServicio",jsonServiciosConductor.getJSONObject(i).getString("nombreStadoServicio"));
+                                JsonObjecServiceConductor.put("idAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente"));
+                                JsonObjecServiceConductor.put("desAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("desAutoTipoPidioCliente"));
+
+                                String importeTipoAuto="0.00";
+                                //1 VIP
+                                //2 ECONOMICO
+                                if(jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente").equals("1")){
+
+                                    JSONObject configuracionJson=fichero.ExtraerConfiguraciones();
+                                    if(configuracionJson!=null){
+                                        JsonObjecServiceConductor.put("importeTipoAuto",configuracionJson.getString("impAutoVip"));
+                                        importeTipoAuto=configuracionJson.getString("impAutoVip");
+                                    }else {
+                                        JsonObjecServiceConductor.put("importeTipoAuto","0.00");
+                                        importeTipoAuto="0.00";
+                                    }
+
+                                }else{
+                                    JsonObjecServiceConductor.put("importeTipoAuto","0.00");
+                                    importeTipoAuto="0.00";
+                                }
+
+                                double sumaImportes=Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeServicio"))+
+                                                    Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"))+
+                                                    Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"))+
+                                                    Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importePeaje"))+
+                                                    Double.parseDouble(importeTipoAuto);
+
+                                JsonObjecServiceConductor.put("importeTotalServicio",String.valueOf(sumaImportes));
+
+                                i=jsonServiciosConductor.length();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                return JsonObjecServiceConductor;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject jsonDetalle) {
+                super.onPostExecute(jsonDetalle);
+
+                        if(jsonDetalle!=null){
+
+                            AlertDialog.Builder alerDialogoBilder = new AlertDialog.Builder(context);
+                            Activity activity=(Activity)context;
+                            final View view = activity.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
+                          //  dialogo1.setTitle("Detalle del Servicio");
+                            TextView txtDetalle=(TextView)view.findViewById(R.id.txtDetalleServicio);
+
+                            alerDialogoBilder.setView(view);
+
+                            String detalle = "";
+                            AlertDialog alertDialog;
+                            try {
+                                 detalle=
+                                         "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
+                                         +"\t"+jsonDetalle.getString("Fecha")+"<br>"
+                                         +"<font color=\"#11aebf\"><bold>Hora:&nbsp;</bold></font>"
+                                                 +jsonDetalle.getString("Hora")+"<br>"
+                                         +"<font color=\"#11aebf\"><bold>Distri Incio:&nbsp;</bold></font>"
+                                                 +jsonDetalle.getString("nameDistritoInicio")+"<br>"
+                                          +"<font color=\"#11aebf\"><bold>Direccion Incio:&nbsp;</bold></font>"
+                                                 +jsonDetalle.getString("DireccionIncio")+"<br>"
+                                         +"<font color=\"#11aebf\"><bold>Distri Fin:&nbsp;</bold></font>"
+                                                 +jsonDetalle.getString("nameDistritoFin")+"<br>"
+                                         +"<font color=\"#11aebf\"><bold>Direccion Fin:&nbsp;</bold></font>"
+                                         +jsonDetalle.getString("direccionFinal")+"<br>"
+                                         +"<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
+                                                 +jsonDetalle.getString("numeroMinutoTiempoEspera")+"\t"+" min"+"<br>"
+                                         +"<font color=\"#11aebf\"><bold>Tipo de Auto:&nbsp;</bold></font>"
+                                                 +"( "+jsonDetalle.getString("desAutoTipoPidioCliente")+" )"+"<br><br>"
+
+                                         +"<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
+                                                 +"S/."+jsonDetalle.getString("importeServicio")+"<br>"
+
+                                         +"<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
+                                                 +"S/."+jsonDetalle.getString("importeAireAcondicionado")+"<br>"
+
+                                         +"<font color=\"#11aebf\"><bold>Import Tiem espera:&nbsp;</bold></font>"
+                                                 +"S/."+jsonDetalle.getString("importeTiempoEspera")+"<br>"
+
+                                         +"<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
+                                                 +"S/."+jsonDetalle.getString("importePeaje")+"<br>"
+
+                                         +"<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
+                                                 +"S/."+jsonDetalle.getString("importeTipoAuto")+"<br><br>"
+
+                                         +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
+                                                 +"S/."+jsonDetalle.getString("importeTotalServicio")+"<br><br>"
+                                         //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
+
+                                         +"<font color=\"#11aebf\"><bold>Estado del servicio:&nbsp;</bold></font>"
+                                                 +jsonDetalle.getString("nombreStadoServicio");
+
+
+                                txtDetalle.setText(Html.fromHtml(detalle));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            //alerDialogoBilder.setMessage(detalle);
+                           // alerDialogoBilder.setCancelable(false);
+                            alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialogo1, int id) {
+
+
+                                }
+                            });
+                            alertDialog = alerDialogoBilder.create();
+                            alertDialog.show();
+                        }else{
+                            Toast.makeText(context,"No hay detalle para este servicio",Toast.LENGTH_LONG).show();
+                        }
+
+
+
+
+            }
+        }.execute();
     }
 
 
