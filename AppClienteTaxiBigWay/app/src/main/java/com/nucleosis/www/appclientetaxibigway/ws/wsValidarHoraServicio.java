@@ -174,7 +174,6 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
 
 
-*/
 
                                 JSONObject jsonObject=fichero.ExtraerDireccionIncioFin();
                                 JSONObject jsonCoordenadas=fichero.ExtraerCoordendaDirrecionIncio();
