@@ -515,7 +515,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                          +jsonDetalle.getString("direccionFinal")+"<br>"
                                          +"<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
                                                  +jsonDetalle.getString("numeroMinutoTiempoEspera")+"\t"+" min"+"<br>"
-                                         +"<font color=\"#11aebf\"><bold>Tipo de Auto:&nbsp;</bold></font>"
+                                         +"<font color=\"#11aebf\"><bold>Tipo Servicio:&nbsp;</bold></font>"
                                                  +"( "+jsonDetalle.getString("desAutoTipoPidioCliente")+" )"+"<br><br>"
 
                                          +"<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"

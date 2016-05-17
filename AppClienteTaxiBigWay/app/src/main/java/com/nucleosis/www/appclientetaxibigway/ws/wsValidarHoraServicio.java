@@ -173,25 +173,8 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                         envelope.dotNet = false;
                         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
 
-                        /*<fecServicio xsi:type="xsd:string">?</fecServicio>
-                        <desHora xsi:type="xsd:string">?</desHora>
-                        <impServicio xsi:type="xsd:string">?</impServicio>
-                        <desServicio xsi:type="xsd:string">?</desServicio>
-                        <indAireAcondicionado xsi:type="xsd:int">?</indAireAcondicionado>
-                        <impAireAcondicionado xsi:type="xsd:string">?</impAireAcondicionado>
-                        <usrRegistro xsi:type="xsd:int">?</usrRegistro>
-                        <idCliente xsi:type="xsd:int">?</idCliente>
-                        <idTurno xsi:type="xsd:int">?</idTurno>
-                        <idConductor xsi:type="xsd:int">?</idConductor>
-                        <idAuto xsi:type="xsd:int">?</idAuto>
-                        <idDistritoInicio xsi:type="xsd:int">?</idDistritoInicio>
-                        <idZonaInicio xsi:type="xsd:int">?</idZonaInicio>
-                        <desDireccionInicio xsi:type="xsd:string">?</desDireccionInicio>
-                        <idDistritoFinal xsi:type="xsd:int">?</idDistritoFinal>
-                        <idZonaFinal xsi:type="xsd:int">?</idZonaFinal>
-                        <desDireccionFinal xsi:type="xsd:string">?</desDireccionFinal>
-                        <idAutoTipo xsi:type="xsd:int">?</idAutoTipo>
-                        <idRegistroTipo xsi:type="xsd:int">?</idRegistroTipo>*/
+
+*/
 
                                 JSONObject jsonObject=fichero.ExtraerDireccionIncioFin();
                                 JSONObject jsonCoordenadas=fichero.ExtraerCoordendaDirrecionIncio();
@@ -205,6 +188,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                             request.addProperty("indAireAcondicionado", 0);//indAireAcondicionado=0 SI NO DESEA AIREACONDICIONADO
                                                                             //indAireAcondicionado =1  SI GUSTA AIRE ACONDICIONADO
                             request.addProperty("impAireAcondicionado", "");
+                            request.addProperty("impPeaje", "");
                             request.addProperty("usrRegistro", "");
                             request.addProperty("idCliente", idCliente);
 
@@ -212,7 +196,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                             request.addProperty("idConductor", 0);
                             request.addProperty("idAuto", 0);
 
-                            request.addProperty("idAutoTipo", 2); //idAutoTipo=1  VIP     idAutoTipo=2 ECONOMICO
+                            request.addProperty("idAutoTipo", 1); //idAutoTipo=1  VIP     idAutoTipo=2 ECONOMICO
 
 
 

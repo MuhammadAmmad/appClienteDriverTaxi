@@ -7,29 +7,6 @@ import android.graphics.drawable.Drawable;
  * Created by carlos.lopez on 02/05/2016.
  */
 public class beansHistorialServiciosCreados {
-/*
-
-    <ID_SERVICIO xsi:type="xsd:string">30</ID_SERVICIO>
-    <FEC_SERVICIO xsi:type="xsd:string">02/05/2016</FEC_SERVICIO>
-    <DES_HORA xsi:type="xsd:string">16:50:00</DES_HORA>
-    <IMP_SERVICIO xsi:type="xsd:string">62.00</IMP_SERVICIO>
-    <DES_SERVICIO xsi:type="xsd:string"/>
-    <IND_EN_SERVICIO xsi:type="xsd:string">0</IND_EN_SERVICIO>
-    <IMP_AIRE_ACONDICIONADO xsi:type="xsd:string">0.00</IMP_AIRE_ACONDICIONADO>
-    <IMP_PEAJE xsi:nil="true"/>
-    <NUM_MINUTO_TIEMPO_ESPERA xsi:nil="true"/>
-    <IMP_TIEMPO_ESPERA xsi:nil="true"/>
-    <DES_DIRECCION_INICIO xsi:type="xsd:string"/>
-    <DES_DIRECCION_FINAL xsi:type="xsd:string"/>
-    <NOM_DISTRITO_INICIO xsi:type="xsd:string">VILLA MARIA</NOM_DISTRITO_INICIO>
-    <NOM_ZONA_INICIO xsi:type="xsd:string">VILLA MARIA I</NOM_ZONA_INICIO>
-    <NOM_DISTRITO_FIN xsi:type="xsd:string">SAN JUAN DE LURIGANCHO</NOM_DISTRITO_FIN>
-    <NOM_ZONA_FIN xsi:type="xsd:string">SAN JUAN DE LURIGANCHO VI</NOM_ZONA_FIN>
-    <NUM_MOVIL xsi:nil="true"/>
-    <NOM_APE_CONDUCTOR xsi:nil="true"/>
-    <ID_ESTADO_SERVICIO xsi:type="xsd:string">1</ID_ESTADO_SERVICIO>
-    <NOM_ESTADO_SERVICIO xsi:type="xsd:string">CREADO</NOM_ESTADO_SERVICIO>
-*/
 
     private String idServicio;
     private String importeServicio;
@@ -60,11 +37,46 @@ public class beansHistorialServiciosCreados {
     private String idCliente;
     private String numCelular;
     private String  nunMovilTaxi;
+    private String idTipoAuto;
+    private String desAutoTipo;
+    private String desAutoTipoPidioCliente;
+    private String idAutoTipoPidioCliente;
+
+    public String getIdTipoAuto() {
+        return idTipoAuto;
+    }
+
+    public void setIdTipoAuto(String idTipoAuto) {
+        this.idTipoAuto = idTipoAuto;
+    }
+
+    public String getIdAutoTipoPidioCliente() {
+        return idAutoTipoPidioCliente;
+    }
+
+    public void setIdAutoTipoPidioCliente(String idAutoTipoPidioCliente) {
+        this.idAutoTipoPidioCliente = idAutoTipoPidioCliente;
+    }
+
+    public String getDesAutoTipo() {
+        return desAutoTipo;
+    }
+
+    public void setDesAutoTipo(String desAutoTipo) {
+        this.desAutoTipo = desAutoTipo;
+    }
+
+    public String getDesAutoTipoPidioCliente() {
+        return desAutoTipoPidioCliente;
+    }
+
+    public void setDesAutoTipoPidioCliente(String desAutoTipoPidioCliente) {
+        this.desAutoTipoPidioCliente = desAutoTipoPidioCliente;
+    }
 
     public String getIndAireAcondicionado() {
         return indAireAcondicionado;
     }
-
     public void setIndAireAcondicionado(String indAireAcondicionado) {
         this.indAireAcondicionado = indAireAcondicionado;
     }

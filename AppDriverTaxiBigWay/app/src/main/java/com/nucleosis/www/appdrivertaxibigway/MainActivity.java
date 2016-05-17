@@ -1,16 +1,20 @@
 package com.nucleosis.www.appdrivertaxibigway;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
@@ -20,6 +24,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -78,7 +83,7 @@ import java.util.List;
  * Created by karlos on 21/03/2016.
  */
 public class MainActivity extends AppCompatActivity
-    implements OnMapReadyCallback,View.OnClickListener, AdapterNotificaciones.OnItemClickListener {
+        implements OnMapReadyCallback, View.OnClickListener, AdapterNotificaciones.OnItemClickListener {
     private componentesR compR;
     public static Activity MAIN_ACTIVITY;
     private MapFragment mapFragment;
@@ -88,70 +93,73 @@ public class MainActivity extends AppCompatActivity
     private MyTypeFace myTypeFace;
     private PreferencesDriver preferencesDriver;
     private Menu menuNoti;
-    private int swTurno=0;
-    private int swPermiteSoloUnServicioTomado=0;
+    private int swTurno = 0;
+    private int swPermiteSoloUnServicioTomado = 0;
     private Fichero fichero;
-    private List<beansHistorialServiciosCreados>ListaServiciosCreados;
+    private List<beansHistorialServiciosCreados> ListaServiciosCreados;
     private AlertDialog alertDialogPanelNotificacion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
-        MAIN_ACTIVITY=this;
-      //  listVehiculos=new ArrayList<beansVehiculoConductor>();
-        myTypeFace=new MyTypeFace(MainActivity.this);
-        compR=new componentesR(MainActivity.this);
+        MAIN_ACTIVITY = this;
+        //  listVehiculos=new ArrayList<beansVehiculoConductor>();
+        myTypeFace = new MyTypeFace(MainActivity.this);
+        compR = new componentesR(MainActivity.this);
         compR.cargar_toolbar_2(MAIN_ACTIVITY);
-        preferencesDriver=new PreferencesDriver(MainActivity.this);
+        preferencesDriver = new PreferencesDriver(MainActivity.this);
         //|compR.getToolbar_2().setTitle("Mi ubicacion");
         compR.Contros_main_activity(MAIN_ACTIVITY);
 
         if (compR.getNavigationView() != null) {
             setupNavigationDrawerContent(compR.getNavigationView());
         }
-            setupNavigationDrawerContent(compR.getNavigationView());
+        setupNavigationDrawerContent(compR.getNavigationView());
 
-        fichero=new Fichero(MainActivity.this);
+        fichero = new Fichero(MainActivity.this);
 
-        mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
+        mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         //OBTIENE INFORMACION DE COSTOS GENERALES   TIEMPO ESPERA/PEAJE/VIP/ECONOMICO/AIREACONDICIONADO
         //RUTA DE LA URL FOTO CONDUCTOR
         new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
-        ListaServiciosCreados=new ArrayList<beansHistorialServiciosCreados>();
+        ListaServiciosCreados = new ArrayList<beansHistorialServiciosCreados>();
 
-       //LLENAR LISTA DE VEHICULOS
-      //  new wsListVehiculosJson(MainActivity.this).execute();
+        //LLENAR LISTA DE VEHICULOS
+        //  new wsListVehiculosJson(MainActivity.this).execute();
 
         levantarServicioBackground();
         CreaBroadcasReceiver();
         levantarServicioBackground_ListaServiciosCreados();
 
     }
-    private void levantarServicioBackground_ListaServiciosCreados(){
-        Intent intent=new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
+
+    private void levantarServicioBackground_ListaServiciosCreados() {
+        Intent intent = new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
         startService(intent);
     }
-    private void CreaBroadcasReceiver(){
+
+    private void CreaBroadcasReceiver() {
         IntentFilter filter = new IntentFilter(Utils.ACTION_RUN_SERVICE);
         // Crear un nuevo ResponseReceiver
-        ResponseReceiver receiver =       new ResponseReceiver();
+        ResponseReceiver receiver = new ResponseReceiver();
         // Registrar el receiver y su filtro
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 receiver,
                 filter);
 
-        IntentFilter filter1=new IntentFilter(Utils.ACTION_RUN_SERVICE_2);
-        ResponseReceiverListarServiciosCreados receiver2=new
+        IntentFilter filter1 = new IntentFilter(Utils.ACTION_RUN_SERVICE_2);
+        ResponseReceiverListarServiciosCreados receiver2 = new
                 ResponseReceiverListarServiciosCreados();
-        LocalBroadcastManager.getInstance(this).registerReceiver(receiver2,filter1);
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver2, filter1);
 
 
     }
-    private void levantarServicioBackground(){
-        Intent intent=new Intent(MainActivity.this, ServiceTurno.class);
-        startService(intent);
 
+    private void levantarServicioBackground() {
+        Intent intent = new Intent(MainActivity.this, ServiceTurno.class);
+        startService(intent);
 
 
     }
@@ -162,9 +170,70 @@ public class MainActivity extends AppCompatActivity
         /*Toast.makeText(getApplicationContext(),ListaServiciosCreados.get(Integer.parseInt(posicion)).getIdServicio(),
                 Toast.LENGTH_SHORT).show();*/
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        final View view = this.getLayoutInflater().inflate(R.layout.view_alert_tomar_servicio, null);
+        final View view = this.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
+        final int posicion_ = Integer.parseInt(posicion);
+        TextView lblDetalleServicio = (TextView) view.findViewById(R.id.txtDetalleServicio);
+     //   Toast.makeText(this, ListaServiciosCreados.get(posicion_).getIdServicio().toString(), Toast.LENGTH_SHORT).show();
+        String detalle = "";
+        JSONObject jsonConfiguracion=fichero.ExtraerConfiguraciones();
+        String importTipoAutoSolicitoCliente="0.0";
+        Double sumaImportesServicio=0.0;
+        if(jsonConfiguracion!=null){
+            Log.d("configu_",jsonConfiguracion.toString());
+            if(ListaServiciosCreados.get(posicion_).getIdAutoTipoPidioCliente().equals("1")){
+                try {
+                    importTipoAutoSolicitoCliente=jsonConfiguracion.getString("impAutoVip");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                importTipoAutoSolicitoCliente="0.0";
+            }
+        }
+        sumaImportesServicio=Double.parseDouble(importTipoAutoSolicitoCliente)+
+                             Double.parseDouble(ListaServiciosCreados.get(posicion_).getImporteAireAcondicionado().toString())+
+                             Double.parseDouble(ListaServiciosCreados.get(posicion_).getImportePeaje().toString())+
+                             Double.parseDouble(ListaServiciosCreados.get(posicion_).getImporteServicio().toString());
+        detalle =
+                "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
+                        + "\t" + ListaServiciosCreados.get(posicion_).getFecha().toString() + "<br>"
+                        + "<font color=\"#11aebf\"><bold>Hora:&nbsp;</bold></font>"
+                        + ListaServiciosCreados.get(posicion_).getHora().toString() + "<br>"
+                        + "<font color=\"#11aebf\"><bold>Distri Incio:&nbsp;</bold></font>"
+                        + ListaServiciosCreados.get(posicion_).getNameDistritoInicio().toString() + "<br>"
+                        + "<font color=\"#11aebf\"><bold>Direccion Incio:&nbsp;</bold></font>"
+                        + ListaServiciosCreados.get(posicion_).getDireccionIncio().toString() + "<br>"
+                        + "<font color=\"#11aebf\"><bold>Distri Fin:&nbsp;</bold></font>"
+                        + ListaServiciosCreados.get(posicion_).getNameDistritoFin().toString() + "<br>"
+                        + "<font color=\"#11aebf\"><bold>Direccion Fin:&nbsp;</bold></font>"
+                        + ListaServiciosCreados.get(posicion_).getDireccionFinal().toString() + "<br>"
+                        + "<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
+                        + ListaServiciosCreados.get(posicion_).getNumeroMinutoTiempoEspera().toString() + "\t" + " min" + "<br>"
+                        +"<font color=\"#11aebf\"><bold>Tipo Servicio :&nbsp;</bold></font>"
+                        +"( "+ListaServiciosCreados.get(posicion_).getDesAutoTipoPidioCliente().toString()+" )"+"<br><br>"
 
-        TextView lbldireccion1=(TextView)view.findViewById(R.id.txtDireccion1);
+                        +"<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
+                        +"S/."+ListaServiciosCreados.get(posicion_).getImporteServicio().toString()+"<br>"
+
+                        +"<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
+                        +"S/."+ListaServiciosCreados.get(posicion_).getImporteAireAcondicionado().toString()+"<br>"
+
+                      /*  +"<font color=\"#11aebf\"><bold>Import Tiem espera:&nbsp;</bold></font>"
+                        +"S/."+jsonDetalle.getString("importeTiempoEspera")+"<br>"*/
+
+                        +"<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
+                        +"S/."+ListaServiciosCreados.get(posicion_).getImportePeaje().toString()+"<br>"
+
+                        +"<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
+                        +"S/."+importTipoAutoSolicitoCliente+"<br><br>"
+
+                        +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
+                        +"S/."+String.valueOf(sumaImportesServicio)+"<br><br>";
+                        //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
+
+                lblDetalleServicio.setText(Html.fromHtml(detalle));
+
+       /* TextView lbldireccion1=(TextView)view.findViewById(R.id.txtDireccion1);
         TextView lbldireccion2=(TextView)view.findViewById(R.id.txtDireccion2);
 
         TextView lblDistrito1=(TextView)view.findViewById(R.id.txtDistrito1);
@@ -174,7 +243,7 @@ public class MainActivity extends AppCompatActivity
         TextView lblHora=(TextView)view.findViewById(R.id.txtHora);
         final TextView lblImporteServicio=(TextView)view.findViewById(R.id.txtImporteServicio);
 
-        final int posicion_=Integer.parseInt(posicion);
+
 
         lbldireccion1.setText("\t\t"+ListaServiciosCreados.get(posicion_).getDireccionIncio());
         lbldireccion2.setText("\t\t"+ListaServiciosCreados.get(posicion_).getDireccionFinal());
@@ -192,9 +261,9 @@ public class MainActivity extends AppCompatActivity
                             "Distrito 2:"+"\n"+"\t\t"+ ListaServiciosCreados.get(posicion_).getNameDistritoFin()+"\n"+
                             ListaServiciosCreados.get(posicion_).getFecha()+"\n"+
                             ListaServiciosCreados.get(posicion_).getHora()+"\n"+
-                            "S/."+ListaServiciosCreados.get(posicion_).getImporteServicio();
+                            "S/."+ListaServiciosCreados.get(posicion_).getImporteServicio();*/
 
-    //    lblDetalleServicio.setText(lblDetalle);
+        //    lblDetalleServicio.setText(lblDetalle);
         alertDialogBuilder.setView(view);
         AlertDialog alertDialog;
 
@@ -234,25 +303,27 @@ public class MainActivity extends AppCompatActivity
         alertDialog.show();
     }
 
-    private class ResponseReceiverListarServiciosCreados extends BroadcastReceiver{
+    private class ResponseReceiverListarServiciosCreados extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            switch (intent.getAction()){
+            switch (intent.getAction()) {
                 case Utils.ACTION_RUN_SERVICE_2:
-                  //  Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
-                  ListaServiciosCreados.clear();
-                   String json=intent.getStringExtra(Utils.EXTRA_MEMORY_2);
-
+                    //  Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
+                    ListaServiciosCreados.clear();
+                    String json = intent.getStringExtra(Utils.EXTRA_MEMORY_2);
+                    if (json != null) {
+                        Log.d("jsonList_", json.toString());
                         try {
-                            final JSONArray jsonArray=new JSONArray(json);
-                            NumeroNotificacion=jsonArray.length();
+                            final JSONArray jsonArray = new JSONArray(json);
+
+                            NumeroNotificacion = jsonArray.length();
                             Alerta.setBadgeCount(getApplicationContext(), icon, NumeroNotificacion);
                             item = menuNoti.findItem(R.id.menuAlert);
                             icon = (LayerDrawable) item.getIcon();
-                            beansHistorialServiciosCreados row=null;
-                          for(int i=0; i<jsonArray.length();i++){
-                                row=new beansHistorialServiciosCreados();
+                            beansHistorialServiciosCreados row = null;
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                row = new beansHistorialServiciosCreados();
                                 row.setFecha(jsonArray.getJSONObject(i).getString("Fecha"));
                                 row.setFechaFormat(jsonArray.getJSONObject(i).getString("FechaFormat"));
                                 row.setHora(jsonArray.getJSONObject(i).getString("Hora"));
@@ -270,14 +341,23 @@ public class MainActivity extends AppCompatActivity
                                 row.setImporteAireAcondicionado(jsonArray.getJSONObject(i).getString("importeAireAcondicionado"));
                                 row.setImportePeaje(jsonArray.getJSONObject(i).getString("importePeaje"));
                                 row.setInfoAddress(jsonArray.getJSONObject(i).getString("infoAddress"));
-                             //   row.setImagenOptional(R.mipmap.ic_notifica_send);
+                                row.setIdTipoAuto(jsonArray.getJSONObject(i).getString("idTipoAuto"));
+                                row.setDesAutoTipo(jsonArray.getJSONObject(i).getString("desAutoTipo"));
+                                row.setIdAutoTipoPidioCliente(jsonArray.getJSONObject(i).getString("idAutoTipoPidioCliente"));
+                                row.setDesAutoTipoPidioCliente(jsonArray.getJSONObject(i).getString("desAutoTipoPidioCliente"));
+                                row.setImportePeaje(jsonArray.getJSONObject(i).getString("importePeaje"));
+                                row.setIndAireAcondicionado(jsonArray.getJSONObject(i).getString("indAireAcondicionado"));
+                                row.setImporteAireAcondicionado(jsonArray.getJSONObject(i).getString("importeAireAcondicionado"));
+                                //   row.setImagenOptional(R.mipmap.ic_notifica_send);
                                 ListaServiciosCreados.add(row);
 
                             }
-                           // Log.d("x_array", String.valueOf(jsonArray.length()));
+                            // Log.d("x_array", String.valueOf(jsonArray.length()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }
+
 
                     break;
                 case Utils.ACTION_MEMORY_EXIT_2:
@@ -286,70 +366,72 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private int validarUltimaCoordenadaEnviada(String  HoraServer, String HoraCoordenada ){
-        Log.d("horaServer",HoraServer+"--->Coor: "+HoraCoordenada);
-        int minutos=0;
-        if(HoraServer.length()==5 && HoraCoordenada.length()==5){
+    private int validarUltimaCoordenadaEnviada(String HoraServer, String HoraCoordenada) {
+        Log.d("horaServer", HoraServer + "--->Coor: " + HoraCoordenada);
+        int minutos = 0;
+        if (HoraServer.length() == 5 && HoraCoordenada.length() == 5) {
             /* HoraServer="18:01";//135 //HORA ACTUAL 22:50
              HoraTurno="06:00";//1130 // HORA DEL TURNO*/
-            int minutosFormales=12*60;
+            int minutosFormales = 12 * 60;
 
-            int H1=Integer.parseInt(HoraServer.substring(0,2));
-            int M1=Integer.parseInt(HoraServer.substring(3,5));
-            int TotalMinutos1=H1*60+M1;
+            int H1 = Integer.parseInt(HoraServer.substring(0, 2));
+            int M1 = Integer.parseInt(HoraServer.substring(3, 5));
+            int TotalMinutos1 = H1 * 60 + M1;
 
-            int H2=Integer.parseInt(HoraCoordenada.substring(0,2));
-            int M2=Integer.parseInt(HoraCoordenada.substring(3,5));
+            int H2 = Integer.parseInt(HoraCoordenada.substring(0, 2));
+            int M2 = Integer.parseInt(HoraCoordenada.substring(3, 5));
 
-            int TotalMinutos2=H2*60+M2;
+            int TotalMinutos2 = H2 * 60 + M2;
 
-            if(H1<H2 ){
-                int diaMinutos=24*60;
-                int RestaParcialMinutos=diaMinutos-TotalMinutos2;
-                Log.d("horaTermino",String.valueOf(RestaParcialMinutos));
-                int SumaTotal=RestaParcialMinutos+TotalMinutos1;
-                Log.d("TotalMintuos",String.valueOf(SumaTotal));
+            if (H1 < H2) {
+                int diaMinutos = 24 * 60;
+                int RestaParcialMinutos = diaMinutos - TotalMinutos2;
+                Log.d("horaTermino", String.valueOf(RestaParcialMinutos));
+                int SumaTotal = RestaParcialMinutos + TotalMinutos1;
+                Log.d("TotalMintuos", String.valueOf(SumaTotal));
 
-                minutos=SumaTotal;
-            }else if(H1>=H2){
-                minutos=TotalMinutos1-TotalMinutos2;
-                Log.d("TotalMintuos",String.valueOf(minutos));
+                minutos = SumaTotal;
+            } else if (H1 >= H2) {
+                minutos = TotalMinutos1 - TotalMinutos2;
+                Log.d("TotalMintuos", String.valueOf(minutos));
             }
         }
 
 
-      Log.d("minutosRetorno",String.valueOf(minutos));
-        return  minutos;
+        Log.d("minutosRetorno", String.valueOf(minutos));
+        return minutos;
     }
 
     private class ResponseReceiver extends BroadcastReceiver {
-        private ResponseReceiver() {        }
+        private ResponseReceiver() {
+        }
+
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
                 case Utils.ACTION_RUN_SERVICE:
-                    String data=intent.getStringExtra(Utils.EXTRA_MEMORY);
-                   //Toast.makeText(MainActivity.this,data,Toast.LENGTH_LONG).show();
-                    if(data.equals("0")){
-                        Log.d("EstadoTurno","-->inactivo");
+                    String data = intent.getStringExtra(Utils.EXTRA_MEMORY);
+                    //Toast.makeText(MainActivity.this,data,Toast.LENGTH_LONG).show();
+                    if (data.equals("0")) {
+                        Log.d("EstadoTurno", "-->inactivo");
                         compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnDesactivarTurno().setVisibility(View.GONE);
                         compR.getBtnIrAServicios().setVisibility(View.GONE);
-                        swTurno=2;
-                    }else if(data.equals("1")){
+                        swTurno = 2;
+                    } else if (data.equals("1")) {
 
-                        Log.d("EstadoTurno","-->activo");
+                        Log.d("EstadoTurno", "-->activo");
 
                         try {
-                            JSONObject jsonSever=preferencesDriver.ExtraerHoraSistema();
-                            JSONObject jsonCoordendas=fichero.ExtraerFechaHoraUltimaDeCoordenadas();
-                            if(jsonSever!=null && jsonCoordendas!=null){
-                                int tiempoUltimaCoordenada=     validarUltimaCoordenadaEnviada(
+                            JSONObject jsonSever = preferencesDriver.ExtraerHoraSistema();
+                            JSONObject jsonCoordendas = fichero.ExtraerFechaHoraUltimaDeCoordenadas();
+                            if (jsonSever != null && jsonCoordendas != null) {
+                                int tiempoUltimaCoordenada = validarUltimaCoordenadaEnviada(
                                         jsonSever.getString("horaServidor").toString(),
                                         jsonCoordendas.getString("HoraCoordenda").toString());
-                                Log.d("tiempoUltimaCoordenad",String.valueOf(tiempoUltimaCoordenada));
-                                if(tiempoUltimaCoordenada>=2){
-                                    Intent intent1=new Intent(MainActivity.this,locationDriver.class);
+                                Log.d("tiempoUltimaCoordenad", String.valueOf(tiempoUltimaCoordenada));
+                                if (tiempoUltimaCoordenada >= 2) {
+                                    Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
                                     startService(intent1);
                                 }
                             }
@@ -360,36 +442,36 @@ public class MainActivity extends AppCompatActivity
                         }
 
 
-                        JSONArray jsonArray=fichero.ExtraerListaServiciosTomadoConductor();
-                        if(jsonArray!=null){
-                            for(int i=0;i<jsonArray.length();i++){
+                        JSONArray jsonArray = fichero.ExtraerListaServiciosTomadoConductor();
+                        if (jsonArray != null) {
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
-                                    if( jsonArray.getJSONObject(i).getString("statadoServicio").equals("2")
-                                            || jsonArray.getJSONObject(i).getString("statadoServicio").equals("3")){
-                                        swPermiteSoloUnServicioTomado=0;
-                                        i=jsonArray.length();
-                                    }else {
-                                        swPermiteSoloUnServicioTomado=1;
+                                    if (jsonArray.getJSONObject(i).getString("statadoServicio").equals("2")
+                                            || jsonArray.getJSONObject(i).getString("statadoServicio").equals("3")) {
+                                        swPermiteSoloUnServicioTomado = 0;
+                                        i = jsonArray.length();
+                                    } else {
+                                        swPermiteSoloUnServicioTomado = 1;
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
-                            if(jsonArray.length()==0){
-                                swPermiteSoloUnServicioTomado=1;
+                            if (jsonArray.length() == 0) {
+                                swPermiteSoloUnServicioTomado = 1;
                             }
                         }
 
                         compR.getBtnActivarTurno().setVisibility(View.GONE);
                         compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
-                        swTurno=1;
+                        swTurno = 1;
                     }
                     ///compR.getBtnDesactivarTurno().setText(data);
                     break;
 
                 case Utils.ACTION_MEMORY_EXIT:
-                   // lblCoordenada.setText("coordendas");
+                    // lblCoordenada.setText("coordendas");
                     break;
             }
         }
@@ -398,7 +480,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuNoti=menu;
+        menuNoti = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
         item = menu.findItem(R.id.menuAlert);
         icon = (LayerDrawable) item.getIcon();
@@ -407,17 +489,18 @@ public class MainActivity extends AppCompatActivity
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 compR.getDrawer().openDrawer(GravityCompat.START);
-                final ImageView imageDriver=(ImageView)findViewById(R.id.imagDriver);
-                TextView txtName=(TextView)findViewById(R.id.txtName);
-                TextView txtEmail=(TextView)findViewById(R.id.txtEmail);
+                final ImageView imageDriver = (ImageView) findViewById(R.id.imagDriver);
+                TextView txtName = (TextView) findViewById(R.id.txtName);
+                TextView txtEmail = (TextView) findViewById(R.id.txtEmail);
                 txtEmail.setTypeface(myTypeFace.openRobotoLight());
                 txtName.setTypeface(myTypeFace.openRobotoLight());
-                String[] dataDriver=  preferencesDriver.OpenDataDriver();
+                String[] dataDriver = preferencesDriver.OpenDataDriver();
                 txtName.setText(dataDriver[1]);
                 txtEmail.setText(dataDriver[4]);
                 Picasso.with(MainActivity.this)
@@ -429,19 +512,19 @@ public class MainActivity extends AppCompatActivity
 
                 return true;
             case R.id.menuAlert:
-                if(swTurno==1){
-                    if(swPermiteSoloUnServicioTomado==1){
+                if (swTurno == 1) {
+                    if (swPermiteSoloUnServicioTomado == 1) {
                         cargarAlertNotificaciones();
-                    }else{
-                        Toast.makeText(MainActivity.this,"Tiene servicios tomados, Termine los servicios !!!",
+                    } else {
+                        Toast.makeText(MainActivity.this, "Tiene servicios tomados, Termine los servicios !!!",
                                 Toast.LENGTH_LONG).show();
                     }
 
-                }else {
-                    Toast.makeText(MainActivity.this,"Debe activar un turno",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Debe activar un turno", Toast.LENGTH_LONG).show();
                 }
 
-                return  true;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -463,7 +546,7 @@ public class MainActivity extends AppCompatActivity
         compR.getRecycler().setLayoutManager(lManager);
         // Crear un nuevo adaptador
 
-        adapter=new AdapterNotificaciones(ListaServiciosCreados,this,this);
+        adapter = new AdapterNotificaciones(ListaServiciosCreados, this, this);
         compR.getRecycler().setAdapter(adapter);
         alertDialogBuilder.setView(view);
         alertDialogPanelNotificacion = alertDialogBuilder.create();
@@ -495,7 +578,7 @@ public class MainActivity extends AppCompatActivity
                                 menuItem.setChecked(true);
                                 compR.getDrawer().closeDrawer(GravityCompat.START);
                                 compR.getLinearFragment().setVisibility(View.GONE);
-                                 setFragment(1);
+                                setFragment(1);
                                 break;
                             case R.id.misDatos:
                                 menuItem.setChecked(true);
@@ -524,9 +607,9 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction;
         switch (position) {
             case 0:
-                fragmentManager =getSupportFragmentManager();
+                fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
-                FragmentMiUbicacion fragmentMiUbicacion=new
+                FragmentMiUbicacion fragmentMiUbicacion = new
                         FragmentMiUbicacion();
                 fragmentTransaction.replace(R.id.fragment, fragmentMiUbicacion);
                 fragmentTransaction.commit();
@@ -535,7 +618,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
 //                FragmentHistoriaCarreras HistorialCarreras = new FragmentHistoriaCarreras();
-                FragmentHistoriNew fragmentHistoriNew=new FragmentHistoriNew();
+                FragmentHistoriNew fragmentHistoriNew = new FragmentHistoriNew();
                 //inboxFragment.newInstance(1);
                 fragmentTransaction.replace(R.id.fragment, fragmentHistoriNew);
                 fragmentTransaction.commit();
@@ -550,11 +633,13 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
     }
+
     @SuppressWarnings("deprecation")
     @Override
     public void onMapReady(final GoogleMap map) {
         final double[] lat = new double[1];
         final double[] lon = new double[1];
+
         map.setMyLocationEnabled(true);
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
