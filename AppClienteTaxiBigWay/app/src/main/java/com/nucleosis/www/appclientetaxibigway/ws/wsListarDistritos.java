@@ -76,7 +76,7 @@ public class wsListarDistritos extends AsyncTask<String,String, List<beansDistri
                 SoapObject test=(SoapObject)responseVector.get(i);
                 beasDistrito_=new beansDistritos();
               //  Log.d("nomDistrito_ ",test.getProperty("ID_DISTRITO").toString()+"-->"+test.getProperty("NOM_DISTRITO").toString());
-                beasDistrito_.setIdDistrito(Integer.parseInt(test.getProperty("ID_DISTRITO").toString()));
+                beasDistrito_.setIdDistrito(test.getProperty("ID_DISTRITO").toString());
                 beasDistrito_.setNameDistrito(test.getProperty("NOM_DISTRITO").toString());
                 LISTA_DISTRITOS.add(beasDistrito_);
             }

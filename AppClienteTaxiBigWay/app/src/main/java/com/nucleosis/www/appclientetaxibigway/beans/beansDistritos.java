@@ -4,14 +4,14 @@ package com.nucleosis.www.appclientetaxibigway.beans;
  * Created by carlos.lopez on 20/04/2016.
  */
 public class beansDistritos {
-    private int IdDistrito;
+    private String IdDistrito;
     private String NameDistrito;
 
-    public int getIdDistrito() {
+    public String getIdDistrito() {
         return IdDistrito;
     }
 
-    public void setIdDistrito(int idDistrito) {
+    public void setIdDistrito(String idDistrito) {
         IdDistrito = idDistrito;
     }
 
@@ -21,10 +21,5 @@ public class beansDistritos {
 
     public void setNameDistrito(String nameDistrito) {
         NameDistrito = nameDistrito;
-    }
-
-    @Override
-    public String toString() {
-        return NameDistrito;
     }
 }

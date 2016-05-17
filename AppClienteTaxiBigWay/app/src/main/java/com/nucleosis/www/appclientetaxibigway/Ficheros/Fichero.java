@@ -3,6 +3,7 @@ package com.nucleosis.www.appclientetaxibigway.Ficheros;
 import android.content.Context;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -158,5 +159,63 @@ public class Fichero {
         }
         return jsonAddresLatLon;
     }
+    public void InsertarListaDistritos(String listaDitritos){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("listDistritos.txt", Context.MODE_PRIVATE));
+            json.write(listaDitritos);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());
+        }
+    }
+    public JSONArray ExtraerListDistritos(){
+        JSONArray jsonDistritos=null;
+        try
+        {
+            BufferedReader distritosList =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("listDistritos.txt")));
+            jsonDistritos=new JSONArray(distritosList.readLine());
+            distritosList.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonDistritos;
+    }
+    public void InsertarConfiguraciones(String configuracion){
+        if(configuracion!=null){
+            Log.d("configguracion_",configuracion);
+        }
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("configuracion.txt", Context.MODE_PRIVATE));
+            json.write(configuracion);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
 
+    public JSONObject ExtraerConfiguraciones(){
+        JSONObject jsonObject=null;
+        try
+        {
+
+            BufferedReader getConfiguracion =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("configuracion.txt")));
+            String data = getConfiguracion.readLine();
+            Log.d("daa",data.toString());
+            jsonObject =new JSONObject(data);
+            getConfiguracion.close();
+        }
+        catch (Exception ex)
+        {
+            Log.d("look_","No se puede leer fichero");   }
+
+        return jsonObject;
+    }
 }

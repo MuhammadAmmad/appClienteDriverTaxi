@@ -33,15 +33,6 @@ public class PreferencesCliente {
         editor.putString("NUM_DOCUMENTO_IDENTIDAD", Cripto.Encriptar(listaData.get(0).getDni()));
         editor.putString("DES_EMAIL", Cripto.Encriptar(listaData.get(0).getEmail()));
         editor.putString("NUM_CELULAR", Cripto.Encriptar(listaData.get(0).getCelular()));
-
-       /* editor.putString("ID_CLIENTE", listaData.get(0).getIdCliente());
-        editor.putString("NOM_CLIENTE", listaData.get(0).getNombre());
-        editor.putString("APE_PATERNO", listaData.get(0).getaPaterno());
-        editor.putString("APE_MATERNO", listaData.get(0).getaMaterno());
-        editor.putString("NUM_DOCUMENTO_IDENTIDAD", listaData.get(0).getDni());
-        editor.putString("DES_EMAIL", listaData.get(0).getEmail());
-        editor.putString("NUM_CELULAR", listaData.get(0).getCelular());*/
-
         editor.commit();
     }
     public String[]  OpenDataCliente(){

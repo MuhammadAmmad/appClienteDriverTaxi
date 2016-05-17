@@ -38,6 +38,14 @@ public class ComponentesR {
     private TextView lblIncioAddress;
     private TextView lblFinAaddress;
     private TextView lblTarifaServicio;
+
+    private TextView txtCostoAire;
+    private  TextView txtCostoAutoTipoSoliciot;
+    private CheckBox checkBoxAire_Si;
+    private CheckBox checkBoxAire_No;
+    private CheckBox checkBoxAutoEconomico;
+    private CheckBox checkBoxAutoVip;
+
     private TextView txtTarifa;
     private TextView txtCabecera;
     private Button   btnRegistro;
@@ -49,8 +57,6 @@ public class ComponentesR {
     private EditText editEmail;
     private EditText editPassword;
     private EditText editConfirPassword;
-    private EditText editAddresss;
-    private EditText editAddresssFinal;
     private EditText editFechaServicio;
     private EditText editHoraServicio;
     private EditText editHistoricoServiciosCreados;
@@ -65,6 +71,9 @@ public class ComponentesR {
     private  AutoCompleteTextView mAutocompleteView_AddressFinal;
     private GridViewWithHeaderAndFooter grid;
     private ImageButton imageButtonBuscar;
+
+    private AutoCompleteTextView autoCompletText1;
+    private AutoCompleteTextView autoCompletText2;
     Toolbar toolbar;
     public ComponentesR(Context context) {
         this.context = context;
@@ -109,14 +118,15 @@ public class ComponentesR {
         actionBar = appCompatActivity.getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-        editAddresss=(EditText)mainActivity.findViewById(R.id.editAddress);
-        editAddresssFinal=(EditText)mainActivity.findViewById(R.id.editAddresFinal);
         drawer =(DrawerLayout)mainActivity.findViewById(R.id.drawer_layout);
         navigationView=(NavigationView)mainActivity.findViewById(R.id.nav_view);
 
         btnPedirServicio=(Button)mainActivity.findViewById(R.id.btnPedirServicio);
         btnPedirServicio.setOnClickListener((View.OnClickListener) context);
+
+        autoCompletText1=(AutoCompleteTextView)mainActivity.findViewById(R.id.autocompleteDireccion1);
+        autoCompletText2=(AutoCompleteTextView)mainActivity.findViewById(R.id.autocompleteDireccion2);
+
     }
 
     public void Controls_fragmentDataClient(View rootView) {
@@ -153,6 +163,49 @@ public class ComponentesR {
       //  lblIncioAddress.setTypeface(myTypeFace.openRobotoLight());
        // lblFinAaddress.setTypeface(myTypeFace.openRobotoLight());
         lblTarifaServicio.setTypeface(myTypeFace.openRobotoLight());
+
+        checkBoxAire_Si=(CheckBox)view.findViewById(R.id.checkboxAire_Si);
+        checkBoxAire_No=(CheckBox)view.findViewById(R.id.checkboxAire_No);
+
+        checkBoxAutoVip=(CheckBox)view.findViewById(R.id.checkboxAuto_Vip);
+        checkBoxAutoEconomico=(CheckBox)view.findViewById(R.id.checkboxAuto_Economico);
+
+        txtCostoAire=(TextView)view.findViewById(R.id.txtCostoAire);
+        txtCostoAutoTipoSoliciot=(TextView)view.findViewById(R.id.txtCostoTipoAutoSolicito);
+
+
+    }
+
+    public TextView getTxtCostoAire() {
+        return txtCostoAire;
+    }
+
+    public void setTxtCostoAire(TextView txtCostoAire) {
+        this.txtCostoAire = txtCostoAire;
+    }
+
+    public CheckBox getCheckBoxAutoVip() {
+        return checkBoxAutoVip;
+    }
+
+    public void setCheckBoxAutoVip(CheckBox checkBoxAutoVip) {
+        this.checkBoxAutoVip = checkBoxAutoVip;
+    }
+
+    public TextView getTxtCostoAutoTipoSoliciot() {
+        return txtCostoAutoTipoSoliciot;
+    }
+
+    public void setTxtCostoAutoTipoSoliciot(TextView txtCostoAutoTipoSoliciot) {
+        this.txtCostoAutoTipoSoliciot = txtCostoAutoTipoSoliciot;
+    }
+
+    public CheckBox getCheckBoxAutoEconomico() {
+        return checkBoxAutoEconomico;
+    }
+
+    public void setCheckBoxAutoEconomico(CheckBox checkBoxAutoEconomico) {
+        this.checkBoxAutoEconomico = checkBoxAutoEconomico;
     }
 
     public void Controls_fragment_Historico_Sercicios_new(View rootView) {
@@ -163,6 +216,38 @@ public class ComponentesR {
         checkBoxFecha=(CheckBox) view.findViewById(R.id.chxFecha);
         imageButtonBuscar=(ImageButton)view.findViewById(R.id.imageButtonSearch);
 
+    }
+
+    public CheckBox getCheckBoxAire_Si() {
+        return checkBoxAire_Si;
+    }
+
+    public void setCheckBoxAire_Si(CheckBox checkBoxAire_Si) {
+        this.checkBoxAire_Si = checkBoxAire_Si;
+    }
+
+    public CheckBox getCheckBoxAire_No() {
+        return checkBoxAire_No;
+    }
+
+    public void setCheckBoxAire_No(CheckBox checkBoxAire_No) {
+        this.checkBoxAire_No = checkBoxAire_No;
+    }
+
+    public AutoCompleteTextView getAutoCompletText2() {
+        return autoCompletText2;
+    }
+
+    public void setAutoCompletText2(AutoCompleteTextView autoCompletText2) {
+        this.autoCompletText2 = autoCompletText2;
+    }
+
+    public AutoCompleteTextView getAutoCompletText1() {
+        return autoCompletText1;
+    }
+
+    public void setAutoCompletText1(AutoCompleteTextView autoCompletText1) {
+        this.autoCompletText1 = autoCompletText1;
     }
 
     public GridViewWithHeaderAndFooter getGrid() {
@@ -293,13 +378,6 @@ public class ComponentesR {
         this.btnPedirServicio = btnPedirServicio;
     }
 
-    public EditText getEditAddresssFinal() {
-        return editAddresssFinal;
-    }
-
-    public void setEditAddresssFinal(EditText editAddresssFinal) {
-        this.editAddresssFinal = editAddresssFinal;
-    }
 
     public AutoCompleteTextView getmAutocompleteView_AddressIncio() {
         return mAutocompleteView_AddressIncio;
@@ -317,13 +395,7 @@ public class ComponentesR {
         this.mAutocompleteView_AddressFinal = mAutocompleteView_AddressFinal;
     }
 
-    public EditText getEditAddresss() {
-        return editAddresss;
-    }
 
-    public void setEditAddresss(EditText editAddresss) {
-        this.editAddresss = editAddresss;
-    }
 
     public Button getBtnSigUp() {
         return btnSigUp;

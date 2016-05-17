@@ -165,6 +165,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("addresIncio",lista1.get(position).getDireccionIncio());
                                         intent.putExtra("ZonaFin",lista1.get(position).getNameZonaFin());
                                         startActivity(intent);
+                                        getActivity().finish();
 
                                     }else  if(lista1.get(position).getStatadoServicio().equals("3")){
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
@@ -175,6 +176,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("addresIncio",lista1.get(position).getDireccionIncio());
                                         intent.putExtra("ZonaFin",lista1.get(position).getNameZonaFin());
                                         startActivity(intent);
+                                        getActivity().finish();
                                     }
                                 }
 
@@ -196,7 +198,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("addresIncio",lista2.get(position).getDireccionIncio());
                                         intent.putExtra("ZonaFin",lista2.get(position).getNameZonaFin());
                                         startActivity(intent);
-
+                                        getActivity().finish();
                                     }else  if(lista2.get(position).getStatadoServicio().equals("3")){
                                         new wsObtenerDireccionIncioCliente(getActivity(),lista2.get(position).getIdCliente()).execute();
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
@@ -207,7 +209,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("addresIncio",lista2.get(position).getDireccionIncio());
                                         intent.putExtra("ZonaFin",lista2.get(position).getNameZonaFin());
                                         startActivity(intent);
-
+                                        getActivity().finish();
                                     }
                                 }
 

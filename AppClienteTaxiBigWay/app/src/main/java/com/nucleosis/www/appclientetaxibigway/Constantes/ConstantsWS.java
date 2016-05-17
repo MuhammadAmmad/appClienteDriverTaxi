@@ -65,6 +65,31 @@ public class ConstantsWS {
     private static final String METHODO_13="WS_CLIENTE_ACTUALIZAR_POSICION";
     private static final String SOAP_ACTION_13=NAME_SPACE+"/"+METHODO_13;
 
+
+    //LISTAR_DISTRITOS
+    private static final String METHODO_14="WS_DISTRITO_ENTREGAR_NOM_DISTRITO";
+    private static final String SOAP_ACTION_14=NAME_SPACE+"/"+METHODO_14;
+
+
+    private static final String METHODO_15="WS_CONFIGURACION_OBTENER";
+    private static final String SOAP_ACTION_15=NAME_SPACE+"/"+METHODO_15;
+
+    public static String getMethodo15() {
+        return METHODO_15;
+    }
+
+    public static String getSoapAction15() {
+        return SOAP_ACTION_15;
+    }
+
+    public static String getMethodo14() {
+        return METHODO_14;
+    }
+
+    public static String getSoapAction14() {
+        return SOAP_ACTION_14;
+    }
+
     public static String getMethodo13() {
         return METHODO_13;
     }

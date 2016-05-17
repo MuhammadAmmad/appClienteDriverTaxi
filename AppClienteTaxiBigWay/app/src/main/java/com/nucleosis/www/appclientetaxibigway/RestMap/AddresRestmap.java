@@ -103,9 +103,9 @@ public class AddresRestmap extends AsyncTask<String,String,String> {
                  //   Log.d("Numero->", shortNumer + "\n" + shortName + "\n" + shortDistrito + "\n" + shortDpto);
                   //  Log.d("casoMarker",String.valueOf(casoMarker));
                     if(casoMarker==1){
-                        compR.getEditAddresss().setText(shortName + " " + shortNumer );
+                        compR.getAutoCompletText1().setText(shortName + " " + shortNumer );
                     }else if(casoMarker==2){
-                        compR.getEditAddresssFinal().setText(shortName + " " + shortNumer );
+                        compR.getAutoCompletText2().setText(shortName + " " + shortNumer );
                     }
 
                     //  Toast.makeText(MainActivity.this,address,Toast.LENGTH_SHORT).show();

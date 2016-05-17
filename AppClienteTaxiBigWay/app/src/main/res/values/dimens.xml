@@ -17,5 +17,7 @@
     <dimen name="txtMaringLeft">55dp</dimen>
     <dimen name="marginLeftDiez">10dp</dimen>
     <dimen name="grid_view_padding">5dp</dimen>
+    <dimen name="dimenCinco">5dp</dimen>
+    <dimen name="marginVeinte">20dp</dimen>
 
 </resources>

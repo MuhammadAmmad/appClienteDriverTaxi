@@ -164,6 +164,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         startService(intent);
 
     }
+
     private void CreaBroadcasReceiver(){
 
         IntentFilter filter=new IntentFilter(Utils.ACTION_RUN_SERVICE_3);
@@ -282,7 +283,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         final Marker markerInicio = mapa.addMarker(new MarkerOptions()
                 .position(PERTH)
                 .title("Cliente")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_ubicacion)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_cliente_1)));
 
 
 

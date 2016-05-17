@@ -89,13 +89,18 @@ public class wsExtraerIdZonaIdDistrito extends AsyncTask<String,String, String[]
                break;
            case 1:
                fichero.InsertIdZonaIdDistrito_Origen(dataOrigenDestino);
-               jsonObject=fichero.ExtraerZonaIdDistrito_Origen();
-               Log.d("dataRetornoX-->",jsonObject.toString());
+               jsonObject = fichero.ExtraerZonaIdDistrito_Origen();
+               if(jsonObject!=null) {
+                   Log.d("dataRetornoX-->", jsonObject.toString());
+               }
                break;
            case 2:
                fichero.InsertIdZonaIdDistrito_Destino(dataOrigenDestino);
                jsonObject=fichero.ExtraerZonaIdDistrito_Destino();
-               Log.d("dataRetornoY-->", jsonObject.toString());
+               if(jsonObject!=null){
+                   Log.d("dataRetornoY-->", jsonObject.toString());
+               }
+
                break;
        }
       //  Log.d("dataRetorno-->",jsonObject.toString());

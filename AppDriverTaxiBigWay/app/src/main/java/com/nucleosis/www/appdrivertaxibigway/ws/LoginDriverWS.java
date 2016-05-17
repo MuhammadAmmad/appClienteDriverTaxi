@@ -18,6 +18,7 @@ import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.LoingDriverApp;
 import com.nucleosis.www.appdrivertaxibigway.MainActivity;
 
+import org.json.JSONObject;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -103,6 +104,8 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
             new DonwloadDataUser(context).execute(user.getUser());
             new wsExtraerHoraServer(context).execute();
             new wsExtraerDistritos(context).execute();
+            new wsExtraerConfiguracionAdicionales(context).execute();
+
         } else if(sw==0){
             Toast.makeText(context,msn,Toast.LENGTH_SHORT).show();
         }

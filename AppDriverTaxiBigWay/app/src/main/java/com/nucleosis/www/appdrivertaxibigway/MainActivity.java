@@ -123,7 +123,11 @@ public class MainActivity extends AppCompatActivity
         mapFragment.getMapAsync(this);
         //OBTIENE INFORMACION DE COSTOS GENERALES   TIEMPO ESPERA/PEAJE/VIP/ECONOMICO/AIREACONDICIONADO
         //RUTA DE LA URL FOTO CONDUCTOR
-        new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
+        JSONObject jsonConfiguracion = fichero.ExtraerConfiguraciones();
+        if (jsonConfiguracion == null) {
+            new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
+        }
+
         ListaServiciosCreados = new ArrayList<beansHistorialServiciosCreados>();
 
         //LLENAR LISTA DE VEHICULOS
@@ -173,27 +177,27 @@ public class MainActivity extends AppCompatActivity
         final View view = this.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
         final int posicion_ = Integer.parseInt(posicion);
         TextView lblDetalleServicio = (TextView) view.findViewById(R.id.txtDetalleServicio);
-     //   Toast.makeText(this, ListaServiciosCreados.get(posicion_).getIdServicio().toString(), Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(this, ListaServiciosCreados.get(posicion_).getIdServicio().toString(), Toast.LENGTH_SHORT).show();
         String detalle = "";
-        JSONObject jsonConfiguracion=fichero.ExtraerConfiguraciones();
-        String importTipoAutoSolicitoCliente="0.0";
-        Double sumaImportesServicio=0.0;
-        if(jsonConfiguracion!=null){
-            Log.d("configu_",jsonConfiguracion.toString());
-            if(ListaServiciosCreados.get(posicion_).getIdAutoTipoPidioCliente().equals("1")){
+        JSONObject jsonConfiguracion = fichero.ExtraerConfiguraciones();
+        String importTipoAutoSolicitoCliente = "0.0";
+        Double sumaImportesServicio = 0.0;
+        if (jsonConfiguracion != null) {
+            Log.d("configu_", jsonConfiguracion.toString());
+            if (ListaServiciosCreados.get(posicion_).getIdAutoTipoPidioCliente().equals("1")) {
                 try {
-                    importTipoAutoSolicitoCliente=jsonConfiguracion.getString("impAutoVip");
+                    importTipoAutoSolicitoCliente = jsonConfiguracion.getString("impAutoVip");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }else {
-                importTipoAutoSolicitoCliente="0.0";
+            } else {
+                importTipoAutoSolicitoCliente = "0.0";
             }
         }
-        sumaImportesServicio=Double.parseDouble(importTipoAutoSolicitoCliente)+
-                             Double.parseDouble(ListaServiciosCreados.get(posicion_).getImporteAireAcondicionado().toString())+
-                             Double.parseDouble(ListaServiciosCreados.get(posicion_).getImportePeaje().toString())+
-                             Double.parseDouble(ListaServiciosCreados.get(posicion_).getImporteServicio().toString());
+        sumaImportesServicio = Double.parseDouble(importTipoAutoSolicitoCliente) +
+                Double.parseDouble(ListaServiciosCreados.get(posicion_).getImporteAireAcondicionado().toString()) +
+                Double.parseDouble(ListaServiciosCreados.get(posicion_).getImportePeaje().toString()) +
+                Double.parseDouble(ListaServiciosCreados.get(posicion_).getImporteServicio().toString());
         detalle =
                 "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
                         + "\t" + ListaServiciosCreados.get(posicion_).getFecha().toString() + "<br>"
@@ -209,29 +213,29 @@ public class MainActivity extends AppCompatActivity
                         + ListaServiciosCreados.get(posicion_).getDireccionFinal().toString() + "<br>"
                         + "<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
                         + ListaServiciosCreados.get(posicion_).getNumeroMinutoTiempoEspera().toString() + "\t" + " min" + "<br>"
-                        +"<font color=\"#11aebf\"><bold>Tipo Servicio :&nbsp;</bold></font>"
-                        +"( "+ListaServiciosCreados.get(posicion_).getDesAutoTipoPidioCliente().toString()+" )"+"<br><br>"
+                        + "<font color=\"#11aebf\"><bold>Tipo Servicio :&nbsp;</bold></font>"
+                        + "( " + ListaServiciosCreados.get(posicion_).getDesAutoTipoPidioCliente().toString() + " )" + "<br><br>"
 
-                        +"<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
-                        +"S/."+ListaServiciosCreados.get(posicion_).getImporteServicio().toString()+"<br>"
+                        + "<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
+                        + "S/." + ListaServiciosCreados.get(posicion_).getImporteServicio().toString() + "<br>"
 
-                        +"<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
-                        +"S/."+ListaServiciosCreados.get(posicion_).getImporteAireAcondicionado().toString()+"<br>"
+                        + "<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
+                        + "S/." + ListaServiciosCreados.get(posicion_).getImporteAireAcondicionado().toString() + "<br>"
 
                       /*  +"<font color=\"#11aebf\"><bold>Import Tiem espera:&nbsp;</bold></font>"
                         +"S/."+jsonDetalle.getString("importeTiempoEspera")+"<br>"*/
 
-                        +"<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
-                        +"S/."+ListaServiciosCreados.get(posicion_).getImportePeaje().toString()+"<br>"
+                        + "<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
+                        + "S/." + ListaServiciosCreados.get(posicion_).getImportePeaje().toString() + "<br>"
 
-                        +"<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
-                        +"S/."+importTipoAutoSolicitoCliente+"<br><br>"
+                        + "<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
+                        + "S/." + importTipoAutoSolicitoCliente + "<br><br>"
 
-                        +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
-                        +"S/."+String.valueOf(sumaImportesServicio)+"<br><br>";
-                        //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
+                        + "<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
+                        + "S/." + String.valueOf(sumaImportesServicio) + "<br><br>";
+        //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
 
-                lblDetalleServicio.setText(Html.fromHtml(detalle));
+        lblDetalleServicio.setText(Html.fromHtml(detalle));
 
        /* TextView lbldireccion1=(TextView)view.findViewById(R.id.txtDireccion1);
         TextView lbldireccion2=(TextView)view.findViewById(R.id.txtDireccion2);
@@ -640,6 +644,20 @@ public class MainActivity extends AppCompatActivity
         final double[] lat = new double[1];
         final double[] lon = new double[1];
 
+   /*     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }*/
         map.setMyLocationEnabled(true);
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override

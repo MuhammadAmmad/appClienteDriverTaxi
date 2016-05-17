@@ -101,9 +101,13 @@ public class wsLoginCliente extends AsyncTask<String,String,String> {
             switch (CasoActivity){
                 case 101:
                     new wsExtraerDataCliente(Email,context,CasoActivity).execute();
+                    new wsExtraerDistritos(context).execute();
+                    new wsExtraerConfiguracionAdicionales(context).execute();
                     break;
                 case 102:
                     new wsExtraerDataCliente(Email,context,CasoActivity).execute();
+                    new wsExtraerDistritos(context).execute();
+                    new wsExtraerConfiguracionAdicionales(context).execute();
                     break;
                           }
         }else if(sw==0){

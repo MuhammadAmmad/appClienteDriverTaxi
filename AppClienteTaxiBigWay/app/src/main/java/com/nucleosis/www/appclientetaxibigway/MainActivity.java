@@ -17,6 +17,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -41,7 +43,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.places.AutocompletePrediction;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -50,9 +60,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appclientetaxibigway.Adpaters.CustomInfoWindow;
+import com.nucleosis.www.appclientetaxibigway.Adpaters.PlaceAutocompleteAdapter;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentDataClient;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentMiUbicacion;
@@ -65,6 +77,7 @@ import com.nucleosis.www.appclientetaxibigway.beans.beansListaPolygono;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
 import com.nucleosis.www.appclientetaxibigway.kmlPolygonos.KmlCreatorPolygono;
 import com.nucleosis.www.appclientetaxibigway.ws.wsEnviarLatLonClienteDireccionIncio;
+import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerConfiguracionAdicionales;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerIdZonaIdDistrito;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerPrecioZonaDistrito;
 import com.nucleosis.www.appclientetaxibigway.ws.wsValidarHoraServicio;
@@ -76,7 +89,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements OnMapReadyCallback, View.OnClickListener {
+        implements OnMapReadyCallback, View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
     private MapFragment mapFragment;
     private ComponentesR compR;
 
@@ -93,7 +106,12 @@ public class MainActivity extends AppCompatActivity
     private int hora,minuto,mYear, mMonth, mDay;
     private String Fecha;
     private Fichero fichero;
+    private PlaceAutocompleteAdapter mAdapter;
+    protected GoogleApiClient mGoogleApiClient;
     private long mLastClickTime = 0;
+    public static final String TAG = "SampleActivityBase";
+    private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
+            new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +121,6 @@ public class MainActivity extends AppCompatActivity
         myTypeFace = new MyTypeFace(MainActivity.this);
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment);
         mapFragment.getMapAsync(this);
-
         preferencesCliente = new PreferencesCliente(MainActivity.this);
         compR = new ComponentesR(MainActivity.this);
         compR.Contros_MainActivity(MAIN_ACTIVITY);
@@ -116,7 +133,32 @@ public class MainActivity extends AppCompatActivity
             setupNavigationDrawerContent(compR.getNavigationView());
         }
         setupNavigationDrawerContent(compR.getNavigationView());
+        //API GOOGLE PLACE
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                // .enableAutoManage(getActivity(), 0 /* clientId */, this)
+                .addApi(Places.GEO_DATA_API)
+                .build();
+        mAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient, BOUNDS_LIMA,
+                null);
+        compR.getAutoCompletText1().setOnItemClickListener(mAutocompleteClickListener_1);
+        compR.getAutoCompletText1().setAdapter(mAdapter);
+        compR.getAutoCompletText2().setOnItemClickListener(mAutocompleteClickListener_2);
+        compR.getAutoCompletText2().setAdapter(mAdapter);
 
+        //OBTIENE INFORMACION DE COSTOS GENERALES   TIEMPO ESPERA/PEAJE/VIP/ECONOMICO/AIREACONDICIONADO
+        //RUTA DE LA URL FOTO CONDUCTOR
+        JSONObject jsonConfiguracion=fichero.ExtraerConfiguraciones();
+        if(jsonConfiguracion==null){
+            new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
+        }
+
+    }
+    @Override
+    public void onStart() {
+        Log.d("stado_","onStar");
+        super.onStart();
+        if (mGoogleApiClient != null)
+            mGoogleApiClient.connect();
     }
     @Override
     public void onAttachFragment(Fragment fragment) {
@@ -198,11 +240,16 @@ public class MainActivity extends AppCompatActivity
                 /// Toast.makeText(getApplicationContext(),String.valueOf(pos.getLatitude()+"****"+pos.getLongitude()),Toast.LENGTH_SHORT).show();
                 lat[0] = pos.getLatitude();
                 lon[0] = pos.getLongitude();
+                LatLng latLngIncial=new LatLng(pos.getLatitude(),pos.getLongitude());
                 if (sw == 0) {
                     sw = 1;
                     CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
                             lat[0], lon[0]), 12);
+                    ZonaIncio =DeterminaZona(listPolyGo.size(),latLngIncial);
+                    new AddresRestmap(MainActivity.this,String.valueOf( pos.getLatitude()), String.valueOf(pos.getLongitude()), 1).execute();
+                    new wsExtraerIdZonaIdDistrito(MainActivity.this,ZonaIncio,1).execute();
                     MarcardorIncio(map, lat[0], lon[0]);
+
                     map.animateCamera(cam);
                 }
 
@@ -232,8 +279,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 2:
                 fragmentManager = getSupportFragmentManager();
-                String addresIncial=compR.getEditAddresss().getText().toString();
-                String addresFinal =compR.getEditAddresssFinal().getText().toString();
+                String addresIncial=compR.getAutoCompletText1().getText().toString();
+                String addresFinal =compR.getAutoCompletText2().getText().toString();
 
                 Bundle arguments = new Bundle();
                 arguments.putString("ini_", addresIncial);
@@ -266,8 +313,11 @@ public class MainActivity extends AppCompatActivity
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
-                String addresIncio=compR.getEditAddresss().getText().toString().trim();
-                String addresFin=compR.getEditAddresssFinal().getText().toString().trim();
+            /*    String addresIncio=compR.getEditAddresss().getText().toString().trim();
+                String addresFin=compR.getEditAddresssFinal().getText().toString().trim();*/
+                String addresIncio=compR.getAutoCompletText1().getText().toString().trim();
+                String addresFin=compR.getAutoCompletText2().getText().toString().trim();
+
                 Log.d("incio***",String.valueOf(addresIncio.length())+"-->"+String.valueOf(addresFin.length()));
                 String msnServicioTaxi=getResources().getString(R.string.NoServicio);
                 if(addresIncio.length()!=0 && addresFin.length()!=0 ){
@@ -296,7 +346,7 @@ public class MainActivity extends AppCompatActivity
         CameraUpdate ZoomCam = CameraUpdateFactory.zoomTo(12);
         mapa.animateCamera(ZoomCam);
         final LatLng PERTH = new LatLng(lat, lon);
-        final LatLng LatLonFin=new LatLng(lat+0.0060,lon+0.0090);
+        final LatLng LatLonFin=new LatLng(lat+0.0060,lon+0.0390);
         // final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
         final Marker markerInicio = mapa.addMarker(new MarkerOptions()
                 .position(PERTH)
@@ -356,7 +406,6 @@ public class MainActivity extends AppCompatActivity
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                     new wsExtraerIdZonaIdDistrito(MainActivity.this,ZonaIncio,1).execute();
 
                 } else if (marker.getId().equals("m1")) {
@@ -369,6 +418,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+
     private String DeterminaZona(int totalPoligono,LatLng positionMarker){
         String zona="";
         for (int x = 0; x < totalPoligono; x++) {
@@ -385,5 +435,117 @@ public class MainActivity extends AppCompatActivity
         return zona;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+            Log.d("stado_","stop");
+        }
+        Log.d("stado_","stop");
+    }
 
+    private AdapterView.OnItemClickListener mAutocompleteClickListener_1
+            = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            final AutocompletePrediction item = mAdapter.getItem(position);
+            final String placeId = item.getPlaceId();
+            final CharSequence primaryText = item.getPrimaryText(null);
+            PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
+                    .getPlaceById(mGoogleApiClient, placeId);
+            placeResult.setResultCallback(mUpdatePlaceDetailsCallback_1);
+
+           /* Toast.makeText(getApplicationContext(), "Clicked: " + primaryText,
+                    Toast.LENGTH_SHORT).show();*/
+            //  Log.i(TAG, "Called getPlaceById to get Place details for " + placeId);
+        }
+    };
+
+    private AdapterView.OnItemClickListener mAutocompleteClickListener_2
+            = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            final AutocompletePrediction item = mAdapter.getItem(position);
+
+            final String placeId = item.getPlaceId();
+
+            final CharSequence primaryText = item.getPrimaryText(null);
+            final CharSequence fullText=item.getFullText(null);
+            PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
+                    .getPlaceById(mGoogleApiClient, placeId);
+            placeResult.setResultCallback(mUpdatePlaceDetailsCallback_2);
+
+          /*  Toast.makeText(getApplicationContext(), "Clicked: " + fullText,
+                    Toast.LENGTH_SHORT).show();*/
+            //  Log.i(TAG, "Called getPlaceById to get Place details for " + placeId);
+        }
+    };
+    private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback_1
+            = new ResultCallback<PlaceBuffer>() {
+        @Override
+        public void onResult(PlaceBuffer places) {
+            Activity activity=MainActivity.this;
+
+            if (!places.getStatus().isSuccess()) {
+                // Request did not complete successfully
+                Log.e(TAG, "Place query did not complete. Error: " + places.getStatus().toString());
+                places.release();
+                return;
+            }
+            // Get the Place object from the buffer.
+            final Place place = places.get(0);
+
+            Log.d("location_",places.get(0).getLatLng().toString());
+            final CharSequence thirdPartyAttribution = places.getAttributions();
+            Log.d("latLong_adres", String.valueOf(place.getLatLng()));
+            Log.i(TAG, "Place details received: " + place.getAddress());
+            //  Log.d("distancia", String.valueOf(place.getLocale()));
+            LatLng puntoEnZona=place.getLatLng();
+
+            //OBTIENE EL ID_DE DE ZONA Y DE DISTRITO
+            ZonaIncio =DeterminaZona(listPolyGo.size(),puntoEnZona);
+            new wsExtraerIdZonaIdDistrito(MainActivity.this,ZonaIncio,1).execute();
+            int casoEntrada=1;
+
+         //   new wsExtraerIdZonaIdDistrito(activity,zona,casoEntrada).execute();
+            Log.d("zonaAdres1",ZonaIncio);
+            places.release();
+        }
+    };
+
+    private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback_2
+            = new ResultCallback<PlaceBuffer>() {
+        @Override
+        public void onResult(PlaceBuffer places) {
+            Activity activity=MainActivity.this;
+            if (!places.getStatus().isSuccess()) {
+                // Request did not complete successfully
+                Log.e(TAG, "Place query did not complete. Error: " + places.getStatus().toString());
+                places.release();
+                return;
+            }
+            // Get the Place object from the buffer.
+            final Place place = places.get(0);
+            Log.d("location_",places.get(0).getLatLng().toString());
+            final CharSequence thirdPartyAttribution = places.getAttributions();
+            Log.d("latLong_adres", String.valueOf(place.getLatLng()));
+            Log.i(TAG, "Place details received: " + place.getName());
+            //  Log.d("distancia", String.valueOf(place.getLocale()));
+            LatLng puntoEnZona=place.getLatLng();
+            ZonaFin=DeterminaZona(listPolyGo.size(),puntoEnZona);
+            Log.d("zonaAdres2",ZonaFin);
+            new wsExtraerIdZonaIdDistrito(MainActivity.this,ZonaFin,2).execute();
+            //OBTIENE EL ID_DE DE ZONA Y DE DISTRITO
+            int casoEntrada=2;
+//            Log.d("observandoFichero",fichero.ExtraerConfiguraciones().toString());
+          //  new wsExtraerIdZonaIdDistrito(activity,zona,casoEntrada).execute();
+            places.release();
+        }
+    };
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }

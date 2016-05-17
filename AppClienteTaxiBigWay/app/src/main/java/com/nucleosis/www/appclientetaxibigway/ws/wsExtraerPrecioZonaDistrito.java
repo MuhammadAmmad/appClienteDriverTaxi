@@ -14,6 +14,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
+import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.MainActivity;
 import com.nucleosis.www.appclientetaxibigway.R;
 import com.nucleosis.www.appclientetaxibigway.beans.dataClienteSigUp;
@@ -45,6 +46,10 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
     private long mLastClickTime = 0;
     private String addresIncio;
     private String addresFin;
+    private String idZonaIncio="-1";
+    private  String idZonaFin="-1";
+    private Fichero fichero;
+    private JSONObject configuracionServicio;
     public wsExtraerPrecioZonaDistrito(Context context ,
                                        JSONObject jsonOrigen,
                                        JSONObject jsonDestino) {
@@ -56,7 +61,28 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
         compR=new ComponentesR(context);
         compR.Contros_MainActivity(CX.MAIN_ACTIVITY);
 
-        Log.d("dataJon",jsonOrigen.toString()+"-*-*-*"+jsonDestino.toString());
+           if(jsonOrigen!=null && jsonDestino!=null){
+               Log.d("dataJon",jsonOrigen.toString()+"-*-*-*"+jsonDestino.toString());
+
+               try {
+                   idZonaIncio=jsonOrigen.getString("idZona").toString();
+                   idZonaFin=jsonDestino.getString("idZona").toString();
+               } catch (JSONException e) {
+                   e.printStackTrace();
+               }
+           }else {
+               idZonaIncio="-1";
+               idZonaFin="-1";
+           }
+        fichero=new Fichero(context);
+
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        configuracionServicio=fichero.ExtraerConfiguraciones();
+
     }
 
     @Override
@@ -65,13 +91,8 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
         SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo7());
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
-        try {
-            request.addProperty("idZonaInicio",Integer.parseInt(jsonOrigen.getString("idZona").toString()));
-            request.addProperty("idZonaFinal",Integer.parseInt(jsonDestino.getString("idZona").toString()));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+            request.addProperty("idZonaInicio",Integer.parseInt(idZonaIncio));
+            request.addProperty("idZonaFinal",Integer.parseInt(idZonaFin));
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 
@@ -84,7 +105,6 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
             Log.d("responseTarifas",response1.toString());
             if(response1.hasProperty("return")){
                if(response1.getProperty("return")!=null){
-
                    Tarifa=response1.getProperty("return").toString();
                } else {
                    Log.d("tarifaResponse", "nulos-->");
@@ -113,8 +133,8 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
     private void AlertPedirServicio(final String tarifa) {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         final View view = CX.MAIN_ACTIVITY.getLayoutInflater().inflate(R.layout.activity_solicitar__servicio__cliente, null);
-        String addresIni=compR.getEditAddresss().getText().toString().trim();
-        String addressFin=compR.getEditAddresssFinal().getText().toString().trim();
+        String addresIni=compR.getAutoCompletText1().getText().toString().trim();
+        String addressFin=compR.getAutoCompletText2().getText().toString().trim();
         compR.Contros_Alert_Pedir_Servicio(view);
         alertDialogBuilder.setView(view);
         compR.getTxtTarifa().setText("S/. "+tarifa);
@@ -127,25 +147,11 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
         int hh = calendar.get(Calendar.HOUR_OF_DAY);
         int  ss = calendar.get(Calendar.MINUTE);
 
-        if(dd>=10  && (mm+1)>=10){
-            compR.getEditFechaServicio().setText(dd + "-"+ (mm + 1) + "-" + yyyy);
+        mostrarFechaEdit(dd,mm,yyyy,hh,ss);
+        compR.getCheckBoxAire_No().setChecked(true);
+        compR.getCheckBoxAutoEconomico().setChecked(true);
 
-        } else if (dd >= 10 && (mm + 1) < 10) {
-            compR.getEditFechaServicio().setText(dd + "-0"+ (mm + 1) + "-" + yyyy);
-        } else if (dd < 10 && (mm + 1) >= 10) {
-            compR.getEditFechaServicio().setText("0" + dd + "-"+ (mm + 1) + "-" + yyyy);
-        }else if (dd<10 && (mm+1)<10){
-            compR.getEditFechaServicio().setText("0"+dd + "-0"+ (mm + 1) + "-" + yyyy);
-        }
-        if(hh>=10 && ss>=10){
-            compR.getEditHoraServicio().setText(String.valueOf(hh)+":"+String.valueOf(ss));
-        }else if(hh>=10 && ss<10){
-            compR.getEditHoraServicio().setText(String.valueOf(hh)+":0"+String.valueOf(ss));
-        }else if(hh<10 && ss>=10){
-            compR.getEditHoraServicio().setText("0"+String.valueOf(hh)+":"+String.valueOf(ss));
-        }else if(hh<10 && ss<10){
-            compR.getEditHoraServicio().setText("0"+String.valueOf(hh)+":0"+String.valueOf(ss));
-        }
+
         compR.getCheckBoxFecha().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -163,6 +169,79 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
                 }
             }
         });
+
+        compR.getCheckBoxAire_Si().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    String costoAire="0.00";
+                    if (configuracionServicio!=null){
+                        try {
+                            costoAire=configuracionServicio.getString("impAireAcondicionado");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            costoAire="0.00";
+                        }
+                    }else {
+                        costoAire="0.00";
+                    }
+                    compR.getCheckBoxAire_No().setChecked(false);
+                    compR.getTxtCostoAire().setVisibility(View.VISIBLE);
+                    compR.getTxtCostoAire().setText("S/. "+costoAire);
+                }else {
+                    compR.getTxtCostoAire().setText("S/.0.00");
+                    compR.getTxtCostoAire().setVisibility(View.GONE);
+                }
+
+
+            }
+        });
+        compR.getCheckBoxAire_No().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    compR.getCheckBoxAire_Si().setChecked(false);
+                }
+            }
+        });
+        compR.getCheckBoxAutoVip().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    String costoAutoVip="0.00";
+                    if (configuracionServicio!=null){
+                        try {
+                            costoAutoVip=configuracionServicio.getString("impAutoVip");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            costoAutoVip="0.00";
+                        }
+                    }else {
+                        costoAutoVip="0.00";
+                    }
+
+                    compR.getCheckBoxAutoEconomico().setChecked(false);
+                    compR.getTxtCostoAutoTipoSoliciot().setVisibility(View.VISIBLE);
+                    compR.getTxtCostoAutoTipoSoliciot().setText("S/. "+costoAutoVip);
+
+                }else {
+                    compR.getTxtCostoAutoTipoSoliciot().setVisibility(View.GONE);
+                    compR.getTxtCostoAutoTipoSoliciot().setText("S/ 0.00");
+                }
+            }
+        });
+
+        compR.getCheckBoxAutoEconomico().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    compR.getCheckBoxAutoVip().setChecked(false);
+                }
+
+            }
+        });
+
+
         compR.getBtnConfirmarServicio().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,8 +252,44 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
                 String fechaIngreso = compR.getEditFechaServicio().getText().toString();
                 String horaIngreso = compR.getEditHoraServicio().getText().toString();
                 if (compR.getCheckBoxFecha().isChecked() && compR.getCheckBoxHora().isChecked()) {
+                    String idAire="0";
+                    String precioAire="";
+                    String idTipoAuto="2";
 
-                    new wsValidarHoraServicio(context, fechaIngreso, horaIngreso,jsonOrigen,jsonDestino,tarifa,alertDialog).execute();
+                    if(jsonOrigen!=null && jsonDestino!=null){
+                        if(compR.getCheckBoxAire_Si().isChecked()){
+                            idAire="1";//DESEA AIRE ACONDICIONADO
+
+                            if (configuracionServicio!=null){
+                                try {
+                                    precioAire=configuracionServicio.getString("impAireAcondicionado");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    precioAire="";
+                                }
+                            }else {
+                                precioAire="";
+                            }
+                        }else {
+                            idAire="0";//NO DESEA AIRE ACONDICIONADO
+                        }
+                        if (compR.getCheckBoxAutoVip().isChecked()){
+                            idTipoAuto="1";//DESA AUTO VIP
+                        }else {
+                            idTipoAuto="2";//DESA AUTO ECONOMICO
+                        }
+                        new wsValidarHoraServicio(context, fechaIngreso, horaIngreso,
+                                                        jsonOrigen,
+                                                        jsonDestino,
+                                                        tarifa,
+                                                        idAire,
+                                                        precioAire,
+                                                        idTipoAuto,
+                                                        alertDialog).execute();
+                    }else {
+                        Log.d("jsonOringenDestion","nulll chekar");
+                    }
+
                 } else {
                     Toast.makeText(context, "Seleccione Hora o Fecha", Toast.LENGTH_SHORT).show();
                 }
@@ -214,6 +329,31 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
         },hora,minuto,true);
         timerHora.show();
     }
+
+    private void mostrarFechaEdit(int dd,int mm,int yyyy, int hh, int ss){
+        if(dd>=10  && (mm+1)>=10){
+            compR.getEditFechaServicio().setText(dd + "-"+ (mm + 1) + "-" + yyyy);
+
+        } else if (dd >= 10 && (mm + 1) < 10) {
+            compR.getEditFechaServicio().setText(dd + "-0"+ (mm + 1) + "-" + yyyy);
+        } else if (dd < 10 && (mm + 1) >= 10) {
+            compR.getEditFechaServicio().setText("0" + dd + "-"+ (mm + 1) + "-" + yyyy);
+        }else if (dd<10 && (mm+1)<10){
+            compR.getEditFechaServicio().setText("0"+dd + "-0"+ (mm + 1) + "-" + yyyy);
+        }
+        if(hh>=10 && ss>=10){
+            compR.getEditHoraServicio().setText(String.valueOf(hh)+":"+String.valueOf(ss));
+        }else if(hh>=10 && ss<10){
+            compR.getEditHoraServicio().setText(String.valueOf(hh)+":0"+String.valueOf(ss));
+        }else if(hh<10 && ss>=10){
+            compR.getEditHoraServicio().setText("0"+String.valueOf(hh)+":"+String.valueOf(ss));
+        }else if(hh<10 && ss<10){
+            compR.getEditHoraServicio().setText("0"+String.valueOf(hh)+":0"+String.valueOf(ss));
+        }
+
+
+    }
+
     private void ExtracDate(){
         final Calendar c = Calendar.getInstance();
 

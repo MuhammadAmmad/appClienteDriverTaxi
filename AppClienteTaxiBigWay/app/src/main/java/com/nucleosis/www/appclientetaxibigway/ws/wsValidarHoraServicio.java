@@ -45,11 +45,20 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
     private PreferencesCliente preferencesCliente;
     private String idCliente;
     private String tarifa;
+    private String solicitaAire;
+    private String preciosAireSolicitado;
+    private String tipoAutoSolicita;
     private MainActivity mainActivity=new MainActivity();
     private Fichero fichero;
     public wsValidarHoraServicio(Context context,
                                  String fechaIngreso,
-                                 String horaIngreso,JSONObject jsonOrigen,JSONObject jsonDestino,String tarifa,
+                                 String horaIngreso,
+                                 JSONObject jsonOrigen,
+                                 JSONObject jsonDestino,
+                                 String tarifa,
+                                 String solicitaAire,
+                                 String preciosAireSolicitado,
+                                 String tipoAutoSolicita,
                                  AlertDialog alertDialog) {
         this.context = context;
         HoraIngreso = horaIngreso;
@@ -58,6 +67,9 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
         this.jsonDestino = jsonDestino;
         this.jsonOrigen = jsonOrigen;
         this.tarifa=tarifa;
+        this.preciosAireSolicitado=preciosAireSolicitado;
+        this.tipoAutoSolicita=tipoAutoSolicita;
+        this.solicitaAire=solicitaAire;
         formatIngreso = new SimpleDateFormat("yyyy-MM-dd");
         formatSalida = new SimpleDateFormat("dd-MM-yyyy");
         preferencesCliente=new PreferencesCliente(context);
@@ -184,9 +196,9 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                             request.addProperty("impServicio", tarifa);
                             request.addProperty("desServicio", "");
 
-                            request.addProperty("indAireAcondicionado", 0);//indAireAcondicionado=0 SI NO DESEA AIREACONDICIONADO
+                            request.addProperty("indAireAcondicionado", solicitaAire);//indAireAcondicionado=0 SI NO DESEA AIREACONDICIONADO
                                                                             //indAireAcondicionado =1  SI GUSTA AIRE ACONDICIONADO
-                            request.addProperty("impAireAcondicionado", "");
+                            request.addProperty("impAireAcondicionado", preciosAireSolicitado);
                             request.addProperty("impPeaje", "");
                             request.addProperty("usrRegistro", "");
                             request.addProperty("idCliente", idCliente);
@@ -195,7 +207,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                             request.addProperty("idConductor", 0);
                             request.addProperty("idAuto", 0);
 
-                            request.addProperty("idAutoTipo", 1); //idAutoTipo=1  VIP     idAutoTipo=2 ECONOMICO
+                            request.addProperty("idAutoTipo", tipoAutoSolicita); //idAutoTipo=1  VIP     idAutoTipo=2 ECONOMICO
 
 
 
