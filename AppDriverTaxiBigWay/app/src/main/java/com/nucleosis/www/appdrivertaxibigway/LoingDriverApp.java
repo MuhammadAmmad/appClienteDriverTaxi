@@ -23,8 +23,8 @@ private componentesR compR;
         compR.cargar_toolbar(LoingDriverApp);
         compR.Controls_LoginDriverApp(LoingDriverApp);
        // compR.getEditUser().setText("45845785");
-        compR.getEditUser().setText("11111111");
-        compR.getEditPass().setText("123456");
+        //compR.getEditUser().setText("11111111");
+      //  compR.getEditPass().setText("123456");
        // compR.getBtnSigIn().setOnClickListener(this);
          }
 
