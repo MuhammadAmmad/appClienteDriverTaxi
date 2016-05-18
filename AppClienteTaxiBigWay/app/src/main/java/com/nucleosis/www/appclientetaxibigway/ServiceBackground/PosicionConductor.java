@@ -98,7 +98,7 @@ public class PosicionConductor extends Service {
 
             }
         };
-        timerCola.scheduleAtFixedRate(TimerCronometro, 0, 1000);
+        timerCola.scheduleAtFixedRate(TimerCronometro, 0, 10000);
 
         return super.onStartCommand(intent, flags, startId);
 

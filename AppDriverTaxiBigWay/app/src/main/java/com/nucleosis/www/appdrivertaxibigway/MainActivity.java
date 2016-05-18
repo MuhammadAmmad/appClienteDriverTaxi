@@ -237,37 +237,7 @@ public class MainActivity extends AppCompatActivity
 
         lblDetalleServicio.setText(Html.fromHtml(detalle));
 
-       /* TextView lbldireccion1=(TextView)view.findViewById(R.id.txtDireccion1);
-        TextView lbldireccion2=(TextView)view.findViewById(R.id.txtDireccion2);
 
-        TextView lblDistrito1=(TextView)view.findViewById(R.id.txtDistrito1);
-        TextView lblDistrito2=(TextView)view.findViewById(R.id.txtDistrito2);
-
-        TextView lblfecha=(TextView)view.findViewById(R.id.txtFecha);
-        TextView lblHora=(TextView)view.findViewById(R.id.txtHora);
-        final TextView lblImporteServicio=(TextView)view.findViewById(R.id.txtImporteServicio);
-
-
-
-        lbldireccion1.setText("\t\t"+ListaServiciosCreados.get(posicion_).getDireccionIncio());
-        lbldireccion2.setText("\t\t"+ListaServiciosCreados.get(posicion_).getDireccionFinal());
-
-        lblDistrito1.setText("\t\t"+ListaServiciosCreados.get(posicion_).getNameDistritoInicio());
-        lblDistrito2.setText("\t\t"+ListaServiciosCreados.get(posicion_).getNameDistritoFin());
-
-        lblfecha.setText("\t\t"+ListaServiciosCreados.get(posicion_).getFecha());
-        lblHora.setText("\t\t"+ListaServiciosCreados.get(posicion_).getHora());
-        lblImporteServicio.setText("\t\t"+"S/."+ListaServiciosCreados.get(posicion_).getImporteServicio());
-
-        String lblDetalle=  "Direccion 1:"+"\n"+"\t\t"+ListaServiciosCreados.get(posicion_).getDireccionIncio()+"\n"+
-                            "Direccion 2:"+"\n"+"\t\t"+ListaServiciosCreados.get(posicion_).getDireccionFinal()+"\n"+
-                            "Distrito 1:"+"\n"+"\t\t"+ListaServiciosCreados.get(posicion_).getNameDistritoInicio()+"\n"+
-                            "Distrito 2:"+"\n"+"\t\t"+ ListaServiciosCreados.get(posicion_).getNameDistritoFin()+"\n"+
-                            ListaServiciosCreados.get(posicion_).getFecha()+"\n"+
-                            ListaServiciosCreados.get(posicion_).getHora()+"\n"+
-                            "S/."+ListaServiciosCreados.get(posicion_).getImporteServicio();*/
-
-        //    lblDetalleServicio.setText(lblDetalle);
         alertDialogBuilder.setView(view);
         AlertDialog alertDialog;
 
@@ -644,11 +614,8 @@ public class MainActivity extends AppCompatActivity
         final double[] lat = new double[1];
         final double[] lon = new double[1];
 
-   /*     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -657,7 +624,7 @@ public class MainActivity extends AppCompatActivity
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             return;
-        }*/
+        }
         map.setMyLocationEnabled(true);
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override

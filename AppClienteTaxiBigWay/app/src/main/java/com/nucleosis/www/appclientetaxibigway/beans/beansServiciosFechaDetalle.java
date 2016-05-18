@@ -1,9 +1,10 @@
-package com.nucleosis.www.appdrivertaxibigway.Beans;
+package com.nucleosis.www.appclientetaxibigway.beans;
 
 /**
- * Created by carlos.lopez on 11/05/2016.
+ * Created by karlos on 18/05/2016.
  */
-public class beansListaServiciosCreadosPorFecha {
+public class beansServiciosFechaDetalle {
+
     private String idServicio; //ID_SERVICIO
     private String importeServicio;  //IMP_SERVICIO
     private String DescripcionServicion;  //DES_SERVICIO
@@ -36,96 +37,6 @@ public class beansListaServiciosCreadosPorFecha {
     private String desAutoTipo;
     private String desAutoTipoPidioCliente;
     private String idAutoTipoPidioCliente;
-    private String numeroMovilTaxi;
-    public String getIdAutoTipoPidioCliente() {
-        return idAutoTipoPidioCliente;
-    }
-
-    public void setIdAutoTipoPidioCliente(String idAutoTipoPidioCliente) {
-        this.idAutoTipoPidioCliente = idAutoTipoPidioCliente;
-    }
-
-    public String getDesAutoTipoPidioCliente() {
-        return desAutoTipoPidioCliente;
-    }
-
-    public void setDesAutoTipoPidioCliente(String desAutoTipoPidioCliente) {
-        this.desAutoTipoPidioCliente = desAutoTipoPidioCliente;
-    }
-
-    public String getIndAireAcondicionado() {
-        return indAireAcondicionado;
-    }
-
-    public void setIndAireAcondicionado(String indAireAcondicionado) {
-        this.indAireAcondicionado = indAireAcondicionado;
-    }
-
-    //numero de la movil
-
-    public String getNameZonaIncio() {
-        return nameZonaIncio;
-    }
-
-    public void setNameZonaIncio(String nameZonaIncio) {
-        this.nameZonaIncio = nameZonaIncio;
-    }
-
-    public String getNameZonaFin() {
-        return nameZonaFin;
-    }
-
-    public void setNameZonaFin(String nameZonaFin) {
-        this.nameZonaFin = nameZonaFin;
-    }
-
-    public String getNumeroMovilTaxi() {
-        return numeroMovilTaxi;
-    }
-
-    public void setNumeroMovilTaxi(String numeroMovilTaxi) {
-        this.numeroMovilTaxi = numeroMovilTaxi;
-    }
-
-    public String getDesAutoTipo() {
-        return desAutoTipo;
-    }
-
-    public void setDesAutoTipo(String desAutoTipo) {
-        this.desAutoTipo = desAutoTipo;
-    }
-
-    public String getNucCelularCliente() {
-        return nucCelularCliente;
-    }
-
-    public void setNucCelularCliente(String nucCelularCliente) {
-        this.nucCelularCliente = nucCelularCliente;
-    }
-
-    public String getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public String getIdTipoAuto() {
-        return idTipoAuto;
-    }
-
-    public void setIdTipoAuto(String idTipoAuto) {
-        this.idTipoAuto = idTipoAuto;
-    }
-
-    public String getIdConductor() {
-        return idConductor;
-    }
-
-    public void setIdConductor(String idConductor) {
-        this.idConductor = idConductor;
-    }
 
     public String getIdServicio() {
         return idServicio;
@@ -151,12 +62,12 @@ public class beansListaServiciosCreadosPorFecha {
         DescripcionServicion = descripcionServicion;
     }
 
-    public String getImportePeaje() {
-        return importePeaje;
+    public String getIndAireAcondicionado() {
+        return indAireAcondicionado;
     }
 
-    public void setImportePeaje(String importePeaje) {
-        this.importePeaje = importePeaje;
+    public void setIndAireAcondicionado(String indAireAcondicionado) {
+        this.indAireAcondicionado = indAireAcondicionado;
     }
 
     public String getImporteAireAcondicionado() {
@@ -175,6 +86,14 @@ public class beansListaServiciosCreadosPorFecha {
         this.numeroMinutoTiempoEspera = numeroMinutoTiempoEspera;
     }
 
+    public String getImportePeaje() {
+        return importePeaje;
+    }
+
+    public void setImportePeaje(String importePeaje) {
+        this.importePeaje = importePeaje;
+    }
+
     public String getImporteTiempoEspera() {
         return importeTiempoEspera;
     }
@@ -191,6 +110,14 @@ public class beansListaServiciosCreadosPorFecha {
         this.nameDistritoInicio = nameDistritoInicio;
     }
 
+    public String getNameZonaIncio() {
+        return nameZonaIncio;
+    }
+
+    public void setNameZonaIncio(String nameZonaIncio) {
+        this.nameZonaIncio = nameZonaIncio;
+    }
+
     public String getNameDistritoFin() {
         return nameDistritoFin;
     }
@@ -199,60 +126,20 @@ public class beansListaServiciosCreadosPorFecha {
         this.nameDistritoFin = nameDistritoFin;
     }
 
-    public String getNombreConductor() {
-        return nombreConductor;
+    public String getNameZonaFin() {
+        return nameZonaFin;
     }
 
-    public void setNombreConductor(String nombreConductor) {
-        this.nombreConductor = nombreConductor;
+    public void setNameZonaFin(String nameZonaFin) {
+        this.nameZonaFin = nameZonaFin;
     }
 
-    public String getFechaFormat() {
-        return FechaFormat;
+    public String getDireccionIncio() {
+        return DireccionIncio;
     }
 
-    public void setFechaFormat(String fechaFormat) {
-        FechaFormat = fechaFormat;
-    }
-
-    public String getInfoAddress() {
-        return infoAddress;
-    }
-
-    public void setInfoAddress(String infoAddress) {
-        this.infoAddress = infoAddress;
-    }
-
-    public String getHora() {
-        return Hora;
-    }
-
-    public void setHora(String hora) {
-        Hora = hora;
-    }
-
-    public String getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(String fecha) {
-        Fecha = fecha;
-    }
-
-    public String getStatadoServicio() {
-        return statadoServicio;
-    }
-
-    public void setStatadoServicio(String statadoServicio) {
-        this.statadoServicio = statadoServicio;
-    }
-
-    public String getNombreStadoServicio() {
-        return nombreStadoServicio;
-    }
-
-    public void setNombreStadoServicio(String nombreStadoServicio) {
-        this.nombreStadoServicio = nombreStadoServicio;
+    public void setDireccionIncio(String direccionIncio) {
+        DireccionIncio = direccionIncio;
     }
 
     public String getDireccionFinal() {
@@ -263,11 +150,115 @@ public class beansListaServiciosCreadosPorFecha {
         this.direccionFinal = direccionFinal;
     }
 
-    public String getDireccionIncio() {
-        return DireccionIncio;
+    public String getNombreConductor() {
+        return nombreConductor;
     }
 
-    public void setDireccionIncio(String direccionIncio) {
-        DireccionIncio = direccionIncio;
+    public void setNombreConductor(String nombreConductor) {
+        this.nombreConductor = nombreConductor;
+    }
+
+    public String getNombreStadoServicio() {
+        return nombreStadoServicio;
+    }
+
+    public void setNombreStadoServicio(String nombreStadoServicio) {
+        this.nombreStadoServicio = nombreStadoServicio;
+    }
+
+    public String getStatadoServicio() {
+        return statadoServicio;
+    }
+
+    public void setStatadoServicio(String statadoServicio) {
+        this.statadoServicio = statadoServicio;
+    }
+
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String fecha) {
+        Fecha = fecha;
+    }
+
+    public String getFechaFormat() {
+        return FechaFormat;
+    }
+
+    public void setFechaFormat(String fechaFormat) {
+        FechaFormat = fechaFormat;
+    }
+
+    public String getHora() {
+        return Hora;
+    }
+
+    public void setHora(String hora) {
+        Hora = hora;
+    }
+
+    public String getInfoAddress() {
+        return infoAddress;
+    }
+
+    public void setInfoAddress(String infoAddress) {
+        this.infoAddress = infoAddress;
+    }
+
+    public String getNucCelularCliente() {
+        return nucCelularCliente;
+    }
+
+    public void setNucCelularCliente(String nucCelularCliente) {
+        this.nucCelularCliente = nucCelularCliente;
+    }
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getIdConductor() {
+        return idConductor;
+    }
+
+    public void setIdConductor(String idConductor) {
+        this.idConductor = idConductor;
+    }
+
+    public String getIdTipoAuto() {
+        return idTipoAuto;
+    }
+
+    public void setIdTipoAuto(String idTipoAuto) {
+        this.idTipoAuto = idTipoAuto;
+    }
+
+    public String getDesAutoTipo() {
+        return desAutoTipo;
+    }
+
+    public void setDesAutoTipo(String desAutoTipo) {
+        this.desAutoTipo = desAutoTipo;
+    }
+
+    public String getDesAutoTipoPidioCliente() {
+        return desAutoTipoPidioCliente;
+    }
+
+    public void setDesAutoTipoPidioCliente(String desAutoTipoPidioCliente) {
+        this.desAutoTipoPidioCliente = desAutoTipoPidioCliente;
+    }
+
+    public String getIdAutoTipoPidioCliente() {
+        return idAutoTipoPidioCliente;
+    }
+
+    public void setIdAutoTipoPidioCliente(String idAutoTipoPidioCliente) {
+        this.idAutoTipoPidioCliente = idAutoTipoPidioCliente;
     }
 }

@@ -11,7 +11,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -19,17 +20,29 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center|center"
-                android:src="@drawable/ic_account_box_24dp"
-                android:id="@+id/imageViewServiciosCliente" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center|center"
+                    android:id="@+id/imageConductor"
+                    android:layout_marginBottom="@dimen/marginLeftDiez"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:id="@+id/imageStatusServicio"
+                    android:layout_marginLeft="@dimen/dimenCinco"
+                    android:layout_marginRight="@dimen/dimenCinco"
+                    />
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -41,10 +54,9 @@
                     android:text="Medium Text"
                     android:textSize="18sp"
                     android:id="@+id/txtHoraFechaServicio" />
-
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:gravity="left"
                     android:paddingLeft="@dimen/padinLeft"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -52,8 +64,32 @@
                     android:id="@+id/txtInfoAddres"
                     android:textSize="16sp"
                     android:layout_gravity="center_horizontal" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="@dimen/dimenCinco"
+                    android:orientation="horizontal"
+                    android:gravity="right">
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/lblDetalleServicio"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:visibility="visible"
+                        android:background="@drawable/selector_btn_detalle_sevice"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_marginRight="@dimen/marginLeftDiez"
+                        android:text="Detalle"
+                        android:textSize="15dp"/>
+                </LinearLayout>
             </LinearLayout>
 
+
+
         </LinearLayout>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>

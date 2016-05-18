@@ -7,41 +7,7 @@ import android.os.StrictMode;
  * Created by carlos.lopez on 02/05/2016.
  */
 public class  beansHistorialServiciosCreados {
-/*
-     <ID_SERVICIO xsi:type="xsd:string">43</ID_SERVICIO>
-               <FEC_SERVICIO xsi:type="xsd:string">15/05/2016</FEC_SERVICIO>
-               <FEC_SERVICIO_YMD xsi:type="xsd:string">2016-05-15</FEC_SERVICIO_YMD>
-               <DES_HORA xsi:type="xsd:string">22:11:00</DES_HORA>
-               <IMP_SERVICIO xsi:type="xsd:string">62.00</IMP_SERVICIO>
-               <DES_SERVICIO xsi:type="xsd:string"/>
-               <IND_EN_SERVICIO xsi:type="xsd:string">0</IND_EN_SERVICIO>
-               <IND_AIRE_ACONDICIONADO xsi:type="xsd:string">0</IND_AIRE_ACONDICIONADO>
-               <IMP_AIRE_ACONDICIONADO xsi:type="xsd:string">0.00</IMP_AIRE_ACONDICIONADO>
-               <IMP_PEAJE xsi:type="xsd:string">0.00</IMP_PEAJE>
-               <NUM_MINUTO_TIEMPO_ESPERA xsi:type="xsd:string">0</NUM_MINUTO_TIEMPO_ESPERA>
-               <IMP_TIEMPO_ESPERA xsi:type="xsd:string">0.00</IMP_TIEMPO_ESPERA>
-               <DES_DIRECCION_INICIO xsi:type="xsd:string">El Manantial El Paraiso/{"latitud":"-12.141345999999999","longitud":"-76.924525"}</DES_DIRECCION_INICIO>
-               <DES_DIRECCION_FINAL xsi:type="xsd:string">José Carlos Mariátegui Calle 32</DES_DIRECCION_FINAL>
-               <NOM_DISTRITO_INICIO xsi:type="xsd:string">VILLA MARIA</NOM_DISTRITO_INICIO>
-               <NOM_ZONA_INICIO xsi:type="xsd:string">VILLA MARIA I</NOM_ZONA_INICIO>
-               <NOM_DISTRITO_FIN xsi:type="xsd:string">SAN JUAN DE LURIGANCHO</NOM_DISTRITO_FIN>
-               <NOM_ZONA_FIN xsi:type="xsd:string">SAN JUAN DE LURIGANCHO VI</NOM_ZONA_FIN>
-               <NUM_MOVIL xsi:type="xsd:string">-----</NUM_MOVIL>
-               <NOM_APE_CONDUCTOR xsi:type="xsd:string">-----</NOM_APE_CONDUCTOR>
-               <ID_ESTADO_SERVICIO xsi:type="xsd:string">1</ID_ESTADO_SERVICIO>
-               <NOM_ESTADO_SERVICIO xsi:type="xsd:string">CREADO</NOM_ESTADO_SERVICIO>
-               <ID_TURNO xsi:type="xsd:string">0</ID_TURNO>
-               <FEC_ACTUAL xsi:type="xsd:string">2016-05-15</FEC_ACTUAL>
-               <DES_HORA_ACTUAL xsi:type="xsd:string">22:14</DES_HORA_ACTUAL>
-               <ID_AUTO_TIPO_PIDIO_CLIENTE xsi:type="xsd:string">2</ID_AUTO_TIPO_PIDIO_CLIENTE>
-               <DES_AUTO_TIPO_PIDIO_CLIENTE xsi:type="xsd:string">ECONOMICO</DES_AUTO_TIPO_PIDIO_CLIENTE>
-               <ID_AUTO_TIPO xsi:type="xsd:string">2</ID_AUTO_TIPO>
-               <DES_AUTO_TIPO xsi:type="xsd:string">-----</DES_AUTO_TIPO>
-               <ID_CONDUCTOR xsi:type="xsd:string">0</ID_CONDUCTOR>
-               <ID_CLIENTE xsi:type="xsd:string">13</ID_CLIENTE>
-               <NUM_CELULAR xsi:type="xsd:string">987654321</NUM_CELULAR>
 
-*/
 
     private String idServicio;
     private String importeServicio;
@@ -69,12 +35,56 @@ public class  beansHistorialServiciosCreados {
     private String Fecha;
     private String FechaFormat;
     private String Hora;
-
+    private Drawable imageStatusServicio;
     private String idConductor;
     private String idCliente;
     private String numberCelularCliente;
     private String infoAddress;
     private Drawable imageHistorico;
+    private String NameFotoConductor;
+    private String numeroMovilTaxi;
+    private String idTipoAuto;
+    private String desAutoTipo;
+
+    public String getIdTipoAuto() {
+        return idTipoAuto;
+    }
+
+    public void setIdTipoAuto(String idTipoAuto) {
+        this.idTipoAuto = idTipoAuto;
+    }
+
+    public String getDesAutoTipo() {
+        return desAutoTipo;
+    }
+
+    public void setDesAutoTipo(String desAutoTipo) {
+        this.desAutoTipo = desAutoTipo;
+    }
+
+    public String getNumeroMovilTaxi() {
+        return numeroMovilTaxi;
+    }
+
+    public void setNumeroMovilTaxi(String numeroMovilTaxi) {
+        this.numeroMovilTaxi = numeroMovilTaxi;
+    }
+
+    public String getNameFotoConductor() {
+        return NameFotoConductor;
+    }
+
+    public void setNameFotoConductor(String nameFotoConductor) {
+        NameFotoConductor = nameFotoConductor;
+    }
+
+    public Drawable getImageStatusServicio() {
+        return imageStatusServicio;
+    }
+
+    public void setImageStatusServicio(Drawable imageStatusServicio) {
+        this.imageStatusServicio = imageStatusServicio;
+    }
 
     public String getNumberCelularCliente() {
         return numberCelularCliente;

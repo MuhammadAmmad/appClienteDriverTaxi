@@ -18,7 +18,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO I</name>
+				<name>Cercado</name>
 				<styleUrl>#poly-F8971B-1-84-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -30,7 +30,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO II</name>
+				<name>Minka</name>
 				<styleUrl>#poly-4186F0-1-145-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -42,19 +42,19 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO III</name>
-				<styleUrl>#poly-0BA9CC-1-94-nodesc</styleUrl>
+				<name>Sta. Maria</name>
+				<styleUrl>#poly-000000-0-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
 						<LinearRing>
 							<tessellate>1</tessellate>
-							<coordinates>-77.1242166,-12.0586897,0.0 -77.1267057,-12.0446299,0.0 -77.1385503,-12.0485751,0.0 -77.1405244,-12.051093300000002,0.0 -77.1460176,-12.054534800000003,0.0 -77.1561456,-12.064942900000002,0.0 -77.163248,-12.067943600000001,0.0 -77.1679902,-12.0713219,0.0 -77.1667028,-12.0733363,0.0 -77.1635271,-12.0746792,0.0 -77.1606731,-12.073871300000002,0.0 -77.1582699,-12.0697901,0.0 -77.1566713,-12.0682268,0.0 -77.1553731,-12.067377,0.0 -77.1448159,-12.067712700000001,0.0 -77.1325689,-12.070369700000002,0.0 -77.1329713,-12.068006500000003,0.0 -77.134409,-12.059717899999999,0.0 -77.1321345,-12.059424099999998,0.0 -77.1242166,-12.0586897,0.0</coordinates>
+							<coordinates>-77.1266413,-12.0448607,0.0 -77.137413,-12.0482183,0.0 -77.1405029,-12.0510723,0.0 -77.1459961,-12.0545138,0.0 -77.1616173,-12.0671881,0.0 -77.1676254,-12.067356,0.0 -77.1731186,-12.0732313,0.0 -77.1628189,-12.076085,0.0 -77.1552658,-12.0676917,0.0 -77.1326065,-12.0701048,0.0 -77.1329498,-12.0679855,0.0 -77.1343875,-12.0596969,0.0 -77.1241951,-12.0586687,0.0 -77.1259761,-12.0510933,0.0 -77.1266413,-12.0448607,0.0</coordinates>
 						</LinearRing>
 					</outerBoundaryIs>
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO IV</name>
+				<name>Base Naval</name>
 				<styleUrl>#poly-009D57-1-94-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -66,7 +66,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO V</name>
+				<name>Boca Negra</name>
 				<styleUrl>#poly-CDDC39-1-107-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -78,7 +78,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO VI</name>
+				<name>Bertello</name>
 				<styleUrl>#poly-DB4436-1-125-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -90,7 +90,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO VII</name>
+				<name>Industrial</name>
 				<styleUrl>#poly-D698AD-2-171-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -102,7 +102,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO VIII</name>
+				<name>Gambeta</name>
 				<styleUrl>#poly-62AF44-1-112-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -114,7 +114,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO IX</name>
+				<name>C. de la Legua</name>
 				<styleUrl>#poly-3F5BA9-1-82-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -126,7 +126,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO X</name>
+				<name>Bellavista</name>
 				<styleUrl>#poly-DB4436-1-99-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -138,7 +138,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO XI</name>
+				<name>Hosp Alcides Carrion</name>
 				<styleUrl>#poly-7C3592-1-97-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -150,7 +150,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CALLAO XII</name>
+				<name>La Perla</name>
 				<styleUrl>#poly-CDDC39-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -162,7 +162,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CARABAYLLO I</name>
+				<name>Sto Domingo</name>
 				<styleUrl>#poly-CDDC39-1-117-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -174,7 +174,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CARABAYLLO II</name>
+				<name>San Pedro</name>
 				<styleUrl>#poly-795046-1-148-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -186,7 +186,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CHORRILLOS I</name>
+				<name>Matellini</name>
 				<styleUrl>#poly-0BA9CC-1-79-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -198,7 +198,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CHORRILLOS II</name>
+				<name>Los Cedros/Herradura</name>
 				<styleUrl>#poly-F8971B-1-107-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -210,7 +210,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CHORRILLOS III</name>
+				<name>Vista Alegre</name>
 				<styleUrl>#poly-009D57-1-194-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -222,7 +222,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CHORRILLOS IV</name>
+				<name>Encant/Delicia</name>
 				<styleUrl>#poly-DB4436-1-117-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -234,7 +234,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>COMAS I</name>
+				<name>Retablo</name>
 				<styleUrl>#poly-F8971B-1-54-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -246,7 +246,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>COMAS II</name>
+				<name>Carmen/Belaunde</name>
 				<styleUrl>#poly-A61B4A-1-102-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -258,7 +258,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>COMAS III</name>
+				<name>San Agustin</name>
 				<styleUrl>#poly-3F5BA9-1-120-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -270,7 +270,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>COMAS IV</name>
+				<name>Pascana</name>
 				<styleUrl>#poly-CDDC39-1-130-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -282,7 +282,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>COMAS V</name>
+				<name>Tungasuca/San Felipe</name>
 				<styleUrl>#poly-DB4436-1-64-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -294,7 +294,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>COMAS VI</name>
+				<name>Collique</name>
 				<styleUrl>#poly-62AF44-1-120-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -306,7 +306,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>INDEPENDENCIA I</name>
+				<name>Megaplaza</name>
 				<styleUrl>#poly-795046-1-194-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -318,7 +318,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>INDEPENDENCIA II</name>
+				<name>Ermitaño/Tahua</name>
 				<styleUrl>#poly-62AF44-1-138-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -330,7 +330,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>JESUS MARIA I</name>
+				<name>Jesus Maria</name>
 				<styleUrl>#poly-F8971B-1-196-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -342,7 +342,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA I</name>
+				<name>Camacho</name>
 				<styleUrl>#poly-F8971B-1-219-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -354,7 +354,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA II</name>
+				<name>Sta. Patricia</name>
 				<styleUrl>#poly-009D57-1-125-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -366,7 +366,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA III</name>
+				<name>El Remanso</name>
 				<styleUrl>#poly-A61B4A-1-92-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -378,7 +378,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA IV</name>
+				<name>La Capilla</name>
 				<styleUrl>#poly-3F5BA9-1-92-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -390,7 +390,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA V</name>
+				<name>Rinconada Baja</name>
 				<styleUrl>#poly-7C3592-1-84-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -402,7 +402,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA VI</name>
+				<name>Rinconada Alta</name>
 				<styleUrl>#poly-F8971B-1-105-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -414,7 +414,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA VII</name>
+				<name>Planicie/Sol de la Molina</name>
 				<styleUrl>#poly-7C3592-1-140-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -426,7 +426,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA IX</name>
+				<name>Rinco Planicie</name>
 				<styleUrl>#poly-795046-1-117-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -438,7 +438,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>LA MOLINA VIII</name>
+				<name>Musa</name>
 				<styleUrl>#poly-009D57-1-92-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -450,7 +450,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CIENEGUILLA I</name>
+				<name>Entrada</name>
 				<styleUrl>#poly-4186F0-1-128-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -462,7 +462,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>CIENEGUILLA II</name>
+				<name>Nva Toledo</name>
 				<styleUrl>#poly-009D57-1-158-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -474,7 +474,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Miguel I</name>
+				<name>Pando</name>
 				<styleUrl>#poly-62AF44-1-97-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -486,7 +486,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Miguel II</name>
+				<name>Leyendas/Maranga</name>
 				<styleUrl>#poly-C6A4CF-0-176-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -498,7 +498,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Pueblo Libre I</name>
+				<name>Aelu/Bolivar</name>
 				<styleUrl>#poly-4186F0-1-87-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -510,7 +510,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>La Victoria I</name>
+				<name>Sta. Catalina</name>
 				<styleUrl>#poly-A61B4A-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -522,7 +522,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>La Victoria II</name>
+				<name>La Victoria</name>
 				<styleUrl>#poly-009D57-1-128-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -534,7 +534,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>La Victoria III</name>
+				<name>El Pino</name>
 				<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -546,7 +546,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate I</name>
+				<name>Salamanca</name>
 				<styleUrl>#poly-B29189-1-156-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -558,7 +558,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate II</name>
+				<name>Industrial</name>
 				<styleUrl>#poly-F4EB37-1-176-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -570,7 +570,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate III</name>
+				<name>Vulcano</name>
 				<styleUrl>#poly-0BA9CC-1-128-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -582,7 +582,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate IV</name>
+				<name>Mayorazgo</name>
 				<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -594,7 +594,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate V</name>
+				<name>Portales 4ta etp</name>
 				<styleUrl>#poly-62AF44-1-143-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -606,7 +606,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate VI</name>
+				<name>Ceres</name>
 				<styleUrl>#poly-F8971B-1-189-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -618,7 +618,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate VII</name>
+				<name>Amauta</name>
 				<styleUrl>#poly-0BA9CC-1-156-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -630,7 +630,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate VIII</name>
+				<name>Sta Clara</name>
 				<styleUrl>#poly-F8971B-1-163-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -642,7 +642,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ate IX</name>
+				<name>Haycan</name>
 				<styleUrl>#poly-3F5BA9-1-161-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -654,7 +654,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Chaclacayo I</name>
+				<name>Huascaran</name>
 				<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -666,7 +666,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Chaclacayo II</name>
+				<name>Av. Laureles</name>
 				<styleUrl>#poly-93D7E8-1-163-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -678,7 +678,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Chosica I</name>
+				<name>La Cantuta</name>
 				<styleUrl>#poly-A61B4A-1-133-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -690,7 +690,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Chosica II</name>
+				<name>Pque Echenique</name>
 				<styleUrl>#poly-F4B400-1-128-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -702,7 +702,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ñaña I</name>
+				<name>Av. Balaguer</name>
 				<styleUrl>#poly-CDDC39-1-173-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -714,7 +714,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Ñaña II</name>
+				<name>Girasoles</name>
 				<styleUrl>#poly-62AF44-1-145-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -726,7 +726,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>AGUSTINO I</name>
+				<name>Riva Aguero</name>
 				<styleUrl>#poly-009D57-1-201-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -738,7 +738,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>AGUSTINO II</name>
+				<name>Evitamiento</name>
 				<styleUrl>#poly-A61B4A-1-79-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -750,7 +750,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>AGUSTINO III</name>
+				<name>Atarjea/Praderas</name>
 				<styleUrl>#poly-62AF44-1-153-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -762,7 +762,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Lurigancho I</name>
+				<name>Zarate</name>
 				<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -774,7 +774,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Lurigancho II</name>
+				<name>Mangomarca</name>
 				<styleUrl>#poly-A61B4A-1-117-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -786,7 +786,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Lurigancho III</name>
+				<name>Las Flores</name>
 				<styleUrl>#poly-62AF44-1-135-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -798,7 +798,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Lurigancho IV</name>
+				<name>Canto Grande</name>
 				<styleUrl>#poly-3F5BA9-1-168-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -810,7 +810,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Lurigancho V</name>
+				<name>Bayovar/Caceres</name>
 				<styleUrl>#poly-F4B400-1-176-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -822,7 +822,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Lurigancho VI</name>
+				<name>Jicamarca</name>
 				<styleUrl>#poly-795046-1-145-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -834,7 +834,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lima I</name>
+				<name>Sta. Beatriz</name>
 				<styleUrl>#poly-62AF44-1-128-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -846,7 +846,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lima II</name>
+				<name>Cercado</name>
 				<styleUrl>#poly-3F5BA9-1-196-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -858,7 +858,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lima III</name>
+				<name>Barrios Altos</name>
 				<styleUrl>#poly-F4B400-1-156-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -870,7 +870,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lima IV</name>
+				<name>Industrial</name>
 				<styleUrl>#poly-A61B4A-1-145-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -882,7 +882,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lima V</name>
+				<name>Palomino</name>
 				<styleUrl>#poly-795046-1-158-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -894,7 +894,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lima VI</name>
+				<name>Mirones</name>
 				<styleUrl>#poly-CDDC39-1-176-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -906,7 +906,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Rimac I</name>
+				<name>Rimac</name>
 				<styleUrl>#poly-DB4436-1-168-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -918,7 +918,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Rimac II</name>
+				<name>Amancaes</name>
 				<styleUrl>#poly-0BA9CC-1-161-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -930,7 +930,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Luis I</name>
+				<name>San Luis</name>
 				<styleUrl>#poly-0BA9CC-1-158-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -942,7 +942,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Breña I</name>
+				<name>Breña</name>
 				<styleUrl>#poly-EE9C96-1-179-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -954,7 +954,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Borja I</name>
+				<name>Pentagonito</name>
 				<styleUrl>#poly-009D57-1-117-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -966,7 +966,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Borja II</name>
+				<name>Guardia Civil</name>
 				<styleUrl>#poly-F4B400-1-117-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -978,7 +978,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Santa Anita I</name>
+				<name>Ovalo</name>
 				<styleUrl>#poly-3F5BA9-1-184-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -990,7 +990,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Santa Anita II</name>
+				<name>Los  Portales</name>
 				<styleUrl>#poly-DB4436-1-196-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1002,7 +1002,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Santa Anita III</name>
+				<name>Sta Aurelia</name>
 				<styleUrl>#poly-A61B4A-1-125-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1014,7 +1014,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Martin de Porres I</name>
+				<name>Zarumilla</name>
 				<styleUrl>#poly-3F5BA9-1-168-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1026,7 +1026,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Martin de Porres II</name>
+				<name>Ingenieria</name>
 				<styleUrl>#poly-FAD199-1-158-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1038,7 +1038,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Martin de Porres III</name>
+				<name>Av. Peru</name>
 				<styleUrl>#poly-DB4436-1-156-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1050,7 +1050,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Martin de Porres IV</name>
+				<name>Sn. German/Conde</name>
 				<styleUrl>#poly-7C3592-1-161-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1062,7 +1062,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Martin de Porres V</name>
+				<name>Izaguirre/Sta Rosa</name>
 				<styleUrl>#poly-4186F0-1-122-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1074,7 +1074,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Martin de Porres VI</name>
+				<name>Pacasmayo/Naranjal</name>
 				<styleUrl>#poly-F8971B-1-145-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1086,7 +1086,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Martin de Porres VII</name>
+				<name>Vipol/Las Torres</name>
 				<styleUrl>#poly-A61B4A-1-189-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1098,7 +1098,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lurigancho I</name>
+				<name>Campo Fe</name>
 				<styleUrl>#poly-F4B400-1-176-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1110,7 +1110,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lurigancho II</name>
+				<name>Carapongo</name>
 				<styleUrl>#poly-DB4436-1-171-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1122,7 +1122,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Lince I</name>
+				<name>Lince</name>
 				<styleUrl>#poly-3F5BA9-1-189-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1134,7 +1134,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Isidro I</name>
+				<name>Corpac</name>
 				<styleUrl>#poly-7C3592-1-143-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1146,7 +1146,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Isidro II</name>
+				<name>Basadre/Golf Club</name>
 				<styleUrl>#poly-A61B4A-1-150-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1158,7 +1158,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Magdalena I</name>
+				<name>Pershing</name>
 				<styleUrl>#poly-0BA9CC-1-181-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1170,7 +1170,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Magdalena II</name>
+				<name>Castilla</name>
 				<styleUrl>#poly-DB4436-1-181-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1182,7 +1182,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Miraflores I</name>
+				<name>Santa Cruz/Reducto</name>
 				<styleUrl>#poly-CDDC39-1-214-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1194,7 +1194,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Miraflores II</name>
+				<name>Aurora</name>
 				<styleUrl>#poly-DB4436-1-161-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1206,7 +1206,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Surquillo I</name>
+				<name>Aramburu</name>
 				<styleUrl>#poly-3F5BA9-1-125-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1218,7 +1218,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Surquillo II</name>
+				<name>La Calera</name>
 				<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1230,7 +1230,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Surco I</name>
+				<name>Golf Incas</name>
 				<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1242,7 +1242,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Surco II</name>
+				<name>Alamos/Casuarinas</name>
 				<styleUrl>#poly-0BA9CC-1-156-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1254,7 +1254,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Surco III</name>
+				<name>Chacarilla</name>
 				<styleUrl>#poly-7C3592-1-110-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1266,7 +1266,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Surco IV</name>
+				<name>Chama</name>
 				<styleUrl>#poly-CDDC39-1-115-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1278,7 +1278,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Surco V</name>
+				<name>Capullana/ Surco Viejo</name>
 				<styleUrl>#poly-A7B5D7-1-107-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1290,7 +1290,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Surco VI</name>
+				<name>San Roque/ Las Palmas</name>
 				<styleUrl>#poly-D698AD-1-148-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1302,7 +1302,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Barranco I</name>
+				<name>Barranco</name>
 				<styleUrl>#poly-F8971B-1-148-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1314,7 +1314,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Miraflores I</name>
+				<name>Av. San Juan</name>
 				<styleUrl>#poly-DB4436-1-163-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1326,7 +1326,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Miraflores II</name>
+				<name>El Amauta</name>
 				<styleUrl>#poly-3F5BA9-1-186-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1338,7 +1338,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Miraflores III</name>
+				<name>Zona C</name>
 				<styleUrl>#poly-009D57-1-196-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1350,7 +1350,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>San Juan de Miraflores IV</name>
+				<name>Pque. Zonal</name>
 				<styleUrl>#poly-777777-1-186-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1362,7 +1362,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa Maria I</name>
+				<name>Sn. Gabriel</name>
 				<styleUrl>#poly-7C3592-1-209-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1374,7 +1374,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa María II</name>
+				<name>Pesquero</name>
 				<styleUrl>#poly-A61B4A-1-207-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1386,7 +1386,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa María III</name>
+				<name>Nva Esperanza</name>
 				<styleUrl>#poly-EE9C96-1-186-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1398,7 +1398,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa María IV</name>
+				<name>Cesar Vallejo</name>
 				<styleUrl>#poly-4186F0-1-186-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1410,7 +1410,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa María V</name>
+				<name>Jose Galvez</name>
 				<styleUrl>#poly-CDDC39-1-158-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1422,7 +1422,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa María VI</name>
+				<name>La Tablada</name>
 				<styleUrl>#poly-C6A4CF-1-191-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1434,7 +1434,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa el Salvador I</name>
+				<name>Sector 1,2 y 3</name>
 				<styleUrl>#poly-0BA9CC-1-219-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1446,7 +1446,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa el Salvador II</name>
+				<name>Sector 5 y 6</name>
 				<styleUrl>#poly-F8971B-1-130-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1458,7 +1458,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa el Salvador III</name>
+				<name>Sector 7 y 8</name>
 				<styleUrl>#poly-009D57-1-148-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1470,7 +1470,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Villa el Salvador IV</name>
+				<name>Pachacamac(entrada)</name>
 				<styleUrl>#poly-0BA9CC-1-166-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1482,7 +1482,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Los Olivos I</name>
+				<name>Antunez de Mayolo</name>
 				<styleUrl>#poly-62AF44-1-145-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1494,7 +1494,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Los Olivos II</name>
+				<name>Villa Sol/ Huandoy</name>
 				<styleUrl>#poly-7C3592-1-143-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1506,7 +1506,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Los Olivos III</name>
+				<name>2da Pro</name>
 				<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1518,7 +1518,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Pachacamac I </name>
+				<name>Manchay</name>
 				<styleUrl>#poly-DB4436-1-135-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1530,7 +1530,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Pachacamac II</name>
+				<name>Manchary bajo</name>
 				<styleUrl>#poly-000000-1-77-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1542,7 +1542,7 @@
 				</Polygon>
 			</Placemark>
 			<Placemark>
-				<name>Pachacamac III</name>
+				<name>Distrito</name>
 				<styleUrl>#poly-A61B4A-1-133-nodesc</styleUrl>
 				<Polygon>
 					<outerBoundaryIs>
@@ -1557,6 +1557,44 @@
 		<Folder>
 			<name>Capa sin nombre</name>
 		</Folder>
+		<Style id='poly-000000-0-77-nodesc-normal'>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>0</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4D000000</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id='poly-000000-0-77-nodesc-highlight'>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>0.0</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>4D000000</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='poly-000000-0-77-nodesc'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#poly-000000-0-77-nodesc-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#poly-000000-0-77-nodesc-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
 		<Style id='poly-000000-1-77-nodesc-normal'>
 			<LineStyle>
 				<color>ff000000</color>
@@ -2277,44 +2315,6 @@
 			<Pair>
 				<key>highlight</key>
 				<styleUrl>#poly-0BA9CC-1-79-nodesc-highlight</styleUrl>
-			</Pair>
-		</StyleMap>
-		<Style id='poly-0BA9CC-1-94-nodesc-normal'>
-			<LineStyle>
-				<color>ffCCA90B</color>
-				<width>1</width>
-			</LineStyle>
-			<PolyStyle>
-				<color>5ECCA90B</color>
-				<fill>1</fill>
-				<outline>1</outline>
-			</PolyStyle>
-			<BalloonStyle>
-				<text><![CDATA[<h3>$[name]</h3>]]></text>
-			</BalloonStyle>
-		</Style>
-		<Style id='poly-0BA9CC-1-94-nodesc-highlight'>
-			<LineStyle>
-				<color>ffCCA90B</color>
-				<width>2.0</width>
-			</LineStyle>
-			<PolyStyle>
-				<color>5ECCA90B</color>
-				<fill>1</fill>
-				<outline>1</outline>
-			</PolyStyle>
-			<BalloonStyle>
-				<text><![CDATA[<h3>$[name]</h3>]]></text>
-			</BalloonStyle>
-		</Style>
-		<StyleMap id='poly-0BA9CC-1-94-nodesc'>
-			<Pair>
-				<key>normal</key>
-				<styleUrl>#poly-0BA9CC-1-94-nodesc-normal</styleUrl>
-			</Pair>
-			<Pair>
-				<key>highlight</key>
-				<styleUrl>#poly-0BA9CC-1-94-nodesc-highlight</styleUrl>
 			</Pair>
 		</StyleMap>
 		<Style id='poly-3F5BA9-1-120-nodesc-normal'>

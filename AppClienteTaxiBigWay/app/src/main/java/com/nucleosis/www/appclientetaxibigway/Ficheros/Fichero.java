@@ -218,4 +218,32 @@ public class Fichero {
 
         return jsonObject;
     }
+
+    public void InsertarListaServiciosTomados(String data){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("jsonListaServiciosTomadosCliete.txt", Context.MODE_PRIVATE));
+            json.write(data);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
+    public JSONArray ExtraerListaServiciosTomadoCliete(){
+
+        JSONArray jsonArray=null;
+        try
+        {
+            BufferedReader getDataServicios =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("jsonListaServiciosTomadosCliete.txt")));
+            String    dataServicios = getDataServicios.readLine();
+            jsonArray=new JSONArray(dataServicios);
+            getDataServicios.close();
+        }
+        catch (Exception ex)
+        {
+            Log.d("look_","No se puede leer fichero");   }
+        return jsonArray;
+    }
 }

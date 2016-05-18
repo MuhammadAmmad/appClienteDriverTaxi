@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import android.location.Geocoder;
 import android.location.Location;
 
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -331,17 +333,41 @@ public class MainActivity extends AppCompatActivity
                         //AlertPedirServicio();
                     }else{
                         Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
+                        dialogo1.setTitle("Alerta!!");
+                        dialogo1.setMessage("¿No hay covertura para este lugar\nLlame a nuestra central");
+                        dialogo1.setCancelable(false);
+                        dialogo1.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogo1, int id) {
+                                // Intent i = new Intent(android.content.Intent.ACTION_CALL,
+                                // Uri.parse("tel:+3748593458"));
+                                Intent i = new Intent(android.content.Intent.ACTION_DIAL,
+                                        Uri.parse("tel:998319046")); //
+                                startActivity(i);
+                            }
+                        });
+                        dialogo1.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogo1, int id) {
+
+                            }
+                        });
+                        dialogo1.show();
                     }
                     // linearFragment.setVisibility(View.GONE);
                     //compR.getDrawer().closeDrawer(GravityCompat.START);
                     // setFragment(2);
                 }else{
                     Toast.makeText(MainActivity.this,"Ingrese Direccion de inicio y destino",Toast.LENGTH_LONG).show();
+
                 }
 
                 break;
         }
     }
+
+    // Intent i = new Intent(android.content.Intent.ACTION_CALL,
+    // Uri.parse("tel:+3748593458"));
+
     private void MarcardorIncio(final GoogleMap mapa, final double lat,double lon){
         CameraUpdate ZoomCam = CameraUpdateFactory.zoomTo(12);
         mapa.animateCamera(ZoomCam);

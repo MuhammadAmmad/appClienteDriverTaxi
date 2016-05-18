@@ -184,9 +184,6 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
                         envelope.dotNet = false;
                         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
-
-
-
                                 JSONObject jsonObject=fichero.ExtraerDireccionIncioFin();
                                 JSONObject jsonCoordenadas=fichero.ExtraerCoordendaDirrecionIncio();
                         Log.d("coorLaLn",jsonCoordenadas.toString());

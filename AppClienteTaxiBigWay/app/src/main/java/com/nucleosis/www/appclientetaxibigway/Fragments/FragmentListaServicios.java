@@ -1,6 +1,7 @@
 package com.nucleosis.www.appclientetaxibigway.Fragments;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -19,12 +20,17 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.nucleosis.www.appclientetaxibigway.Adpaters.GridAdapterHistoricoServicios;
+import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
+import com.nucleosis.www.appclientetaxibigway.Interfaces.OnItemClickListenerDetalle;
 import com.nucleosis.www.appclientetaxibigway.ListaServicios;
 import com.nucleosis.www.appclientetaxibigway.MapsClienteConductorServicio;
 import com.nucleosis.www.appclientetaxibigway.R;
 import com.nucleosis.www.appclientetaxibigway.beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
 import com.nucleosis.www.appclientetaxibigway.ws.wsListaServiciosCliente;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,7 +42,7 @@ import in.srain.cube.views.GridViewWithHeaderAndFooter;
 /**
  * Created by carlos.lopez on 02/05/2016.
  */
-public class FragmentListaServicios extends Fragment{
+public class FragmentListaServicios extends Fragment implements OnItemClickListenerDetalle {
     private int mYear, mMonth, mDay;
     private ComponentesR compR;
     private String Fecha;
@@ -198,5 +204,24 @@ public class FragmentListaServicios extends Fragment{
             dpd.show();
 
 
+    }
+
+    @Override
+    public void onClickDetalle(Context context, String idServicio, String stadoServicio) {
+        Fichero fichero=new Fichero(context);
+        JSONArray jsonService=fichero.ExtraerListaServiciosTomadoCliete();
+                if(jsonService!=null){
+                    for(int i=0; i<jsonService.length();i++){
+                        try {
+                            if(idServicio.equals(jsonService.getJSONObject(i).getString("idServicio"))){
+                                    Log.d("click_",jsonService.getJSONObject(i).getString("statadoServicio"));
+                                i=jsonService.length();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        Toast.makeText(context,idServicio+"--"+stadoServicio,Toast.LENGTH_LONG).show();
     }
 }
