@@ -41,8 +41,8 @@ public  static Activity LOGIN_ACTIVITY;
         compR=new ComponentesR(LoginActivity.this);
         compR.Controls_LoginActivity(LOGIN_ACTIVITY);
         internetConection=new conexionInternet(LoginActivity.this);
-        compR.getEditEmail().setText("taxi@gmail.com");
-        compR.getEditPassword().setText("123456");
+      /*  compR.getEditEmail().setText("taxi@gmail.com");
+        compR.getEditPassword().setText("123456");*/
 
     }
 

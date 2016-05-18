@@ -51,6 +51,7 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
     private String direccionIncio;
     private String direccionFinal;
     private String impServicio;
+    private String importAutoVip;
     public wsActualizarServicio(Activity activity,
                                 String idServicio,
                                 String indAire,
@@ -123,6 +124,7 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                     request.addProperty("indAireAcondicionado", Integer.parseInt(indAire));
                     request.addProperty("impAireAcondicionado",impAireAcondic );
                     request.addProperty("impPeaje",impPeaje);
+                    request.addProperty("impAutoVip", "0");//IMPORTE AUTO VIP
                     request.addProperty("impTiempoEspera", impTiempoEspera);
                     request.addProperty("numMinutoTiempoEspera",minutosTiempoEspera );
 
@@ -131,6 +133,7 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                     request.addProperty("idTurno", idTurno);
                     request.addProperty("idConductor", idDriver);
                     request.addProperty("idAuto", idVehiculo);
+
 
                     request.addProperty("idDistritoInicio",Integer.parseInt(idDistritoIncio));
                     request.addProperty("idZonaInicio", Integer.parseInt(idZonaIncio));
