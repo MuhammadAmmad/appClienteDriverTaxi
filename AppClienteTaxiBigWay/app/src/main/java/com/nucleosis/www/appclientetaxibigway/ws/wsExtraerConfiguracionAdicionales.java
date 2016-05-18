@@ -79,6 +79,7 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
     protected void onPostExecute(JSONObject dataJson) {
         super.onPostExecute(dataJson);
         if(dataJson!=null){
+            new wsExtraerHoraServer(context).execute();
             fichero.InsertarConfiguraciones(dataJson.toString());
         }
 

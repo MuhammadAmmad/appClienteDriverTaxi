@@ -85,10 +85,13 @@ public class GridAdapterHistoricoServicios extends BaseAdapter {
         }
         beansHistorialServiciosCreados item = items.get(position);
         holder.getFechaHora().setText(item.getFecha()+"   "+item.getHora());
-        holder.getInfo().setText(item.getInfoAddress());
+        int longitudCadena=item.getInfoAddress().length();
+        String cadenaFormato="-"+item.getInfoAddress().substring(1,2).toUpperCase()+
+                item.getInfoAddress().substring(2,longitudCadena).toLowerCase();
+        holder.getInfo().setText(cadenaFormato);
         holder.getInfo().setTypeface(myTypeFace.openRobotoLight());
         holder.getImageViewStatus().setImageDrawable(item.getImageStatusServicio());
-
+        holder.getLblButtonDetalleService().setTypeface(myTypeFace.openRobotoLight());
         Picasso.with(mContext)
                 .load(urlConductor+item.getNameFotoConductor())
                 .placeholder(R.mipmap.ic_imagen_launcher)

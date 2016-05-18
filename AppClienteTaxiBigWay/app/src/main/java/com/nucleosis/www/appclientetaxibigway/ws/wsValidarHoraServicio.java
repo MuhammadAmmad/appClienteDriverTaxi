@@ -50,6 +50,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
     private String tipoAutoSolicita;
     private MainActivity mainActivity=new MainActivity();
     private Fichero fichero;
+    private String importeAutoVip;
     public wsValidarHoraServicio(Context context,
                                  String fechaIngreso,
                                  String horaIngreso,
@@ -59,6 +60,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                                  String solicitaAire,
                                  String preciosAireSolicitado,
                                  String tipoAutoSolicita,
+                                 String importeAutoVip,
                                  AlertDialog alertDialog) {
         this.context = context;
         HoraIngreso = horaIngreso;
@@ -70,6 +72,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
         this.preciosAireSolicitado=preciosAireSolicitado;
         this.tipoAutoSolicita=tipoAutoSolicita;
         this.solicitaAire=solicitaAire;
+        this.importeAutoVip=importeAutoVip;
         formatIngreso = new SimpleDateFormat("yyyy-MM-dd");
         formatSalida = new SimpleDateFormat("dd-MM-yyyy");
         preferencesCliente=new PreferencesCliente(context);
@@ -197,6 +200,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                                                                             //indAireAcondicionado =1  SI GUSTA AIRE ACONDICIONADO
                             request.addProperty("impAireAcondicionado", preciosAireSolicitado);
                             request.addProperty("impPeaje", "");
+                            request.addProperty("impAutoVip", importeAutoVip);
                             request.addProperty("usrRegistro", "");
                             request.addProperty("idCliente", idCliente);
 

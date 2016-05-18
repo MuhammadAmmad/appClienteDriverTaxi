@@ -219,6 +219,7 @@ public class componentesR  {
 
         btnDetalleServicio=(Button)activity.findViewById(R.id.btnDetalleServicio);
         btnDetalleServicio.setOnClickListener((View.OnClickListener) activity);
+
         btnClienteEncontrado=(ImageView)activity.findViewById(R.id.btnClienteEncontrado);
         btnClienteEncontrado.setOnClickListener((View.OnClickListener) activity);
 

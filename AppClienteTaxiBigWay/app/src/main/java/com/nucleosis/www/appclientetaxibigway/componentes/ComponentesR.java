@@ -2,6 +2,7 @@ package com.nucleosis.www.appclientetaxibigway.componentes;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.Image;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -48,6 +50,7 @@ public class ComponentesR {
 
     private TextView txtTarifa;
     private TextView txtCabecera;
+    private TextView txtMensajeDeEstado;
     private Button   btnRegistro;
     private EditText editName;
     private EditText editApaterno;
@@ -71,7 +74,9 @@ public class ComponentesR {
     private  AutoCompleteTextView mAutocompleteView_AddressFinal;
     private GridViewWithHeaderAndFooter grid;
     private ImageButton imageButtonBuscar;
-
+    private ImageView imgButtonInAServicios;
+    private ImageView imgButtonCancelarServicio;
+    private ImageView imageViewColorStado;
     private AutoCompleteTextView autoCompletText1;
     private AutoCompleteTextView autoCompletText2;
     Toolbar toolbar;
@@ -192,6 +197,14 @@ public class ComponentesR {
         this.checkBoxAutoVip = checkBoxAutoVip;
     }
 
+    public ImageView getImageViewColorStado() {
+        return imageViewColorStado;
+    }
+
+    public void setImageViewColorStado(ImageView imageViewColorStado) {
+        this.imageViewColorStado = imageViewColorStado;
+    }
+
     public TextView getTxtCostoAutoTipoSoliciot() {
         return txtCostoAutoTipoSoliciot;
     }
@@ -216,6 +229,41 @@ public class ComponentesR {
         checkBoxFecha=(CheckBox) view.findViewById(R.id.chxFecha);
         imageButtonBuscar=(ImageButton)view.findViewById(R.id.imageButtonSearch);
 
+    }
+    public void Controls_Maps_Cliente_Conductor(Activity activity) {
+
+        txtMensajeDeEstado = (TextView)activity.findViewById(R.id.lblMensajeDeEstado);
+        imgButtonCancelarServicio=(ImageView)activity.findViewById(R.id.btnServicioCancelado);
+        //imgButtonCancelarServicio.setOnClickListener((View.OnClickListener) activity);
+        imageViewColorStado=(ImageView)activity.findViewById(R.id.imageViewAlertaStado);
+        //imageViewAlertaStado
+        imgButtonInAServicios=(ImageView) activity.findViewById(R.id.btnIrAServicios);
+        //imgButtonInAServicios.setOnClickListener((View.OnClickListener) activity);
+
+    }
+
+    public ImageView getImgButtonInAServicios() {
+        return imgButtonInAServicios;
+    }
+
+    public void setImgButtonInAServicios(ImageView imgButtonInAServicios) {
+        this.imgButtonInAServicios = imgButtonInAServicios;
+    }
+
+    public ImageView getImgButtonCancelarServicio() {
+        return imgButtonCancelarServicio;
+    }
+
+    public void setImgButtonCancelarServicio(ImageView imgButtonCancelarServicio) {
+        this.imgButtonCancelarServicio = imgButtonCancelarServicio;
+    }
+
+    public TextView getTxtMensajeDeEstado() {
+        return txtMensajeDeEstado;
+    }
+
+    public void setTxtMensajeDeEstado(TextView txtMensajeDeEstado) {
+        this.txtMensajeDeEstado = txtMensajeDeEstado;
     }
 
     public CheckBox getCheckBoxAire_Si() {
@@ -548,6 +596,7 @@ public class ComponentesR {
     public void setToolbar(Toolbar toolbar) {
         this.toolbar = toolbar;
     }
+
 
 
 }

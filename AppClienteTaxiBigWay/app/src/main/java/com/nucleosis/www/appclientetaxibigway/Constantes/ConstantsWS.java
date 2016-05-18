@@ -74,6 +74,31 @@ public class ConstantsWS {
     private static final String METHODO_15="WS_CONFIGURACION_OBTENER";
     private static final String SOAP_ACTION_15=NAME_SPACE+"/"+METHODO_15;
 
+    private static final String METHODO_16="WS_OBTENER_FECHA_HORA_ACTUAL";
+    private static final String SOAP_ACTION_16=NAME_SPACE+"/"+METHODO_16;
+
+
+
+    private static final String METHODO_17="WS_SERVICIO_ACTUALIZAR_ID_ESTADO_SERVICIO";
+    private static final String SOAP_ACTION_17=NAME_SPACE+"/"+METHODO_17;
+
+
+    public static String getMethodo17() {
+        return METHODO_17;
+    }
+
+    public static String getSoapAction17() {
+        return SOAP_ACTION_17;
+    }
+
+    public static String getMethodo16() {
+        return METHODO_16;
+    }
+
+    public static String getSoapAction16() {
+        return SOAP_ACTION_16;
+    }
+
     public static String getMethodo15() {
         return METHODO_15;
     }

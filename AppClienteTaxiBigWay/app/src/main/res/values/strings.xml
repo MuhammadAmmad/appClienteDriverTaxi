@@ -29,4 +29,5 @@
     <string name="Economico">Económico</string>
     <string name="Ok">Ok</string>
     <string name="cancelar">Cancelar</string>
+    <string name="detalleServicio">Detalle del servicio</string>
 </resources>

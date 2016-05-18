@@ -1,7 +1,9 @@
 package com.nucleosis.www.appclientetaxibigway.Fragments;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -10,6 +12,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nucleosis.www.appclientetaxibigway.Adpaters.GridAdapterHistoricoServicios;
@@ -31,6 +36,7 @@ import com.nucleosis.www.appclientetaxibigway.ws.wsListaServiciosCliente;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,6 +52,7 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
     private int mYear, mMonth, mDay;
     private ComponentesR compR;
     private String Fecha;
+    private Fichero fichero;
 
     int sw=0;
     private List<beansHistorialServiciosCreados> ITEMS_HISTORIAL;
@@ -58,7 +65,7 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
         ITEMS_HISTORIAL=new ArrayList<beansHistorialServiciosCreados>();
-
+        fichero=new Fichero(getActivity());
     }
     public FragmentListaServicios() {
     }
@@ -126,15 +133,41 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
         compR.getGrid().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                JSONArray jsonArrayServiciosDiarios=fichero.ExtraerListaServiciosTomadoCliete();
                 if(wsListaServiciosCliente.ListServicios!=null){
                     List<beansHistorialServiciosCreados> listServicio=wsListaServiciosCliente.ListServicios;
-                //    Toast.makeText(getActivity(),listServicio.get(position).getStatadoServicio(),Toast.LENGTH_LONG).show();
-                    if(listServicio.get(position).getStatadoServicio().equals("1")){
-                        Intent intent=new Intent(getActivity(), MapsClienteConductorServicio.class);
-                        startActivity(intent);
+                    //    Toast.makeText(getActivity(),listServicio.get(position).getStatadoServicio(),Toast.LENGTH_LONG).show();
+                    if(listServicio.get(position).getStatadoServicio().equals("1") ||
+                            listServicio.get(position).getStatadoServicio().equals("2")||
+                            listServicio.get(position).getStatadoServicio().equals("3")){
+
+                        if(jsonArrayServiciosDiarios!=null){
+                         for(int i=0;i<jsonArrayServiciosDiarios.length();i++){
+                             try {
+                                 if(listServicio.get(position).getIdServicio().
+                                         equals(jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio"))){
+                                            Toast.makeText(getActivity(),
+                                                    jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio"),
+                                                    Toast.LENGTH_LONG).show();
+                                         Intent intent=new Intent(getActivity(), MapsClienteConductorServicio.class);
+                                        intent.putExtra("idServicio",jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio"));
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                     i=jsonArrayServiciosDiarios.length();
+                                 }
+                             } catch (JSONException e) {
+                                 e.printStackTrace();
+                             }
+                         }
+                        }
+
+
+
                     }
 
                 }
+
+
 
                // Toast.makeText(getActivity(),listServicio.get(position).getIdServicio(),Toast.LENGTH_LONG).show();
             }
@@ -207,7 +240,12 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
     }
 
     @Override
-    public void onClickDetalle(Context context, String idServicio, String stadoServicio) {
+    public void onClickDetalle(final Context context, String idServicio, String stadoServicio) {
+        Activity activity=(Activity)context;
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        final View view = activity.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
+
+        TextView lblDetalleServicio = (TextView) view.findViewById(R.id.txtDetalleServicio);
         Fichero fichero=new Fichero(context);
         JSONArray jsonService=fichero.ExtraerListaServiciosTomadoCliete();
                 if(jsonService!=null){
@@ -215,6 +253,8 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                         try {
                             if(idServicio.equals(jsonService.getJSONObject(i).getString("idServicio"))){
                                     Log.d("click_",jsonService.getJSONObject(i).getString("statadoServicio"));
+                                DetalleServicioReturn(jsonService,i,context);
+                                lblDetalleServicio.setText(Html.fromHtml(DetalleServicioReturn(jsonService,i,context)));
                                 i=jsonService.length();
                             }
                         } catch (JSONException e) {
@@ -222,6 +262,92 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                         }
                     }
                 }
+
+        alertDialogBuilder.setView(view);
+        AlertDialog alertDialog;
+
+        alertDialogBuilder.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
         Toast.makeText(context,idServicio+"--"+stadoServicio,Toast.LENGTH_LONG).show();
+    }
+
+    private String DetalleServicioReturn( JSONArray ListaServiciosCreados,int posicion_,Context context){
+        String  detalle="";
+        String importTipoAutoSolicitoCliente="0.00";
+        double sumaImportesServicio=0.0;
+        Fichero fichero_=new Fichero(context);
+
+        if(ListaServiciosCreados!=null){
+
+            try {
+                if(ListaServiciosCreados.getJSONObject(posicion_).getString("idAutoTipoPidioCliente").equals("1")){
+                    JSONObject jsonObjectConfiguraciones=fichero_.ExtraerConfiguraciones();
+                    if(jsonObjectConfiguraciones!=null){
+                        importTipoAutoSolicitoCliente=jsonObjectConfiguraciones.getString("impAutoVip");
+                    }
+
+                }
+                try {
+                    sumaImportesServicio=Double.parseDouble(ListaServiciosCreados.getJSONObject(posicion_).getString("importeServicio"))+
+                            Double.parseDouble(ListaServiciosCreados.getJSONObject(posicion_).getString("importeAireAcondicionado"))+
+                            Double.parseDouble(ListaServiciosCreados.getJSONObject(posicion_).getString("importeTiempoEspera"))+
+                            Double.parseDouble(ListaServiciosCreados.getJSONObject(posicion_).getString("importePeaje"))+
+                            Double.parseDouble(importTipoAutoSolicitoCliente);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                detalle =
+                        "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
+                                + "\t" + ListaServiciosCreados.getJSONObject(posicion_).getString("Fecha") + "<br>"
+                                + "<font color=\"#11aebf\"><bold>Hora:&nbsp;</bold></font>"
+                                + ListaServiciosCreados.getJSONObject(posicion_).getString("Hora") + "<br>"
+                                + "<font color=\"#11aebf\"><bold>Distri Incio:&nbsp;</bold></font>"
+                                + ListaServiciosCreados.getJSONObject(posicion_).getString("nameDistritoInicio") + "<br>"
+                                + "<font color=\"#11aebf\"><bold>Direccion Incio:&nbsp;</bold></font>"
+                                + ListaServiciosCreados.getJSONObject(posicion_).getString("DireccionIncio") + "<br>"
+                                + "<font color=\"#11aebf\"><bold>Distri Fin:&nbsp;</bold></font>"
+                                + ListaServiciosCreados.getJSONObject(posicion_).getString("nameDistritoFin") + "<br>"
+                                + "<font color=\"#11aebf\"><bold>Direccion Fin:&nbsp;</bold></font>"
+                                + ListaServiciosCreados.getJSONObject(posicion_).getString("direccionFinal")  + "<br>"
+                                + "<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
+                                + ListaServiciosCreados.getJSONObject(posicion_).getString("numeroMinutoTiempoEspera")  + "\t" + " min" + "<br>"
+                                + "<font color=\"#11aebf\"><bold>Tipo Servicio :&nbsp;</bold></font>"
+                                + "( " + ListaServiciosCreados.getJSONObject(posicion_).getString("desAutoTipoPidioCliente")  + " )" + "<br><br>"
+
+                                + "<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
+                                + "S/." + ListaServiciosCreados.getJSONObject(posicion_).getString("importeServicio")  + "<br>"
+
+                                + "<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
+                                + "S/." + ListaServiciosCreados.getJSONObject(posicion_).getString("importeAireAcondicionado")  + "<br>"
+
+                                +"<font color=\"#11aebf\"><bold>Import Tiem espera:&nbsp;</bold></font>"
+                                +"S/."+ListaServiciosCreados.getJSONObject(posicion_).getString("importeTiempoEspera") +"<br>"
+
+                                + "<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
+                                + "S/." + ListaServiciosCreados.getJSONObject(posicion_).getString("importePeaje")  + "<br>"
+
+                                + "<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
+                                + "S/." + importTipoAutoSolicitoCliente + "<br><br>"
+
+                                + "<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
+                                + "S/." + String.valueOf(sumaImportesServicio) + "<br><br>";
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return detalle;
     }
 }

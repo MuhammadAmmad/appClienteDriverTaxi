@@ -255,7 +255,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
                     String idAire="0";
                     String precioAire="";
                     String idTipoAuto="2";
-
+                    String importeTipoAuto="0";
                     if(jsonOrigen!=null && jsonDestino!=null){
                         if(compR.getCheckBoxAire_Si().isChecked()){
                             idAire="1";//DESEA AIRE ACONDICIONADO
@@ -275,8 +275,15 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
                         }
                         if (compR.getCheckBoxAutoVip().isChecked()){
                             idTipoAuto="1";//DESA AUTO VIP
+                            try {
+                                importeTipoAuto=configuracionServicio.getString("impAutoVip");
+                            } catch (JSONException e) {
+                                importeTipoAuto="0";
+                                e.printStackTrace();
+                            }
                         }else {
                             idTipoAuto="2";//DESA AUTO ECONOMICO
+                            importeTipoAuto="0";
                         }
                         new wsValidarHoraServicio(context, fechaIngreso, horaIngreso,
                                                         jsonOrigen,
@@ -285,6 +292,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
                                                         idAire,
                                                         precioAire,
                                                         idTipoAuto,
+                                                        importeTipoAuto,
                                                         alertDialog).execute();
                     }else {
                         Log.d("jsonOringenDestion","nulll chekar");

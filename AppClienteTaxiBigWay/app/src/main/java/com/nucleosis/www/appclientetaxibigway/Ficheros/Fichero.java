@@ -246,4 +246,32 @@ public class Fichero {
             Log.d("look_","No se puede leer fichero");   }
         return jsonArray;
     }
+
+    public void InsertarFechaHoraActual(String fechaHora){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("fechaHoraActual.txt", Context.MODE_PRIVATE));
+            json.write(fechaHora);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());
+        }
+    }
+
+    public JSONObject ExtraerFechaHoraActual(){
+        JSONObject ReturHoraFecha=null;
+        try
+        {
+            BufferedReader horaFecha =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("fechaHoraActual.txt")));
+            ReturHoraFecha=new JSONObject(horaFecha.readLine());
+            horaFecha.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return ReturHoraFecha;
+    }
 }

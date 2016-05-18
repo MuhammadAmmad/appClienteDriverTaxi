@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nucleosis.www.appclientetaxibigway.Adpaters.GridAdapterHistoricoServicios;
@@ -23,6 +24,7 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -37,13 +39,15 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
     private GridViewWithHeaderAndFooter grid;
     private PreferencesCliente preferencesCliente;
     private String fecha;
-    Drawable drawable;
+    private  Drawable drawable;
     private Fichero fichero;
     private JSONObject jsonConfiguraciones;
     private String urlConductor;
     public static List<beansHistorialServiciosCreados> ListServicios;
     private ArrayList<beansServiciosFechaDetalle> listDetalleServicio;
     private ProgressDialog progesDialog;
+    private int TIME_OUT=15000;
+    private boolean tiempoEsperaConexion=false;
     @SuppressWarnings("deprecation")
     public wsListaServiciosCliente(Context context,GridViewWithHeaderAndFooter grid,String fecha) {
         this.grid = grid;
@@ -76,7 +80,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
         progesDialog.setMessage("Cargando...");
         progesDialog.show();
     }
-
+    @SuppressWarnings("deprecation")
     @Override
     protected List<beansHistorialServiciosCreados> doInBackground(String... params) {
         beansHistorialServiciosCreados row=null;
@@ -91,13 +95,13 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
         request.addProperty("idConductor", "");
         request.addProperty("idEstadoServicio", "");
         envelope.setOutputSoapObject(request);
-        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 
         try {
-            ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
+            HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL(),TIME_OUT);
+          /*  ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
-            httpTransport.call(ConstantsWS.getSoapAction11(), envelope, headerPropertyArrayList);
-            // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
+            httpTransport.call(ConstantsWS.getSoapAction11(), envelope, headerPropertyArrayList);*/
+             httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
             int countVector=responseVector.size();
@@ -137,10 +141,11 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
                     row.setNombreConductor("");
                 }
                 row.setStatadoServicio(dataVector.getProperty("ID_ESTADO_SERVICIO").toString());
+
                 row.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
 
-                row.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
-                        + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                row.setInfoAddress("-"+dataVector.getProperty("DES_DIRECCION_INICIO").toString()
+                        + "\n-" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
 
                 row.setIdCliente(dataVector.getProperty("ID_CLIENTE").toString());
                 if(dataVector.getProperty("ID_CONDUCTOR").toString()!=null){
@@ -178,7 +183,39 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
                 }else {
                     row.setIdTipoAutoPidioCliente("");
                 }
+            //dataVector.getProperty("ID_ESTADO_SERVICIO").toString()
 
+                if(dataVector.hasProperty("ID_ESTADO_SERVICIO")){
+                    String idStadoServicio=dataVector.getProperty("ID_ESTADO_SERVICIO").toString();
+                    if(idStadoServicio.equals("1")){
+                        //PENDIENTE
+                        drawable=context.getResources().getDrawable(R.drawable.shape_stado_servicio_creado);
+                        row.setImageStatusServicio(drawable);
+                    }else if(idStadoServicio.equals("2")){
+                        //STATDO ACEPTADO
+                        drawable=context.getResources().getDrawable(R.drawable.shape_stado_aceptado);
+                        row.setImageStatusServicio(drawable);
+                    }else if(idStadoServicio.equals("3")){
+                        //STADO EN RUTA CON CLIENTE
+                        drawable=context.getResources().getDrawable(R.drawable.shape_green);
+                        row.setImageStatusServicio(drawable);
+                    }else if(idStadoServicio.equals("4")){
+                        //TERMINADO CORRECTARMENTE EL SERVCIO
+                        drawable=context.getResources().getDrawable(R.drawable.shape_blue);
+                        row.setImageStatusServicio(drawable);
+                    }else if(idStadoServicio.equals("5")){
+                        // NO TERMINADO
+                        drawable=context.getResources().getDrawable(R.drawable.shape_yellow);
+                        row.setImageStatusServicio(drawable);
+                    }else if(idStadoServicio.equals("6")){
+                        //CANCELADO POR EL CLIENTE
+                        drawable=context.getResources().getDrawable(R.drawable.shape_red_cliente);
+                        row.setImageStatusServicio(drawable);
+                    }
+
+
+
+                }
 
                 ////////////////////////////////////////////////////////
                 row2.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
@@ -194,11 +231,11 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
                 row2.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                 row2.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
-                if(dataVector.getProperty("DES_FOTO").toString()!=null){
+               /* if(dataVector.getProperty("DES_FOTO").toString()!=null){
                     row.setNameFotoConductor(dataVector.getProperty("DES_FOTO").toString());
                 }else {
                     row.setNameFotoConductor("");
-                }
+                }*/
 
                 row2.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                 row2.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
@@ -266,7 +303,11 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
           // SoapObject response2=(SoapObject)response1.getProperty("return");
             Log.d("listaxxx", responseVector.toString());
             Log.d("sizeVector", String.valueOf(responseVector.size()));
-        } catch (Exception e) {
+        } catch (InterruptedIOException e){
+            tiempoEsperaConexion=true;
+        }
+
+        catch (Exception e) {
             e.printStackTrace();
 //            Log.d("error", e.getMessage());
         }
@@ -276,6 +317,9 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
     @Override
     protected void onPostExecute(List<beansHistorialServiciosCreados> listServis) {
         super.onPostExecute(listServis);
+        if(tiempoEsperaConexion){
+            Toast.makeText(context,"No se puedo Conectar",Toast.LENGTH_LONG).show();
+        }
         progesDialog.dismiss();
         grid.setAdapter(new GridAdapterHistoricoServicios(context,listServis));
     }

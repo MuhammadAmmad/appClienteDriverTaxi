@@ -161,7 +161,7 @@ public class ServiceTurno extends Service {
 
 
 
-            //TIEMPO MAXIMO QUE DURA EL SERVICIO  720 MINUTOS  2 HORAS
+            //TIEMPO MAXIMO QUE DURA EL SERVICIO  720 MINUTOS  12 HORAS
             if(diferenciaMinutos>720 && sw==0){
               //  Toast.makeText(ServiceTurno.this,"Su Turno esta a punto de desactivarse",Toast.LENGTH_SHORT).show();
                 //new wsDesactivarTurno(ServiceTurno.this).execute();

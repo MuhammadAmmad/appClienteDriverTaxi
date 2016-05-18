@@ -5,37 +5,68 @@
     android:name="com.google.android.gms.maps.MapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nucleosis.www.appclientetaxibigway.MapsActivity"
+    tools:context="com.nucleosis.www.appclientetaxibigway.MapsClienteConductorServicio"
     >
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
-            android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+        <LinearLayout
+            android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:id="@+id/lblCoordenada"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:text="HOLA CARLOS"/>
+            android:layout_marginTop="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:gravity="center|left">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="@dimen/marginLeftDiez"
+                android:id="@+id/imageViewAlertaStado"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimenCinco"
+                android:layout_marginRight="@dimen/marginLeftDiez"
+                android:id="@+id/lblMensajeDeEstado"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:gravity="center"/>
+        </LinearLayout>
+
     </LinearLayout>
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom">
-       <Button
-           android:layout_width="match_parent"
-           android:layout_height="50dp"
-           android:id="@+id/btnCoordenadas"
-           android:background="#ef9292"
-           android:text="INICIAR"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/btnStopCoordenadas"
-            android:visibility="gone"
-            android:background="#ef9292"
-            android:text="PARAR"/>
+        android:layout_marginRight="5dp"
+        android:gravity="right|bottom">
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#70969696">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:background="@drawable/selector_button_servicio_terminado"
+                android:id="@+id/btnServicioCancelado"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="visible"
+                android:background="@drawable/selector_button_ir_a_servicios"
+                android:id="@+id/btnIrAServicios"/>
+        </LinearLayout>
+
     </LinearLayout>
 </fragment>

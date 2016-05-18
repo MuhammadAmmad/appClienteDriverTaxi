@@ -67,6 +67,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appclientetaxibigway.Adpaters.CustomInfoWindow;
 import com.nucleosis.www.appclientetaxibigway.Adpaters.PlaceAutocompleteAdapter;
+import com.nucleosis.www.appclientetaxibigway.ConexionRed.ConnectionUtils;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentDataClient;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentMiUbicacion;
@@ -105,13 +106,14 @@ public class MainActivity extends AppCompatActivity
     private List<beansListaPolygono> listPolyGo;
     private String ZonaIncio="";
     private String ZonaFin="";
-    private int hora,minuto,mYear, mMonth, mDay;
-    private String Fecha;
+   // private int hora,minuto,mYear, mMonth, mDay;
+    //private String Fecha;
     private Fichero fichero;
     private PlaceAutocompleteAdapter mAdapter;
     protected GoogleApiClient mGoogleApiClient;
     private long mLastClickTime = 0;
-    public static final String TAG = "SampleActivityBase";
+    public static final String TAG = "MainActivity";
+    private ConnectionUtils conexion;
     private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
             new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     @Override
@@ -246,7 +248,7 @@ public class MainActivity extends AppCompatActivity
                 if (sw == 0) {
                     sw = 1;
                     CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
-                            lat[0], lon[0]), 12);
+                            lat[0], lon[0]), 16);
                     ZonaIncio =DeterminaZona(listPolyGo.size(),latLngIncial);
                     new AddresRestmap(MainActivity.this,String.valueOf( pos.getLatitude()), String.valueOf(pos.getLongitude()), 1).execute();
                     new wsExtraerIdZonaIdDistrito(MainActivity.this,ZonaIncio,1).execute();
@@ -315,51 +317,55 @@ public class MainActivity extends AppCompatActivity
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
-            /*    String addresIncio=compR.getEditAddresss().getText().toString().trim();
-                String addresFin=compR.getEditAddresssFinal().getText().toString().trim();*/
                 String addresIncio=compR.getAutoCompletText1().getText().toString().trim();
                 String addresFin=compR.getAutoCompletText2().getText().toString().trim();
 
                 Log.d("incio***",String.valueOf(addresIncio.length())+"-->"+String.valueOf(addresFin.length()));
                 String msnServicioTaxi=getResources().getString(R.string.NoServicio);
-                if(addresIncio.length()!=0 && addresFin.length()!=0 ){
-                    if(ZonaIncio.length()!=0 && ZonaFin.length()!=0){
-                        Toast.makeText(MainActivity.this,ZonaIncio+"***"+ZonaFin,Toast.LENGTH_LONG).show();
-                        fichero.InsertarDireccionIncioFin(addresIncio,addresFin);
-                        new wsExtraerPrecioZonaDistrito(
-                                MainActivity.this,
-                                fichero.ExtraerZonaIdDistrito_Origen(),
-                                fichero.ExtraerZonaIdDistrito_Destino()).execute();
-                        //AlertPedirServicio();
+                boolean conect=conexion.isInternet(MainActivity.this);
+                if (conect){
+                    if(addresIncio.length()!=0 && addresFin.length()!=0 ){
+                        if(ZonaIncio.length()!=0 && ZonaFin.length()!=0){
+                            Toast.makeText(MainActivity.this,ZonaIncio+"***"+ZonaFin,Toast.LENGTH_LONG).show();
+                            fichero.InsertarDireccionIncioFin(addresIncio,addresFin);
+                            new wsExtraerPrecioZonaDistrito(
+                                    MainActivity.this,
+                                    fichero.ExtraerZonaIdDistrito_Origen(),
+                                    fichero.ExtraerZonaIdDistrito_Destino()).execute();
+                            //AlertPedirServicio();
+                        }else{
+                            Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
+                            dialogo1.setTitle("Alerta!!");
+                            dialogo1.setMessage("¿No hay covertura para este lugar\nLlame a nuestra central");
+                            dialogo1.setCancelable(false);
+                            dialogo1.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialogo1, int id) {
+                                    // Intent i = new Intent(android.content.Intent.ACTION_CALL,
+                                    // Uri.parse("tel:+3748593458"));
+                                    Intent i = new Intent(android.content.Intent.ACTION_DIAL,
+                                            Uri.parse("tel:998319046")); //
+                                    startActivity(i);
+                                }
+                            });
+                            dialogo1.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialogo1, int id) {
+
+                                }
+                            });
+                            dialogo1.show();
+                        }
+                        // linearFragment.setVisibility(View.GONE);
+                        //compR.getDrawer().closeDrawer(GravityCompat.START);
+                        // setFragment(2);
                     }else{
-                        Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
-                        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
-                        dialogo1.setTitle("Alerta!!");
-                        dialogo1.setMessage("¿No hay covertura para este lugar\nLlame a nuestra central");
-                        dialogo1.setCancelable(false);
-                        dialogo1.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogo1, int id) {
-                                // Intent i = new Intent(android.content.Intent.ACTION_CALL,
-                                // Uri.parse("tel:+3748593458"));
-                                Intent i = new Intent(android.content.Intent.ACTION_DIAL,
-                                        Uri.parse("tel:998319046")); //
-                                startActivity(i);
-                            }
-                        });
-                        dialogo1.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogo1, int id) {
+                        Toast.makeText(MainActivity.this,"Ingrese Direccion de inicio y destino",Toast.LENGTH_LONG).show();
 
-                            }
-                        });
-                        dialogo1.show();
                     }
-                    // linearFragment.setVisibility(View.GONE);
-                    //compR.getDrawer().closeDrawer(GravityCompat.START);
-                    // setFragment(2);
                 }else{
-                    Toast.makeText(MainActivity.this,"Ingrese Direccion de inicio y destino",Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(MainActivity.this,"No tiene coneccion a internet verifique !!",Toast.LENGTH_LONG).show();
                 }
+
 
                 break;
         }
@@ -372,7 +378,7 @@ public class MainActivity extends AppCompatActivity
         CameraUpdate ZoomCam = CameraUpdateFactory.zoomTo(12);
         mapa.animateCamera(ZoomCam);
         final LatLng PERTH = new LatLng(lat, lon);
-        final LatLng LatLonFin=new LatLng(lat+0.0060,lon+0.0390);
+        final LatLng LatLonFin=new LatLng(lat+0.001,lon+0.001);
         // final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
         final Marker markerInicio = mapa.addMarker(new MarkerOptions()
                 .position(PERTH)

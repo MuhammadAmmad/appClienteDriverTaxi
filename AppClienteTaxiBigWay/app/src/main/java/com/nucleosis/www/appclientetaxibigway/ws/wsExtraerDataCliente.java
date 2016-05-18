@@ -1,13 +1,19 @@
 package com.nucleosis.www.appclientetaxibigway.ws;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
 import com.nucleosis.www.appclientetaxibigway.FrmSigUp;
 import com.nucleosis.www.appclientetaxibigway.LoginActivity;
 import com.nucleosis.www.appclientetaxibigway.MainActivity;
+import com.nucleosis.www.appclientetaxibigway.R;
 import com.nucleosis.www.appclientetaxibigway.SharedPreferences.PreferencesCliente;
 import com.nucleosis.www.appclientetaxibigway.beans.dataClienteSigUp;
 
@@ -17,6 +23,8 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +39,9 @@ public class wsExtraerDataCliente extends AsyncTask<String,String,List<dataClien
     private FrmSigUp CX_FRM_SIG_UP=new FrmSigUp();
     private LoginActivity CX_LOGIN_ACTIVITY=new LoginActivity();
     PreferencesCliente preferecesCliente;
+    private ProgressDialog progressDialog;
+    private int TIME_OUT=15000;
+    private boolean tiempoEsperaConexion=false;
     public wsExtraerDataCliente(String email,Context context,int CasoActivity) {
         this.Email = email;
         this.CasoActivity=CasoActivity;
@@ -41,6 +52,12 @@ public class wsExtraerDataCliente extends AsyncTask<String,String,List<dataClien
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog=new ProgressDialog(context);
+        progressDialog.show();
+//      progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        progressDialog.setContentView(R.layout.custom_progres_dialog);
+
     }
 
     @Override
@@ -57,7 +74,7 @@ public class wsExtraerDataCliente extends AsyncTask<String,String,List<dataClien
         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
         request.addProperty("desEmail", Email);
         envelope.setOutputSoapObject(request);
-        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
+        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL(),TIME_OUT);
 
         try {
             ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
@@ -77,7 +94,9 @@ public class wsExtraerDataCliente extends AsyncTask<String,String,List<dataClien
             row.setEmail(response2.getPropertyAsString("DES_EMAIL").toString());
             row.setCelular(response2.getPropertyAsString("NUM_CELULAR").toString());
             listCliente.add(row);
-        } catch (Exception e) {
+        } catch (InterruptedIOException e){
+            tiempoEsperaConexion=true;
+        }catch (Exception e) {
             e.printStackTrace();
             Log.d("error", e.getMessage());
         }
@@ -87,8 +106,13 @@ public class wsExtraerDataCliente extends AsyncTask<String,String,List<dataClien
     @Override
     protected void onPostExecute(List<dataClienteSigUp> dataList) {
         super.onPostExecute(dataList);
-        Log.d("size_", String.valueOf(dataList.size()));
-        Log.d("datoRespuesta-->",dataList.get(0).getCelular());
+        if(tiempoEsperaConexion){
+            Toast.makeText(context,"No se puedo Conectar",Toast.LENGTH_LONG).show();
+        }
+
+        /*Log.d("size_", String.valueOf(dataList.size()));
+        Log.d("datoRespuesta-->",dataList.get(0).getCelular());*/
+        progressDialog.dismiss();
         switch (CasoActivity){
             case 101:
                 intent=new Intent(context, MainActivity.class);

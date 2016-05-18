@@ -2,192 +2,98 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginLeftDiez"
-        android:layout_marginLeft="@dimen/marginLeftDiez"
-        android:layout_marginRight="@dimen/marginLeftDiez"
-        android:layout_marginBottom="@dimen/marginLeftDiez"
-        android:layout_gravity="center_horizontal">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp">
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="@dimen/dimenCinco"
-                android:layout_marginTop="@dimen/dimenCinco"
-                android:clickable="true"
-                android:id="@+id/ImgButtonCancelAlert"
-                android:background="@android:drawable/ic_menu_close_clear_cancel"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginRight="@dimen/marginLeftDiez"
-            android:layout_marginLeft="@dimen/marginLeftDiez"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="25dp"
-            android:text="@string/ServicioAdicionales"
-            android:id="@+id/lblTxtTituloAlert"
-            android:layout_gravity="center_horizontal" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:text="@string/aireAcondicionado"
-            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
-            android:id="@+id/btnAireAcondicionado1"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:visibility="gone"
-            android:text="@string/aireAcondicionado"
-            android:id="@+id/btnAireAcondicionado2"
-            android:drawableRight="@drawable/ic_expand_more_black_24dp"/>
-
-        <!--android:drawableLeft="@drawable/ic_expand_more_black_24dp"-->
-        <!--android:drawableRight="@android:drawable/ic_input_add"-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/LinearContenedorAireAcondicionado"
-            android:gravity="right">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:visibility="gone"
-                android:id="@+id/btnEnviarAire"
-                android:text="Enviar"/>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:text="@string/peaje"
-            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
-            android:id="@+id/btnPeaje1"
-            android:layout_gravity="center_horizontal" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:text="@string/peaje"
-            android:visibility="gone"
-            android:drawableRight="@drawable/ic_expand_more_black_24dp"
-            android:id="@+id/btnPeaje2"
-            android:layout_gravity="center_horizontal" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:visibility="gone"
-                android:id="@+id/btnEnviarPeaje"
-                android:text="Enviar"/>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
-            android:text="@string/tiempoEspera"
-            android:id="@+id/btnTiempoEspera1"
-            android:layout_gravity="center_horizontal" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:drawableRight="@drawable/ic_expand_more_black_24dp"
-            android:visibility="gone"
-            android:text="@string/tiempoEspera"
-            android:id="@+id/btnTiempoEspera2"
-            android:layout_gravity="center_horizontal" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            android:id="@+id/LinearContenedorTiempoEspera"
-            android:gravity="right">
-            <EditText
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTiempoEspera"
-                android:hint="@string/minutos"
-                android:inputType="number"
-                android:paddingLeft="@dimen/paddinLeft"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:id="@+id/btnEnviarTiempoEspera"
-                android:text="Enviar"/>
-        </LinearLayout>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
-            android:text="@string/modificarRuta"
-            android:id="@+id/btnModificarRuta1"
-            android:layout_gravity="center_horizontal" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginLeftDiez"
-            android:visibility="gone"
-            android:drawableRight="@drawable/ic_expand_more_black_24dp"
-            android:text="@string/modificarRuta"
-            android:id="@+id/btnModificarRuta2"
-            android:layout_gravity="center_horizontal" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
-            android:id="@+id/LinearContenedorRutaNueva">
-            <AutoCompleteTextView
-                android:id="@+id/autocompleteDireccion1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:layout_marginBottom="@dimen/marginLeftDiez"
+            android:layout_gravity="center_horizontal">
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:paddingLeft="@dimen/marginLeftDiez"
-                android:paddingRight="@dimen/padinLeft"
-                android:textSize="12dp"
-                android:maxLines="2"
-                android:layout_gravity="center_horizontal"
-                android:hint="Direccion Inicio*"
-                android:singleLine="true" />
-            <AutoCompleteTextView
-                android:id="@+id/autocompleteDireccion2"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="@dimen/dimenCinco"
+                    android:layout_marginTop="@dimen/dimenCinco"
+                    android:clickable="true"
+                    android:id="@+id/ImgButtonCancelAlert"
+                    android:background="@android:drawable/ic_menu_close_clear_cancel"/>
+            </LinearLayout>
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:paddingLeft="@dimen/marginLeftDiez"
-                android:paddingRight="@dimen/padinLeft"
-                android:layout_marginTop="@dimen/dimenCinco"
-                android:textSize="12dp"
-                android:layout_gravity="center_horizontal"
-                android:hint="Direccion fin*"
-                android:singleLine="true" />
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/marginLeftDiez"
+                android:layout_marginLeft="@dimen/marginLeftDiez"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="25dp"
+                android:text="@string/ServicioAdicionales"
+                android:id="@+id/lblTxtTituloAlert"
+                android:layout_gravity="center_horizontal" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:text="@string/aireAcondicionado"
+                android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+                android:id="@+id/btnAireAcondicionado1"
+                android:layout_gravity="center_horizontal" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:visibility="gone"
+                android:text="@string/aireAcondicionado"
+                android:id="@+id/btnAireAcondicionado2"
+                android:drawableRight="@drawable/ic_expand_more_black_24dp"/>
+
+            <!--android:drawableLeft="@drawable/ic_expand_more_black_24dp"-->
+            <!--android:drawableRight="@android:drawable/ic_input_add"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/LinearContenedorAireAcondicionado"
+                android:gravity="right">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:visibility="gone"
+                    android:id="@+id/btnEnviarAire"
+                    android:text="Enviar"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:text="@string/peaje"
+                android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+                android:id="@+id/btnPeaje1"
+                android:layout_gravity="center_horizontal" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:text="@string/peaje"
+                android:visibility="gone"
+                android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                android:id="@+id/btnPeaje2"
+                android:layout_gravity="center_horizontal" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,11 +102,111 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:id="@+id/btnEnviarNuevaRuta"
+                    android:visibility="gone"
+                    android:id="@+id/btnEnviarPeaje"
                     android:text="Enviar"/>
             </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+                android:text="@string/tiempoEspera"
+                android:id="@+id/btnTiempoEspera1"
+                android:layout_gravity="center_horizontal" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                android:visibility="gone"
+                android:text="@string/tiempoEspera"
+                android:id="@+id/btnTiempoEspera2"
+                android:layout_gravity="center_horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:id="@+id/LinearContenedorTiempoEspera"
+                android:gravity="right">
+                <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTiempoEspera"
+                    android:hint="@string/minutos"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/paddinLeft"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:id="@+id/btnEnviarTiempoEspera"
+                    android:text="Enviar"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+                android:text="@string/modificarRuta"
+                android:id="@+id/btnModificarRuta1"
+                android:layout_gravity="center_horizontal" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:visibility="gone"
+                android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                android:text="@string/modificarRuta"
+                android:id="@+id/btnModificarRuta2"
+                android:layout_gravity="center_horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/LinearContenedorRutaNueva">
+                <AutoCompleteTextView
+                    android:id="@+id/autocompleteDireccion1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="@dimen/marginLeftDiez"
+                    android:paddingRight="@dimen/padinLeft"
+                    android:textSize="12dp"
+                    android:maxLines="2"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Direccion Inicio*"
+                    android:singleLine="true" />
+                <AutoCompleteTextView
+                    android:id="@+id/autocompleteDireccion2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="@dimen/marginLeftDiez"
+                    android:paddingRight="@dimen/padinLeft"
+                    android:layout_marginTop="@dimen/dimenCinco"
+                    android:textSize="12dp"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Direccion fin*"
+                    android:singleLine="true" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="right">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:id="@+id/btnEnviarNuevaRuta"
+                        android:text="Enviar"/>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+
+    </ScrollView>
 
 
 </LinearLayout>

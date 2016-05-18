@@ -21,6 +21,7 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.io.InterruptedIOException;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +35,8 @@ public class wsLoginCliente extends AsyncTask<String,String,String> {
     private ProgressDialog progressDialog;
     private int CasoActivity;
     private int sw=0;
-
+    private int TIME_OUT=15000;
+    private boolean tiempoEsperaConexion=false;
     private Intent intent;
     public wsLoginCliente(String email, String pass, Context context,int CasoActivity) {
         Email = email;
@@ -66,7 +68,7 @@ public class wsLoginCliente extends AsyncTask<String,String,String> {
         request.addProperty("desEmail", Email);
         request.addProperty("desContrasena", Pass);
         envelope.setOutputSoapObject(request);
-        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
+        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL(),TIME_OUT);
 
         try {
             ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
@@ -85,7 +87,9 @@ public class wsLoginCliente extends AsyncTask<String,String,String> {
                 sw=0;
             }
             //  Log.d("response",response2.toString());
-        } catch (Exception e) {
+        } catch (InterruptedIOException e){
+            tiempoEsperaConexion=true;
+        }catch (Exception e) {
             e.printStackTrace();
             //Log.d("error", e.printStackTrace());
         }
@@ -95,6 +99,9 @@ public class wsLoginCliente extends AsyncTask<String,String,String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        if(tiempoEsperaConexion){
+            Toast.makeText(context,"No se puedo Conectar",Toast.LENGTH_LONG).show();
+        }
         progressDialog.dismiss();
         //  Log.d("caso_","--->"+String.valueOf(CasoActivity));
         if(sw==1){

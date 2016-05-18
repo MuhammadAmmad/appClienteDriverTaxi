@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.nucleosis.www.appclientetaxibigway.ConexionRed.ConnectionUtils;
+import com.nucleosis.www.appclientetaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
 import com.nucleosis.www.appclientetaxibigway.beans.dataClienteSigUp;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
@@ -30,15 +32,18 @@ private ComponentesR compR;
 private long mLastClickTime = 0;
 public  static Activity LOGIN_ACTIVITY;
     private Intent intent;
-
+    private conexionInternet internetConection;
+    private ConnectionUtils conexion;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         LOGIN_ACTIVITY=this;
         compR=new ComponentesR(LoginActivity.this);
         compR.Controls_LoginActivity(LOGIN_ACTIVITY);
+        internetConection=new conexionInternet(LoginActivity.this);
         compR.getEditEmail().setText("taxi@gmail.com");
         compR.getEditPassword().setText("123456");
+
     }
 
     @Override
@@ -52,17 +57,25 @@ public  static Activity LOGIN_ACTIVITY;
                 String email=compR.getEditEmail().getText().toString().trim();
                 String pass=compR.getEditPassword().getText().toString().trim();
                 String msn=getResources().getString(R.string.CamposObligatorios);
-                if(email.length()!=0 && pass.length()!=0){
-                    try {
-                        LOGGIN_USUARIO.LoginCliente(email,pass,LoginActivity.this);
+
+                boolean conect=false;
+                conect=conexion.isInternet(LoginActivity.this);
+                if(conect==true){
+                    if(email.length()!=0 && pass.length()!=0 ){
+                        try {
+                            LOGGIN_USUARIO.LoginCliente(email,pass,LoginActivity.this);
 
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }else {
+                        Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"No tiene Coneccion a intener !!",Toast.LENGTH_LONG).show();
                 }
+
                // Toast.makeText(LoginActivity.this,"hola",Toast.LENGTH_SHORT).show();
 
                 break;
