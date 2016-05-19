@@ -15,9 +15,11 @@ import android.widget.Toast;
 import com.nucleosis.www.appdrivertaxibigway.Beans.User;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.LoingDriverApp;
 import com.nucleosis.www.appdrivertaxibigway.MainActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
@@ -40,10 +42,12 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
     private Activity ACTIVITY= LoingDriverApp.LoingDriverApp;
     private int sw=0;
     private ProgressDialog progressDialog;
+    private Fichero fichero;
     public LoginDriverWS(Context context, User user) {
         this.context = context;
         this.user = user;
         progressDialog=new ProgressDialog(context);
+        fichero=new Fichero(context);
     }
     @Override
     protected void onPreExecute() {
@@ -101,6 +105,13 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
             intent=new Intent(ACTIVITY, MainActivity.class);
             ACTIVITY.startActivity(intent);
             ACTIVITY.finish();
+            JSONObject jsonSesion2=new JSONObject();
+            try {
+                jsonSesion2.put("idSesion","1");
+                fichero.InsertarSesion(jsonSesion2.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             new DonwloadDataUser(context).execute(user.getUser());
             new wsExtraerHoraServer(context).execute();
             new wsExtraerDistritos(context).execute();

@@ -144,7 +144,18 @@ public class MainActivity extends AppCompatActivity
                 .build();
         mAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient, BOUNDS_LIMA,
                 null);
+
+        //compR.getAutoCompletText1().setFocusable(false);
+        compR.getAutoCompletText1().setFocusableInTouchMode(false);
+        compR.getAutoCompletText1().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /// Toast.makeText(MainActivity.this,"hoa",Toast.LENGTH_SHORT).show();
+                compR.getAutoCompletText1().setFocusableInTouchMode(true);
+            }
+        });
         compR.getAutoCompletText1().setOnItemClickListener(mAutocompleteClickListener_1);
+
         compR.getAutoCompletText1().setAdapter(mAdapter);
         compR.getAutoCompletText2().setOnItemClickListener(mAutocompleteClickListener_2);
         compR.getAutoCompletText2().setAdapter(mAdapter);
@@ -213,6 +224,21 @@ public class MainActivity extends AppCompatActivity
                                 startActivity(intent);
                                 finish();
                                 break;
+                            case R.id.cerrarSesion:
+                                JSONObject jsonSesion=new JSONObject();
+                                try {
+                                    jsonSesion.put("idSesion","0");
+                                    fichero.InsertarSesion(jsonSesion.toString());
+                                    Log.d("StracFichero",fichero.ExtraerSesion().toString());
+                                    Intent intentLongin=new Intent(MainActivity.this,LoginActivity.class);
+                                    startActivity(intentLongin);
+                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    finish();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                break;
                            /* case R.id.MenuPedirServicio:
                                 linearFragment.setVisibility(View.GONE);
                                 compR.getDrawer().closeDrawer(GravityCompat.START);
@@ -232,11 +258,7 @@ public class MainActivity extends AppCompatActivity
         // Log.d("sisePolygonos", String.valueOf(listPolyGo.get(0).getIdPoligono()));
         final double[] lat = new double[1];
         final double[] lon = new double[1];
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
+
         map.setMyLocationEnabled(true);
         map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
@@ -301,9 +323,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent i = new Intent(getApplicationContext(),LoginActivity.class);;
+         //  Intent i = new Intent(getApplicationContext(),LoginActivity.class);;
+
+           // startActivity(i);
             finish();
-            startActivity(i);
             sw=0;
             return true;
         }

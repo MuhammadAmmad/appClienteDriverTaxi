@@ -15,16 +15,15 @@ public class ListaServicios extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_servicios);
         setFragment(0);
-
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent i = new Intent(getApplicationContext(),MainActivity.class);;
-            finish();
+            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             startActivity(i);
-
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);

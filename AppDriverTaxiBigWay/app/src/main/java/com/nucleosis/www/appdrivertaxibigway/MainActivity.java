@@ -467,6 +467,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
             case android.R.id.home:
                 compR.getDrawer().openDrawer(GravityCompat.START);
                 final ImageView imageDriver = (ImageView) findViewById(R.id.imagDriver);
@@ -560,6 +561,20 @@ public class MainActivity extends AppCompatActivity
                                 compR.getLinearFragment().setVisibility(View.GONE);
                                 setFragment(2);
                                 break;
+                            case R.id.cerrarSesion:
+                                JSONObject jsonSesion=new JSONObject();
+                                try {
+                                    jsonSesion.put("idSesion","0");
+                                    fichero.InsertarSesion(jsonSesion.toString());
+                                    Log.d("StracFichero",fichero.ExtraerSesion().toString());
+                                    Intent intentLongin=new Intent(MainActivity.this,LoingDriverApp.class);
+                                    startActivity(intentLongin);
+                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    finish();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                break;
                         }
                         return true;
                     }
@@ -645,9 +660,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent i = new Intent(MainActivity.this,LoingDriverApp.class);;
             finish();
-            startActivity(i);
+
             return true;
         }
         return super.onKeyDown(keyCode, event);

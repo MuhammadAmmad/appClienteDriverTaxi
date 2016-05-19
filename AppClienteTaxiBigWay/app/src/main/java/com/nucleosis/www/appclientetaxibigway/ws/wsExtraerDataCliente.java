@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
+import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.FrmSigUp;
 import com.nucleosis.www.appclientetaxibigway.LoginActivity;
 import com.nucleosis.www.appclientetaxibigway.MainActivity;
@@ -17,6 +18,8 @@ import com.nucleosis.www.appclientetaxibigway.R;
 import com.nucleosis.www.appclientetaxibigway.SharedPreferences.PreferencesCliente;
 import com.nucleosis.www.appclientetaxibigway.beans.dataClienteSigUp;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -42,11 +45,13 @@ public class wsExtraerDataCliente extends AsyncTask<String,String,List<dataClien
     private ProgressDialog progressDialog;
     private int TIME_OUT=15000;
     private boolean tiempoEsperaConexion=false;
+    private Fichero fichero;
     public wsExtraerDataCliente(String email,Context context,int CasoActivity) {
         this.Email = email;
         this.CasoActivity=CasoActivity;
         this.context=context;
         preferecesCliente=new PreferencesCliente(context);
+        fichero=new Fichero(context);
     }
 
     @Override
@@ -118,12 +123,27 @@ public class wsExtraerDataCliente extends AsyncTask<String,String,List<dataClien
                 intent=new Intent(context, MainActivity.class);
                 context.startActivity(intent);
                 preferecesCliente.InsertDataCliente(dataList);
+                JSONObject jsonSesion1=new JSONObject();
+                try {
+                    jsonSesion1.put("idSesion","1");
+                    fichero.InsertarSesion(jsonSesion1.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 CX_FRM_SIG_UP.FRM_SIGUP.finish();
                 break;
             case 102:
                 intent=new Intent(context, MainActivity.class);
                 context.startActivity(intent);
                 preferecesCliente.InsertDataCliente(dataList);
+                JSONObject jsonSesion2=new JSONObject();
+                try {
+                    jsonSesion2.put("idSesion","1");
+                    fichero.InsertarSesion(jsonSesion2.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 CX_LOGIN_ACTIVITY.LOGIN_ACTIVITY.finish();
                 break;
         }

@@ -25,14 +25,14 @@ public class FrmSigUp extends AppCompatActivity implements View.OnClickListener{
         FRM_SIGUP=this;
         compR=new ComponentesR(FrmSigUp.this);
         compR.Controls_FrmSigUp(FRM_SIGUP);
-        compR.getEditName().setText("Cliente");
+    /*    compR.getEditName().setText("Cliente");
         compR.getEditApaterno().setText("taxiBig");
         compR.getEditAmaterno().setText("way");
         compR.getEditDni().setText("145854125");
         compR.getEditEmail().setText("taxi@gmail.com");
         compR.getEditCelular().setText("987654321");
         compR.getEditPassword().setText("123456");
-        compR.getEditConfirPassword().setText("123456");
+        compR.getEditConfirPassword().setText("123456");*/
 
     }
 

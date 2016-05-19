@@ -24,7 +24,40 @@ public class Fichero {
         this.context = context;
         cifrarString=new Cripto();
     }
+    public void InsertarSesion (String sesion){
+        if(sesion!=null){
+            Log.d("sesion",sesion);
+        }
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("sesion.txt", Context.MODE_PRIVATE));
+            json.write(sesion);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
 
+
+    public JSONObject ExtraerSesion(){
+        JSONObject sesion=null;
+        try
+        {
+
+            BufferedReader getSesion =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("sesion.txt")));
+            String data = getSesion.readLine();
+            Log.d("ssionX",data.toString());
+            sesion =new JSONObject(data);
+            getSesion.close();
+        }
+        catch (Exception ex)
+        {
+            Log.d("look_","No se puede leer fichero");   }
+
+        return sesion;
+    }
     public void InsertardataVehiculos(String jsonArray){
         try  { OutputStreamWriter json =new OutputStreamWriter(
                 context.openFileOutput("dataVehiculos.txt", Context.MODE_PRIVATE));

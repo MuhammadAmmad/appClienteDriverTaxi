@@ -51,5 +51,6 @@
 
     <color name="btnDetalleFalse">#055ee4</color>
     <color name="btnDetalleTrue">#4a84e7</color>
+    <color name="scremm">#01722a</color>
 
 </resources>

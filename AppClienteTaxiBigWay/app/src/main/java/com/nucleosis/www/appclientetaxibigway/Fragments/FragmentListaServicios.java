@@ -167,8 +167,6 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
 
                 }
 
-
-
                // Toast.makeText(getActivity(),listServicio.get(position).getIdServicio(),Toast.LENGTH_LONG).show();
             }
         });
@@ -223,13 +221,19 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                                 compR.getEditHistoricoServiciosCreados().setText( year+ "-0"
                                         + (monthOfYear + 1) + "-" +  "0"+dayOfMonth);
                             }
-
-                         z[0]++;
+                        //    Log.d("8787878-->","fasdfasdf");
+                        /* z[0]++;
                             if(z[0]==2){
+                                Log.d("fsdfjl-->","fasdfasdf");
+                                z[0]=0;
                               //  Toast.makeText(getActivity(),String.valueOf(z[0]),Toast.LENGTH_LONG).show();
                                 new wsListaServiciosCliente(getActivity(),grid,compR.getEditHistoricoServiciosCreados().getText().toString()).execute();
                                 // z[0]=0;
-                            }
+                            }else  if(z[0]==1){
+                                new wsListaServiciosCliente(getActivity(),grid,compR.getEditHistoricoServiciosCreados().getText().toString()).execute();
+                                Log.d("cuento_",String.valueOf(z[0]));
+                                z[0]=0;
+                            }*/
                            }
 
                     }, mYear, mMonth, mDay);
