@@ -114,6 +114,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
 
         formatoEntradaFecha(mYear,mMonth,mDay);
 
+
+
         if(compR.getEditHistoriaCarrera().getText().length()!=0){
             String fecha=compR.getEditHistoriaCarrera().getText().toString();
             if(fecha.length()!=0){

@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1">
+        >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -25,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center|center"
                     android:id="@+id/imageConductor"
                     android:layout_marginBottom="@dimen/marginLeftDiez"/>
@@ -67,7 +67,7 @@
                     android:layout_gravity="center_horizontal" />
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="right">
                     <TextView

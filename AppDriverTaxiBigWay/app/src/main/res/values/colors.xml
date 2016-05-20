@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorAccent">#607D8B</color>
+    <color name="colorPrimary">#056B11</color>
+    <color name="colorPrimaryDark">#138b21</color>
+    <color name="colorAccent">#0f0f0f</color>
     <color name="hintColor">#aba9a9</color>
 
     <color name="primary">#009688</color>
@@ -21,7 +21,7 @@
 
     <color name="btnButtonNotificacionFalse">#abb4b5b4</color>
     <color name="btnButtonNotificacionTrue">#ab777877</color>
-    <color name="blackTwo">#3e3e3e</color>
+    <color name="blackTwo">#252424</color>
 
     <color name="btnTraslucerFalse">#e0025002</color>
     <color name="btnTraslucerTrue">#b3015601</color>
@@ -52,5 +52,8 @@
     <color name="btnDetalleFalse">#055ee4</color>
     <color name="btnDetalleTrue">#4a84e7</color>
     <color name="scremm">#01722a</color>
+    <color name="hinWhite">#c4c7c5</color>
+
+
 
 </resources>

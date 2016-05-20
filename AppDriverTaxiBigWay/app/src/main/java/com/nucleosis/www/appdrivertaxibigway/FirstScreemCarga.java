@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -28,6 +29,9 @@ public class FirstScreemCarga extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_screem_carga);
+       /* Toolbar toolbar=(Toolbar)findViewById(R.id.appbar);
+        setSupportActionBar(toolbar);
+        */
         progressBarCargar=(ProgressBar)findViewById(R.id.progresLoading);
         fichero=new Fichero(FirstScreemCarga.this);
         progressBarCargar.setVisibility(View.VISIBLE);
@@ -37,7 +41,7 @@ public class FirstScreemCarga extends AppCompatActivity {
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(3000);
+                    sleep(4000);
 
                     JSONObject jsonSesion=fichero.ExtraerSesion();
                     if(jsonSesion!=null){

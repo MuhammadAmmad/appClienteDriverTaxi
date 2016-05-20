@@ -56,23 +56,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dimenCinco"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="6dp"
                     android:gravity="right">
                     <TextView
                         android:layout_width="80dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_height="30dp"
                         android:id="@+id/lblCancelarServicio"
                         android:gravity="center"
                         android:clickable="true"
                         android:background="@drawable/selector_button_cancel"
                         android:textColor="@color/white"
                         android:textStyle="bold"
-                        android:layout_marginRight="@dimen/marginLeftDiez"
                         android:text="Cancelar"
                         android:textSize="15dp"/>
-                    <TextView
+                 <!--   <TextView
                         android:layout_width="80dp"
                         android:layout_height="20dp"
                         android:layout_marginTop="5dp"
@@ -85,7 +83,20 @@
                         android:textStyle="bold"
                         android:layout_marginRight="@dimen/marginLeftDiez"
                         android:text="Detalle"
-                        android:textSize="15dp"/>
+                        android:textSize="15dp"/>-->
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/lblDetalleServicio"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:visibility="visible"
+                        android:background="@drawable/selector_btn_detalle_sevice"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:text="Detalle"
+                        android:textSize="16dp"/>
                 </LinearLayout>
 
             </LinearLayout>

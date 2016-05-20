@@ -244,6 +244,8 @@ public class MapsClienteConductorServicio extends AppCompatActivity
                             e.printStackTrace();
                         }
 
+                    }else {
+                        Log.d("que_paso","null");
                     }
                  //   lblCoordenada.setText(data[0] + "-->" + data[1]);
                     //Toast.makeText(MapsClienteConductorServicio.this,data,Toast.LENGTH_SHORT).show();
