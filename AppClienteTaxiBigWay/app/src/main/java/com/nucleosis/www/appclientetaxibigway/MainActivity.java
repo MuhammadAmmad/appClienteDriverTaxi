@@ -1,27 +1,17 @@
 package com.nucleosis.www.appclientetaxibigway;
 
-import android.Manifest;
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -29,27 +19,21 @@ import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CompoundButton;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.places.AutocompletePrediction;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
@@ -59,7 +43,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -67,7 +50,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appclientetaxibigway.Adpaters.CustomInfoWindow;
 import com.nucleosis.www.appclientetaxibigway.Adpaters.PlaceAutocompleteAdapter;
-import com.nucleosis.www.appclientetaxibigway.ConexionRed.ConnectionUtils;
+import com.nucleosis.www.appclientetaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentDataClient;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentMiUbicacion;
@@ -83,12 +66,10 @@ import com.nucleosis.www.appclientetaxibigway.ws.wsEnviarLatLonClienteDireccionI
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerConfiguracionAdicionales;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerIdZonaIdDistrito;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerPrecioZonaDistrito;
-import com.nucleosis.www.appclientetaxibigway.ws.wsValidarHoraServicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -113,7 +94,6 @@ public class MainActivity extends AppCompatActivity
     protected GoogleApiClient mGoogleApiClient;
     private long mLastClickTime = 0;
     public static final String TAG = "MainActivity";
-    private ConnectionUtils conexion;
     private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
             new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     @Override
@@ -340,54 +320,79 @@ public class MainActivity extends AppCompatActivity
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
-                String addresIncio=compR.getAutoCompletText1().getText().toString().trim();
-                String addresFin=compR.getAutoCompletText2().getText().toString().trim();
+
+                final String addresIncio=compR.getAutoCompletText1().getText().toString().trim();
+                final String addresFin=compR.getAutoCompletText2().getText().toString().trim();
 
                 Log.d("incio***",String.valueOf(addresIncio.length())+"-->"+String.valueOf(addresFin.length()));
-                String msnServicioTaxi=getResources().getString(R.string.NoServicio);
-                boolean conect=conexion.isInternet(MainActivity.this);
-                if (conect){
-                    if(addresIncio.length()!=0 && addresFin.length()!=0 ){
-                        if(ZonaIncio.length()!=0 && ZonaFin.length()!=0){
-                            Toast.makeText(MainActivity.this,ZonaIncio+"***"+ZonaFin,Toast.LENGTH_LONG).show();
-                            fichero.InsertarDireccionIncioFin(addresIncio,addresFin);
-                            new wsExtraerPrecioZonaDistrito(
-                                    MainActivity.this,
-                                    fichero.ExtraerZonaIdDistrito_Origen(),
-                                    fichero.ExtraerZonaIdDistrito_Destino()).execute();
-                            //AlertPedirServicio();
-                        }else{
-                            Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
-                            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
-                            dialogo1.setTitle("Alerta!!");
-                            dialogo1.setMessage("¿No hay covertura para este lugar\nLlame a nuestra central");
-                            dialogo1.setCancelable(false);
-                            dialogo1.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialogo1, int id) {
-                                    // Intent i = new Intent(android.content.Intent.ACTION_CALL,
-                                    // Uri.parse("tel:+3748593458"));
-                                    Intent i = new Intent(android.content.Intent.ACTION_DIAL,
-                                            Uri.parse("tel:998319046")); //
-                                    startActivity(i);
-                                }
-                            });
-                            dialogo1.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialogo1, int id) {
+                final String msnServicioTaxi=getResources().getString(R.string.NoServicio);
 
-                                }
-                            });
-                            dialogo1.show();
-                        }
-                        // linearFragment.setVisibility(View.GONE);
-                        //compR.getDrawer().closeDrawer(GravityCompat.START);
-                        // setFragment(2);
-                    }else{
-                        Toast.makeText(MainActivity.this,"Ingrese Direccion de inicio y destino",Toast.LENGTH_LONG).show();
-
+                ///VERIFICA CONEXION A INTERNET POSTERIOR PIDE EL SERVICIO......
+                new AsyncTask<String, String, Boolean>() {
+                    ProgressDialog progressBar;
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        progressBar=new ProgressDialog(MainActivity.this);
+                        progressBar.setMessage("Cargando..");
+                        progressBar.show();
                     }
-                }else{
-                    Toast.makeText(MainActivity.this,"No tiene coneccion a internet verifique !!",Toast.LENGTH_LONG).show();
-                }
+
+                    @Override
+                    protected Boolean doInBackground(String... params) {
+                        conexionInternet conexion=new conexionInternet();
+                        return conexion.isInternet();
+                    }
+
+                    @Override
+                    protected void onPostExecute(Boolean aBoolean) {
+                        super.onPostExecute(aBoolean);
+                        progressBar.dismiss();
+                        if(aBoolean){
+                            if(addresIncio.length()!=0 && addresFin.length()!=0 ){
+                                if(ZonaIncio.length()!=0 && ZonaFin.length()!=0){
+                                    Toast.makeText(MainActivity.this,ZonaIncio+"***"+ZonaFin,Toast.LENGTH_LONG).show();
+                                    fichero.InsertarDireccionIncioFin(addresIncio,addresFin);
+                                    new wsExtraerPrecioZonaDistrito(
+                                            MainActivity.this,
+                                            fichero.ExtraerZonaIdDistrito_Origen(),
+                                            fichero.ExtraerZonaIdDistrito_Destino()).execute();
+                                    //AlertPedirServicio();
+                                }else{
+                                    String mensjeCovertura=getResources().getString(R.string.coverturaZonas);
+                                    String msnAlerta=getResources().getString(R.string.msnAlert);
+                                    Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
+                                    AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
+                                    dialogo1.setTitle(msnAlerta);
+                                    dialogo1.setMessage(mensjeCovertura);
+                                    dialogo1.setCancelable(false);
+                                    dialogo1.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialogo1, int id) {
+                                            Intent i = new Intent(android.content.Intent.ACTION_DIAL,
+                                                    Uri.parse("tel:998319046")); //
+                                            startActivity(i);
+                                        }
+                                    });
+                                    dialogo1.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialogo1, int id) {
+
+                                        }
+                                    });
+                                    dialogo1.show();
+                                }
+                            }else{
+                                String msnDestinoFinal=getResources().getString(R.string.MensajeDestinoFinal);
+                                Toast.makeText(MainActivity.this,msnDestinoFinal,Toast.LENGTH_LONG).show();
+
+                            }
+                        }else {
+                            String msnInternet=getResources().getString(R.string.InternetAccessRevision);
+                            Toast.makeText(MainActivity.this,msnInternet,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }.execute();
+
+
 
 
                 break;

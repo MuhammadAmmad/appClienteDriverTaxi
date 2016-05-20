@@ -2,23 +2,18 @@ package com.nucleosis.www.appclientetaxibigway;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import com.nucleosis.www.appclientetaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by carlos.lopez on 19/05/2016.
@@ -50,11 +45,22 @@ public class FirstScreemCarga extends AppCompatActivity {
                         try {
 
                             if(jsonSesion.getString("idSesion").equals("1")){
-                                Intent intent=new Intent(FirstScreemCarga.this,MainActivity.class);
-                                startActivity(intent);
-                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                                finish();
-                                Log.d("estadoSesion",jsonSesion.getString("idSesion"));
+                                conexionInternet  conexion=new conexionInternet();
+                                boolean conec= conexion.isInternet();
+                                if(conec){
+                                    Intent intent=new Intent(FirstScreemCarga.this,MainActivity.class);
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    finish();
+                                    Log.d("estadoSesion",jsonSesion.getString("idSesion"));
+                                }else{
+                                  //  Log.d("estadoSesion",jsonSesion.getString("idSesion"));
+                                    Intent intent=new Intent(FirstScreemCarga.this,LoginActivity.class);
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    finish();
+                                }
+
                             }else if(jsonSesion.getString("idSesion").equals("0")){
                                 Log.d("estadoSesion",jsonSesion.getString("idSesion"));
                                 Intent intent=new Intent(FirstScreemCarga.this,LoginActivity.class);

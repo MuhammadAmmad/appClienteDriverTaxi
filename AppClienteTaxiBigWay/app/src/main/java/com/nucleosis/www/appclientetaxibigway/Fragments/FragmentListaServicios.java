@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nucleosis.www.appclientetaxibigway.Adpaters.GridAdapterHistoricoServicios;
+import com.nucleosis.www.appclientetaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.Interfaces.OnItemClickListenerDetalle;
 import com.nucleosis.www.appclientetaxibigway.ListaServicios;
@@ -97,9 +98,26 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
         compR.getImageButtonBuscar().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fecha=compR.getEditHistoricoServiciosCreados().getText().toString();
+                final String fecha=compR.getEditHistoricoServiciosCreados().getText().toString();
                 if(fecha.length()!=0){
-                    new wsListaServiciosCliente(getActivity(),grid,fecha).execute();
+                    new AsyncTask<String, String, Boolean>() {
+                        @Override
+                        protected Boolean doInBackground(String... params) {
+                            conexionInternet conexion=new conexionInternet();
+                            return conexion.isInternet();
+                        }
+
+                        @Override
+                        protected void onPostExecute(Boolean aBoolean) {
+                            super.onPostExecute(aBoolean);
+                            if(aBoolean){
+                                new wsListaServiciosCliente(getActivity(),grid,fecha).execute();
+                            }else {
+                                Toast.makeText(getActivity(),"No tiene acceso a internet !!!",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }.execute();
+
                 }
 
             }
@@ -107,9 +125,27 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
         compR.getImageButtonBuscar().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fecha=compR.getEditHistoricoServiciosCreados().getText().toString();
+                final String fecha=compR.getEditHistoricoServiciosCreados().getText().toString();
                 if(fecha.length()!=0){
-                new wsListaServiciosCliente(getActivity(),grid,fecha).execute();}
+                    new AsyncTask<String, String, Boolean>() {
+                        @Override
+                        protected Boolean doInBackground(String... params) {
+                            conexionInternet conexion=new conexionInternet();
+                            return conexion.isInternet();
+                        }
+
+                        @Override
+                        protected void onPostExecute(Boolean aBoolean) {
+                            super.onPostExecute(aBoolean);
+                            if(aBoolean){
+                                new wsListaServiciosCliente(getActivity(),grid,fecha).execute();
+                            }else {
+                                Toast.makeText(getActivity(),"No tiene acceso a internet !!!",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }.execute();
+
+                }
             }
         });
         formatoEntradaFecha(mYear,mMonth,mDay);

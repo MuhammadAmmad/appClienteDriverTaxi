@@ -17,24 +17,29 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dimenCinco"
+        android:layout_marginLeft="@dimen/dimenCinco"
+        android:layout_marginRight="@dimen/dimenCinco"
+        android:layout_marginBottom="@dimen/dimenCinco"
         android:layout_gravity="center_horizontal">
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginRight="5dp"
             android:id="@+id/imageButtonSearch"
-            android:src="@android:drawable/ic_search_category_default"
+            android:src="@drawable/ic_search_black_24dp"
             android:background="@drawable/selector_serch"/>
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:paddingLeft="10dp"
             android:id="@+id/editHistoriaServiciosCreados"
             android:hint="Fecha"
             android:background="@drawable/selector_fond_border"
-            android:textColor="#000"
+            android:textColor="@color/grease"
             android:textColorHint="#afafaf"
             android:enabled="false"
+            android:gravity="center"
             android:layout_weight="0.20" />
 
         <CheckBox
@@ -43,8 +48,7 @@
             android:layout_marginLeft="5dp"
             android:text="Fecha"
             android:paddingLeft="10dp"
-            android:background="#00FFFFFF"
-            android:button="@drawable/selector_radio_button"
+            android:textColor="@color/grease"            android:button="@drawable/selector_radio_button"
             android:id="@+id/chxFecha" />
 
     </LinearLayout>
@@ -53,6 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginBottom="@dimen/dimenCinco"
+        android:gravity="center"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -64,19 +70,21 @@
                 android:layout_height="12dp"
                 android:background="#d5ff73b4"/>
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeftDiez"
-                android:text="Pendiente"/>
+                android:textSize="@dimen/dimenSizeTexCabecera"
+                android:text="PENDIENTE"/>
             <ImageView
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:background="#2788f1"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="Terminado OK"/>
+                android:textSize="@dimen/dimenSizeTexCabecera"
+                android:text="TERMINDO"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -89,19 +97,21 @@
                 android:layout_height="12dp"
                 android:background="#d16cda"/>
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeftDiez"
-                android:text="Tomado"/>
+                android:textSize="@dimen/dimenSizeTexCabecera"
+                android:text="TOMADO"/>
             <ImageView
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:background="#f50f8d"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="Can. Cliente"/>
+                android:textSize="@dimen/dimenSizeTexCabecera"
+                android:text="CANCELADO"/>
 
         </LinearLayout>
         <LinearLayout
@@ -115,19 +125,21 @@
                 android:layout_height="12dp"
                 android:background="#04c434"/>
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeftDiez"
-                android:text="En curso"/>
+                android:textSize="@dimen/dimenSizeTexCabecera"
+                android:text="EN CURSO"/>
             <ImageView
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:background="#ebc802"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="No terminado"/>
+                android:textSize="@dimen/dimenSizeTexCabecera"
+                android:text="NO TERMINADO"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

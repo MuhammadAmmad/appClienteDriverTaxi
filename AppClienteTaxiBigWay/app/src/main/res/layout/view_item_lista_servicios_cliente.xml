@@ -18,6 +18,8 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimenCinco"
+            android:layout_marginLeft="@dimen/dimenCinco"
             android:layout_gravity="center_horizontal">
 
             <LinearLayout
@@ -48,7 +50,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:gravity="center|left"
-                    android:textStyle="bold"
                     android:paddingLeft="@dimen/padinLeft"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
@@ -78,10 +79,10 @@
                         android:clickable="true"
                         android:visibility="visible"
                         android:background="@drawable/selector_btn_detalle_sevice"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:text="Detalle"
-                        android:textSize="16dp"/>
+                        android:textColor="@color/grease_1"
+
+                        android:text="DETALLE"
+                        android:textSize="14dp"/>
                 </LinearLayout>
             </LinearLayout>
 

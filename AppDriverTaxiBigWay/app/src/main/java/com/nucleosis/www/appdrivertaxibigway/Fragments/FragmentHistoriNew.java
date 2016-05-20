@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,6 +33,8 @@ import com.nucleosis.www.appdrivertaxibigway.Adapters.GriddAdapterServiciosTomad
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistoriaCarrera;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
+import com.nucleosis.www.appdrivertaxibigway.ConexionRed.ConnectionUtils;
+import com.nucleosis.www.appdrivertaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListenerDetalle;
@@ -114,13 +117,55 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
 
         formatoEntradaFecha(mYear,mMonth,mDay);
 
+        compR.getImageButonListarServicios().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"XXXX",Toast.LENGTH_LONG).show();
+                String fecha=compR.getEditHistoriaCarrera().getText().toString();
+                if(fecha.length()!=0){
+                new AsyncTask<String, String, Boolean>() {
+                    @Override
+                    protected Boolean doInBackground(String... params) {
+                        conexionInternet conecicoin=new conexionInternet();
+                        return conecicoin.isInternet();
+                    }
 
+                    @Override
+                    protected void onPostExecute(Boolean aBoolean) {
+                        super.onPostExecute(aBoolean);
+                        if (aBoolean){
+                            new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+                        }else{
+                            //String msnInternet=getResources().getString(R.string.InternetAccessRevision);
+                            Toast.makeText(getActivity(),"No tienes Acceso a internet!!",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }.execute();
+                }
+            }
+        });
 
         if(compR.getEditHistoriaCarrera().getText().length()!=0){
             String fecha=compR.getEditHistoriaCarrera().getText().toString();
             if(fecha.length()!=0){
-                new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
-               // new wsListaServiciosTomadosConductor(getActivity(),fecha,grid).execute();
+                new AsyncTask<String, String, Boolean>() {
+                    @Override
+                    protected Boolean doInBackground(String... params) {
+                        conexionInternet conecicoin=new conexionInternet();
+                        return conecicoin.isInternet();
+                    }
+
+                    @Override
+                    protected void onPostExecute(Boolean aBoolean) {
+                        super.onPostExecute(aBoolean);
+                        if (aBoolean){
+                            new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+                        }else{
+                            String msnInternet=getResources().getString(R.string.InternetAccessRevision);
+                            Toast.makeText(getActivity(),"No tien acceso a intenert !!!",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }.execute();
             }
 
         }
@@ -146,7 +191,14 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                 JSONObject jsonObject =preferencesDriver.ExtraerHoraSistema();
                 JSONObject jsonDataTurno= preferencesDriver.ExtraerDataTurno();
 
-                if(jsonObject!=null && jsonDataTurno!=null){
+                final LocationManager manager = (LocationManager)getActivity().getSystemService( Context.LOCATION_SERVICE );
+              boolean gps=false;
+               if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+                   gps=false;
+                }else{
+                    gps=true;
+                }
+                if(jsonObject!=null && jsonDataTurno!=null && gps==true){
                     try {
                         //FECHA DIFERENTE DE LA FECHA ACTUAL
                         int stado=Integer.parseInt(jsonDataTurno.getString("stadoTurnoJson").toString());
@@ -227,6 +279,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                         e.printStackTrace();
                     }
                 }else{
+                    if(gps==false){
+                        AlertNoGps();
+                    }
                     Toast.makeText(getActivity(),"campos nulos",Toast.LENGTH_SHORT).show();
                 }
 
@@ -238,7 +293,26 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
 
         return view;
     }
-
+    private void AlertNoGps() {
+        AlertDialog alert = null;
+         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        String msnGps=getResources().getString(R.string.gpsMensaje);
+        builder.setMessage(msnGps)
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused")
+                                        final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        alert = builder.create();
+        alert.show();
+    }
     private void fechaHistorial(final GridViewWithHeaderAndFooter grid){
 
         final Calendar c = Calendar.getInstance();
@@ -272,7 +346,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                     + (monthOfYear + 1) + "-" +  "0"+dayOfMonth);
                         }
 
-                        z[0]++;
+              /*          z[0]++;
                         if(z[0]==2){
                             preferencesDriver=new PreferencesDriver(getActivity());
                             JSONObject jsonObject =preferencesDriver.ExtraerHoraSistema();
@@ -292,7 +366,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                             //  Toast.makeText(getActivity(),String.valueOf(z[0]),Toast.LENGTH_LONG).show();
 
                             //z[0]=0;
-                        }
+                        }*/
                     }
 
                 }, mYear, mMonth, mDay);

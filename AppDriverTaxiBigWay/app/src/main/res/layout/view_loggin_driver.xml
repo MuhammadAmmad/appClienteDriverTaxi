@@ -3,7 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/scremm"
    >
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,11 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/primary_dark"
         android:elevation="4dp"
         app:title="@string/accesoConductor"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+
     </android.support.v7.widget.Toolbar>
 
  <!--   <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -28,15 +29,22 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="Acceso conductor"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="208dp"
+    android:gravity="center">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+</LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimenCinco"
         android:id="@+id/LinearLayoutLogin"
         android:layout_gravity="center_horizontal"
-        android:fitsSystemWindows="true"
-        android:gravity="center">
+        android:fitsSystemWindows="true">
 
         <EditText
             android:layout_width="260dp"
@@ -44,8 +52,7 @@
             android:layout_marginLeft="@dimen/marginLeft"
             android:layout_marginRight="@dimen/marginRigth"
             android:paddingLeft="@dimen/dimenCinco"
-            android:drawableLeft="@drawable/ic_account_circle_"
-            android:drawablePadding="@dimen/padinDrawable"
+            android:drawableLeft="@mipmap/ic_account_circle_"
             android:textColorHint="@color/hinWhite"
             android:inputType="number"
             android:ems="10"
@@ -62,8 +69,7 @@
             android:layout_marginRight="@dimen/marginRigth"
             android:paddingLeft="@dimen/dimenCinco"
             android:layout_marginTop="@dimen/marginLeftDiez"
-            android:drawablePadding="@dimen/padinDrawable"
-            android:drawableLeft="@drawable/ic_lock_open_black_"
+            android:drawableLeft="@mipmap/ic_lock_open_black_"
             android:textColorHint="@color/hinWhite"
             android:hint="@string/password"
             android:inputType="textPassword"

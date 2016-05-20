@@ -91,7 +91,7 @@ public class GridAdapterHistoricoServicios extends BaseAdapter {
         holder.getInfo().setText(cadenaFormato);
         holder.getInfo().setTypeface(myTypeFace.openRobotoLight());
         holder.getImageViewStatus().setImageDrawable(item.getImageStatusServicio());
-        holder.getLblButtonDetalleService().setTypeface(myTypeFace.openRobotoLight());
+     //   holder.getLblButtonDetalleService().setTypeface(myTypeFace.openRobotoLight());
         Picasso.with(mContext)
                 .load(urlConductor+item.getNameFotoConductor())
                 .placeholder(R.mipmap.ic_imagen_launcher)

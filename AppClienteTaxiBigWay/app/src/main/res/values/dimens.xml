@@ -20,5 +20,6 @@
     <dimen name="dimenCinco">5dp</dimen>
     <dimen name="marginVeinte">20dp</dimen>
     <dimen name="marginTop">15dp</dimen>
+    <dimen name="dimenSizeTexCabecera">11dp</dimen>
 
 </resources>

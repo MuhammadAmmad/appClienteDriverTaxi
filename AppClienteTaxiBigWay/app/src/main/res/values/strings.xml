@@ -30,4 +30,9 @@
     <string name="Ok">Ok</string>
     <string name="cancelar">Cancelar</string>
     <string name="detalleServicio">Detalle del servicio</string>
+    <string name="InternetAccessRevision">No tiene acceso a internet  !!!</string>
+    <string name="MensajeDestinoFinal">Ingrese Direccion de inicio y destino</string>
+    <string name="coverturaZonas">No hay covertura para este lugar
+                    Llame a nuestra central</string>
+    <string name="msnAlert">Alerta !!!</string>
 </resources>

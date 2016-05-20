@@ -142,7 +142,6 @@ public class wsListarServiciosTomadoConductorDiaActual extends
             }
         }
 
-
         return listServiciosFechaActualConducor;
     }
 
@@ -151,19 +150,12 @@ public class wsListarServiciosTomadoConductorDiaActual extends
         super.onPostExecute(listaSeriviciosConductor);
         progressDialog.dismiss();
         if(listaSeriviciosConductor!=null){
-            progressDialog.dismiss();
+        //  progressDialog.dismiss();
            grid.setAdapter(new GriddAdapterServiciosTomadosConductor(context,listaSeriviciosConductor));
         }else{
             Log.d("stamos_Aqui","sdjfldsakjj");
         }
 
-    }
-
-    private void tareaLarga()
-    {
-        try {
-            Thread.sleep(8000);
-        } catch(InterruptedException e) {}
     }
 
 }

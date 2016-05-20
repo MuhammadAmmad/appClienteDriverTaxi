@@ -1,12 +1,13 @@
-package com.nucleosis.www.appclientetaxibigway.ConexionRed;
+package com.nucleosis.www.appdrivertaxibigway.ConexionRed;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 
 import java.io.IOException;
 
-public final class ConnectionUtils {
+public class ConnectionUtils {
 	private ConnectionUtils() {
 	}
 
@@ -27,26 +28,44 @@ public final class ConnectionUtils {
 
 	}
 
-	public static boolean isInternet( Context context ) {
+	public boolean isInternet( ) {
+		final boolean[] conecion = {false};
+		new AsyncTask<String, String, Boolean>() {
+			boolean conex=false;
+			@Override
+			protected Boolean doInBackground(String... params) {
+				Runtime runtime = Runtime.getRuntime();
+				try {
+					Process mIpAddrProcess = runtime.exec( "/system/bin/ping -c 1 8.8.8.8" );
+					int mExitValue = mIpAddrProcess.waitFor();
+					if ( mExitValue == 0 ) {
+						conex= true;
+					}
+					else {
+						conex= false;
+					}
+				}
+				catch ( InterruptedException ignore ) {
+					ignore.printStackTrace();
+					conex=false;
+				}
+				catch ( IOException e ) {
+					e.printStackTrace();
+					conex=false;
+				}
 
-		Runtime runtime = Runtime.getRuntime();
-		try {
-			Process mIpAddrProcess = runtime.exec( "/system/bin/ping -c 1 8.8.8.8" );
-			int mExitValue = mIpAddrProcess.waitFor();
-			if ( mExitValue == 0 ) {
-				return true;
+				return conex;
 			}
-			else {
-				return false;
+
+			@Override
+			protected void onPostExecute(Boolean aBoolean) {
+				super.onPostExecute(aBoolean);
+				conecion[0] =aBoolean;
 			}
-		}
-		catch ( InterruptedException ignore ) {
-			ignore.printStackTrace();
-		}
-		catch ( IOException e ) {
-			e.printStackTrace();
-		}
-		return false;
+		}.execute();
+
+
+		return conecion[0];
 
 	}
 	@SuppressWarnings("deprecation")

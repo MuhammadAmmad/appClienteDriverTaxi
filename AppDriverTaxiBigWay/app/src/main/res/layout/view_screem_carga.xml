@@ -4,19 +4,18 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shape_gradient"
     >
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:background="@color/scremm"
         android:gravity="center">
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/cargador_taxi_1"
-                 />
+            android:src="@drawable/cargardor_2"  />
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

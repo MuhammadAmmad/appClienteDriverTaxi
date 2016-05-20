@@ -1,6 +1,7 @@
 package com.nucleosis.www.appclientetaxibigway.ws;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -50,6 +51,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
     private  String idZonaFin="-1";
     private Fichero fichero;
     private JSONObject configuracionServicio;
+    private ProgressDialog progressDialog;
     public wsExtraerPrecioZonaDistrito(Context context ,
                                        JSONObject jsonOrigen,
                                        JSONObject jsonDestino) {
@@ -82,7 +84,9 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
     protected void onPreExecute() {
         super.onPreExecute();
         configuracionServicio=fichero.ExtraerConfiguraciones();
-
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setMessage("Cargando...");
+        progressDialog.show();
     }
 
     @Override
@@ -123,6 +127,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
     @Override
     protected void onPostExecute(String tarifa_) {
         super.onPostExecute(tarifa_);
+        progressDialog.dismiss();
         if(tarifa_.length()!=0){
             AlertPedirServicio(tarifa_);
         }else {

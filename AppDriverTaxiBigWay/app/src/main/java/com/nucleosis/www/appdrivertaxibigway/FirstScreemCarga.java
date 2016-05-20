@@ -1,8 +1,11 @@
 package com.nucleosis.www.appdrivertaxibigway;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.BoolRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.nucleosis.www.appdrivertaxibigway.ConexionRed.ConnectionUtils;
+import com.nucleosis.www.appdrivertaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 
 import org.json.JSONException;
@@ -25,6 +30,7 @@ public class FirstScreemCarga extends AppCompatActivity {
   //  private static final long SPLASH_SCREEN_DELAY = 3000;
     private ProgressDialog progressDialog;
     private ProgressBar progressBarCargar;
+    private Boolean conec=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,9 @@ public class FirstScreemCarga extends AppCompatActivity {
        /* progressDialog=new ProgressDialog(FirstScreemCarga.this);
         progressDialog.setMessage("cargado...");
         progressDialog.show();*/
+
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+
         Thread timerThread = new Thread(){
             public void run(){
                 try{
@@ -47,11 +56,33 @@ public class FirstScreemCarga extends AppCompatActivity {
                     if(jsonSesion!=null){
                         try {
                             if(jsonSesion.getString("idSesion").equals("1")){
-                                Intent intent=new Intent(FirstScreemCarga.this,MainActivity.class);
-                                startActivity(intent);
-                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                                finish();
-                                Log.d("estadoSesion",jsonSesion.getString("idSesion"));
+                                conexionInternet conecicoin=new conexionInternet();
+                                conec= conecicoin.isInternet();
+                                if(conec){
+                                    if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+                                        ///NO TINE GPS ACTIVADO
+                                        Intent intent=new Intent(FirstScreemCarga.this,LoingDriverApp.class);
+                                        startActivity(intent);
+                                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                        finish();
+                                    }else{
+                                        Intent intent=new Intent(FirstScreemCarga.this,MainActivity.class);
+                                        startActivity(intent);
+                                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                        finish();
+                                        Log.d("estadoSesion",jsonSesion.getString("idSesion"));
+                                    }
+
+
+                                }else {
+                                    ///NO TIENE ACCESO A INTERNET
+                                    Intent intent=new Intent(FirstScreemCarga.this,LoingDriverApp.class);
+                                    intent.putExtra("inter","0");
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    finish();
+                                }
+
                             }else if(jsonSesion.getString("idSesion").equals("0")){
                                 Log.d("estadoSesion",jsonSesion.getString("idSesion"));
                                 Intent intent=new Intent(FirstScreemCarga.this,LoingDriverApp.class);
