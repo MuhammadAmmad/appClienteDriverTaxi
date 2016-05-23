@@ -150,7 +150,7 @@ public class AlarmaLLegadaConductor extends Service {
 
                         }catch (InterruptedIOException e){
                             tiempoEsperaConexion=true;
-                            Log.d("erro_in",e.getMessage());
+                             e.printStackTrace();
                         }catch (Exception e) {
                             e.printStackTrace();
                         }

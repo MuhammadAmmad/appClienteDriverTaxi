@@ -1,7 +1,9 @@
 package com.nucleosis.www.appclientetaxibigway.ServiceBackground;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
@@ -12,8 +14,11 @@ import android.util.Log;
 
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
 import com.nucleosis.www.appclientetaxibigway.Constantes.Utils;
+import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.beans.dataClienteSigUp;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -30,9 +35,19 @@ import java.util.TimerTask;
  */
 public class PosicionConductor extends Service {
     private TimerTask TimerCronometro;
+   private Fichero fichero;
+    private int idConductor=0;
     @Override
     public void onCreate() {
         super.onCreate();
+        fichero=new Fichero(PosicionConductor.this);
+        try {
+            idConductor=Integer.parseInt(fichero.ExtraerIdConductorServicio().getString("idConductor"));
+            Log.d("id_xt",String.valueOf(idConductor));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            idConductor=0;
+        }
         Log.d("servicioCronometro", "CREADO");
     }
 
@@ -46,15 +61,16 @@ public class PosicionConductor extends Service {
         TimerCronometro=new TimerTask() {
             @Override
             public void run() {
-                new AsyncTask<String, String,  String[] >() {
-                    String[] Latlog=new String[2];
+                new AsyncTask<String, String, JSONObject>() {
+
                     @Override
-                    protected  String[]  doInBackground(String... params) {
+                    protected  JSONObject doInBackground(String... params) {
+                        JSONObject jsonLocation=new JSONObject();
                         SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo12());
                         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
                         envelope.dotNet = false;
                         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
-                        request.addProperty("idConductor", "2");
+                        request.addProperty("idConductor", idConductor);
                         envelope.setOutputSoapObject(request);
                         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 
@@ -67,27 +83,35 @@ public class PosicionConductor extends Service {
                             SoapObject response2=(SoapObject)response1.getProperty("return");
                             Log.d("locacionConductor", response2.toString());
                             if(response2.hasProperty("NUM_POSICION_LATITUD")){
-                                Latlog[0]=response2.getPropertyAsString("NUM_POSICION_LATITUD").toString();
-                                Latlog[1]=response2.getPropertyAsString("NUM_POSICION_LONGITUD").toString();
+                                jsonLocation.put("latConductor",response2.getPropertyAsString("NUM_POSICION_LATITUD").toString());
+                                jsonLocation.put("lonConductor",response2.getPropertyAsString("NUM_POSICION_LONGITUD").toString());
+
 
                             }else{
-                                Latlog[0]="";
-                                Latlog[1]="";
+                                jsonLocation.put("latConductor","");
+                                jsonLocation.put("latConductor","");
                             }
 
+                        }catch (JSONException e1) {
+                            e1.printStackTrace();
                         } catch (Exception e) {
                             e.printStackTrace();
-                            Latlog[0]="";
-                            Latlog[1]="";
+                            try {
+                                jsonLocation.put("latConductor","");
+                                jsonLocation.put("latConductor","");
+                            } catch (JSONException e1) {
+                                e1.printStackTrace();
+                            }
+
                         }
-                        return Latlog;
+                        return jsonLocation;
                     }
 
                     @Override
-                    protected void onPostExecute(String[] dataLatLog) {
-                        super.onPostExecute(dataLatLog);
+                    protected void onPostExecute(JSONObject jsonCoordendasConductor) {
+                        super.onPostExecute(jsonCoordendasConductor);
                         Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE)
-                                .putExtra(Utils.EXTRA_MEMORY,dataLatLog);
+                                .putExtra(Utils.EXTRA_MEMORY,jsonCoordendasConductor.toString());
                         LocalBroadcastManager.
                                 getInstance(PosicionConductor.this).sendBroadcast(localIntent);
 

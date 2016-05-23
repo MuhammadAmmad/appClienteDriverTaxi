@@ -52,6 +52,8 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
     private String direccionFinal;
     private String impServicio;
     private String importAutoVip;
+    private String importPagoExtraordinario;
+    private String idTipoPagoServicio;//CONTADO O CREDITO
     public wsActualizarServicio(Activity activity,
                                 String idServicio,
                                 String indAire,
@@ -65,7 +67,10 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                                 String direccionIncio,
                                 String idDistritoFin,
                                 String idZonaFin,
-                                String direccionFinal
+                                String direccionFinal,
+                                String importPagoExtraordinario,
+                                String idTipoPagoServicio
+
                                 ) {
         this.activity = activity;
         this.idServicio=idServicio;
@@ -81,6 +86,8 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
         this.direccionIncio=direccionIncio;
         this.direccionFinal=direccionFinal;
         this.impServicio=impServicio;
+        this.importPagoExtraordinario=importPagoExtraordinario;
+        this.idTipoPagoServicio=idTipoPagoServicio;
         context=(Context)activity;
         fichero=new Fichero(context);
         preferencesDriver=new PreferencesDriver(context);
@@ -109,6 +116,56 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
         String[] dataSalida=new String[2];
+        JSONArray jsonServicios=fichero.ExtraerListaServiciosTomadoConductor();
+        if(jsonServicios!=null){
+            Log.d("aqui_servicios",fichero.ExtraerListaServiciosTomadoConductor().toString())  ;
+            for(int x=0; x<jsonServicios.length();x++){
+                try {
+                    if(idServicio.equals(jsonServicios.getJSONObject(x).getString("idServicio"))){
+
+                        if(indAire.trim().length()==0){
+                            indAire=jsonServicios.getJSONObject(x).getString("indAireAcondicionado");
+                            impAireAcondic=jsonServicios.getJSONObject(x).getString("importeAireAcondicionado");
+                        }
+                        if(impPeaje.trim().length()==0){
+                            impPeaje=jsonServicios.getJSONObject(x).getString("importePeaje");
+                        }
+
+                        if(impTiempoEspera.trim().length()==0){
+                            impTiempoEspera=jsonServicios.getJSONObject(x).getString("importeTiempoEspera");
+                            minutosTiempoEspera=jsonServicios.getJSONObject(x).getString("numeroMinutoTiempoEspera");
+                        }
+
+                        if(importPagoExtraordinario.trim().length()==0){
+                            importPagoExtraordinario="0";
+                        }
+                        if(idTipoPagoServicio.trim().length()==0){
+                            idTipoPagoServicio=jsonServicios.getJSONObject(x).getString("idTipoPagoServicio");
+                        }
+                        //1 VIP
+                        //2 ECONOMICO
+                        if(jsonServicios.getJSONObject(x).getString("idAutoTipoPidioCliente").equals("1")){
+
+                            JSONObject configuracionJson=fichero.ExtraerConfiguraciones();
+                            if(configuracionJson!=null){
+                                importAutoVip=  configuracionJson.getString("impAutoVip");
+                            }else {
+                                importAutoVip="0.00";
+                            }
+
+                        }else{
+                            importAutoVip="0.00";
+                        }
+
+                        x=jsonServicios.length();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
 
         for(int i=0;i<JSON_SERVICIOS_TOMADOS_CONDUCTOR.length();i++){
             try {
@@ -124,10 +181,12 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                     request.addProperty("indAireAcondicionado", Integer.parseInt(indAire));
                     request.addProperty("impAireAcondicionado",impAireAcondic );
                     request.addProperty("impPeaje",impPeaje);
-                    request.addProperty("impAutoVip", "0");//IMPORTE AUTO VIP
+                    request.addProperty("impAutoVip", importAutoVip);//IMPORTE AUTO VIP
                     request.addProperty("impTiempoEspera", impTiempoEspera);
                     request.addProperty("numMinutoTiempoEspera",minutosTiempoEspera );
 
+                    request.addProperty("impGastosAdicionales",importPagoExtraordinario); //PAGOS EXTRAORDINARIOS
+                   //
                     request.addProperty("usrActualizacion",0);
                     request.addProperty("idCliente", Integer.parseInt(JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("idCliente")));
                     request.addProperty("idTurno", idTurno);
@@ -143,7 +202,8 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                     request.addProperty("idZonaFinal", Integer.parseInt(idZonaFin));
                     request.addProperty("desDireccionFinal",direccionFinal);
                     request.addProperty("idAutoTipo", Integer.parseInt(JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("idTipoAuto")));
-
+                    request.addProperty("idTipoPagoServicio",idTipoPagoServicio);//1 CONTADO  2//CREDITO
+                    //idTipoPagoServicio
                     i=JSON_SERVICIOS_TOMADOS_CONDUCTOR.length();
                 }
             } catch (JSONException e) {

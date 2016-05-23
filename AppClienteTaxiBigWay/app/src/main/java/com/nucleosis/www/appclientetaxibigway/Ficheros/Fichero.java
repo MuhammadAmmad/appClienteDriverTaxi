@@ -309,4 +309,33 @@ public class Fichero {
         }
         return ReturHoraFecha;
     }
+
+    public void InsertarIdConductorServicio(String idConductor){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("idConductorServicioActual.txt", Context.MODE_PRIVATE));
+            json.write(idConductor);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());
+        }
+    }
+
+
+    public JSONObject ExtraerIdConductorServicio(){
+        JSONObject jsonIdconductor=null;
+        try
+        {
+            BufferedReader idCondcutorActualServicio =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("idConductorServicioActual.txt")));
+            jsonIdconductor=new JSONObject(idCondcutorActualServicio.readLine());
+            idCondcutorActualServicio.close();
+        }
+        catch (Exception ex)
+        {
+        }
+        return jsonIdconductor;
+    }
 }

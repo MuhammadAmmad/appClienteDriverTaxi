@@ -125,45 +125,48 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
         Date fecha = null;
         Date fechaServer=null;
         Date fechaIngresada=null;
-        try {
-            fecha = formatIngreso.parse(dateServer[0]);
-            Log.d("newFormat",String.valueOf(formatSalida.format(fecha)));
-            fechaServer=formatSalida.parse(String.valueOf(formatSalida.format(fecha)));
-            fechaIngresada=formatSalida.parse(fechaIngreso);
-            int diferenciaDias=diferenciaDias(fechaIngresada,fechaServer);
-            //dando formato salida a la fecha
-            Date fechaDateUp= formatSalida.parse(fechaIngreso);
-            String fechaUp=formatIngreso.format(fechaDateUp);
-            Log.d("fechaUp-->",fechaUp.toString());
-            if(diferenciaDias==0){
-                Log.d("hora",dateServer[1]+"****>"+HoraIngreso);
-                ///Hora ingresada
-                String H1=HoraIngreso.substring(0,2);
-                String M1=HoraIngreso.substring(3,5);
-                int Tminutos_1=Integer.parseInt(H1)*60+Integer.parseInt(M1);
-                //Hora servidor
-                String H2=dateServer[1].substring(0, 2);
-                String M2=dateServer[1].substring(3, 5);
-                int Tminutos_2=Integer.parseInt(H2)*60+Integer.parseInt(M2);
-                int DiferenciaMinutos=Tminutos_1-Tminutos_2;
-                Log.d("diferenciaOK",String.valueOf(DiferenciaMinutos));
-                if(DiferenciaMinutos>=-10){
-                    Toast.makeText(context,"Solicitando servicio",Toast.LENGTH_LONG).show();
+        if(dateServer!=null){
+            try {
+                fecha = formatIngreso.parse(dateServer[0]);
+                Log.d("newFormat",String.valueOf(formatSalida.format(fecha)));
+                fechaServer=formatSalida.parse(String.valueOf(formatSalida.format(fecha)));
+                fechaIngresada=formatSalida.parse(fechaIngreso);
+                int diferenciaDias=diferenciaDias(fechaIngresada,fechaServer);
+                //dando formato salida a la fecha
+                Date fechaDateUp= formatSalida.parse(fechaIngreso);
+                String fechaUp=formatIngreso.format(fechaDateUp);
+                Log.d("fechaUp-->",fechaUp.toString());
+                if(diferenciaDias==0){
+                    Log.d("hora",dateServer[1]+"****>"+HoraIngreso);
+                    ///Hora ingresada
+                    String H1=HoraIngreso.substring(0,2);
+                    String M1=HoraIngreso.substring(3,5);
+                    int Tminutos_1=Integer.parseInt(H1)*60+Integer.parseInt(M1);
+                    //Hora servidor
+                    String H2=dateServer[1].substring(0, 2);
+                    String M2=dateServer[1].substring(3, 5);
+                    int Tminutos_2=Integer.parseInt(H2)*60+Integer.parseInt(M2);
+                    int DiferenciaMinutos=Tminutos_1-Tminutos_2;
+                    Log.d("diferenciaOK",String.valueOf(DiferenciaMinutos));
+                    if(DiferenciaMinutos>=-10){
+                        Toast.makeText(context,"Solicitando servicio",Toast.LENGTH_LONG).show();
+                        AlertaCreacionServicio(context,fechaUp,HoraIngreso);
+                    }else{
+                        Toast.makeText(context,"Ingrese una hora valida/Revise la hora en su celular",Toast.LENGTH_LONG).show();
+                    }
+                }else if(diferenciaDias>0 && diferenciaDias<=2){
+                    Toast.makeText(context,"Solicitando servicio",Toast.LENGTH_SHORT).show();
                     AlertaCreacionServicio(context,fechaUp,HoraIngreso);
                 }else{
-                    Toast.makeText(context,"Ingrese una hora valida/Revise la hora en su celular",Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"Ingrese una fecha valida",Toast.LENGTH_SHORT).show();
                 }
-            }else if(diferenciaDias>0 && diferenciaDias<=2){
-                Toast.makeText(context,"Solicitando servicio",Toast.LENGTH_SHORT).show();
-                AlertaCreacionServicio(context,fechaUp,HoraIngreso);
-            }else{
-                Toast.makeText(context,"Ingrese una fecha valida",Toast.LENGTH_SHORT).show();
+            } catch (ParseException ex) {
+
+                ex.printStackTrace();
+
             }
-        } catch (ParseException ex) {
-
-            ex.printStackTrace();
-
         }
+
 
     }
 

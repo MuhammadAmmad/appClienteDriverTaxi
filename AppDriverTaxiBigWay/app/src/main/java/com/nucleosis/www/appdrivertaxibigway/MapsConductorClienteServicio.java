@@ -1,5 +1,6 @@
 package com.nucleosis.www.appdrivertaxibigway;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
@@ -14,6 +16,7 @@ import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -96,7 +99,6 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     private String AddresIncioCliente;
     private List<beansListaPolygono> listPolyGo;
     private  String jsonServiciosConductor;
-
     private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
             new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     //suereste  -12.34202, -77.04231-11.6818, -76.74636
@@ -240,39 +242,68 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     @SuppressWarnings("deprecation")
     @Override
     public void onMapReady(final GoogleMap map) {
+
         kmlCreatorPolygono=new KmlCreatorPolygono(map,MapsConductorClienteServicio.this);
         listPolyGo= kmlCreatorPolygono.LeerKml();
         final double[] lat = new double[1];
         final double[] lon = new double[1];
-        map.setMyLocationEnabled(true);
-        map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location pos) {
-                lat[0] = pos.getLatitude();
-                lon[0] = pos.getLongitude();
-                if (sw == 0) {
-                    sw = 1;
-                    CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
-                            lat[0], lon[0]), 12);
-                    JSONObject jsonCoordenadaClienteAddresRecojo=fichero.ExtraerCoordendaDirrecionIncioCliente();
-                    try {
-                        if(jsonCoordenadaClienteAddresRecojo.getString("latitud").length()!=0 &&
-                                jsonCoordenadaClienteAddresRecojo.getString("longitud").length()!=0){
-                            double latitudd=Double.parseDouble(jsonCoordenadaClienteAddresRecojo.getString("latitud"));
-                            double longitudd=Double.parseDouble(jsonCoordenadaClienteAddresRecojo.getString("longitud"));
-                            MarcadorServicio(map, latitudd, longitudd);
+        if (ActivityCompat.checkSelfPermission(MapsConductorClienteServicio.this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Check Permissions Now+
+            // map.clear();
+            ActivityCompat.requestPermissions(MapsConductorClienteServicio.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_1);
 
+
+        } else {
+            map.setMyLocationEnabled(true);
+            map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                @Override
+                public void onMyLocationChange(Location pos) {
+                    lat[0] = pos.getLatitude();
+                    lon[0] = pos.getLongitude();
+                    if (sw == 0) {
+                        sw = 1;
+                        CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
+                                lat[0], lon[0]), 12);
+                        JSONObject jsonCoordenadaClienteAddresRecojo=fichero.ExtraerCoordendaDirrecionIncioCliente();
+                        try {
+                            if(jsonCoordenadaClienteAddresRecojo.getString("latitud").length()!=0 &&
+                                    jsonCoordenadaClienteAddresRecojo.getString("longitud").length()!=0){
+                                double latitudd=Double.parseDouble(jsonCoordenadaClienteAddresRecojo.getString("latitud"));
+                                double longitudd=Double.parseDouble(jsonCoordenadaClienteAddresRecojo.getString("longitud"));
+                                MarcadorServicio(map, latitudd, longitudd);
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        map.animateCamera(cam);
                     }
-                    map.animateCamera(cam);
                 }
-            }
-        });
+            });
+        }
+
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_1) {
+            if(grantResults.length == 1
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // We can now safely use the API we requested access to
+               /* Location myLocation =
+                        LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);*/
+            } else {
+                // Permission was denied or request was cancelled
+            }
+        }
+    }
 
     private void MarcadorServicio(GoogleMap mapa,double lat,double lon){
         CameraUpdate ZoomCam = CameraUpdateFactory.zoomTo(12);
@@ -671,7 +702,9 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                      "",//DireccionIncio
                                     "",//idDistritoFin
                                     "",//idZonaFin
-                                    ""//DireccionFin
+                                    "",//DireccionFin
+                                    "",  //IMPORTE EXTRAORDINARIO
+                                    ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
                                     ).execute();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -744,7 +777,9 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                     "",//DireccionIncio
                                     "",//idDistritoFin
                                     "",//idZonaFin
-                                    ""//DireccionFin
+                                    "",//DireccionFin
+                                    "",  //IMPORTE EXTRAORDINARIO
+                                    ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
                             ).execute();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -827,7 +862,9 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                         "",//DireccionIncio
                                         "",//idDistritoFin
                                         "",//idZonaFin
-                                        ""//DireccionFin
+                                        "",//DireccionFin
+                                        "",  //IMPORTE EXTRAORDINARIO
+                                        ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
                                 ).execute();
 
                         }
@@ -844,6 +881,63 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                     Toast.makeText(activity,"Ingrese minutos",Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        final Button btnGatosExtraordinario1=(Button)view.findViewById(R.id.btnPagoExtraOrdinadrio1);
+        final Button btnGatosExtraordinario2=(Button)view.findViewById(R.id.btnPagoExtraOrdinadrio2);
+        final LinearLayout linearPagosExtras=(LinearLayout)view.findViewById(R.id.linearPagosExtras);
+        final EditText editPagosExras=(EditText)view.findViewById(R.id.editPagoExtraOrdinario);
+        final Button btnEnviarPagosExras=(Button)view.findViewById(R.id.btnEnviarPagosExtraOrdinarios);
+
+        btnGatosExtraordinario1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnGatosExtraordinario1.setVisibility(View.GONE);
+                btnGatosExtraordinario2.setVisibility(View.VISIBLE);
+                linearPagosExtras.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnGatosExtraordinario2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnGatosExtraordinario1.setVisibility(View.VISIBLE);
+                btnGatosExtraordinario2.setVisibility(View.GONE);
+                linearPagosExtras.setVisibility(View.GONE);
+                editPagosExras.setText("");
+            }
+        });
+
+        btnEnviarPagosExras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(editPagosExras.getText().toString().trim().length()!=0){
+                    String importePagoExtra=editPagosExras.getText().toString().trim();
+                    if(!importePagoExtra.equals("0")){
+                        new wsActualizarServicio(
+                                activity,
+                                idServicio,
+                                "",//indAireacondicionado
+                                "",//aireAcondicionado
+                                "",//peaje
+                                "",//importe tiempo espera
+                                "",//minutos tiempoEspera
+                                "",//importe servicio
+                                "",//idDistritoIncio
+                                "",//idZonaIncio
+                                "",//DireccionIncio
+                                "",//idDistritoFin
+                                "",//idZonaFin
+                                "",//DireccionFin
+                                importePagoExtra,  //IMPORTE EXTRAORDINARIO
+                                ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
+                        ).execute();
+                    }
+
+                }else {
+                    Toast.makeText(MapsConductorClienteServicio.this,"Ingrese una cantidad",Toast.LENGTH_LONG).show();
+                }
             }
         });
 

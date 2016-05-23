@@ -227,7 +227,9 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
                                 jsonOrigenAddres.getString("addresOrigen"),//DireccionIncio
                                 jsonDestino.getString("idDistrito"),//idDistritoFin
                                 jsonDestino.getString("idZona"),//idZonaFin
-                                jsonFinAddres.getString("addresDestino")//DireccionFin
+                                jsonFinAddres.getString("addresDestino"),//DireccionFin
+                                "",//IMPORTE GASTO EXTRAORDINARIO
+                                ""//TIPO DE PAGO DE SERVCIO 1 CONTADO 2 CREDITO
                         ).execute();
                     }else {
                         Toast.makeText(context,"No tiene tarifa !!",Toast.LENGTH_LONG).show();

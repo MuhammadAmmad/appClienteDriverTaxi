@@ -29,4 +29,6 @@
     <string name="InternetAccessRevision">No tiene conexion a internet !!!</string>
     <string name="gpsMensaje">El sistema GPS esta desactgivado, la aplicacion necesita del GPS,
                     Tiene que activarlo !!!</string>
+    <string name="pagoExtraOrdinario">Pago Extra</string>
+    <string name="Monto">Monto</string>
 </resources>

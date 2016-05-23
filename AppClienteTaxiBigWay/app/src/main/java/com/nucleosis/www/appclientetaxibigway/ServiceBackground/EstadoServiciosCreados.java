@@ -46,7 +46,7 @@ public class EstadoServiciosCreados extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("servicios", "CREADO");
+        Log.d("servicios_a", "CREADO");
         preferencesCliente=new PreferencesCliente(EstadoServiciosCreados.this);
         fichero=new Fichero(EstadoServiciosCreados.this);
         jsonHoraActual=fichero.ExtraerFechaHoraActual();

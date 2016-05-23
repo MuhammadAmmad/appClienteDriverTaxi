@@ -52,6 +52,7 @@ public class wsExtraerHoraServer extends AsyncTask<String,String,JSONObject> {
             // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
             SoapObject response= (SoapObject) envelope.bodyIn;
             SoapObject response2=(SoapObject)response.getProperty("return");
+            Log.d("responFecha",response2.toString());
             jsonObject.put("Fecha",response2.getPropertyAsString("FEC_ACTUAL").toString());
             jsonObject.put("Hora",response2.getPropertyAsString("DES_HORA").toString());
         } catch (Exception e) {

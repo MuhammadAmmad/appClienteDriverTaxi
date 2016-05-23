@@ -37,6 +37,16 @@ public class beansListaServiciosCreadosPorFecha {
     private String desAutoTipoPidioCliente;
     private String idAutoTipoPidioCliente;
     private String numeroMovilTaxi;
+    private String idTipoPagoServicio;
+
+    public String getIdTipoPagoServicio() {
+        return idTipoPagoServicio;
+    }
+
+    public void setIdTipoPagoServicio(String idTipoPagoServicio) {
+        this.idTipoPagoServicio = idTipoPagoServicio;
+    }
+
     public String getIdAutoTipoPidioCliente() {
         return idAutoTipoPidioCliente;
     }

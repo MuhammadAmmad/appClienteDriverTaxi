@@ -32,9 +32,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
 import com.nucleosis.www.appclientetaxibigway.Constantes.Utils;
+import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.EstadoServiciosCreados;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.PosicionConductor;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
@@ -42,6 +46,7 @@ import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerHoraServer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -68,7 +73,11 @@ public class MapsClienteConductorServicio
     private String idDriver="0";
     private String idAuto="0";
     private String desMotivo="";
-    private TextToSpeech t1;
+    private static int swConductor=0;
+    private GoogleMap mapResult;
+    private Fichero fichero;
+    private int swCamara=0;
+    private int contadorReciver=0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,16 +85,14 @@ public class MapsClienteConductorServicio
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         MAPS_CLIENTE_CONDUCTOR=this;
+        fichero=new Fichero(MapsClienteConductorServicio.this);
         compR=new ComponentesR(MapsClienteConductorServicio.this);
         compR.Controls_Maps_Cliente_Conductor(MAPS_CLIENTE_CONDUCTOR);
         if(getIntent()!=null){
             idServicio=  getIntent().getStringExtra("idServicio");
             Log.d("idServicioIntent",idServicio);
         }
-
-
-
-
+        swCamara=0;
         Intent intent=new Intent(MapsClienteConductorServicio.this, EstadoServiciosCreados.class);
         startService(intent);
 
@@ -96,6 +103,8 @@ public class MapsClienteConductorServicio
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 receiver,
                 filter);
+
+
         compR.getImgButtonCancelarServicio().setEnabled(false);
         compR.getImgButtonCancelarServicio().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +134,6 @@ public class MapsClienteConductorServicio
             public void onClick(View v) {
               /*  Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                 vibrator.vibrate(3000);*/
-
                 Intent intent =new Intent(MapsClienteConductorServicio.this,MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -133,26 +141,13 @@ public class MapsClienteConductorServicio
         });
 
 
-        t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    // t1.setLanguage(Locale.US);
-                    Locale local=new Locale("spa","es");
-                    t1.setLanguage(local);
 
-                }
-            }
-        });
 
 
     }
     @Override
     public void onPause(){
-        if(t1 !=null){
-            t1.stop();
-            t1.shutdown();
-        }
+
         super.onPause();
     }
     private void cancelarServicio(final String idServicio_){
@@ -226,6 +221,7 @@ public class MapsClienteConductorServicio
         }.execute();
 
     }
+
     private class ResponseReceiver extends BroadcastReceiver {
         private ResponseReceiver() {
         }
@@ -252,7 +248,7 @@ public class MapsClienteConductorServicio
                                         compR.getImgButtonCancelarServicio().setEnabled(true);
                                         idTurno="0";
                                         idDriver="0";
-
+                                        swConductor=0;
                                     }else if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("2")){
                                         //CONFIRMADO POR EL CONDUCTOR
                                         String msn="Servicio tomado...."+"\n"+"la movil acercandose.";
@@ -261,20 +257,41 @@ public class MapsClienteConductorServicio
                                         compR.getImgButtonCancelarServicio().setEnabled(true);
                                         idTurno=jsonArrayServis.getJSONObject(i).getString("idTurno");
                                         idDriver=jsonArrayServis.getJSONObject(i).getString("idConductor");
+                                        JSONObject jsIdConductor =new JSONObject();
+                                        jsIdConductor.put("idConductor",idDriver);
+                                        fichero.InsertarIdConductorServicio(jsIdConductor.toString());
+                                        Log.d("idActualConductor",fichero.ExtraerIdConductorServicio().toString());
+                                        //ESCUCHAMOS LA POSICION DEL CONDUCTGOR
+                                        if(swConductor==0){
+                                            swConductor=1;  }
+                                            Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,
+                                                    PosicionConductor.class);
+                                            startService(intentCoordendasConductor);
+                                            IntentFilter filter1 = new IntentFilter(Utils.ACTION_RUN_SERVICE);
+                                            ResponseReceiverCoordendaConductor receiverCoordendaConductor
+                                                    =new ResponseReceiverCoordendaConductor();
+                                            // Registrar el receiver y su filtro
+                                            LocalBroadcastManager.getInstance(MapsClienteConductorServicio.this).registerReceiver(
+                                                    receiverCoordendaConductor,
+                                                    filter1);
+
+
                                     }else if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("3")){
                                         //EN CURSO
-
-                                     /*   String toSpeak = "su taxi a llegado";
-                                        t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
-                                        Vibrator vv = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                                        long [] patron = {0, 500, 300, 1000, 500};
-                                        vv.vibrate(patron,3);*/
-
+                                        swConductor=1;
+                                     //   mapResult.clear();//BORRAMOS EL MARCADOR EN EL MAPA, DEL CONDUCTOR
+                                        //STOP SERVICIO EXTRAER UBICION DE CONDUCTOR
+                                        Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
+                                        stopService(intentCoordendasConductor);
                                         compR.getImgButtonCancelarServicio().setEnabled(false);
                                         String msn="Servicio en curso....";
                                         compR.getTxtMensajeDeEstado().setText(msn);
                                         compR.getImageViewColorStado().setBackgroundColor(Color.rgb(75,219,92));
                                     }else if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("4")){
+                                        /*//STOP SERVICIO EXTRAER UBICION DE CONDUCTOR
+                                        Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
+                                        stopService(intentCoordendasConductor);*/
+                                        swConductor=1;
                                         //TERMINADO
                                         compR.getImgButtonCancelarServicio().setEnabled(false);
                                         String msn="Servicio terminaddo";
@@ -307,12 +324,50 @@ public class MapsClienteConductorServicio
         }
     }
 
+
+    private class ResponseReceiverCoordendaConductor  extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch (intent.getAction()){
+                case Utils.ACTION_RUN_SERVICE:
+                    String data = intent.getStringExtra(Utils.EXTRA_MEMORY);
+                    if(data!=null){
+                        contadorReciver++;
+                            Log.d("coordenad_con",data.toString());
+                        try {
+                            JSONObject jsonUbicacionCondcutor=new JSONObject(data);
+                            String lat=jsonUbicacionCondcutor.getString("latConductor");
+                            String lon=jsonUbicacionCondcutor.getString("lonConductor");
+                            if(lat.length()!=0 && lon.length()!=0){
+                                double lat_=Double.parseDouble(lat);
+                                double lon_=Double.parseDouble(lon);
+                                if(sw==1){
+                                    Log.d("contador_",String.valueOf(contadorReciver));
+                                    if(contadorReciver>3){
+                                        mapResult.clear();
+                                        MarcadorServicio(mapResult, lat_, lon_);
+                                    }
+
+                                }
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    break;
+            }
+        }
+    }
     @SuppressWarnings("deprecation")
     @Override
     public void onMapReady(final GoogleMap map) {
         final double[] lat = new double[1];
         final double[] lon = new double[1];
-
+        mapResult=map;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
@@ -330,8 +385,8 @@ public class MapsClienteConductorServicio
                     if (sw == 0) {
                         sw = 1;
                         CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
-                                lat[0], lon[0]), 12);
-                        MarcadorServicio(map, lat[0], lon[0]);
+                                lat[0], lon[0]), 15);
+                       // MarcadorServicio(map, lat[0], lon[0]);
                         map.animateCamera(cam);
                     }
                 }
@@ -355,9 +410,26 @@ public class MapsClienteConductorServicio
             }
         }
     }
+    private void MarcadorServicio(GoogleMap mapa,double lat_,double lon_){
 
-    private void MarcadorServicio(GoogleMap googleMap, double lat, double lon){
+        if(swCamara==0){
+            CameraUpdate ZoomCam = CameraUpdateFactory.zoomTo(15);
+            mapa.animateCamera(ZoomCam);
+            swCamara=1;
+        }
 
+        final LatLng PERTH = new LatLng(lat_, lon_);
+        final LatLng LatLonFin=new LatLng(lat_,lon_);
+        // final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
+        final Marker markerInicio = mapa.addMarker(new MarkerOptions()
+                .position(PERTH)
+                .title("Conductor")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_conductor)));
+
+
+
+     /*   CustomInfoWindow customInfoWindow = new CustomInfoWindow(MainActivity.this);
+        mapa.setInfoWindowAdapter(customInfoWindow);*/
     }
 
     @Override
@@ -365,5 +437,9 @@ public class MapsClienteConductorServicio
         super.onDestroy();
         Intent intent=new Intent(MapsClienteConductorServicio.this, EstadoServiciosCreados.class);
         stopService(intent);
+        Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
+        stopService(intentCoordendasConductor);
     }
+
+
 }

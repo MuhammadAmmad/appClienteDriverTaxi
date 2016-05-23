@@ -39,7 +39,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
     private GridViewWithHeaderAndFooter grid;
     private PreferencesCliente preferencesCliente;
     private String fecha;
-    private  Drawable drawable;
+   private  Drawable drawable;
     private Fichero fichero;
     private JSONObject jsonConfiguraciones;
     private String urlConductor;
@@ -55,7 +55,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
         this.fecha=fecha;
         fichero=new Fichero(context);
 
-         drawable=context.getResources().getDrawable(R.drawable.ic_room_black_24dp);
+       // drawable=context.getResources().getDrawable(R.drawable.ic_room_black_24dp);
         jsonConfiguraciones=fichero.ExtraerConfiguraciones();
         if(jsonConfiguraciones!=null){
             try {

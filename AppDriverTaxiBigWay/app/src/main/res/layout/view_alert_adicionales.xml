@@ -45,17 +45,21 @@
                 android:layout_gravity="center_horizontal" />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginTop="@dimen/marginLeftDiez"
+                android:textColor="@color/white"
                 android:text="@string/aireAcondicionado"
+                android:background="@drawable/selector_buton"
                 android:drawableRight="@drawable/ic_chevron_right_black_24dp"
                 android:id="@+id/btnAireAcondicionado1"
                 android:layout_gravity="center_horizontal" />
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginTop="@dimen/marginLeftDiez"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_buton"
                 android:visibility="gone"
                 android:text="@string/aireAcondicionado"
                 android:id="@+id/btnAireAcondicionado2"
@@ -71,7 +75,10 @@
                 android:gravity="right">
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="@dimen/marginLeftDiez"
+                    android:textColor="@color/white"
+                    android:background="@drawable/selector_buton"
                     android:visibility="gone"
                     android:id="@+id/btnEnviarAire"
                     android:text="Enviar"/>
@@ -79,16 +86,20 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginTop="@dimen/marginLeftDiez"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_buton"
                 android:text="@string/peaje"
                 android:drawableRight="@drawable/ic_chevron_right_black_24dp"
                 android:id="@+id/btnPeaje1"
                 android:layout_gravity="center_horizontal" />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginTop="@dimen/marginLeftDiez"
+                android:background="@drawable/selector_buton"
+                android:textColor="@color/white"
                 android:text="@string/peaje"
                 android:visibility="gone"
                 android:drawableRight="@drawable/ic_expand_more_black_24dp"
@@ -101,7 +112,10 @@
                 android:gravity="right">
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="@dimen/marginLeftDiez"
+                    android:textColor="@color/white"
+                    android:background="@drawable/selector_buton"
                     android:visibility="gone"
                     android:id="@+id/btnEnviarPeaje"
                     android:text="Enviar"/>
@@ -109,16 +123,20 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginTop="@dimen/marginLeftDiez"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_buton"
                 android:drawableRight="@drawable/ic_chevron_right_black_24dp"
                 android:text="@string/tiempoEspera"
                 android:id="@+id/btnTiempoEspera1"
                 android:layout_gravity="center_horizontal" />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginTop="@dimen/marginLeftDiez"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_buton"
                 android:drawableRight="@drawable/ic_expand_more_black_24dp"
                 android:visibility="gone"
                 android:text="@string/tiempoEspera"
@@ -133,7 +151,7 @@
                 android:gravity="right">
                 <EditText
                     android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:id="@+id/editTiempoEspera"
                     android:hint="@string/minutos"
                     android:inputType="number"
@@ -142,22 +160,28 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/selector_buton"
                     android:id="@+id/btnEnviarTiempoEspera"
                     android:text="Enviar"/>
             </LinearLayout>
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginTop="@dimen/marginLeftDiez"
+                android:background="@drawable/selector_buton"
                 android:drawableRight="@drawable/ic_chevron_right_black_24dp"
                 android:text="@string/modificarRuta"
+                android:textColor="@color/white"
                 android:id="@+id/btnModificarRuta1"
                 android:layout_gravity="center_horizontal" />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginTop="@dimen/marginLeftDiez"
+                android:background="@drawable/selector_buton"
                 android:visibility="gone"
+                android:textColor="@color/white"
                 android:drawableRight="@drawable/ic_expand_more_black_24dp"
                 android:text="@string/modificarRuta"
                 android:id="@+id/btnModificarRuta2"
@@ -198,11 +222,66 @@
                     android:gravity="right">
                     <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="35dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/selector_buton"
                         android:id="@+id/btnEnviarNuevaRuta"
                         android:text="Enviar"/>
                 </LinearLayout>
             </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_buton"
+                android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+                android:text="@string/pagoExtraOrdinario"
+                android:id="@+id/btnPagoExtraOrdinadrio1"
+                android:layout_gravity="center_horizontal" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="@dimen/marginLeftDiez"
+                android:textColor="@color/white"
+                android:background="@drawable/selector_buton"
+                android:visibility="gone"
+                android:drawableRight="@drawable/ic_expand_more_black_24dp"
+                android:text="@string/pagoExtraOrdinario"
+                android:id="@+id/btnPagoExtraOrdinadrio2"
+                android:layout_gravity="center_horizontal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/linearPagosExtras">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editPagoExtraOrdinario"
+                android:layout_marginTop="@dimen/dimenCinco"
+                android:paddingLeft="@dimen/marginLeftDiez"
+                android:paddingRight="@dimen/padinLeft"
+                android:hint="@string/Monto"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/hintColor"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/selector_buton"
+                    android:id="@+id/btnEnviarPagosExtraOrdinarios"
+                    android:text="Enviar"/>
+            </LinearLayout>
+        </LinearLayout>
+
         </LinearLayout>
 
 

@@ -151,6 +151,14 @@ public class MainActivity extends AppCompatActivity
         compR.getAutoCompletText1().setOnItemClickListener(mAutocompleteClickListener_1);
 
         compR.getAutoCompletText1().setAdapter(mAdapter);
+
+        compR.getAutoCompletText2().setFocusableInTouchMode(false);
+        compR.getAutoCompletText2().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                compR.getAutoCompletText2().setFocusableInTouchMode(true);
+            }
+        });
         compR.getAutoCompletText2().setOnItemClickListener(mAutocompleteClickListener_2);
         compR.getAutoCompletText2().setAdapter(mAdapter);
 

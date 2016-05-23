@@ -167,6 +167,7 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                         row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
+
                                         row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                                         row.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
                                         row.setNameZonaIncio(dataVector.getProperty("NOM_ZONA_INICIO").toString());
@@ -189,7 +190,8 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setNumeroMovilTaxi(dataVector.getProperty("NUM_MOVIL").toString());
                                         row.setDesAutoTipoPidioCliente(dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
                                         row.setIdAutoTipoPidioCliente(dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
-
+                                        ///TIPO DE PAGO DE SERVICIO  CONTADO (1) CREDITO (2)
+                                        row.setIdTipoPagoServicio(dataVector.getProperty("ID_TIPO_PAGO_SERVICIO").toString());
                                         ListServicios.add(row);
 
                                     }
@@ -232,6 +234,8 @@ public class ServiceListarServiciosCreados extends Service {
                                     row2.setIdAutoTipoPidioCliente(dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
                                     row2.setNumeroMovilTaxi(dataVector.getProperty("NUM_MOVIL").toString());
 
+                                    ///TIPO DE PAGO DE SERVICIO  CONTADO (1) CREDITO (2)
+                                    row2.setIdTipoPagoServicio(dataVector.getProperty("ID_TIPO_PAGO_SERVICIO").toString());
                                     ListServiciosAsignadoConductor.add(row2);
                                 }
 
