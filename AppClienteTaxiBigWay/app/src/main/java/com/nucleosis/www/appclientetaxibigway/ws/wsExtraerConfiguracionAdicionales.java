@@ -59,12 +59,17 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
                 jsonObjectData.put("impServicioPeaje",response2.getPrimitiveProperty("IMP_SERVICIO_PEAJE"));
                 jsonObjectData.put("impMinutoEspera",response2.getPropertyAsString("IMP_POR_MINUTO_TIEMPO_ESPERA"));
                 jsonObjectData.put("impAutoVip",response2.getPropertyAsString("IMP_POR_AUTO_VIP"));
+                jsonObjectData.put("numTelefonoEmpesa",response2.getPropertyAsString("NUM_TELEFONO"));
+                jsonObjectData.put("direccionEmpresa",response2.getPropertyAsString("DES_DIRECCION"));
+                //
             }else{
                 jsonObjectData.put("urlFotoConductor","0");
                 jsonObjectData.put("impAireAcondicionado","0");
                 jsonObjectData.put("impServicioPeaje","0");
                 jsonObjectData.put("impMinutoEspera","0");
                 jsonObjectData.put("impAutoVip","0");
+                jsonObjectData.put("numTelefonoEmpesa","00-000000");
+                jsonObjectData.put("direccionEmpresa","-----");
             }
             //  Log.d("response",response2.toString());
         } catch (Exception e) {
@@ -79,8 +84,11 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
     protected void onPostExecute(JSONObject dataJson) {
         super.onPostExecute(dataJson);
         if(dataJson!=null){
-            new wsExtraerHoraServer(context).execute();
             fichero.InsertarConfiguraciones(dataJson.toString());
+            Log.d("config_",fichero.ExtraerConfiguraciones().toString());
+
+            new wsExtraerHoraServer(context).execute();
+
         }
 
     }

@@ -2,6 +2,7 @@ package com.nucleosis.www.appdrivertaxibigway.Fragments;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -72,7 +73,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
     private View rootView;
     public static GridViewWithHeaderAndFooter GRID_CANCEL;
     private String idDriver;
-
+    private Fichero fichero;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +83,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
+        fichero=new Fichero(getActivity());
+
+
 
     }
     public FragmentHistoriNew() {
@@ -122,6 +126,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"XXXX",Toast.LENGTH_LONG).show();
                 String fecha=compR.getEditHistoriaCarrera().getText().toString();
+                Log.d("fechax_",fecha);
                 if(fecha.length()!=0){
                 new AsyncTask<String, String, Boolean>() {
                     @Override
@@ -129,12 +134,31 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                         conexionInternet conecicoin=new conexionInternet();
                         return conecicoin.isInternet();
                     }
-
                     @Override
                     protected void onPostExecute(Boolean aBoolean) {
                         super.onPostExecute(aBoolean);
+
                         if (aBoolean){
-                            new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+                            preferencesDriver=new PreferencesDriver(getActivity());
+                            JSONObject jsonFecha=preferencesDriver.ExtraerHoraSistema();
+                            Log.d("xx_","154645616"+jsonFecha.toString());
+                            if(jsonFecha!=null){
+                                try {
+                                    jsonFecha.getString("fechaServidor");
+                                    Log.d("fecha_",jsonFecha.getString("fechaServidor"));
+                                    String fecha_=compR.getEditHistoriaCarrera().getText().toString();
+                                    if(jsonFecha.getString("fechaServidor").equals(fecha_)){
+                                        new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+                                    }else{
+                                        new wsListaServiciosTomadosConductor(getActivity(),fecha_,grid).execute();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }else{
+                                Log.d("fecha_","null");
+                            }
                         }else{
                             //String msnInternet=getResources().getString(R.string.InternetAccessRevision);
                             Toast.makeText(getActivity(),"No tienes Acceso a internet!!",Toast.LENGTH_LONG).show();
@@ -145,8 +169,10 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
             }
         });
 
+
+
         if(compR.getEditHistoriaCarrera().getText().length()!=0){
-            String fecha=compR.getEditHistoriaCarrera().getText().toString();
+            final String fecha=compR.getEditHistoriaCarrera().getText().toString();
             if(fecha.length()!=0){
                 new AsyncTask<String, String, Boolean>() {
                     @Override
@@ -160,6 +186,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                         super.onPostExecute(aBoolean);
                         if (aBoolean){
                             new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+
                         }else{
                             String msnInternet=getResources().getString(R.string.InternetAccessRevision);
                             Toast.makeText(getActivity(),"No tien acceso a intenert !!!",Toast.LENGTH_LONG).show();

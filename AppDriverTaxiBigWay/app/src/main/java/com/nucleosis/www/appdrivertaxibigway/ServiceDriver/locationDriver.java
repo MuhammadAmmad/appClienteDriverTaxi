@@ -1,6 +1,7 @@
 package com.nucleosis.www.appdrivertaxibigway.ServiceDriver;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +17,14 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.nucleosis.www.appdrivertaxibigway.Beans.User;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.ws.UpdateLocationDriver;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.nucleosis.www.appdrivertaxibigway.Constans.Utils.LOGGIN_USUARIO;
 
 /**
  * Created by carlos.lopez on 04/04/2016.
@@ -27,18 +32,34 @@ import java.util.TimerTask;
 public class locationDriver extends Service implements LocationListener {
     private TimerTask timerTask;
     private LocationListener locationListener;
-    private String[]LatLong=new String[2];
-    private int sw=0;
+    private String[] LatLong = new String[2];
+    private int sw = 0;
+    private Activity activity;
+    private Context context;
     @Override
     public void onCreate() {
         super.onCreate();
+        context=(Context)this;
 
-        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        updateLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Check Permissions Now+
+            activity=(Activity)context;
+            ActivityCompat.requestPermissions(activity,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_1);
+
+
+        } else {
+
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            updateLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
+
+        }
 
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("servicio---->", "servicio Inciado");

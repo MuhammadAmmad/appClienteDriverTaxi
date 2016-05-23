@@ -38,7 +38,7 @@
             android:gravity="left"
             android:textSize="14dp"
             android:textColor="@color/black"
-            android:text="New Text"
+            android:text="Sin informaion !!"
             android:id="@+id/txtDetalleServicio"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>

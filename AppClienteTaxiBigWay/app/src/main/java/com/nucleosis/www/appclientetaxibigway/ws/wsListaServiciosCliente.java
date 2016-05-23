@@ -289,16 +289,16 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
                 }
 
                 listDetalleServicio.add(row2);
-                Gson json=new Gson();
-                String listServiciosCliente=json.toJson(listDetalleServicio);
-               // Log.d("lista car-->",listServiciosCliente.toString());
-                if(listServiciosCliente!=null){
-                    fichero.InsertarListaServiciosTomados(listServiciosCliente.toString());
-                }else {
-                    fichero.InsertarListaServiciosTomados("");
-                }
-
                 ListServicios.add(row);
+            }
+
+            Gson json=new Gson();
+            String listServiciosCliente=json.toJson(listDetalleServicio);
+            // Log.d("lista car-->",listServiciosCliente.toString());
+            if(listServiciosCliente!=null){
+                fichero.InsertarListaServiciosTomados(listServiciosCliente.toString());
+            }else {
+                fichero.InsertarListaServiciosTomados("");
             }
           // SoapObject response2=(SoapObject)response1.getProperty("return");
             Log.d("listaxxx", responseVector.toString());

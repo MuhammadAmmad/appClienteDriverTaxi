@@ -13,6 +13,9 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.speech.tts.TextToSpeech;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -35,6 +38,7 @@ import com.nucleosis.www.appclientetaxibigway.Constantes.Utils;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.EstadoServiciosCreados;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.PosicionConductor;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
+import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerHoraServer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,11 +49,13 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by carlos.lopez on 04/05/2016.
  */
-public class MapsClienteConductorServicio extends AppCompatActivity
+public class MapsClienteConductorServicio
+        extends AppCompatActivity
         implements OnMapReadyCallback {
     private MapFragment mapFragment;
     private int sw = 0;
@@ -62,6 +68,7 @@ public class MapsClienteConductorServicio extends AppCompatActivity
     private String idDriver="0";
     private String idAuto="0";
     private String desMotivo="";
+    private TextToSpeech t1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,10 +82,14 @@ public class MapsClienteConductorServicio extends AppCompatActivity
             idServicio=  getIntent().getStringExtra("idServicio");
             Log.d("idServicioIntent",idServicio);
         }
+
+
+
+
         Intent intent=new Intent(MapsClienteConductorServicio.this, EstadoServiciosCreados.class);
         startService(intent);
 
-        IntentFilter filter = new IntentFilter(Utils.ACTION_RUN_SERVICE);
+        IntentFilter filter = new IntentFilter(Utils.ACTION_RUN_SERVICE_1);
         // Crear un nuevo ResponseReceiver
         ResponseReceiver receiver = new ResponseReceiver();
         // Registrar el receiver y su filtro
@@ -112,14 +123,38 @@ public class MapsClienteConductorServicio extends AppCompatActivity
         compR.getImgButtonInAServicios().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(),"hola2",Toast.LENGTH_LONG).show();
+              /*  Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                vibrator.vibrate(3000);*/
+
                 Intent intent =new Intent(MapsClienteConductorServicio.this,MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-    }
 
+
+        t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    // t1.setLanguage(Locale.US);
+                    Locale local=new Locale("spa","es");
+                    t1.setLanguage(local);
+
+                }
+            }
+        });
+
+
+    }
+    @Override
+    public void onPause(){
+        if(t1 !=null){
+            t1.stop();
+            t1.shutdown();
+        }
+        super.onPause();
+    }
     private void cancelarServicio(final String idServicio_){
         new AsyncTask<String, String, String[]>() {
         ProgressDialog progressDialog;
@@ -194,13 +229,13 @@ public class MapsClienteConductorServicio extends AppCompatActivity
     private class ResponseReceiver extends BroadcastReceiver {
         private ResponseReceiver() {
         }
-
+        @SuppressWarnings("deprecation")
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
-                case Utils.ACTION_RUN_SERVICE:
-
-                 String data = intent.getStringExtra(Utils.EXTRA_MEMORY);
+                case Utils.ACTION_RUN_SERVICE_1:
+                 String data = intent.getStringExtra(Utils.EXTRA_MEMORY_1);
+                    Log.d("data_",data.toString());
                     if(data!=null){
                         try {
                             JSONArray jsonArrayServis=new JSONArray(data);
@@ -217,6 +252,7 @@ public class MapsClienteConductorServicio extends AppCompatActivity
                                         compR.getImgButtonCancelarServicio().setEnabled(true);
                                         idTurno="0";
                                         idDriver="0";
+
                                     }else if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("2")){
                                         //CONFIRMADO POR EL CONDUCTOR
                                         String msn="Servicio tomado...."+"\n"+"la movil acercandose.";
@@ -227,10 +263,23 @@ public class MapsClienteConductorServicio extends AppCompatActivity
                                         idDriver=jsonArrayServis.getJSONObject(i).getString("idConductor");
                                     }else if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("3")){
                                         //EN CURSO
+
+                                     /*   String toSpeak = "su taxi a llegado";
+                                        t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                                        Vibrator vv = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                                        long [] patron = {0, 500, 300, 1000, 500};
+                                        vv.vibrate(patron,3);*/
+
                                         compR.getImgButtonCancelarServicio().setEnabled(false);
                                         String msn="Servicio en curso....";
                                         compR.getTxtMensajeDeEstado().setText(msn);
                                         compR.getImageViewColorStado().setBackgroundColor(Color.rgb(75,219,92));
+                                    }else if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("4")){
+                                        //TERMINADO
+                                        compR.getImgButtonCancelarServicio().setEnabled(false);
+                                        String msn="Servicio terminaddo";
+                                        compR.getTxtMensajeDeEstado().setText(msn);
+                                        compR.getImageViewColorStado().setBackgroundColor(Color.rgb(32,118,242));
                                     }
                                    /* Toast.makeText(MapsClienteConductorServicio.this,
                                             jsonArrayServis.getJSONObject(i).getString("stadoServicio"),Toast.LENGTH_SHORT).show();*/
@@ -251,7 +300,7 @@ public class MapsClienteConductorServicio extends AppCompatActivity
                     //Toast.makeText(MapsClienteConductorServicio.this,data,Toast.LENGTH_SHORT).show();
                     break;
 
-                case Utils.ACTION_MEMORY_EXIT:
+                case Utils.ACTION_MEMORY_EXIT_1:
                  //   lblCoordenada.setText("coordendas");
                     break;
             }
@@ -263,25 +312,51 @@ public class MapsClienteConductorServicio extends AppCompatActivity
     public void onMapReady(final GoogleMap map) {
         final double[] lat = new double[1];
         final double[] lon = new double[1];
-        map.setMyLocationEnabled(true);
-        map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location pos) {
-                lat[0] = pos.getLatitude();
-                lon[0] = pos.getLongitude();
-                if (sw == 0) {
-                    sw = 1;
-                    CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
-                            lat[0], lon[0]), 12);
-                    MarcadorServicio(map, lat[0], lon[0]);
-                    map.animateCamera(cam);
-                }
-            }
-        });
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Check Permissions Now
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_3);
+        } else {
+            // permission has been granted, continue as usual
+            map.setMyLocationEnabled(true);
+            map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                @Override
+                public void onMyLocationChange(Location pos) {
+                    lat[0] = pos.getLatitude();
+                    lon[0] = pos.getLongitude();
+                    if (sw == 0) {
+                        sw = 1;
+                        CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
+                                lat[0], lon[0]), 12);
+                        MarcadorServicio(map, lat[0], lon[0]);
+                        map.animateCamera(cam);
+                    }
+                }
+            });
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_3) {
+            if(grantResults.length == 1
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // We can now safely use the API we requested access to
+                /*Location myLocation =
+                        LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);*/
+                Log.d("tienePermisos","MapsClienteConductorCliente NO TIENE PERMISO");
+            } else {
+                Log.d("tienePermisos","MapsClienteConductorCliente  TIENE PERMISO");
+                // Permission was denied or request was cancelled
+            }
+        }
     }
 
-    private void MarcadorServicio(GoogleMap googleMap,double lat,double lon){
+    private void MarcadorServicio(GoogleMap googleMap, double lat, double lon){
 
     }
 

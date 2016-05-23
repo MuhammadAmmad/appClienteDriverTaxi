@@ -112,33 +112,22 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                             super.onPostExecute(aBoolean);
                             if(aBoolean){
                                 new wsListaServiciosCliente(getActivity(),grid,fecha).execute();
-                            }else {
-                                Toast.makeText(getActivity(),"No tiene acceso a internet !!!",Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }.execute();
+                             /*   JSONObject jsonFecha=fichero.ExtraerFechaHoraActual();
+                                if(jsonFecha!=null){
+                                    Log.d("fechaSistema",fichero.ExtraerConfiguraciones().toString());
+                                    String fechaActual=compR.getEditHistoricoServiciosCreados().getText().toString().trim();
 
-                }
+                                    try {
+                                        if(fechaActual.equals(jsonFecha.getString("Fecha"))){
 
-            }
-        });
-        compR.getImageButtonBuscar().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String fecha=compR.getEditHistoricoServiciosCreados().getText().toString();
-                if(fecha.length()!=0){
-                    new AsyncTask<String, String, Boolean>() {
-                        @Override
-                        protected Boolean doInBackground(String... params) {
-                            conexionInternet conexion=new conexionInternet();
-                            return conexion.isInternet();
-                        }
+                                        }else {
 
-                        @Override
-                        protected void onPostExecute(Boolean aBoolean) {
-                            super.onPostExecute(aBoolean);
-                            if(aBoolean){
-                                new wsListaServiciosCliente(getActivity(),grid,fecha).execute();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }*/
+
                             }else {
                                 Toast.makeText(getActivity(),"No tiene acceso a internet !!!",Toast.LENGTH_LONG).show();
                             }
@@ -180,8 +169,11 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                         if(jsonArrayServiciosDiarios!=null){
                          for(int i=0;i<jsonArrayServiciosDiarios.length();i++){
                              try {
+                                 JSONObject jsonFecha=fichero.ExtraerFechaHoraActual();
+                                 String fechaServer=jsonFecha.getString("Fecha");
                                  if(listServicio.get(position).getIdServicio().
-                                         equals(jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio"))){
+                                         equals(jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio")) &&
+                                         fechaServer.equals(jsonArrayServiciosDiarios.getJSONObject(i).getString("FechaFormat"))){
                                             Toast.makeText(getActivity(),
                                                     jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio"),
                                                     Toast.LENGTH_LONG).show();

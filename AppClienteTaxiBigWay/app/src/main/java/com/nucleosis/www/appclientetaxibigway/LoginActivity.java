@@ -1,9 +1,16 @@
 package com.nucleosis.www.appclientetaxibigway;
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +19,7 @@ import android.widget.Toast;
 
 import com.nucleosis.www.appclientetaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
+import com.nucleosis.www.appclientetaxibigway.Constantes.Utils;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
 
 import org.ksoap2.HeaderProperty;
@@ -49,7 +57,7 @@ public  static Activity LOGIN_ACTIVITY;
                 }
             }
         });*/
-      /*  compR.getEditEmail().setText("taxi@gmail.com");
+       /* compR.getEditEmail().setText("taxi@gmail.com");
         compR.getEditPassword().setText("123456");*/
 
     }
@@ -69,36 +77,52 @@ public  static Activity LOGIN_ACTIVITY;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
 
-                new AsyncTask<String, String, Boolean>() {
-                    @Override
-                    protected Boolean doInBackground(String... params) {
-                        conexionInternet  conexion=new conexionInternet();
-                        return  conexion.isInternet();
-                    }
-
-                    @Override
-                    protected void onPostExecute(Boolean aBoolean) {
-                        super.onPostExecute(aBoolean);
-                        if(aBoolean){
-                            String email=compR.getEditEmail().getText().toString().trim();
-                            String pass=compR.getEditPassword().getText().toString().trim();
-                            String msn=getResources().getString(R.string.CamposObligatorios);
-                            if(email.length()!=0 && pass.length()!=0 ){
-                                try {
-                                    LOGGIN_USUARIO.LoginCliente(email,pass,LoginActivity.this);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }else {
-                                Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
-                            }
-                        }else {
-                            Toast.makeText(LoginActivity.this,"No tiene Coneccion a intener !!",Toast.LENGTH_LONG).show();
+                final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+                if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+                    AlertNoGps();
+                }else{
+                    new AsyncTask<String, String, Boolean>() {
+                        @Override
+                        protected Boolean doInBackground(String... params) {
+                            conexionInternet  conexion=new conexionInternet();
+                            return  conexion.isInternet();
                         }
-                    }
-                }.execute();
+
+                        @Override
+                        protected void onPostExecute(Boolean aBoolean) {
+                            super.onPostExecute(aBoolean);
+                            if(aBoolean){
+                                if (ActivityCompat.checkSelfPermission(LoginActivity.this,
+                                        Manifest.permission.ACCESS_FINE_LOCATION)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    // Check Permissions Now+
+                                    // map.clear();
+                                    ActivityCompat.requestPermissions(LoginActivity.this,
+                                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                            Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_1);
 
 
+                                } else {
+                                    String email=compR.getEditEmail().getText().toString().trim();
+                                    String pass=compR.getEditPassword().getText().toString().trim();
+                                    String msn=getResources().getString(R.string.CamposObligatorios);
+                                    if(email.length()!=0 && pass.length()!=0 ){
+                                        try {
+                                            LOGGIN_USUARIO.LoginCliente(email,pass,LoginActivity.this);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }else {
+                                        Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            }else {
+                                Toast.makeText(LoginActivity.this,"No tiene Coneccion a intener !!",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }.execute();
+                }
 
 
                // Toast.makeText(LoginActivity.this,"hola",Toast.LENGTH_SHORT).show();
@@ -110,33 +134,106 @@ public  static Activity LOGIN_ACTIVITY;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                // Toast.makeText(LoginActivity.this,"hola",Toast.LENGTH_SHORT).show();
-                new AsyncTask<String, String, Boolean>() {
-                    @Override
-                    protected Boolean doInBackground(String... params) {
-                        conexionInternet  conexion1=new conexionInternet();
-                        return conexion1.isInternet();
-                    }
-
-                    @Override
-                    protected void onPostExecute(Boolean aBoolean) {
-                        super.onPostExecute(aBoolean);
-                        if(aBoolean){
-                            intent=new Intent(LoginActivity.this,FrmSigUp.class);
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            Toast.makeText(LoginActivity.this,"No tiene Coneccion a intener !!",Toast.LENGTH_LONG).show();
+                final LocationManager manager1 = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+                if ( !manager1.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+                    AlertNoGps();
+                }else{
+                    new AsyncTask<String, String, Boolean>() {
+                        @Override
+                        protected Boolean doInBackground(String... params) {
+                            conexionInternet  conexion1=new conexionInternet();
+                            return conexion1.isInternet();
                         }
-                    }
-                }.execute();
+                        @Override
+                        protected void onPostExecute(Boolean aBoolean) {
+                            super.onPostExecute(aBoolean);
+                            if(aBoolean){
+                                if (ActivityCompat.checkSelfPermission(LoginActivity.this,
+                                        Manifest.permission.ACCESS_FINE_LOCATION)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    // Check Permissions Now+
+                                    // map.clear();
+                                    ActivityCompat.requestPermissions(LoginActivity.this,
+                                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                            Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_2);
+                                } else {
+                                    // permission has been granted, continue as usual
+                                    intent=new Intent(LoginActivity.this,FrmSigUp.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
 
-
-
-
+                            }else {
+                                Toast.makeText(LoginActivity.this,"No tiene Coneccion a intener !!",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }.execute();
+                }
 
                 break;
         }
     }
+
+    private void AlertNoGps() {
+        AlertDialog alert = null;
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String msnGps=getResources().getString(R.string.gpsMensaje);
+        builder.setMessage(msnGps)
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        alert = builder.create();
+        alert.show();
+    }
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_1) {
+            if(grantResults.length == 1
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                String email=compR.getEditEmail().getText().toString().trim();
+                String pass=compR.getEditPassword().getText().toString().trim();
+                String msn=getResources().getString(R.string.CamposObligatorios);
+                if(email.length()!=0 && pass.length()!=0 ){
+                    try {
+                        LOGGIN_USUARIO.LoginCliente(email,pass,LoginActivity.this);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
+                }
+
+
+            } else {
+                Log.d("nada_","fsadfasdf");
+                // Permission was denied or request was cancelled
+            }
+        }else if(requestCode == Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_2){
+            if(grantResults.length == 1
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                intent=new Intent(LoginActivity.this,FrmSigUp.class);
+                startActivity(intent);
+                finish();
+
+
+            } else {
+                Log.d("nada_","fsadfasdf");
+                // Permission was denied or request was cancelled
+            }
+        }
+    }
+
 
     @Override
     public void onPause(){

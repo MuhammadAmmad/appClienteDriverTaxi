@@ -13,6 +13,7 @@ import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.ListaServicios;
 import com.nucleosis.www.appclientetaxibigway.MainActivity;
+import com.nucleosis.www.appclientetaxibigway.ServiceBackground.AlarmaLLegadaConductor;
 import com.nucleosis.www.appclientetaxibigway.SharedPreferences.PreferencesCliente;
 import com.nucleosis.www.appclientetaxibigway.beans.dataClienteSigUp;
 
@@ -199,6 +200,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                             request.addProperty("indAireAcondicionado", solicitaAire);//indAireAcondicionado=0 SI NO DESEA AIREACONDICIONADO
                                                                             //indAireAcondicionado =1  SI GUSTA AIRE ACONDICIONADO
                             request.addProperty("impAireAcondicionado", preciosAireSolicitado);
+                            request.addProperty("impGastosAdicionales", "0");//GASTOS EXTRAORIDINARIOS
                             request.addProperty("impPeaje", "");
                             request.addProperty("impAutoVip", importeAutoVip);
                             request.addProperty("usrRegistro", "");
@@ -222,7 +224,9 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
 
                             request.addProperty("idAutoTipo", 0);
                             request.addProperty("idRegistroTipo", 1);// idRegistroTipo=1 SI EL REGISTRO SE HACE POR MOVIL
-                                                                        //idRegistroTipo=2 SI EL REGISTRO SE HACE POR WEB
+
+                            request.addProperty("idTipoPagoServicio", 0);//TIPO DE PAGO DEL SERVICIO  //CONTADO Ó CREDITO
+                            //idTipoPagoServicio
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -264,6 +268,8 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                             Toast.makeText(context,dataSalida[1].toString(),Toast.LENGTH_LONG).show();
                             Intent intent=new Intent(context, ListaServicios.class);
                             context.startActivity(intent);
+                            Intent intenAlarmaService=new Intent(context, AlarmaLLegadaConductor.class);
+                           context.startService(intenAlarmaService);
                             mainActivity.MAIN_ACTIVITY.finish();
                         }else if (dataSalida[0].equals("0")){
                             Toast.makeText(context,dataSalida[1].toString(),Toast.LENGTH_LONG).show();

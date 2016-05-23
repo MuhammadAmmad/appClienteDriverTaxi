@@ -1,9 +1,11 @@
 package com.nucleosis.www.appclientetaxibigway;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 
 import android.net.Uri;
@@ -11,7 +13,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -34,6 +38,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.AutocompletePrediction;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
@@ -51,6 +57,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appclientetaxibigway.Adpaters.CustomInfoWindow;
 import com.nucleosis.www.appclientetaxibigway.Adpaters.PlaceAutocompleteAdapter;
 import com.nucleosis.www.appclientetaxibigway.ConexionRed.conexionInternet;
+import com.nucleosis.www.appclientetaxibigway.Constantes.Utils;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentDataClient;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentMiUbicacion;
@@ -64,16 +71,19 @@ import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
 import com.nucleosis.www.appclientetaxibigway.kmlPolygonos.KmlCreatorPolygono;
 import com.nucleosis.www.appclientetaxibigway.ws.wsEnviarLatLonClienteDireccionIncio;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerConfiguracionAdicionales;
+import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerHoraServer;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerIdZonaIdDistrito;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerPrecioZonaDistrito;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements OnMapReadyCallback, View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+        implements OnMapReadyCallback,
+        View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
     private MapFragment mapFragment;
     private ComponentesR compR;
 
@@ -85,23 +95,24 @@ public class MainActivity extends AppCompatActivity
     private int sw = 0;
     private KmlCreatorPolygono kmlCreatorPolygono;
     private List<beansListaPolygono> listPolyGo;
-    private String ZonaIncio="";
-    private String ZonaFin="";
-   // private int hora,minuto,mYear, mMonth, mDay;
+    private String ZonaIncio = "";
+    private String ZonaFin = "";
+    // private int hora,minuto,mYear, mMonth, mDay;
     //private String Fecha;
     private Fichero fichero;
     private PlaceAutocompleteAdapter mAdapter;
     protected GoogleApiClient mGoogleApiClient;
+
     private long mLastClickTime = 0;
     public static final String TAG = "MainActivity";
-    private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
-            new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MAIN_ACTIVITY = this;
-        fichero=new Fichero(MainActivity.this);
+        fichero = new Fichero(MainActivity.this);
         myTypeFace = new MyTypeFace(MainActivity.this);
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment);
         mapFragment.getMapAsync(this);
@@ -120,9 +131,12 @@ public class MainActivity extends AppCompatActivity
         //API GOOGLE PLACE
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 // .enableAutoManage(getActivity(), 0 /* clientId */, this)
+                //.addConnectionCallbacks(this)
+                //.addOnConnectionFailedListener(this)
+                //.addApi(LocationServices.API)
                 .addApi(Places.GEO_DATA_API)
                 .build();
-        mAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient, BOUNDS_LIMA,
+        mAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient, Utils.BOUNDS_LIMA,
                 null);
 
         //compR.getAutoCompletText1().setFocusable(false);
@@ -130,7 +144,7 @@ public class MainActivity extends AppCompatActivity
         compR.getAutoCompletText1().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /// Toast.makeText(MainActivity.this,"hoa",Toast.LENGTH_SHORT).show();
+                /// Toast.makeText(MainActivity.this,"hoa",Toast.LENGTH_SHORT).show();
                 compR.getAutoCompletText1().setFocusableInTouchMode(true);
             }
         });
@@ -142,23 +156,29 @@ public class MainActivity extends AppCompatActivity
 
         //OBTIENE INFORMACION DE COSTOS GENERALES   TIEMPO ESPERA/PEAJE/VIP/ECONOMICO/AIREACONDICIONADO
         //RUTA DE LA URL FOTO CONDUCTOR
-        JSONObject jsonConfiguracion=fichero.ExtraerConfiguraciones();
-        if(jsonConfiguracion==null){
+        JSONObject jsonConfiguracion = fichero.ExtraerConfiguraciones();
+        if (jsonConfiguracion == null) {
             new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
         }
+        new wsExtraerHoraServer(MainActivity.this).execute();
+
+
 
     }
+
     @Override
     public void onStart() {
-        Log.d("stado_","onStar");
+        Log.d("stado_", "onStar");
         super.onStart();
         if (mGoogleApiClient != null)
             mGoogleApiClient.connect();
     }
+
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -179,6 +199,7 @@ public class MainActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void setupNavigationDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -200,17 +221,17 @@ public class MainActivity extends AppCompatActivity
                                 setFragment(1);
                                 break;
                             case R.id.misServicios:
-                                Intent intent =new Intent(MainActivity.this,ListaServicios.class);
+                                Intent intent = new Intent(MainActivity.this, ListaServicios.class);
                                 startActivity(intent);
                                 finish();
                                 break;
                             case R.id.cerrarSesion:
-                                JSONObject jsonSesion=new JSONObject();
+                                JSONObject jsonSesion = new JSONObject();
                                 try {
-                                    jsonSesion.put("idSesion","0");
+                                    jsonSesion.put("idSesion", "0");
                                     fichero.InsertarSesion(jsonSesion.toString());
-                                    Log.d("StracFichero",fichero.ExtraerSesion().toString());
-                                    Intent intentLongin=new Intent(MainActivity.this,LoginActivity.class);
+                                    Log.d("StracFichero", fichero.ExtraerSesion().toString());
+                                    Intent intentLongin = new Intent(MainActivity.this, LoginActivity.class);
                                     startActivity(intentLongin);
                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                     finish();
@@ -229,39 +250,77 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
     }
+
     @SuppressWarnings("deprecation")
     @Override
     public void onMapReady(final GoogleMap map) {
 
-        kmlCreatorPolygono=new KmlCreatorPolygono(map,MainActivity.this);
-        listPolyGo= kmlCreatorPolygono.LeerKml();
+        kmlCreatorPolygono = new KmlCreatorPolygono(map, MainActivity.this);
+        listPolyGo = kmlCreatorPolygono.LeerKml();
         // Log.d("sisePolygonos", String.valueOf(listPolyGo.get(0).getIdPoligono()));
+
         final double[] lat = new double[1];
         final double[] lon = new double[1];
+        Log.d("entro_aqui","flaskdfasdjf0");
 
-        map.setMyLocationEnabled(true);
-        map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location pos) {
-                /// Toast.makeText(getApplicationContext(),String.valueOf(pos.getLatitude()+"****"+pos.getLongitude()),Toast.LENGTH_SHORT).show();
-                lat[0] = pos.getLatitude();
-                lon[0] = pos.getLongitude();
-                LatLng latLngIncial=new LatLng(pos.getLatitude(),pos.getLongitude());
-                if (sw == 0) {
-                    sw = 1;
-                    CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
-                            lat[0], lon[0]), 16);
-                    ZonaIncio =DeterminaZona(listPolyGo.size(),latLngIncial);
-                    new AddresRestmap(MainActivity.this,String.valueOf( pos.getLatitude()), String.valueOf(pos.getLongitude()), 1).execute();
-                    new wsExtraerIdZonaIdDistrito(MainActivity.this,ZonaIncio,1).execute();
-                    MarcardorIncio(map, lat[0], lon[0]);
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Check Permissions Now+
+            // map.clear();
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_4);
 
-                    map.animateCamera(cam);
+
+        } else {
+            map.setMyLocationEnabled(true);
+            map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                @Override
+                public void onMyLocationChange(Location pos) {
+                    //  Toast.makeText(getApplicationContext(),String.valueOf(pos.getLatitude()+"****"+pos.getLongitude()),Toast.LENGTH_SHORT).show();
+                    lat[0] = pos.getLatitude();
+                    lon[0] = pos.getLongitude();
+                    LatLng latLngIncial=new LatLng(pos.getLatitude(),pos.getLongitude());
+                    Log.d("que_paso","fasdfasdf");
+                    if (sw == 0) {
+                        sw = 1;
+                        Log.d("sdfhaosd","fsakjdfñla");
+                        CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
+                                lat[0], lon[0]), 16);
+                        ZonaIncio =DeterminaZona(listPolyGo.size(),latLngIncial);
+                        new AddresRestmap(MainActivity.this,String.valueOf( pos.getLatitude()), String.valueOf(pos.getLongitude()), 1).execute();
+                        new wsExtraerIdZonaIdDistrito(MainActivity.this,ZonaIncio,1).execute();
+                        MarcardorIncio(map, lat[0], lon[0]);
+                        map.animateCamera(cam);
+                    }
+
                 }
+            });
 
-            }
-        });
+        }
+
+
+
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_4) {
+            if(grantResults.length == 1
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // We can now safely use the API we requested access to
+                Log.d("tienePermisos","MainActivity_ NO TIENE PERMISO");
+            } else {
+            Log.d("tienePermisos","MainActivity_ SI TIENE PERMISO");
+                // Permission was denied or request was cancelled
+            }
+        }
+    }
+
+
     public void setFragment(int position) {
         FragmentManager fragmentManager;
         FragmentTransaction fragmentTransaction;
@@ -349,42 +408,109 @@ public class MainActivity extends AppCompatActivity
                         super.onPostExecute(aBoolean);
                         progressBar.dismiss();
                         if(aBoolean){
-                            if(addresIncio.length()!=0 && addresFin.length()!=0 ){
-                                if(ZonaIncio.length()!=0 && ZonaFin.length()!=0){
-                                    Toast.makeText(MainActivity.this,ZonaIncio+"***"+ZonaFin,Toast.LENGTH_LONG).show();
-                                    fichero.InsertarDireccionIncioFin(addresIncio,addresFin);
-                                    new wsExtraerPrecioZonaDistrito(
-                                            MainActivity.this,
-                                            fichero.ExtraerZonaIdDistrito_Origen(),
-                                            fichero.ExtraerZonaIdDistrito_Destino()).execute();
-                                    //AlertPedirServicio();
-                                }else{
-                                    String mensjeCovertura=getResources().getString(R.string.coverturaZonas);
-                                    String msnAlerta=getResources().getString(R.string.msnAlert);
-                                    Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
-                                    AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
-                                    dialogo1.setTitle(msnAlerta);
-                                    dialogo1.setMessage(mensjeCovertura);
-                                    dialogo1.setCancelable(false);
-                                    dialogo1.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialogo1, int id) {
-                                            Intent i = new Intent(android.content.Intent.ACTION_DIAL,
-                                                    Uri.parse("tel:998319046")); //
-                                            startActivity(i);
-                                        }
-                                    });
-                                    dialogo1.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialogo1, int id) {
+                           final JSONArray jsonServicesDelDia= fichero.ExtraerListaServiciosTomadoCliete();
+                            Log.d("qu_",jsonServicesDelDia.toString());
+                            Log.d("fec_q",fichero.ExtraerFechaHoraActual().toString());
+                            new AsyncTask<String, String, Boolean>() {
 
+                                @Override
+                                protected Boolean doInBackground(String... params) {
+                                    boolean sw=true;
+                                    if(jsonServicesDelDia!=null){
+                                        for(int i=0; i<jsonServicesDelDia.length();i++){
+                                            try {
+                                                if(jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("1")
+                                                  ||jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("2")
+                                               || jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("3")){
+                                                    sw=false;
+                                                    i=jsonServicesDelDia.length();
+                                                }else{
+                                                    sw=true;
+                                                }
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
                                         }
-                                    });
-                                    dialogo1.show();
+                                    }
+
+                                    return sw;
                                 }
-                            }else{
-                                String msnDestinoFinal=getResources().getString(R.string.MensajeDestinoFinal);
-                                Toast.makeText(MainActivity.this,msnDestinoFinal,Toast.LENGTH_LONG).show();
 
-                            }
+                                @Override
+                                protected void onPostExecute(Boolean aBoolean) {
+                                    super.onPostExecute(aBoolean);
+                                    if(aBoolean){
+                                        if(addresIncio.length()!=0 && addresFin.length()!=0 ){
+                                            if(ZonaIncio.length()!=0 && ZonaFin.length()!=0){
+                                                Toast.makeText(MainActivity.this,ZonaIncio+"***"+ZonaFin,Toast.LENGTH_LONG).show();
+                                                fichero.InsertarDireccionIncioFin(addresIncio,addresFin);
+                                                new wsExtraerPrecioZonaDistrito(
+                                                        MainActivity.this,
+                                                        fichero.ExtraerZonaIdDistrito_Origen(),
+                                                        fichero.ExtraerZonaIdDistrito_Destino()).execute();
+                                                //AlertPedirServicio();
+                                            }else{
+                                                String mensjeCovertura=getResources().getString(R.string.coverturaZonas);
+                                                String msnAlerta=getResources().getString(R.string.msnAlert);
+
+                                                String direccion1;
+                                                String telefono1="00-0000";
+                                                JSONObject jsonConfiguraciones=fichero.ExtraerConfiguraciones();
+
+                                                if(jsonConfiguraciones!=null){
+                                                    try {
+                                                        telefono1=jsonConfiguraciones.getString("numTelefonoEmpesa");
+                                                        direccion1=jsonConfiguraciones.getString("direccionEmpresa");
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                                Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
+
+
+                                                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
+                                                dialogo1.setTitle(msnAlerta);
+                                                dialogo1.setMessage(mensjeCovertura+"\n"+telefono1);
+                                                dialogo1.setCancelable(false);
+                                                dialogo1.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialogo1, int id) {
+                                                        JSONObject jsonConfiguraciones=fichero.ExtraerConfiguraciones();
+                                                        String telefono1_;
+                                                        if(jsonConfiguraciones!=null){
+                                                            try {
+                                                                telefono1_=jsonConfiguraciones.getString("numTelefonoEmpesa");
+                                                                //tel:998319046
+                                                                Intent i = new Intent(Intent.ACTION_DIAL,
+                                                                        Uri.parse("tel:"+telefono1_)); //
+                                                                startActivity(i);
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
+                                                            }
+                                                        }
+
+                                                    }
+                                                });
+                                                dialogo1.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialogo1, int id) {
+
+                                                    }
+                                                });
+                                                dialogo1.show();
+                                            }
+                                        }else{
+                                            String msnDestinoFinal=getResources().getString(R.string.MensajeDestinoFinal);
+                                            Toast.makeText(MainActivity.this,msnDestinoFinal,Toast.LENGTH_LONG).show();
+
+                                        }
+                                    }else {
+                                        Toast.makeText(MainActivity.this,"Ya Tine servicios pendientes, Termine o Cancele esos servicios!!",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }.execute();
+
+
                         }else {
                             String msnInternet=getResources().getString(R.string.InternetAccessRevision);
                             Toast.makeText(MainActivity.this,msnInternet,Toast.LENGTH_LONG).show();
@@ -608,4 +734,6 @@ public class MainActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+
 }

@@ -65,7 +65,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends
     protected List<beansHistorialServiciosCreados> doInBackground(String... params) {
         //tareaLarga();
         jsonListaServicios=fichero.ExtraerListaServiciosTomadoConductor();
-
+        Log.d("serviclISTA_",jsonListaServicios.toString());
         for(int i=0; i<jsonListaServicios.length();i++){
             row=new beansHistorialServiciosCreados();
             Log.d("ListaSixe", jsonListaServicios.toString());
@@ -129,7 +129,6 @@ public class wsListarServiciosTomadoConductorDiaActual extends
                     row.setImageStatusServicio(drawable);
                     row.setStatusServicioTomadoColor(Color.rgb(252,29,118));
                 }
-
                 else if(idStatus==7){
                     //CANCELADO POR EL CONDUCTOR
                     row.setStatusServicioTomadoColor(Color.rgb(142,1,3));

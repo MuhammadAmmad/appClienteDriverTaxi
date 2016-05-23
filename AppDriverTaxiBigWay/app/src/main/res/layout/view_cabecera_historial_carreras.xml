@@ -11,23 +11,26 @@
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dimenCinco"
+        android:layout_marginLeft="@dimen/dimenCinco"
+        android:layout_marginRight="@dimen/dimenCinco"
         android:layout_gravity="center_horizontal">
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginRight="5dp"
             android:id="@+id/imageButtonSearch"
             android:src="@android:drawable/ic_search_category_default"
             android:background="@drawable/selector_serch"/>
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:paddingLeft="10dp"
             android:id="@+id/editHistoriaCarrera"
             android:hint="Fecha"
@@ -39,7 +42,7 @@
 
         <CheckBox
             android:layout_width="103dp"
-            android:layout_height="match_parent"
+            android:layout_height="35dp"
             android:layout_marginLeft="5dp"
             android:text="Fecha"
             android:paddingLeft="10dp"
@@ -54,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
+        android:gravity="center"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -65,7 +69,7 @@
                 android:layout_height="12dp"
                 android:background="#d16cda"/>
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeftDiez"
                 android:text="Tomado"/>
@@ -74,7 +78,7 @@
                 android:layout_height="12dp"
                 android:background="#f50f8d"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="Canc cliente"/>
@@ -90,7 +94,7 @@
                 android:layout_height="12dp"
                 android:background="#04c434"/>
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeftDiez"
                 android:text="En curso"/>
@@ -99,7 +103,7 @@
                 android:layout_height="12dp"
                 android:background="#ebc802"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="No terminado"/>
@@ -115,10 +119,21 @@
                 android:layout_height="12dp"
                 android:background="#2788f1"/>
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeftDiez"
                 android:text="Terminado Ok"/>
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="#00ffffff"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="#00ffffff"
+                android:textColor="#00ffffff"
+                android:text="No terminado"/>
         </LinearLayout>
     </LinearLayout>
 

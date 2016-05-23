@@ -41,7 +41,7 @@ public class EstadoServiciosCreados extends Service {
     private Fichero fichero;
     private JSONObject jsonHoraActual;
     private String fechaActual="";
-    private int TIME_OUT=15000;
+    private int TIME_OUT=10000;
     private boolean tiempoEsperaConexion=false;
     @Override
     public void onCreate() {
@@ -58,7 +58,6 @@ public class EstadoServiciosCreados extends Service {
             }
         }
     }
-
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -78,10 +77,9 @@ public class EstadoServiciosCreados extends Service {
                     protected void onPreExecute() {
                         super.onPreExecute();
                         listDetalleServicio=new ArrayList<beansDetalleService>();
-
                     }
 
-                    String[] Latlog=new String[2];
+
                     @Override
                     protected   List<beansDetalleService>  doInBackground(String... params) {
                         SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo11());
@@ -93,15 +91,16 @@ public class EstadoServiciosCreados extends Service {
                         request.addProperty("idConductor", "");
                         request.addProperty("idEstadoServicio", "");
                         envelope.setOutputSoapObject(request);
+                        Log.d("resquest_a",request.toString());
                         try {
-                            HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL(),TIME_OUT);
-                            ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
-                            headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
+                           HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL(),TIME_OUT);
+                           ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
+                           headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
                             httpTransport.call(ConstantsWS.getSoapAction11(), envelope, headerPropertyArrayList);
-                           // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
+                          //  httpTransport.call(ConstantsWS.getSoapAction11(), envelope);
                             SoapObject response1= (SoapObject) envelope.bodyIn;
                             Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
-                            Log.d("verctorSer..",responseVector.toString());
+                            Log.d("verctorSerQW..",responseVector.toString());
                             int countVector=responseVector.size();
                             for(int i=0;i<countVector;i++){
                                 row2=new beansDetalleService();
@@ -133,9 +132,9 @@ public class EstadoServiciosCreados extends Service {
 
                         }catch (InterruptedIOException e){
                             tiempoEsperaConexion=true;
+                            Log.d("erro_in",e.getMessage());
                         }catch (Exception e) {
                             e.printStackTrace();
-
                         }
                         return listDetalleServicio;
                     }
@@ -148,8 +147,8 @@ public class EstadoServiciosCreados extends Service {
                             String listServiciosCliente=json.toJson(dataLatLog);
                             Log.d("lisQQQQ-->",listServiciosCliente.toString());
 
-                            Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE)
-                                    .putExtra(Utils.EXTRA_MEMORY,listServiciosCliente);
+                            Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE_1)
+                                    .putExtra(Utils.EXTRA_MEMORY_1,listServiciosCliente);
                             LocalBroadcastManager.
                                     getInstance(EstadoServiciosCreados.this).sendBroadcast(localIntent);
                         }

@@ -26,6 +26,9 @@ public class Utils {
     public static final String EXTRA_MEMORY_3 = "com.nucleosis.www.appdrivertaxibigway.extra.MEMORY_3";
 
 
+    public static final   int MY_PERMISSION_ACCESS_COURSE_LOCATION_1 =1;
+    public static final   int MY_PERMISSION_ACCESS_COURSE_LOCATION_2 =2;
+    public static final   int MY_PERMISSION_ACCESS_COURSE_LOCATION_3 =3;
     /*INTERFACESSSS*/
     public static final LoginUser LOGGIN_USUARIO =new ImplLogin();
     public static final OnItemClickListener ON_CLICK_LISTENER =new FragmentHistoriNew();

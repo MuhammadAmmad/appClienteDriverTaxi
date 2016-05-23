@@ -12,11 +12,14 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -98,6 +101,8 @@ public class MainActivity extends AppCompatActivity
     private Fichero fichero;
     private List<beansHistorialServiciosCreados> ListaServiciosCreados;
     private AlertDialog alertDialogPanelNotificacion;
+    private int MY_PERMISSION_ACCESS_COURSE_LOCATION = 16;
+    // Assume thisActivity is the current activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -408,6 +413,8 @@ public class MainActivity extends AppCompatActivity
                                     Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
                                     startService(intent1);
                                 }
+                            } else {
+                                Log.d("stadoCordendasEnvio", "nulll");
                             }
 
 
@@ -562,12 +569,12 @@ public class MainActivity extends AppCompatActivity
                                 setFragment(2);
                                 break;
                             case R.id.cerrarSesion:
-                                JSONObject jsonSesion=new JSONObject();
+                                JSONObject jsonSesion = new JSONObject();
                                 try {
-                                    jsonSesion.put("idSesion","0");
+                                    jsonSesion.put("idSesion", "0");
                                     fichero.InsertarSesion(jsonSesion.toString());
-                                    Log.d("StracFichero",fichero.ExtraerSesion().toString());
-                                    Intent intentLongin=new Intent(MainActivity.this,LoingDriverApp.class);
+                                    Log.d("StracFichero", fichero.ExtraerSesion().toString());
+                                    Intent intentLongin = new Intent(MainActivity.this, LoingDriverApp.class);
                                     startActivity(intentLongin);
                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                     finish();
@@ -629,32 +636,53 @@ public class MainActivity extends AppCompatActivity
         final double[] lat = new double[1];
         final double[] lon = new double[1];
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Check Permissions Now
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSION_ACCESS_COURSE_LOCATION);
+            Log.d("xxx","fasdfasdf");
+        } else {
+            Log.d("holaa","fsadfsdaf");
+            map.setMyLocationEnabled(true);
+            map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                @Override
+                public void onMyLocationChange(Location pos) {
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        map.setMyLocationEnabled(true);
-        map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location pos) {
-                /// Toast.makeText(getApplicationContext(),String.valueOf(pos.getLatitude()+"****"+pos.getLongitude()),Toast.LENGTH_SHORT).show();
-                lat[0] = pos.getLatitude();
-                lon[0] = pos.getLongitude();
-                // Log.d("lat-->",String.valueOf(lat[0]));
+                    /// Toast.makeText(getApplicationContext(),String.valueOf(pos.getLatitude()+"****"+pos.getLongitude()),Toast.LENGTH_SHORT).show();
+                    lat[0] = pos.getLatitude();
+                    lon[0] = pos.getLongitude();
+                    // Log.d("lat-->",String.valueOf(lat[0]));
                 /*CameraUpdate cam = CameraUpdateFactory.newLatLng(new LatLng(
                         lat[0], lon[0]));*/
-                CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
-                        lat[0], lon[0]), 13);
-                map.moveCamera(cam);
+                    CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
+                            lat[0], lon[0]), 13);
+                    map.moveCamera(cam);
+                }
+            });
+        }
+
+
+
+
+
+
+    }
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == MY_PERMISSION_ACCESS_COURSE_LOCATION) {
+            if(grantResults.length == 1
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // We can now safely use the API we requested access to
+               /* Location myLocation =
+                        LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);*/
+            } else {
+                // Permission was denied or request was cancelled
             }
-        });
+        }
     }
 
     @Override
