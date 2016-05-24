@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 
 import com.nucleosis.www.appclientetaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
+import com.nucleosis.www.appclientetaxibigway.ServiceBackground.AlarmaLLegadaConductor;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +36,23 @@ public class FirstScreemCarga extends AppCompatActivity {
        /* progressDialog=new ProgressDialog(FirstScreemCarga.this);
         progressDialog.setMessage("cargado...");
         progressDialog.show();*/
+                if(getIntent()!=null){
+            String idIntenExtra=getIntent().getStringExtra("idAlarmaNotificacion");
+            if(idIntenExtra!=null){
+                if(idIntenExtra.equals("1")){
+                    Intent intent=new Intent(FirstScreemCarga.this, AlarmaLLegadaConductor.class);
+                    stopService(intent);
+                }
+            }else {
+                Log.d("idIntenExtra","nulll");
+            }
+
+
+        }else{
+            Log.d("idALarma","nullll");
+        }
+
+
         Thread timerThread = new Thread(){
             public void run(){
                 try{

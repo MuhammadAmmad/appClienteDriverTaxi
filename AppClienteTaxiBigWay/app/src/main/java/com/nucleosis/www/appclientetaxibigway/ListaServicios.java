@@ -20,7 +20,7 @@ public class ListaServicios extends AppCompatActivity {
         setContentView(R.layout.activity_lista_servicios);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if(getIntent()!=null){
+    /*    if(getIntent()!=null){
             String idIntenExtra=getIntent().getStringExtra("idAlarmaNotificacion");
             if(idIntenExtra!=null){
                 if(idIntenExtra.equals("1")){
@@ -34,7 +34,7 @@ public class ListaServicios extends AppCompatActivity {
 
         }else{
             Log.d("idALarma","nullll");
-        }
+        }*/
        /* Intent intent=new Intent(ListaServicios.this, EstadoServiciosCreados.class);
         startService(intent);*/
         setFragment(0);
@@ -73,4 +73,7 @@ public class ListaServicios extends AppCompatActivity {
        /* Intent intent=new Intent(ListaServicios.this, EstadoServiciosCreados.class);
         stopService(intent);*/
     }
+
+
+
 }

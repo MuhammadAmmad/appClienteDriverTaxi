@@ -67,7 +67,34 @@
             android:background="@drawable/shape_border"
             android:id="@+id/editMotivo"
             android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginTop="@dimen/marginLeftDiez"
+            android:textSize="18dp"
+            android:id="@+id/lblTipoPago"
+            android:textColor="@color/black"
+            android:text="TIPO DE PAGO"/>
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginTop="@dimen/marginLeftDiez"
+            android:text="Contado"
+            android:id="@+id/checkPagoContado"/>
 
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginTop="@dimen/marginLeftDiez"
+            android:text="Credito"
+            android:id="@+id/checkPagoCredito"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

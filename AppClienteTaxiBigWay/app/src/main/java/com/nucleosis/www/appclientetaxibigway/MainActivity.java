@@ -64,6 +64,7 @@ import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentMiUbicacion;
 import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentSolicitarServicioCliente;
 import com.nucleosis.www.appclientetaxibigway.PointPolygono.PointDentroPolygono;
 import com.nucleosis.www.appclientetaxibigway.RestMap.AddresRestmap;
+import com.nucleosis.www.appclientetaxibigway.ServiceBackground.AlarmaLLegadaConductor;
 import com.nucleosis.www.appclientetaxibigway.SharedPreferences.PreferencesCliente;
 import com.nucleosis.www.appclientetaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appclientetaxibigway.beans.beansListaPolygono;
@@ -169,6 +170,25 @@ public class MainActivity extends AppCompatActivity
             new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
         }
         new wsExtraerHoraServer(MainActivity.this).execute();
+
+//CANCELAMOS LA ALERTA
+/*        if(getIntent()!=null){
+            String idIntenExtra=getIntent().getStringExtra("idAlarmaNotificacion");
+            if(idIntenExtra!=null){
+                if(idIntenExtra.equals("1")){
+                    Intent intent=new Intent(MainActivity.this, AlarmaLLegadaConductor.class);
+                    stopService(intent);
+
+                }
+            }else {
+                Log.d("idIntenExtra","nulll");
+            }
+
+
+        }else{
+            Log.d("idALarma","nullll");
+        }*/
+
 
 
 

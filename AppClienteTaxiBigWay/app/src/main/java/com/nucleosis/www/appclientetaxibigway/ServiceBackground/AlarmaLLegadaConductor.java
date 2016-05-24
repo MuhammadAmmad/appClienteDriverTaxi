@@ -21,6 +21,8 @@ import android.util.Log;
 
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
+import com.nucleosis.www.appclientetaxibigway.FinalizarAlarma;
+import com.nucleosis.www.appclientetaxibigway.FirstScreemCarga;
 import com.nucleosis.www.appclientetaxibigway.ListaServicios;
 import com.nucleosis.www.appclientetaxibigway.MainActivity;
 import com.nucleosis.www.appclientetaxibigway.R;
@@ -210,7 +212,7 @@ public class AlarmaLLegadaConductor extends Service {
                                         long [] patron1 = {0, 500, 300, 1000, 500};
                                         vv.vibrate(patron1,3);*/
 
-        Intent intent = new Intent(this, ListaServicios.class);
+        Intent intent = new Intent(this, FirstScreemCarga.class);
         intent.putExtra("idAlarmaNotificacion","1");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

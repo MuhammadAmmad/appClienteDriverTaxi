@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
 import com.nucleosis.www.appclientetaxibigway.Constantes.Utils;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
+import com.nucleosis.www.appclientetaxibigway.ServiceBackground.AlarmaLLegadaConductor;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.EstadoServiciosCreados;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.PosicionConductor;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
@@ -78,6 +79,7 @@ public class MapsClienteConductorServicio
     private Fichero fichero;
     private int swCamara=0;
     private int contadorReciver=0;
+    private int stadoServicio=0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,8 +142,10 @@ public class MapsClienteConductorServicio
             }
         });
 
-
-
+        ///SI ESTAMOS EN ESTE ACTIVIDAD
+        //LA ALARMA PARA VERFICAR SI EL TAXI LLEGO ESTA APAGADA..........
+        Intent intent1 =new Intent(MapsClienteConductorServicio.this, AlarmaLLegadaConductor.class);
+        stopService(intent1);
 
 
     }
@@ -241,6 +245,7 @@ public class MapsClienteConductorServicio
                                     Log.d("jsonArrisss",idServicio+"*---"+jsonArrayServis.getJSONObject(i).getString("stadoServicio"));
 
                                     if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("1")){
+                                        stadoServicio=1;
                                         //CREADO
                                         String msn="Espere....";
                                         compR.getTxtMensajeDeEstado().setText(msn);
@@ -251,6 +256,7 @@ public class MapsClienteConductorServicio
                                         swConductor=0;
                                     }else if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("2")){
                                         //CONFIRMADO POR EL CONDUCTOR
+                                        stadoServicio=2;
                                         String msn="Servicio tomado...."+"\n"+"la movil acercandose.";
                                         compR.getTxtMensajeDeEstado().setText(msn);
                                         compR.getImageViewColorStado().setBackgroundColor(Color.rgb(216,22,189));
@@ -278,6 +284,7 @@ public class MapsClienteConductorServicio
 
                                     }else if(jsonArrayServis.getJSONObject(i).getString("idStadoServicio").equals("3")){
                                         //EN CURSO
+                                        stadoServicio=3;
                                         swConductor=1;
                                      //   mapResult.clear();//BORRAMOS EL MARCADOR EN EL MAPA, DEL CONDUCTOR
                                         //STOP SERVICIO EXTRAER UBICION DE CONDUCTOR
@@ -291,6 +298,7 @@ public class MapsClienteConductorServicio
                                         /*//STOP SERVICIO EXTRAER UBICION DE CONDUCTOR
                                         Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
                                         stopService(intentCoordendasConductor);*/
+                                        stadoServicio=4;
                                         swConductor=1;
                                         //TERMINADO
                                         compR.getImgButtonCancelarServicio().setEnabled(false);
@@ -437,8 +445,16 @@ public class MapsClienteConductorServicio
         super.onDestroy();
         Intent intent=new Intent(MapsClienteConductorServicio.this, EstadoServiciosCreados.class);
         stopService(intent);
+        Log.d("stado_x",String.valueOf(stadoServicio));
         Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
         stopService(intentCoordendasConductor);
+        if(stadoServicio==2){
+               Intent intent1 =new Intent(MapsClienteConductorServicio.this, AlarmaLLegadaConductor.class);
+        startService(intent1);
+        }
+
+
+
     }
 
 

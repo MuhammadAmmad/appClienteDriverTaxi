@@ -171,6 +171,7 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
             try {
                 String idServis=JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("idServicio");
                 if(idServicio.equals(idServis)){
+
                     InsertaData(i);
                     request.addProperty("idServicio", Integer.parseInt(idServicio));
                     request.addProperty("fecServicio", JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("FechaFormat"));
