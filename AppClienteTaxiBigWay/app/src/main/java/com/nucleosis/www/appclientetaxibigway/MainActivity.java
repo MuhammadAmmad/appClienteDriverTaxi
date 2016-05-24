@@ -307,9 +307,6 @@ public class MainActivity extends AppCompatActivity
             });
 
         }
-
-
-
     }
 
     @Override
@@ -327,8 +324,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
-
     public void setFragment(int position) {
         FragmentManager fragmentManager;
         FragmentTransaction fragmentTransaction;

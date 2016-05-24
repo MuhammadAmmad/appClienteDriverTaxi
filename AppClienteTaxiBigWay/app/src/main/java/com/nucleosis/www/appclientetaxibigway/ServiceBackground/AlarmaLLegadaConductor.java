@@ -225,7 +225,7 @@ public class AlarmaLLegadaConductor extends Service {
                 .setSound(defaultSoundUri)
                 .setVibrate(patron)
                 .setLights(Color.RED,1,0)
-                .setOngoing(true)
+                //.setOngoing(true)
                 .setContentIntent(pendingIntent);
 //builder.setLights(Color.RED, 1, 0);
         //builder.setOngoing(true);

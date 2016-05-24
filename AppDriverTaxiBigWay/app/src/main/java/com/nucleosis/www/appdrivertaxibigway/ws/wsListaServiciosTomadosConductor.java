@@ -71,10 +71,18 @@ implements OnItemClickListener{
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
+
+       /* <idCliente xsi:type="xsd:int"></idCliente>
+        <fecServicio xsi:type="xsd:string"></fecServicio>
+        <idConductor xsi:type="xsd:int"></idConductor>
+        <idEstadoServicio xsi:type="xsd:int"></idEstadoServicio>
+        <idAutoTipo xsi:type="xsd:int">?</idAutoTipo>*/
+
         request.addProperty("idCliente", 0);
         request.addProperty("fecServicio", fecha);
         request.addProperty("idConductor", Integer.parseInt(preferencesDriver.OpenIdDriver()));
         request.addProperty("idEstadoServicio", 0);
+        request.addProperty("idAutoTipo", 0);
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE("http://taxibigway.com/soap");
 
@@ -86,6 +94,7 @@ implements OnItemClickListener{
             SoapObject response1= (SoapObject) envelope.bodyIn;
             Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
             Log.d("vectorServicisListar",responseVector.toString());
+            Log.d("requestServicios_",request.toString());
             int countVector=responseVector.size();
             for(int i=0;i<countVector;i++){
                 SoapObject dataVector=(SoapObject)responseVector.get(i);

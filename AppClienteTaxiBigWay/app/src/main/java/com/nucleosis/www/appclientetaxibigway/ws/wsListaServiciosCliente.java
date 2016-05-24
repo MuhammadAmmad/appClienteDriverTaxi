@@ -54,7 +54,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
         this.context = context;
         this.fecha=fecha;
         fichero=new Fichero(context);
-
+        progesDialog=new ProgressDialog(context);
        // drawable=context.getResources().getDrawable(R.drawable.ic_room_black_24dp);
         jsonConfiguraciones=fichero.ExtraerConfiguraciones();
         if(jsonConfiguraciones!=null){
@@ -76,7 +76,6 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
         listDetalleServicio=new ArrayList<beansServiciosFechaDetalle>();
         listDetalleServicio.clear();
         ListServicios.clear();
-        progesDialog=new ProgressDialog(context);
         progesDialog.setMessage("Cargando...");
         progesDialog.show();
     }
@@ -94,6 +93,8 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
         request.addProperty("fecServicio", fecha);
         request.addProperty("idConductor", "");
         request.addProperty("idEstadoServicio", "");
+        request.addProperty("idAutoTipo", "");
+
         envelope.setOutputSoapObject(request);
 
         try {

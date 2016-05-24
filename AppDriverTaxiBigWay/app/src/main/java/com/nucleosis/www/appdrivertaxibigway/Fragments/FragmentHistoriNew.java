@@ -125,7 +125,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"XXXX",Toast.LENGTH_LONG).show();
-                String fecha=compR.getEditHistoriaCarrera().getText().toString();
+                final String fecha=compR.getEditHistoriaCarrera().getText().toString();
                 Log.d("fechax_",fecha);
                 if(fecha.length()!=0){
                 new AsyncTask<String, String, Boolean>() {
@@ -150,6 +150,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                     if(jsonFecha.getString("fechaServidor").equals(fecha_)){
                                         new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
                                     }else{
+                                        Log.d("poraqi_",fecha_);
                                         new wsListaServiciosTomadosConductor(getActivity(),fecha_,grid).execute();
                                     }
                                 } catch (JSONException e) {
@@ -174,7 +175,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         if(compR.getEditHistoriaCarrera().getText().length()!=0){
             final String fecha=compR.getEditHistoriaCarrera().getText().toString();
             if(fecha.length()!=0){
-                new AsyncTask<String, String, Boolean>() {
+
+                new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+            /*    new AsyncTask<String, String, Boolean>() {
                     @Override
                     protected Boolean doInBackground(String... params) {
                         conexionInternet conecicoin=new conexionInternet();
@@ -185,14 +188,14 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                     protected void onPostExecute(Boolean aBoolean) {
                         super.onPostExecute(aBoolean);
                         if (aBoolean){
-                            new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
+//                            new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
 
                         }else{
                             String msnInternet=getResources().getString(R.string.InternetAccessRevision);
                             Toast.makeText(getActivity(),"No tien acceso a intenert !!!",Toast.LENGTH_LONG).show();
                         }
                     }
-                }.execute();
+                }.execute();*/
             }
 
         }
