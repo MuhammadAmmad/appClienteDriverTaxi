@@ -10,6 +10,7 @@ import android.location.Location;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
@@ -291,17 +292,17 @@ public class MainActivity extends AppCompatActivity
         final double[] lon = new double[1];
         Log.d("entro_aqui","flaskdfasdjf0");
 
-        if (ActivityCompat.checkSelfPermission(this,
+        if (Build.VERSION.SDK_INT >= 23 && ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
+            Log.d("api_","23_");
             // Check Permissions Now+
             // map.clear();
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_4);
-
-
         } else {
+            Log.d("apix","escuchador");
             map.setMyLocationEnabled(true);
             map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
                 @Override

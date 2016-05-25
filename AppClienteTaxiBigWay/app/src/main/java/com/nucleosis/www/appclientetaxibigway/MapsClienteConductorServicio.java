@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
@@ -269,10 +270,12 @@ public class MapsClienteConductorServicio
                                         Log.d("idActualConductor",fichero.ExtraerIdConductorServicio().toString());
                                         //ESCUCHAMOS LA POSICION DEL CONDUCTGOR
                                         if(swConductor==0){
-                                            swConductor=1;  }
+                                            swConductor=1;
                                             Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,
                                                     PosicionConductor.class);
                                             startService(intentCoordendasConductor);
+                                        }
+
                                             IntentFilter filter1 = new IntentFilter(Utils.ACTION_RUN_SERVICE);
                                             ResponseReceiverCoordendaConductor receiverCoordendaConductor
                                                     =new ResponseReceiverCoordendaConductor();
@@ -376,7 +379,8 @@ public class MapsClienteConductorServicio
         final double[] lat = new double[1];
         final double[] lon = new double[1];
         mapResult=map;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (Build.VERSION.SDK_INT >= 23 &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
             ActivityCompat.requestPermissions(this,
@@ -445,16 +449,18 @@ public class MapsClienteConductorServicio
         super.onDestroy();
         Intent intent=new Intent(MapsClienteConductorServicio.this, EstadoServiciosCreados.class);
         stopService(intent);
+
         Log.d("stado_x",String.valueOf(stadoServicio));
         Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
         stopService(intentCoordendasConductor);
+
         if(stadoServicio==2){
                Intent intent1 =new Intent(MapsClienteConductorServicio.this, AlarmaLLegadaConductor.class);
         startService(intent1);
         }
 
 
-
+        swConductor=0;
     }
 
 

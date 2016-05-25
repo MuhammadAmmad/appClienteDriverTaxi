@@ -182,7 +182,7 @@ public class AlarmaLLegadaConductor extends Service {
 
             }
         };
-        timerCola.scheduleAtFixedRate(TimerCronometro, 0, 10000);
+        timerCola.scheduleAtFixedRate(TimerCronometro, 0, 45000);
         return super.onStartCommand(intent, flags, startId);
     }
 

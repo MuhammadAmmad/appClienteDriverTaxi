@@ -636,7 +636,8 @@ public class MainActivity extends AppCompatActivity
         final double[] lat = new double[1];
         final double[] lon = new double[1];
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (Build.VERSION.SDK_INT >= 23 &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
             ActivityCompat.requestPermissions(this,
@@ -657,7 +658,7 @@ public class MainActivity extends AppCompatActivity
                 /*CameraUpdate cam = CameraUpdateFactory.newLatLng(new LatLng(
                         lat[0], lon[0]));*/
                     CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
-                            lat[0], lon[0]), 13);
+                            lat[0], lon[0]), 16);
                     map.moveCamera(cam);
                 }
             });

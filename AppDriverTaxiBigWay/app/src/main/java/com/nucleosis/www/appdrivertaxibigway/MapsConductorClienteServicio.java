@@ -14,6 +14,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.media.Image;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -29,6 +30,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -247,7 +250,8 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         listPolyGo= kmlCreatorPolygono.LeerKml();
         final double[] lat = new double[1];
         final double[] lon = new double[1];
-        if (ActivityCompat.checkSelfPermission(MapsConductorClienteServicio.this,
+        if (Build.VERSION.SDK_INT >= 23 &&
+                ActivityCompat.checkSelfPermission(MapsConductorClienteServicio.this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now+
@@ -1028,27 +1032,66 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
       final Activity activity=MapsConductorClienteServicio.this;
         final AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(activity);
         final View view1 = activity.getLayoutInflater().inflate(R.layout.view_alert_actualizar_stado, null);
+        final String[] tipoPagoServicioFinal = {"1"};
         TextView lblTitutlo=(TextView) view1.findViewById(R.id.lblTxtTituloAlert) ;
         lblTitutlo.setTypeface(myTypeFace.openRounded_elegance());
         TextView lblMensaje=(TextView) view1.findViewById(R.id.lblMensajeAlert) ;
         lblMensaje.setText(mensaje);
         lblMensaje.setTypeface(myTypeFace.openRobotoLight());
-
+        TextView lblTipoPago=(TextView)view1.findViewById(R.id.lblTipoPago);
+        final CheckBox checkBoxPagoEfectivo=(CheckBox)view1.findViewById(R.id.checkPagoContado);
+        final CheckBox checkBoxPagoCredito=(CheckBox)view1.findViewById(R.id.checkPagoCredito);
+        View viewLinea=(View)view1.findViewById(R.id.viewLinea);
         EditText editMotivo=(EditText)view1.findViewById(R.id.editMotivo);
         final String motivo=editMotivo.getText().toString();
         Button  btnOk=(Button)view1.findViewById(R.id.btnOk);
         ImageView imageVieButtonCerrarAlert=(ImageView)view1.findViewById(R.id.ImgButtonCancelAlert);
+        checkBoxPagoEfectivo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    tipoPagoServicioFinal[0] ="1";
+                    checkBoxPagoCredito.setChecked(false);
+                }
+
+
+            }
+        });
+
+        checkBoxPagoCredito.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    tipoPagoServicioFinal[0] ="2";
+                    checkBoxPagoEfectivo.setChecked(false);
+                }
+
+
+            }
+        });
         alertDialogBuilder1.setView(view1);
         // alertDialogBuilder.setTitle(R.string.addContacto);
         switch (caseObjeto){
             case 9:
                 editMotivo.setVisibility(View.GONE);
+                lblTipoPago.setVisibility(View.GONE);
+                checkBoxPagoEfectivo.setVisibility(View.GONE);
+                checkBoxPagoCredito.setVisibility(View.GONE);
+                viewLinea.setVisibility(View.GONE);
                 break;
             case 10:
                 editMotivo.setVisibility(View.VISIBLE);
+                lblTipoPago.setVisibility(View.GONE);
+                checkBoxPagoEfectivo.setVisibility(View.GONE);
+                checkBoxPagoCredito.setVisibility(View.GONE);
+                viewLinea.setVisibility(View.GONE);
                 break;
             case 11:
                 editMotivo.setVisibility(View.GONE);
+                lblTipoPago.setVisibility(View.VISIBLE);
+                checkBoxPagoEfectivo.setVisibility(View.VISIBLE);
+                checkBoxPagoCredito.setVisibility(View.VISIBLE);
+                viewLinea.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -1085,6 +1128,31 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             public void onClick(View v) {
                 alertDialog1.dismiss();
                 if(motivo!=null){
+                    if(caseObjeto==11){
+                        //ACTUALIZAMOS EL TIPO DE PAGO DEL SERVICIO
+                        Log.d("tipoPago_",tipoPagoServicioFinal[0] );
+                        new wsActualizarServicio(
+                                activity,
+                                idServicio,
+                                "1",
+                                "",//inporteAireAcondicionado
+                                "",//peaje
+                                "",//tiempo de espera
+                                "",//minutos tiempoEspera
+                                "",//importe servicio
+                                "",//idDistritoIncio
+                                "",//idZonaIncio
+                                "",//DireccionIncio
+                                "",//idDistritoFin
+                                "",//idZonaFin
+                                "",//DireccionFin
+                                "",  //IMPORTE EXTRAORDINARIO
+                                tipoPagoServicioFinal[0]  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
+                        ).execute();
+
+                    }else{
+
+                    }
                     new wsActualizarStadosAdicionales(activity,idServicio,motivo,caseObjeto).execute(stadoServicio);
                     //ActualizarStadosServicio(stadoServicio,motivo,caseObjeto,activity);
                 }else {

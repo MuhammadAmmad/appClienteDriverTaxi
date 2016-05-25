@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -41,7 +42,8 @@ public class locationDriver extends Service implements LocationListener {
         super.onCreate();
         context=(Context)this;
 
-        if (ActivityCompat.checkSelfPermission(this,
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now+

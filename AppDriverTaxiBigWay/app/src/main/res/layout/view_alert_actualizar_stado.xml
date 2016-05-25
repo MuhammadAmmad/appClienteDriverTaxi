@@ -67,10 +67,21 @@
             android:background="@drawable/shape_border"
             android:id="@+id/editMotivo"
             android:layout_gravity="center_horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginTop="@dimen/marginLeftDiez"
+            android:background="@color/viewColor"
+            android:id="@+id/viewLinea"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
+            android:visibility="visible"
             android:layout_marginRight="@dimen/marginLeftDiez"
             android:layout_marginLeft="@dimen/marginLeftDiez"
             android:layout_marginTop="@dimen/marginLeftDiez"
@@ -81,6 +92,7 @@
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             android:layout_marginRight="@dimen/marginLeftDiez"
             android:layout_marginLeft="@dimen/marginLeftDiez"
             android:layout_marginTop="@dimen/marginLeftDiez"
@@ -90,6 +102,7 @@
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             android:layout_marginRight="@dimen/marginLeftDiez"
             android:layout_marginLeft="@dimen/marginLeftDiez"
             android:layout_marginTop="@dimen/marginLeftDiez"
