@@ -85,8 +85,6 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         mDay = c.get(Calendar.DAY_OF_MONTH);
         fichero=new Fichero(getActivity());
 
-
-
     }
     public FragmentHistoriNew() {
     }
@@ -177,25 +175,6 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
             if(fecha.length()!=0){
 
                 new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
-            /*    new AsyncTask<String, String, Boolean>() {
-                    @Override
-                    protected Boolean doInBackground(String... params) {
-                        conexionInternet conecicoin=new conexionInternet();
-                        return conecicoin.isInternet();
-                    }
-
-                    @Override
-                    protected void onPostExecute(Boolean aBoolean) {
-                        super.onPostExecute(aBoolean);
-                        if (aBoolean){
-//                            new wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
-
-                        }else{
-                            String msnInternet=getResources().getString(R.string.InternetAccessRevision);
-                            Toast.makeText(getActivity(),"No tien acceso a intenert !!!",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }.execute();*/
             }
 
         }
@@ -215,7 +194,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         compR.getGrid().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), String.valueOf(id),Toast.LENGTH_SHORT);
+               // Toast.makeText(getActivity(), String.valueOf(id),Toast.LENGTH_SHORT);
                 String Fecha_=compR.getEditHistoriaCarrera().getText().toString();
                 preferencesDriver=new PreferencesDriver(getActivity());
                 JSONObject jsonObject =preferencesDriver.ExtraerHoraSistema();
@@ -239,7 +218,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                 List<beansHistorialServiciosCreados> lista1=wsListaServiciosTomadosConductor.ListServicios;
                                 Log.d("aquiListaServicio","fueraDeFechaActual");
                                 if(lista1.size()!=0){
-                                    Toast.makeText(getActivity(),String.valueOf(lista1.get(position).getIdServicio()),Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(getActivity(),String.valueOf(lista1.get(position).getIdServicio()),Toast.LENGTH_SHORT).show();
                                     if(lista1.get(position).getStatadoServicio().equals("2")){
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                                         intent.putExtra("idServicio",lista1.get(position).getIdServicio());
@@ -271,7 +250,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                 Log.d("aquiListaServicio","En la fecha");
                                 List<beansHistorialServiciosCreados> lista2=wsListarServiciosTomadoConductorDiaActual.listServiciosFechaActualConducor;
                                 if(lista2.size()!=0){
-                                    Toast.makeText(getActivity(),String.valueOf(lista2.get(position).getIdServicio()),Toast.LENGTH_SHORT).show();
+                                //    Toast.makeText(getActivity(),String.valueOf(lista2.get(position).getIdServicio()),Toast.LENGTH_SHORT).show();
                                     if(lista2.get(position).getStatadoServicio().equals("2")){
                                         new wsObtenerDireccionIncioCliente(getActivity(),lista2.get(position).getIdCliente()).execute();
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
@@ -312,7 +291,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                     if(gps==false){
                         AlertNoGps();
                     }
-                    Toast.makeText(getActivity(),"campos nulos",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getActivity(),"campos nulos",Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -376,27 +355,6 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                     + (monthOfYear + 1) + "-" +  "0"+dayOfMonth);
                         }
 
-              /*          z[0]++;
-                        if(z[0]==2){
-                            preferencesDriver=new PreferencesDriver(getActivity());
-                            JSONObject jsonObject =preferencesDriver.ExtraerHoraSistema();
-                            String Fecha_=compR.getEditHistoriaCarrera().getText().toString();
-                            try {
-                               if(Fecha_.equals(jsonObject.getString("fechaServidor"))){
-                                new   wsListarServiciosTomadoConductorDiaActual(getActivity(),grid).execute();
-                                   Log.d("aquiFecha","xxxx");
-                               }else{
-                                   new wsListaServiciosTomadosConductor(getActivity(),compR.getEditHistoriaCarrera().getText().toString(),grid).execute();
-                               }
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            //  Toast.makeText(getActivity(),String.valueOf(z[0]),Toast.LENGTH_LONG).show();
-
-                            //z[0]=0;
-                        }*/
                     }
 
                 }, mYear, mMonth, mDay);

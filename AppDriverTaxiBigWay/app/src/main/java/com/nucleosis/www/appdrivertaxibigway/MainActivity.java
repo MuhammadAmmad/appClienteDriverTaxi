@@ -169,8 +169,6 @@ public class MainActivity extends AppCompatActivity
     private void levantarServicioBackground() {
         Intent intent = new Intent(MainActivity.this, ServiceTurno.class);
         startService(intent);
-
-
     }
 
     @Override

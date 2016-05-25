@@ -45,6 +45,7 @@ public class wsActualizarStadosAdicionales extends AsyncTask<String,String,Strin
         compR.Controls_Maps_conducotor_cliente(activity);
         preferencesDriver=new PreferencesDriver(context);
         Log.d("idServicioRun",idServicio);
+        Log.d("idVehicul_X",preferencesDriver.ExtraerIdVehiculo());
     }
 
     @Override
@@ -71,6 +72,7 @@ public class wsActualizarStadosAdicionales extends AsyncTask<String,String,Strin
         request.addProperty("idEstadoServicio",Integer.parseInt(params[0].toString()));
         request.addProperty("desMotivo", msnMotivo);
         request.addProperty("usrActualizacion", 0);
+        Log.d("requestEnvioEstado",request.toString());
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 

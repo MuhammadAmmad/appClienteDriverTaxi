@@ -151,7 +151,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                     compR.getBtnClienteEncontrado().setEnabled(false);
                     compR.getBtnAdicionales().setEnabled(true);
                     break;
-                default:
+                case 2:
                     compR.getBtnClienteEncontrado().setEnabled(true);
                     compR.getBtnAdicionales().setEnabled(false);
                     break;
@@ -1032,7 +1032,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
       final Activity activity=MapsConductorClienteServicio.this;
         final AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(activity);
         final View view1 = activity.getLayoutInflater().inflate(R.layout.view_alert_actualizar_stado, null);
-        final String[] tipoPagoServicioFinal = {"1"};
+        final String[] tipoPagoServicioFinal = {""};
         TextView lblTitutlo=(TextView) view1.findViewById(R.id.lblTxtTituloAlert) ;
         lblTitutlo.setTypeface(myTypeFace.openRounded_elegance());
         TextView lblMensaje=(TextView) view1.findViewById(R.id.lblMensajeAlert) ;
@@ -1131,29 +1131,36 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                     if(caseObjeto==11){
                         //ACTUALIZAMOS EL TIPO DE PAGO DEL SERVICIO
                         Log.d("tipoPago_",tipoPagoServicioFinal[0] );
-                        new wsActualizarServicio(
-                                activity,
-                                idServicio,
-                                "1",
-                                "",//inporteAireAcondicionado
-                                "",//peaje
-                                "",//tiempo de espera
-                                "",//minutos tiempoEspera
-                                "",//importe servicio
-                                "",//idDistritoIncio
-                                "",//idZonaIncio
-                                "",//DireccionIncio
-                                "",//idDistritoFin
-                                "",//idZonaFin
-                                "",//DireccionFin
-                                "",  //IMPORTE EXTRAORDINARIO
-                                tipoPagoServicioFinal[0]  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
-                        ).execute();
+                        if(tipoPagoServicioFinal[0].length()!=0){
+                            new wsActualizarServicio(
+                                    activity,
+                                    idServicio,
+                                    "",//ind aire acondicionado
+                                    "",//inporteAireAcondicionado
+                                    "",//peaje
+                                    "",//tiempo de espera
+                                    "",//minutos tiempoEspera
+                                    "",//importe servicio
+                                    "",//idDistritoIncio
+                                    "",//idZonaIncio
+                                    "",//DireccionIncio
+                                    "",//idDistritoFin
+                                    "",//idZonaFin
+                                    "",//DireccionFin
+                                    "",  //IMPORTE EXTRAORDINARIO
+                                    tipoPagoServicioFinal[0]  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
+                            ).execute();
+                            new wsActualizarStadosAdicionales(activity,idServicio,motivo,caseObjeto).execute(stadoServicio);
+
+                        }else{
+                            Toast.makeText(activity,"Elija un tipo de pago",Toast.LENGTH_LONG).show();
+                        }
+
 
                     }else{
+                        new wsActualizarStadosAdicionales(activity,idServicio,motivo,caseObjeto).execute(stadoServicio);
 
                     }
-                    new wsActualizarStadosAdicionales(activity,idServicio,motivo,caseObjeto).execute(stadoServicio);
                     //ActualizarStadosServicio(stadoServicio,motivo,caseObjeto,activity);
                 }else {
                     new wsActualizarStadosAdicionales(activity,idServicio,"",caseObjeto).execute(stadoServicio);
