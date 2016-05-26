@@ -10,6 +10,7 @@ import com.nucleosis.www.appclientetaxibigway.R;
 import com.nucleosis.www.appclientetaxibigway.MainActivity;
 import com.nucleosis.www.appclientetaxibigway.SharedPreferences.PreferencesCliente;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
+import com.nucleosis.www.appclientetaxibigway.ws.wsUpdateDataCliente;
 
 /**
  * Created by karlos on 17/04/2016.
@@ -52,6 +53,25 @@ public class FragmentDataClient extends Fragment {
         compR.getEditDni().setText(dataDriver[4]);
         compR.getEditEmail().setText(dataDriver[5]);
         compR.getEditCelular().setText(dataDriver[6]);
+
+        final String name=compR.getEditName().getText().toString().trim();
+        final String appP=compR.getEditApaterno().getText().toString().trim();
+        final  String appM=compR.getEditAmaterno().getText().toString().trim();
+        final String dni=compR.getEditDni().getText().toString().trim();
+        final  String email=compR.getEditEmail().getText().toString().trim();
+        final String celular=compR.getEditCelular().getText().toString().trim();
+
+        compR.getButonUpdate().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(name.length()!=0 && appP.length()!=0 &&
+                        appM.length()!=0  && dni.length()!=0 &&
+                        email.length()!=0 && celular.length()!=0){
+                    //ACTUALIZAMOS DATOS DEL CLIENTE
+                        new wsUpdateDataCliente(getActivity(),celular,appP,appM,name,email).execute();
+                }
+            }
+        });
         //  Log.d("sise_data_user", String.valueOf(dataDriver.length));
        /* Picasso.with(getActivity())
                 .load(dataDriver[6])

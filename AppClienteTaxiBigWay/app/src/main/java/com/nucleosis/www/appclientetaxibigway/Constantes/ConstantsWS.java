@@ -82,6 +82,16 @@ public class ConstantsWS {
     private static final String METHODO_17="WS_SERVICIO_ACTUALIZAR_ID_ESTADO_SERVICIO";
     private static final String SOAP_ACTION_17=NAME_SPACE+"/"+METHODO_17;
 
+    private static final String METHODO_18="WS_CLIENTE_ACTUALIZAR";
+    private static final String SOAP_ACTION_18=NAME_SPACE+"/"+METHODO_18;
+
+    public static String getMethodo18() {
+        return METHODO_18;
+    }
+
+    public static String getSoapAction18() {
+        return SOAP_ACTION_18;
+    }
 
     public static String getMethodo17() {
         return METHODO_17;

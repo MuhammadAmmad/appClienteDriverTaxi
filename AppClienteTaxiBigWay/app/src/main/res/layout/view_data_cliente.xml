@@ -31,77 +31,109 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="@dimen/dimen30"
+                    android:layout_marginRight="@dimen/dimen30"
                     android:inputType="textPersonName"
                     android:textColorHint="@color/hintColorText"
                     android:paddingLeft="@dimen/padinLeft"
                     android:hint="@string/name"
+                    android:textSize="@dimen/txtSise14"
+                    android:background="@drawable/selector_edit_text"
                     android:ems="10"
                     android:id="@+id/editName" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="@dimen/dimen30"
+                    android:layout_marginRight="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen10"
                     android:paddingLeft="@dimen/padinLeft"
                     android:textColorHint="@color/hintColorText"
                     android:inputType="textPersonName"
+                    android:background="@drawable/selector_edit_text"
                     android:hint="@string/apaterno"
                     android:ems="10"
+                    android:textSize="@dimen/txtSise14"
                     android:id="@+id/editApaterno"
                     android:layout_gravity="center_horizontal" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="@dimen/dimen30"
+                    android:layout_marginRight="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen10"
                     android:paddingLeft="@dimen/padinLeft"
                     android:textColorHint="@color/hintColorText"
                     android:inputType="textPersonName"
                     android:ems="10"
+                    android:textSize="@dimen/txtSise14"
+                    android:background="@drawable/selector_edit_text"
                     android:hint="@string/amaterno"
                     android:id="@+id/editAmaterno"
                     android:layout_gravity="center_horizontal" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="@dimen/dimen30"
+                    android:layout_marginRight="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen10"
                     android:inputType="number"
                     android:paddingLeft="@dimen/padinLeft"
+                    android:background="@drawable/selector_edit_text"
                     android:textColorHint="@color/hintColorText"
                     android:hint="@string/dni"
                     android:enabled="false"
                     android:ems="10"
+                    android:textSize="@dimen/txtSise14"
                     android:id="@+id/editDNI"
                     android:layout_gravity="center_horizontal" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="@dimen/dimen30"
+                    android:layout_marginRight="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen10"
                     android:inputType="textEmailAddress"
                     android:enabled="false"
                     android:paddingLeft="@dimen/padinLeft"
+                    android:background="@drawable/selector_edit_text"
                     android:textColorHint="@color/hintColorText"
                     android:hint="@string/email"
                     android:ems="10"
+                    android:textSize="@dimen/txtSise14"
                     android:id="@+id/editEmail"
                     android:layout_gravity="center_horizontal" />
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="@dimen/dimen30"
+                    android:layout_marginRight="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen10"
                     android:paddingLeft="@dimen/padinLeft"
+                    android:background="@drawable/selector_edit_text"
                     android:textColorHint="@color/hintColorText"
                     android:hint="@string/celular"
                     android:inputType="number"
                     android:ems="10"
+                    android:textSize="@dimen/txtSise14"
                     android:id="@+id/editCelular"
                     android:layout_gravity="center_horizontal" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_marginTop="@dimen/marginLine"
+                    android:layout_marginLeft="@dimen/dimen30"
+                    android:layout_marginRight="@dimen/dimen30"
+                    android:layout_marginTop="@dimen/dimen15"
                     android:background="@drawable/selector_buton"
                     android:textColor="#FFFFFF"
+                    android:id="@+id/btnUpdateCliente"
                     android:text="@string/Actualizar"/>
             </LinearLayout>
 

@@ -19,8 +19,8 @@
     <color name="colorAccent">#363738</color>
    <color name="hintColorText">#c4c3c3</color>
 
-    <color name="btnFalse">#34CE34</color>
-    <color name="btnTrue">#6bed6b</color>
+ <color name="btnFalse">#4CAF50</color>
+ <color name="btnTrue">#8fe292</color>
     <color name="colorVerder">#34CE34</color>
     <color name="white">#FFFFFF</color>
     <color name="cabeceratxt">#5d5d5d</color>

@@ -36,6 +36,7 @@ public class ComponentesR {
     private Button btnSigUp;
     private Button btnPedirServicio;
     private Button btnConfirmarServicio;
+    private Button butonUpdate;
     private ImageButton imageButtonCerrarServicio;
     private TextView lblIncioAddress;
     private TextView lblFinAaddress;
@@ -142,6 +143,9 @@ public class ComponentesR {
         editEmail=(EditText)rootView.findViewById(R.id.editEmail);
         editCelular=(EditText)rootView.findViewById(R.id.editCelular);
 
+        butonUpdate=(Button)rootView.findViewById(R.id.btnUpdateCliente);
+        butonUpdate.setOnClickListener((View.OnClickListener) context);
+
     }
     public void Fragment_Solicitar_Servicio(View rootView) {
         spiner=(Spinner)rootView.findViewById(R.id.spinerDistrito);
@@ -195,6 +199,14 @@ public class ComponentesR {
 
     public void setCheckBoxAutoVip(CheckBox checkBoxAutoVip) {
         this.checkBoxAutoVip = checkBoxAutoVip;
+    }
+
+    public Button getButonUpdate() {
+        return butonUpdate;
+    }
+
+    public void setButonUpdate(Button butonUpdate) {
+        this.butonUpdate = butonUpdate;
     }
 
     public ImageView getImageViewColorStado() {

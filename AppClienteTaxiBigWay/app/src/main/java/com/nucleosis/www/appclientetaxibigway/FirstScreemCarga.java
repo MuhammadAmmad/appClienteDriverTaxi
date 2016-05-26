@@ -96,6 +96,10 @@ public class FirstScreemCarga extends AppCompatActivity {
                         finish();
                         Log.d("estadoSesion","nulll");
                     }
+
+
+
+
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
