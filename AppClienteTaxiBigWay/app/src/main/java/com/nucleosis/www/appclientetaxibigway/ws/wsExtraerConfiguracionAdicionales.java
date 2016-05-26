@@ -60,6 +60,9 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
                 jsonObjectData.put("impMinutoEspera",response2.getPropertyAsString("IMP_POR_MINUTO_TIEMPO_ESPERA"));
                 jsonObjectData.put("impAutoVip",response2.getPropertyAsString("IMP_POR_AUTO_VIP"));
                 jsonObjectData.put("numTelefonoEmpesa",response2.getPropertyAsString("NUM_TELEFONO"));
+                jsonObjectData.put("numTelefonoEmpesa_2",response2.getPropertyAsString("NUM_TELEFONO2"));
+                jsonObjectData.put("numTelefonoEmpesa_3",response2.getPropertyAsString("NUM_TELEFONO3"));
+                jsonObjectData.put("numTelefonoEmpesa_4",response2.getPropertyAsString("NUM_TELEFONO4"));
                 jsonObjectData.put("direccionEmpresa",response2.getPropertyAsString("DES_DIRECCION"));
                 //
             }else{
@@ -69,6 +72,9 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
                 jsonObjectData.put("impMinutoEspera","0");
                 jsonObjectData.put("impAutoVip","0");
                 jsonObjectData.put("numTelefonoEmpesa","00-000000");
+                jsonObjectData.put("numTelefonoEmpesa_2","00-000000");
+                jsonObjectData.put("numTelefonoEmpesa_3","00-000000");
+                jsonObjectData.put("numTelefonoEmpesa_4","00-000000");
                 jsonObjectData.put("direccionEmpresa","-----");
             }
             //  Log.d("response",response2.toString());

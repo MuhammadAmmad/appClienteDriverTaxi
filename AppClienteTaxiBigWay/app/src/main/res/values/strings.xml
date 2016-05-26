@@ -36,4 +36,6 @@
                     Llame a nuestra central</string>
     <string name="msnAlert">Alerta !!!</string>
     <string name="gpsMensaje">El sistema GPS esta desactgivado, la aplicacion necesita del GPS,                     Tiene que activarlo !!!</string>
+    <string name="llamarCentral">LLame a nuestra central</string>
+    <string name="telefono1"><u>TELEFONO 1</u></string>
 </resources>

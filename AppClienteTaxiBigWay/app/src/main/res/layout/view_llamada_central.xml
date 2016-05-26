@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen15"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/llamarCentral"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/grease"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/dimen30"
+                android:layout_marginRight="@dimen/dimen30"
+                android:id="@+id/lblMensajeTelefonos"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen15"
+                android:layout_marginLeft="@dimen/dimen30"
+                android:layout_marginRight="@dimen/dimen30"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/telefono1"
+                android:textColor="@color/selecto_txt_olvide"
+                android:textSize="16dp"
+                android:clickable="true"
+                android:id="@+id/txtTefono1"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginLeft="@dimen/dimen30"
+                android:layout_marginRight="@dimen/dimen30"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="TELEFONO 2"
+                android:textColor="@color/selecto_txt_olvide"
+                android:textSize="16dp"
+                android:id="@+id/txtTefono2"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginLeft="@dimen/dimen30"
+                android:layout_marginRight="@dimen/dimen30"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="TELEFONO 3"
+                android:textColor="@color/selecto_txt_olvide"
+                android:textSize="16dp"
+                android:id="@+id/txtTefono3"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginLeft="@dimen/dimen30"
+                android:layout_marginRight="@dimen/dimen30"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="TELEFONO 4"
+                android:textColor="@color/selecto_txt_olvide"
+                android:textSize="16dp"
+                android:id="@+id/txtTefono4"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_marginLeft="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen30"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:text="Cerrar"
+            android:id="@+id/btnCerrarTelefonos"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:background="@drawable/selector_buton"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</LinearLayout>

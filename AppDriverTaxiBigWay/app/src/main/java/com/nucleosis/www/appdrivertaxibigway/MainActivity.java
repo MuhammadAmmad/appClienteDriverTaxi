@@ -444,6 +444,7 @@ public class MainActivity extends AppCompatActivity
                         compR.getBtnActivarTurno().setVisibility(View.GONE);
                         compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
+
                         swTurno = 1;
                     }
                     ///compR.getBtnDesactivarTurno().setText(data);
@@ -738,6 +739,7 @@ public class MainActivity extends AppCompatActivity
 
         Intent intent1=new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
         stopService(intent1);
+      //  swTurno=0;
     }
 
     private void Alert_Elegir_taxi_conductor() {
