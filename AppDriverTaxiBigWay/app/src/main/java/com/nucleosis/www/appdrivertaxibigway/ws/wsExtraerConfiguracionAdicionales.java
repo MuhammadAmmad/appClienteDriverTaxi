@@ -7,6 +7,7 @@ import android.util.Log;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
@@ -59,16 +60,29 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
                 jsonObjectData.put("impServicioPeaje",response2.getPrimitiveProperty("IMP_SERVICIO_PEAJE"));
                 jsonObjectData.put("impMinutoEspera",response2.getPropertyAsString("IMP_POR_MINUTO_TIEMPO_ESPERA"));
                 jsonObjectData.put("impAutoVip",response2.getPropertyAsString("IMP_POR_AUTO_VIP"));
+                jsonObjectData.put("radioServicio",response2.getPropertyAsString("NUM_METRO_RADIO"));
             }else{
                 jsonObjectData.put("urlFotoConductor","0");
                 jsonObjectData.put("impAireAcondicionado","0");
                 jsonObjectData.put("impServicioPeaje","0");
                 jsonObjectData.put("impMinutoEspera","0");
                 jsonObjectData.put("impAutoVip","0");
+                jsonObjectData.put("radioServicio","1000");
             }
             //  Log.d("response",response2.toString());
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                jsonObjectData.put("urlFotoConductor","0");
+                jsonObjectData.put("impAireAcondicionado","0");
+                jsonObjectData.put("impServicioPeaje","0");
+                jsonObjectData.put("impMinutoEspera","0");
+                jsonObjectData.put("impAutoVip","0");
+                jsonObjectData.put("radioServicio","1000");
+
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
 
             //Log.d("error", e.printStackTrace());
         }

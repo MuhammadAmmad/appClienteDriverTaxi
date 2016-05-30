@@ -36,8 +36,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
-
     public JSONObject ExtraerSesion(){
         JSONObject sesion=null;
         try
@@ -67,7 +65,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
     public String  ExtraerDataVehiculos(){
         String dataVehiculos="";
         try
@@ -84,7 +81,6 @@ public class Fichero {
             Log.d("look_","No se puede leer fichero");   }
         return dataVehiculos;
     }
-
     public void InsertarListaServiciosTomadosConductor(String data){
         try  { OutputStreamWriter json =new OutputStreamWriter(
                 context.openFileOutput("jsonListaServiciosTomadosConductor.txt", Context.MODE_PRIVATE));
@@ -94,7 +90,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
     public JSONArray ExtraerListaServiciosTomadoConductor(){
 
        JSONArray jsonArray=null;
@@ -113,7 +108,6 @@ public class Fichero {
             Log.d("look_","No se puede leer fichero");   }
         return jsonArray;
     }
-
     public void InsertarFechaHoraUltimaDeCoordenadas(String FechaHoraCoordenadas){
         try  { OutputStreamWriter json =new OutputStreamWriter(
                 context.openFileOutput("fechaHoraCoordenadas.txt", Context.MODE_PRIVATE));
@@ -123,7 +117,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
     public JSONObject ExtraerFechaHoraUltimaDeCoordenadas(){
         JSONObject jsonObject=null;
         try
@@ -141,7 +134,6 @@ public class Fichero {
             Log.d("look_","No se puede leer fichero");   }
         return jsonObject;
     }
-
     public void InsertarConfiguraciones(String configuracion){
         if(configuracion!=null){
             Log.d("configguracion_",configuracion);
@@ -154,7 +146,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
     public JSONObject ExtraerConfiguraciones(){
         JSONObject jsonObject=null;
         try
@@ -188,7 +179,6 @@ public class Fichero {
         {	Log.d("error", ex.getMessage()); }
 
     }
-
     public JSONObject ExtraerZonaIdDistrito_Origen(){
         JSONObject jsonObject=null;
         try
@@ -219,7 +209,6 @@ public class Fichero {
         {	Log.d("error", ex.getMessage()); }
 
     }
-
     public JSONObject ExtraerZonaIdDistrito_Destino(){
         JSONObject jsonObject=null;
         try
@@ -314,8 +303,6 @@ public class Fichero {
         }
         return jsonAddres;
     }
-
-
     public void InsertarServicioUnico(String servicio){
         try  { OutputStreamWriter json =new OutputStreamWriter(
                 context.openFileOutput("servicioUncio.txt", Context.MODE_PRIVATE));
@@ -325,7 +312,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
     public JSONObject ExtraerServicioUnico(){
         JSONObject json=null;
         try
@@ -342,7 +328,6 @@ public class Fichero {
         }
         return json;
     }
-
     public void INSERTAR_IdZONA_IDDISTRITO_INCIO(String idDistritoIdZona_inicio){
         try  { OutputStreamWriter json =new OutputStreamWriter(
                 context.openFileOutput("idDistritoIdZonaJsonIncio.txt", Context.MODE_PRIVATE));
@@ -352,7 +337,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
     public JSONObject EXTRAER_IdZONA_IDDISTRITO_INCIO(){
         JSONObject json=null;
         try
@@ -369,8 +353,6 @@ public class Fichero {
         }
         return json;
     }
-
-
     public void INSERTAR_IdZONA_IDDISTRITO_FIN(String idDistritoIdZona_Fin){
         try  { OutputStreamWriter json =new OutputStreamWriter(
                 context.openFileOutput("idDistritoIdZonaJsonFin.txt", Context.MODE_PRIVATE));
@@ -380,7 +362,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
     public JSONObject EXTRAER_IdZONA_IDDISTRITO_FIN(){
         JSONObject json=null;
         try
@@ -397,7 +378,6 @@ public class Fichero {
         }
         return json;
     }
-
     public void InsertarCoordendaDirrecionIncioCliente(String latlong){
         try  { OutputStreamWriter json =new OutputStreamWriter(
                 context.openFileOutput("latlonAddresInicioCliente.txt", Context.MODE_PRIVATE));
@@ -408,7 +388,6 @@ public class Fichero {
         {	Log.d("error", ex.getMessage());
         }
     }
-
     public JSONObject ExtraerCoordendaDirrecionIncioCliente(){
         JSONObject jsonAddresLatLon=null;
         try

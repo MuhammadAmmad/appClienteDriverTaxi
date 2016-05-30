@@ -132,7 +132,7 @@ public class ServiceTurno extends Service {
 
             }
         };
-        timerCola.scheduleAtFixedRate(TimerCronometro, 0,20000);
+        timerCola.scheduleAtFixedRate(TimerCronometro, 0,15000);
         return super.onStartCommand(intent, flags, startId);
 
     }

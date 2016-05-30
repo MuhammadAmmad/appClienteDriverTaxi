@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -31,7 +32,8 @@ import org.ksoap2.transport.HttpTransportSE;
  * Created by karlos on 21/03/2016.
  */
 import com.nucleosis.www.appdrivertaxibigway.R;
-
+import com.nucleosis.www.appdrivertaxibigway.Sqlite.SqlGestion;
+import com.nucleosis.www.appdrivertaxibigway.Sqlite.SqlManager;
 import java.util.ArrayList;
 
 public class LoginDriverWS extends AsyncTask<User,String,String> {
@@ -109,6 +111,11 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
             try {
                 jsonSesion2.put("idSesion","1");
                 fichero.InsertarSesion(jsonSesion2.toString());
+                //CREAMOS LA BASE DE DATOS SQLITE
+                SQLiteDatabase db;
+                SqlGestion  sqlGestion=new SqlGestion(context);
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

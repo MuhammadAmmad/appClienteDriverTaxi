@@ -30,7 +30,8 @@ import static com.nucleosis.www.appdrivertaxibigway.Constans.Utils.LOGGIN_USUARI
 /**
  * Created by carlos.lopez on 04/04/2016.
  */
-public class locationDriver extends Service implements LocationListener {
+public class locationDriver extends Service
+        implements LocationListener {
     private TimerTask timerTask;
     private LocationListener locationListener;
     private String[] LatLong = new String[2];

@@ -226,7 +226,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                             request.addProperty("desDireccionFinal", jsonObject.getString("addresfin").toString());
 
                             request.addProperty("idAutoTipo", 0);
-                            request.addProperty("idRegistroTipo", 1);// idRegistroTipo=1 SI EL REGISTRO SE HACE POR MOVIL
+                            request.addProperty("idRegistroTipo", 1);// idRegistroTipo=1 SI EL REGISTRO SE HACE POR MOVIL  //2 SI EL REGISTRO SE HACE POR WEB
 
                             request.addProperty("idTipoPagoServicio", 0);//TIPO DE PAGO DEL SERVICIO  //CONTADO Ó CREDITO
                             //idTipoPagoServicio

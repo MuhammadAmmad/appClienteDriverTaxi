@@ -1,14 +1,22 @@
 package com.nucleosis.www.appdrivertaxibigway.ServiceDriver;
 
 import android.app.ActivityManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.Parcelable;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -18,7 +26,9 @@ import com.nucleosis.www.appdrivertaxibigway.Beans.beansListaServiciosCreadosPor
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
+import com.nucleosis.www.appdrivertaxibigway.MainActivity;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
+import com.nucleosis.www.appdrivertaxibigway.Sqlite.SqlGestion;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerHoraServer;
 
 import org.json.JSONArray;
@@ -48,6 +58,7 @@ public class ServiceListarServiciosCreados extends Service {
     private TimerTask TimerCronometro;
     private PreferencesDriver preferencesDriver;
     private Fichero fichero;
+    private SqlGestion sqlGestion;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -109,8 +120,6 @@ public class ServiceListarServiciosCreados extends Service {
                         envelope.setOutputSoapObject(request);
                         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 
-
-
                         try {
                             ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
                             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
@@ -120,7 +129,6 @@ public class ServiceListarServiciosCreados extends Service {
                             Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
                             int countVector=responseVector.size();
                             Log.d("respmseVecptr",responseVector.toString());
-
 
                             for(int i=0;i<countVector;i++){
                                 SoapObject dataVector=(SoapObject)responseVector.get(i);
@@ -141,19 +149,15 @@ public class ServiceListarServiciosCreados extends Service {
 
                                 fechaServer=formatIngreso.parse(fecha1);
                                 fechaServicio=formatIngreso.parse(fecha2);
+
                                 if(stadoServicio.equals("1")){
-
-
 
                                     int diferenciaDias=diferenciaDias(fechaServicio,fechaServer);
                                     int diferenciaHoras=diferenciaHoras(horaServer,horaServicio);
                                     Log.d("diferenciaDisaHoras",String.valueOf(diferenciaDias)+"**"
                                             +String.valueOf(diferenciaHoras));
-
                                     if(diferenciaDias==0 && diferenciaHoras<=60 && diferenciaHoras>=-20){
-
                                         Log.d("TiempoDifer",String.valueOf(diferenciaDias)+"**"+String.valueOf(diferenciaHoras));
-
                                         row.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
                                         row.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
                                         row.setFechaFormat(dataVector.getProperty("FEC_SERVICIO_YMD").toString());
@@ -167,6 +171,9 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                         row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
+                                        //ID PAR SABER SI EL REBGISTRO DEL SERVICIO SE HACE POR MOVIL O POR WEB
+
+                                        row.setIdTipoRegistro(dataVector.getProperty("ID_REGISTRO_TIPO").toString());
 
                                         row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                                         row.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
@@ -211,6 +218,10 @@ public class ServiceListarServiciosCreados extends Service {
                                     row2.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                     row2.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
+                                    //ID PAR SABER SI EL REBGISTRO DEL SERVICIO SE HACE POR MOVIL O POR WEB
+
+                                    row2.setIdTipoRegistro(dataVector.getProperty("ID_REGISTRO_TIPO").toString());
+
                                     row2.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                                     row2.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
                                     row2.setNameZonaIncio(dataVector.getProperty("NOM_ZONA_INICIO").toString());
@@ -237,6 +248,25 @@ public class ServiceListarServiciosCreados extends Service {
                                     ///TIPO DE PAGO DE SERVICIO  CONTADO (1) CREDITO (2)
                                     row2.setIdTipoPagoServicio(dataVector.getProperty("ID_TIPO_PAGO_SERVICIO").toString());
                                     ListServiciosAsignadoConductor.add(row2);
+
+                                    String idTipoRegistro=dataVector.getProperty("ID_REGISTRO_TIPO").toString();
+                                    String idStadoServicio=dataVector.getProperty("ID_ESTADO_SERVICIO").toString();
+                                    String idServicio=  dataVector.getProperty("ID_SERVICIO").toString();
+                                        if(idTipoRegistro.equals("2") && idStadoServicio.equals("2")){
+                                              sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
+                                              String dataServicio[]=sqlGestion.BuscarIdServicio(idServicio);
+                                            Log.d("sizeDta_", "-->"+String.valueOf(dataServicio.length));
+                                            if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
+                                                sendNotification("Te an asignado un servicio!!!!");
+                                                sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
+                                                sqlGestion.InsertarIdServicioStado(idServicio,"1");
+                                            }else {
+                                                Log.d("dataServisss",dataServicio[0]+"-->"+dataServicio[1]);
+                                            }
+                                           /* sqlGestion.InsertarIdServicioStado(idServicio,"1");
+                                            sendNotification("Te an asignado un servicio!!!!");*/
+                                            }
+
                                 }
 
                                 Log.d("siseU",String.valueOf(ListServiciosAsignadoConductor.size()));
@@ -322,5 +352,30 @@ public class ServiceListarServiciosCreados extends Service {
             e.printStackTrace();
         }
     }
+    private void sendNotification(String message) {
+       /* Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("idAlarmaNotificacion","1");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 *//* Request code *//*, intent,
+                PendingIntent.FLAG_ONE_SHOT);*/
+        long [] patron = {5000, 2000, 3000, 1000, 5000};
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(android.R.drawable.ic_btn_speak_now)
+                .setContentTitle("Alerta !!!")
+                .setContentText(message)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setVibrate(patron)
+                .setLights(Color.RED,1,0);
+                //.setOngoing(true)
+               // .setContentIntent(pendingIntent);
+//builder.setLights(Color.RED, 1, 0);
+        //builder.setOngoing(true);
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+      //  notificationManager.cancelAll();
+    }
 }

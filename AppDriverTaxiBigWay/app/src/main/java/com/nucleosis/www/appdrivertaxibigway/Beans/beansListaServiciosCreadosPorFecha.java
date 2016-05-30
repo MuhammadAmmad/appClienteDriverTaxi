@@ -39,6 +39,16 @@ public class beansListaServiciosCreadosPorFecha {
     private String numeroMovilTaxi;
     private String idTipoPagoServicio;
 
+    private String idTipoRegistro; //1 SI REGISTRO MOVIL  2 SI SE REGISTRO WEB
+
+    public String getIdTipoRegistro() {
+        return idTipoRegistro;
+    }
+
+    public void setIdTipoRegistro(String idTipoRegistro) {
+        this.idTipoRegistro = idTipoRegistro;
+    }
+
     public String getIdTipoPagoServicio() {
         return idTipoPagoServicio;
     }
