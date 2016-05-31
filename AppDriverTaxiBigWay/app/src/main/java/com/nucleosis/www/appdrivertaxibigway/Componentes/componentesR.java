@@ -58,6 +58,7 @@ public class componentesR  {
     private ImageView btnClienteEncontrado;
     private ImageView btnServicioTerminadoOk;
     private ImageView btnIrAServicios;
+    private Button btnLLamarCliente;
     private ImageView btnServicioNoTerminado;
     private ImageView btnAdicionales;
     EditText editHistoriaCarrera;
@@ -231,6 +232,10 @@ public class componentesR  {
 
         btnIrAServicios=(ImageView)activity.findViewById(R.id.btnIrA_Servicios);
         btnIrAServicios.setOnClickListener((View.OnClickListener) activity);
+
+        btnLLamarCliente=(Button)activity.findViewById(R.id.btnLLamarCliente);
+        btnLLamarCliente.setOnClickListener((View.OnClickListener) activity);
+
     }
 
 
@@ -318,6 +323,14 @@ public class componentesR  {
 
     public void setBtnServicioNoTerminado(ImageView btnServicioNoTerminado) {
         this.btnServicioNoTerminado = btnServicioNoTerminado;
+    }
+
+    public Button getBtnLLamarCliente() {
+        return btnLLamarCliente;
+    }
+
+    public void setBtnLLamarCliente(Button btnLLamarCliente) {
+        this.btnLLamarCliente = btnLLamarCliente;
     }
 
     public Spinner getSpinerVehiculo() {

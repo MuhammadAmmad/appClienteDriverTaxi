@@ -19,6 +19,7 @@ public class  beansHistorialServiciosCreados {
 
     private String numeroMinutoTiempoEspera;
     private String importeTiempoEspera;
+    private String importeGastosAdicionales;
     private String nameDistritoIncio;
     private String nameZonaIncio;
     private String DireccionIncio;
@@ -45,6 +46,15 @@ public class  beansHistorialServiciosCreados {
     private String numeroMovilTaxi;
     private String idTipoAuto;
     private String desAutoTipo;
+
+
+    public String getImporteGastosAdicionales() {
+        return importeGastosAdicionales;
+    }
+
+    public void setImporteGastosAdicionales(String importeGastosAdicionales) {
+        this.importeGastosAdicionales = importeGastosAdicionales;
+    }
 
     public String getIdTipoAuto() {
         return idTipoAuto;

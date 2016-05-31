@@ -36,6 +36,7 @@ import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreado
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.ConexionRed.ConnectionUtils;
 import com.nucleosis.www.appdrivertaxibigway.ConexionRed.conexionInternet;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Constans;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListenerDetalle;
@@ -47,7 +48,7 @@ import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListaServiciosTomadosConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListarServiciosTomadoConductorDiaActual;
-import com.nucleosis.www.appdrivertaxibigway.ws.wsObtenerDireccionIncioCliente;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -252,7 +253,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                 if(lista2.size()!=0){
                                 //    Toast.makeText(getActivity(),String.valueOf(lista2.get(position).getIdServicio()),Toast.LENGTH_SHORT).show();
                                     if(lista2.get(position).getStatadoServicio().equals("2")){
-                                        new wsObtenerDireccionIncioCliente(getActivity(),lista2.get(position).getIdCliente()).execute();
+                                       // new wsObtenerDireccionIncioCliente(getActivity(),lista2.get(position).getIdCliente()).execute();
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                                         intent.putExtra("idServicio",lista2.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
@@ -260,10 +261,15 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("ZonaIncio",lista2.get(position).getNameZonaIncio());
                                         intent.putExtra("addresIncio",lista2.get(position).getDireccionIncio());
                                         intent.putExtra("ZonaFin",lista2.get(position).getNameZonaFin());
+
+                                        intent.putExtra("indMostrarCelularCliente",lista2.get(position).getIndMostrarCelularCliente());
+                                        intent.putExtra("celularCliente",lista2.get(position).getNumCelular());
+                                        intent.putExtra("latitudService",lista2.get(position).getLatitudService());
+                                        intent.putExtra("longitudService",lista2.get(position).getLongitudService());
                                         startActivity(intent);
                                         getActivity().finish();
                                     }else  if(lista2.get(position).getStatadoServicio().equals("3")){
-                                        new wsObtenerDireccionIncioCliente(getActivity(),lista2.get(position).getIdCliente()).execute();
+                                     //   new wsObtenerDireccionIncioCliente(getActivity(),lista2.get(position).getIdCliente()).execute();
                                         Intent intent=new Intent(getActivity(), MapsConductorClienteServicio.class);
                                         intent.putExtra("idServicio",lista2.get(position).getIdServicio());
                                         intent.putExtra("stadoService",lista2.get(position).getStatadoServicio());
@@ -271,6 +277,11 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("ZonaIncio",lista2.get(position).getNameZonaIncio());
                                         intent.putExtra("addresIncio",lista2.get(position).getDireccionIncio());
                                         intent.putExtra("ZonaFin",lista2.get(position).getNameZonaFin());
+
+                                        intent.putExtra("indMostrarCelularCliente",lista2.get(position).getIndMostrarCelularCliente());
+                                        intent.putExtra("celularCliente",lista2.get(position).getNumCelular());
+                                        intent.putExtra("latitudService",lista2.get(position).getLatitudService());
+                                        intent.putExtra("longitudService",lista2.get(position).getLongitudService());
                                         startActivity(intent);
                                         getActivity().finish();
                                     }
@@ -500,6 +511,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                 JsonObjecServiceConductor.put("nucCelularCliente",jsonServiciosConductor.getJSONObject(i).getString("nucCelularCliente"));
                                 JsonObjecServiceConductor.put("importeAireAcondicionado",jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"));
 
+                                JsonObjecServiceConductor.put("importeGastosAdicionales",jsonServiciosConductor.getJSONObject(i).getString("importeGastosAdicionales"));
+
                                 JsonObjecServiceConductor.put("numeroMinutoTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("numeroMinutoTiempoEspera"));
                                 JsonObjecServiceConductor.put("importeTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"));
                                 JsonObjecServiceConductor.put("importePeaje",jsonServiciosConductor.getJSONObject(i).getString("importePeaje"));
@@ -512,6 +525,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                 JsonObjecServiceConductor.put("idAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente"));
                                 JsonObjecServiceConductor.put("desAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("desAutoTipoPidioCliente"));
 
+                                String importeGastoAdicional_=jsonServiciosConductor.getJSONObject(i).getString("importeGastosAdicionales");
+                                double importeGastoAdicional=0.0;
                                 String importeTipoAuto="0.00";
                                 //1 VIP
                                 //2 ECONOMICO
@@ -531,11 +546,19 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                     importeTipoAuto="0.00";
                                 }
 
+                                if(importeGastoAdicional_!=null){
+                                    if(Constans.isNumeric(importeGastoAdicional_)){
+                                        importeGastoAdicional=Double.parseDouble(importeGastoAdicional_);
+                                    }else{
+                                        importeGastoAdicional=0.0;
+                                    }
+
+                                }
                                 double sumaImportes=Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeServicio"))+
                                                     Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"))+
                                                     Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"))+
                                                     Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importePeaje"))+
-                                                    Double.parseDouble(importeTipoAuto);
+                                                    Double.parseDouble(importeTipoAuto)+importeGastoAdicional;
 
                                 JsonObjecServiceConductor.put("importeTotalServicio",String.valueOf(sumaImportes));
 
@@ -598,6 +621,9 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
 
                                          +"<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
                                                  +"S/."+jsonDetalle.getString("importeTipoAuto")+"<br><br>"
+
+                                        +"<font color=\"#11aebf\"><bold>Import adicional :&nbsp;</bold></font>"
+                                        +"S/."+jsonDetalle.getString("importeGastosAdicionales")+"<br><br>"
 
                                          +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
                                                  +"S/."+jsonDetalle.getString("importeTotalServicio")+"<br><br>"

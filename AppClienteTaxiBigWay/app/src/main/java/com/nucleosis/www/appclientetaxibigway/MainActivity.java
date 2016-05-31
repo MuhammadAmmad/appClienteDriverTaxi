@@ -72,7 +72,6 @@ import com.nucleosis.www.appclientetaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appclientetaxibigway.beans.beansListaPolygono;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
 import com.nucleosis.www.appclientetaxibigway.kmlPolygonos.KmlCreatorPolygono;
-import com.nucleosis.www.appclientetaxibigway.ws.wsEnviarLatLonClienteDireccionIncio;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerConfiguracionAdicionales;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerHoraServer;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerIdZonaIdDistrito;
@@ -504,8 +503,6 @@ public class MainActivity extends AppCompatActivity
                                                             txtTelefono3.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa_3"));
                                                             txtTelefono4.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa_4"));
 
-
-
                                                             //tel:998319046
 
                                                         } catch (JSONException e) {
@@ -678,7 +675,7 @@ public class MainActivity extends AppCompatActivity
                         jsonCoordenadaIncioAddres.put("latitud",String.valueOf(coordenada.latitude));
                         jsonCoordenadaIncioAddres.put("longitud",String.valueOf(coordenada.longitude));
                         fichero.InsertarCoordendaDirrecionIncio(jsonCoordenadaIncioAddres.toString());
-                        new wsEnviarLatLonClienteDireccionIncio(MainActivity.this).execute();
+                       // new wsEnviarLatLonClienteDireccionIncio(MainActivity.this).execute();
 
                     } catch (JSONException e) {
                         e.printStackTrace();

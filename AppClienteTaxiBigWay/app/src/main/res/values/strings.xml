@@ -26,7 +26,7 @@
     <string name="si">Si</string>
     <string name="no">No</string>
     <string name="vip">Vip</string>
-    <string name="Economico">Económico</string>
+    <string name="Economico">Regular</string>
     <string name="Ok">Ok</string>
     <string name="cancelar">Cancelar</string>
     <string name="detalleServicio">Detalle del servicio</string>

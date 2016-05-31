@@ -9,4 +9,13 @@ public class Constans {
     public static String getKEY() {
         return KEY;
     }
+
+    public static boolean isNumeric(String cadena){
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
 }

@@ -80,6 +80,8 @@ public class ComponentesR {
     private ImageView imageViewColorStado;
     private AutoCompleteTextView autoCompletText1;
     private AutoCompleteTextView autoCompletText2;
+
+    private Button btnFotoVehiculo;
     Toolbar toolbar;
     public ComponentesR(Context context) {
         this.context = context;
@@ -250,6 +252,9 @@ public class ComponentesR {
         imageViewColorStado=(ImageView)activity.findViewById(R.id.imageViewAlertaStado);
         //imageViewAlertaStado
         imgButtonInAServicios=(ImageView) activity.findViewById(R.id.btnIrAServicios);
+
+        btnFotoVehiculo=(Button)activity.findViewById(R.id.btnFotoVehiculo);
+       /* btnFotoVehiculo.setOnClickListener((View.OnClickListener) context);*/
         //imgButtonInAServicios.setOnClickListener((View.OnClickListener) activity);
 
     }
@@ -284,6 +289,14 @@ public class ComponentesR {
 
     public void setCheckBoxAire_Si(CheckBox checkBoxAire_Si) {
         this.checkBoxAire_Si = checkBoxAire_Si;
+    }
+
+    public Button getBtnFotoVehiculo() {
+        return btnFotoVehiculo;
+    }
+
+    public void setBtnFotoVehiculo(Button btnFotoVehiculo) {
+        this.btnFotoVehiculo = btnFotoVehiculo;
     }
 
     public CheckBox getCheckBoxAire_No() {

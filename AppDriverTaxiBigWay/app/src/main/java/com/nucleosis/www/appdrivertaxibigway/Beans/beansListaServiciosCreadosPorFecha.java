@@ -11,7 +11,7 @@ public class beansListaServiciosCreadosPorFecha {
     private String importeAireAcondicionado;  //IMP_AIRE_ACONDICIONADO
     private String importePeaje;                //IMP_PEAJE
     private String numeroMinutoTiempoEspera;    //NUM_MINUTO_TIEMPO_ESPERA
-
+    private String importeGastosAdicionales;
     private String importeTiempoEspera;   //IMP_TIEMPO_ESPERA
     private String nameDistritoInicio;      //NOM_DISTRITO_INICIO
     private String nameZonaIncio;           //NOM ZONA INICIO
@@ -40,6 +40,43 @@ public class beansListaServiciosCreadosPorFecha {
     private String idTipoPagoServicio;
 
     private String idTipoRegistro; //1 SI REGISTRO MOVIL  2 SI SE REGISTRO WEB
+
+    private String indMostrarCelularCliente;
+
+    private String latitudServicio;
+    private String longitudServicio;
+
+    public String getImporteGastosAdicionales() {
+        return importeGastosAdicionales;
+    }
+
+    public void setImporteGastosAdicionales(String importeGastosAdicionales) {
+        this.importeGastosAdicionales = importeGastosAdicionales;
+    }
+
+    public String getLongitudServicio() {
+        return longitudServicio;
+    }
+
+    public void setLongitudServicio(String longitudServicio) {
+        this.longitudServicio = longitudServicio;
+    }
+
+    public String getLatitudServicio() {
+        return latitudServicio;
+    }
+
+    public void setLatitudServicio(String latitudServicio) {
+        this.latitudServicio = latitudServicio;
+    }
+
+    public String getIndMostrarCelularCliente() {
+        return indMostrarCelularCliente;
+    }
+
+    public void setIndMostrarCelularCliente(String indMostrarCelularCliente) {
+        this.indMostrarCelularCliente = indMostrarCelularCliente;
+    }
 
     public String getIdTipoRegistro() {
         return idTipoRegistro;

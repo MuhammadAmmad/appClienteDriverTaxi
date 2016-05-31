@@ -128,7 +128,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
                 }else {
                     row.setNameFotoConductor("");
                 }
-
+                row.setImporteGastosAdicionales(dataVector.getProperty("IMP_GASTOS_ADICIONALES").toString());
                 row.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                 row.setNameDistritoIncio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
                 row.setNameZonaIncio(dataVector.getProperty("NOM_ZONA_INICIO").toString());
@@ -237,7 +237,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
                 }else {
                     row.setNameFotoConductor("");
                 }*/
-
+                row2.setImporteGastosAdicionales(dataVector.getProperty("IMP_GASTOS_ADICIONALES").toString());
                 row2.setImporteTiempoEspera(dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
                 row2.setNameDistritoInicio(dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
                 row2.setNameZonaIncio(dataVector.getProperty("NOM_ZONA_INICIO").toString());

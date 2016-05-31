@@ -12,7 +12,7 @@ public class beansServiciosFechaDetalle {
     private String importeAireAcondicionado;  //IMP_AIRE_ACONDICIONADO
     private String importePeaje;                //IMP_PEAJE
     private String numeroMinutoTiempoEspera;    //NUM_MINUTO_TIEMPO_ESPERA
-
+    private String importeGastosAdicionales;
     private String importeTiempoEspera;   //IMP_TIEMPO_ESPERA
     private String nameDistritoInicio;      //NOM_DISTRITO_INICIO
     private String nameZonaIncio;           //NOM ZONA INICIO
@@ -37,6 +37,14 @@ public class beansServiciosFechaDetalle {
     private String desAutoTipo;
     private String desAutoTipoPidioCliente;
     private String idAutoTipoPidioCliente;
+
+    public String getImporteGastosAdicionales() {
+        return importeGastosAdicionales;
+    }
+
+    public void setImporteGastosAdicionales(String importeGastosAdicionales) {
+        this.importeGastosAdicionales = importeGastosAdicionales;
+    }
 
     public String getIdServicio() {
         return idServicio;

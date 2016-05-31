@@ -52,6 +52,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
     private MainActivity mainActivity=new MainActivity();
     private Fichero fichero;
     private String importeAutoVip;
+
     public wsValidarHoraServicio(Context context,
                                  String fechaIngreso,
                                  String horaIngreso,
@@ -214,16 +215,21 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                             request.addProperty("idAuto", 0);
 
                             request.addProperty("idAutoTipo", tipoAutoSolicita); //idAutoTipo=1  VIP     idAutoTipo=2 ECONOMICO
+                            if(jsonCoordenadas!= null){
+                                request.addProperty("desLatitudServicio", jsonCoordenadas.getString("latitud"));
+                                request.addProperty("desLongitudServicio", jsonCoordenadas.getString("longitud"));
 
+                            }
+                            if(jsonOrigen!=null && jsonObject!=null){
+                                request.addProperty("idDistritoInicio", Integer.parseInt(jsonOrigen.getString("idDistrito").toString()));
+                                request.addProperty("idZonaInicio", Integer.parseInt(jsonOrigen.getString("idZona").toString()));
+                                request.addProperty("desDireccionInicio", jsonObject.getString("addresIncio").toString() );
+                                //"/"+jsonCoordenadas.toString()
+                                request.addProperty("idDistritoFinal", Integer.parseInt(jsonDestino.getString("idDistrito").toString()));
+                                request.addProperty("idZonaFinal", Integer.parseInt(jsonDestino.getString("idZona").toString()));
+                                request.addProperty("desDireccionFinal", jsonObject.getString("addresfin").toString());
 
-
-                            request.addProperty("idDistritoInicio", Integer.parseInt(jsonOrigen.getString("idDistrito").toString()));
-                            request.addProperty("idZonaInicio", Integer.parseInt(jsonOrigen.getString("idZona").toString()));
-                            request.addProperty("desDireccionInicio", jsonObject.getString("addresIncio").toString() );
-                        //"/"+jsonCoordenadas.toString()
-                            request.addProperty("idDistritoFinal", Integer.parseInt(jsonDestino.getString("idDistrito").toString()));
-                            request.addProperty("idZonaFinal", Integer.parseInt(jsonDestino.getString("idZona").toString()));
-                            request.addProperty("desDireccionFinal", jsonObject.getString("addresfin").toString());
+                            }
 
                             request.addProperty("idAutoTipo", 0);
                             request.addProperty("idRegistroTipo", 1);// idRegistroTipo=1 SI EL REGISTRO SE HACE POR MOVIL  //2 SI EL REGISTRO SE HACE POR WEB

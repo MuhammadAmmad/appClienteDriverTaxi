@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.nucleosis.www.appclientetaxibigway.Adpaters.GridAdapterHistoricoServicios;
 import com.nucleosis.www.appclientetaxibigway.ConexionRed.conexionInternet;
+import com.nucleosis.www.appclientetaxibigway.Constantes.Utils;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.Interfaces.OnItemClickListenerDetalle;
 import com.nucleosis.www.appclientetaxibigway.ListaServicios;
@@ -112,21 +113,6 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                             super.onPostExecute(aBoolean);
                             if(aBoolean){
                                 new wsListaServiciosCliente(getActivity(),grid,fecha).execute();
-                             /*   JSONObject jsonFecha=fichero.ExtraerFechaHoraActual();
-                                if(jsonFecha!=null){
-                                    Log.d("fechaSistema",fichero.ExtraerConfiguraciones().toString());
-                                    String fechaActual=compR.getEditHistoricoServiciosCreados().getText().toString().trim();
-
-                                    try {
-                                        if(fechaActual.equals(jsonFecha.getString("Fecha"))){
-
-                                        }else {
-
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }*/
 
                             }else {
                                 Toast.makeText(getActivity(),"No tiene acceso a internet !!!",Toast.LENGTH_LONG).show();
@@ -161,7 +147,6 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                 JSONArray jsonArrayServiciosDiarios=fichero.ExtraerListaServiciosTomadoCliete();
                 if(wsListaServiciosCliente.ListServicios!=null){
                     List<beansHistorialServiciosCreados> listServicio=wsListaServiciosCliente.ListServicios;
-                    //    Toast.makeText(getActivity(),listServicio.get(position).getStatadoServicio(),Toast.LENGTH_LONG).show();
                     if(listServicio.get(position).getStatadoServicio().equals("1") ||
                             listServicio.get(position).getStatadoServicio().equals("2")||
                             listServicio.get(position).getStatadoServicio().equals("3")){
@@ -174,9 +159,7 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                                  if(listServicio.get(position).getIdServicio().
                                          equals(jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio")) &&
                                          fechaServer.equals(jsonArrayServiciosDiarios.getJSONObject(i).getString("FechaFormat"))){
-                                            Toast.makeText(getActivity(),
-                                                    jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio"),
-                                                    Toast.LENGTH_LONG).show();
+
                                          Intent intent=new Intent(getActivity(), MapsClienteConductorServicio.class);
                                         intent.putExtra("idServicio",jsonArrayServiciosDiarios.getJSONObject(i).getString("idServicio"));
                                         startActivity(intent);
@@ -249,19 +232,6 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                                 compR.getEditHistoricoServiciosCreados().setText( year+ "-0"
                                         + (monthOfYear + 1) + "-" +  "0"+dayOfMonth);
                             }
-                        //    Log.d("8787878-->","fasdfasdf");
-                        /* z[0]++;
-                            if(z[0]==2){
-                                Log.d("fsdfjl-->","fasdfasdf");
-                                z[0]=0;
-                              //  Toast.makeText(getActivity(),String.valueOf(z[0]),Toast.LENGTH_LONG).show();
-                                new wsListaServiciosCliente(getActivity(),grid,compR.getEditHistoricoServiciosCreados().getText().toString()).execute();
-                                // z[0]=0;
-                            }else  if(z[0]==1){
-                                new wsListaServiciosCliente(getActivity(),grid,compR.getEditHistoricoServiciosCreados().getText().toString()).execute();
-                                Log.d("cuento_",String.valueOf(z[0]));
-                                z[0]=0;
-                            }*/
                            }
 
                     }, mYear, mMonth, mDay);
@@ -311,23 +281,32 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
         });
         alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-        Toast.makeText(context,idServicio+"--"+stadoServicio,Toast.LENGTH_LONG).show();
+     //   Toast.makeText(context,idServicio+"--"+stadoServicio,Toast.LENGTH_LONG).show();
     }
 
     private String DetalleServicioReturn( JSONArray ListaServiciosCreados,int posicion_,Context context){
         String  detalle="";
         String importTipoAutoSolicitoCliente="0.00";
         double sumaImportesServicio=0.0;
+        double importeGastoAdicional=0.0;
         Fichero fichero_=new Fichero(context);
 
         if(ListaServiciosCreados!=null){
-
+        Log.d("listCliente_",ListaServiciosCreados.toString());
             try {
                 if(ListaServiciosCreados.getJSONObject(posicion_).getString("idAutoTipoPidioCliente").equals("1")){
                     JSONObject jsonObjectConfiguraciones=fichero_.ExtraerConfiguraciones();
                     if(jsonObjectConfiguraciones!=null){
                         importTipoAutoSolicitoCliente=jsonObjectConfiguraciones.getString("impAutoVip");
                     }
+                    String importeGastoAdicional_=ListaServiciosCreados.getJSONObject(posicion_).getString("importeGastosAdicionales");
+                   if(importeGastoAdicional_!=null){
+                       if(Utils.isNumeric(importeGastoAdicional_)){
+                           importeGastoAdicional=Double.parseDouble(importeGastoAdicional_);
+                       }else {
+                           importeGastoAdicional=0.0;
+                       }
+                   }
 
                 }
                 try {
@@ -335,10 +314,12 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
                             Double.parseDouble(ListaServiciosCreados.getJSONObject(posicion_).getString("importeAireAcondicionado"))+
                             Double.parseDouble(ListaServiciosCreados.getJSONObject(posicion_).getString("importeTiempoEspera"))+
                             Double.parseDouble(ListaServiciosCreados.getJSONObject(posicion_).getString("importePeaje"))+
-                            Double.parseDouble(importTipoAutoSolicitoCliente);
+                            Double.parseDouble(importTipoAutoSolicitoCliente)+importeGastoAdicional;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+
 
                 detalle =
                         "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
@@ -372,6 +353,10 @@ public class FragmentListaServicios extends Fragment implements OnItemClickListe
 
                                 + "<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
                                 + "S/." + importTipoAutoSolicitoCliente + "<br><br>"
+
+
+                                +"<font color=\"#11aebf\"><bold>Import adicional :&nbsp;</bold></font>"
+                                +"S/."+ListaServiciosCreados.getJSONObject(posicion_).getString("importeGastosAdicionales")+"<br><br>"
 
                                 + "<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
                                 + "S/." + String.valueOf(sumaImportesServicio) + "<br><br>";

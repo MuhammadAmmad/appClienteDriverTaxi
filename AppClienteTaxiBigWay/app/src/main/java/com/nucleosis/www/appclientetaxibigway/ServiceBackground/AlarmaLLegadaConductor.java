@@ -156,10 +156,11 @@ public class AlarmaLLegadaConductor extends Service {
                         if(jsonUltimoServ!=null){
                             try {
                                 if(jsonUltimoServ.getString("stadoServicio").equals("3")){
-
+                                    Log.d("check_stado_",jsonUltimoServ.getString("stadoServicio"));
                                     sqlGestion=new SqlGestion(AlarmaLLegadaConductor.this);
                                     String[] dataServicio=sqlGestion.BuscarIdServicio(jsonUltimoServ.getString("idServicio"));
                                     if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
+                                        Log.d("que_x","--------");
                                         sqlGestion=new SqlGestion(AlarmaLLegadaConductor.this);
                                         sqlGestion.InsertarIdServicioStado(jsonUltimoServ.getString("idServicio"),"1");
                                         sendNotification("Su taxi a llegado");
@@ -183,7 +184,7 @@ public class AlarmaLLegadaConductor extends Service {
 
             }
         };
-        timerCola.scheduleAtFixedRate(TimerCronometro, 0, 45000);
+        timerCola.scheduleAtFixedRate(TimerCronometro, 0, 15000);
         return super.onStartCommand(intent, flags, startId);
     }
 

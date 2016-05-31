@@ -76,6 +76,8 @@ public class wsListarServiciosTomadoConductorDiaActual extends
                 row.setImporteServicio(jsonListaServicios.getJSONObject(i).getString("importeServicio").toString());
                 row.setDescripcionServicion(jsonListaServicios.getJSONObject(i).getString("DescripcionServicion").toString());
 
+                row.setImporteGastosAdicionales(jsonListaServicios.getJSONObject(i).getString("importeGastosAdicionales").toString());
+
                 row.setIndAireAcondicionado(jsonListaServicios.getJSONObject(i).getString("indAireAcondicionado"));
                 row.setImporteAireAcondicionado(jsonListaServicios.getJSONObject(i).getString("importeAireAcondicionado").toString());
                 row.setImportePeaje(jsonListaServicios.getJSONObject(i).getString("importePeaje").toString());
@@ -100,6 +102,9 @@ public class wsListarServiciosTomadoConductorDiaActual extends
                 row.setNumCelular(jsonListaServicios.getJSONObject(i).getString("nucCelularCliente").toString());
                 row.setNunMovilTaxi(jsonListaServicios.getJSONObject(i).getString("numeroMovilTaxi").toString());
 
+                row.setIndMostrarCelularCliente(jsonListaServicios.getJSONObject(i).getString("indMostrarCelularCliente").toString());
+                row.setLatitudService(jsonListaServicios.getJSONObject(i).getString("latitudServicio").toString());
+                row.setLongitudService(jsonListaServicios.getJSONObject(i).getString("longitudServicio").toString());
 
                 int idStatus=Integer.parseInt(jsonListaServicios.getJSONObject(i).getString("statadoServicio").toString());
                 Log.d("stadoServiciosxxxx-->",String.valueOf(idStatus));

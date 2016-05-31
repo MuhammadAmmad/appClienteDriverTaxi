@@ -32,4 +32,5 @@
     <string name="pagoExtraOrdinario">Pago Extra</string>
     <string name="Monto">Monto</string>
     <string name="llamarCliente">Llamar</string>
+    <string name="detalle">DETALLE</string>
 </resources>

@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.media.Image;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,6 +61,7 @@ import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreado
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansListaPolygono;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Alerta;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Constans;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.PointPolygono.PointDentroPolygono;
@@ -102,6 +104,10 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     private String AddresIncioCliente;
     private List<beansListaPolygono> listPolyGo;
     private  String jsonServiciosConductor;
+    private String latitud_;
+    private String longitud_;
+    private String indMostrarCelularCliente;
+    private String celularCliente;
     private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
             new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     //suereste  -12.34202, -77.04231-11.6818, -76.74636
@@ -136,6 +142,17 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             String zonaInicio=getIntent().getStringExtra("ZonaIncio");
             String zonaFin=getIntent().getStringExtra("ZonaFin");
             AddresIncioCliente=getIntent().getStringExtra("addresIncio");
+            latitud_=getIntent().getStringExtra("latitudService");
+            longitud_=getIntent().getStringExtra("longitudService");
+            indMostrarCelularCliente=getIntent().getStringExtra("indMostrarCelularCliente");
+            celularCliente=getIntent().getStringExtra("celularCliente");
+
+            if(indMostrarCelularCliente.equals("1")){
+                Log.d("celularCliente",celularCliente);
+                compR.getBtnLLamarCliente().setVisibility(View.VISIBLE);
+
+            }
+
 
             Log.d("zonAinicio_",AddresIncioCliente+"-->"+zonaInicio+"**"+zonaFin);
 
@@ -260,7 +277,6 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_1);
 
-
         } else {
             map.setMyLocationEnabled(true);
             map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
@@ -272,6 +288,20 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                         sw = 1;
                         CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
                                 lat[0], lon[0]), 12);
+                        if(latitud_!=null && longitud_!=null){
+                            if(latitud_.length()!=0 && longitud_.length()!=0){
+                                if(isNumeric(latitud_) && isNumeric(longitud_)){
+                                    double latitudd=Double.parseDouble(latitud_);
+                                    double longitudd=Double.parseDouble(longitud_);
+                                    MarcadorServicio(map, latitudd, longitudd);
+                                }else{
+                                    Log.d("VerficicarValorNumerico","No es un numero"+"-->"+latitud_+"-->"+longitud_);
+                                }
+
+                            }
+                        }
+
+                        /*
                         JSONObject jsonCoordenadaClienteAddresRecojo=fichero.ExtraerCoordendaDirrecionIncioCliente();
                         try {
                             if(jsonCoordenadaClienteAddresRecojo.getString("latitud").length()!=0 &&
@@ -284,7 +314,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }
+                        }*/
                         map.animateCamera(cam);
                     }
                 }
@@ -292,7 +322,14 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         }
 
     }
-
+    private static boolean isNumeric(String cadena){
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions,
@@ -318,7 +355,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         final Marker markerInicio = mapa.addMarker(new MarkerOptions()
                 .position(PERTH)
                 .title("Cliente")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_cliente_1)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_cliente_2)));
 
 
 
@@ -336,10 +373,6 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
                     .getPlaceById(mGoogleApiClient, placeId);
             placeResult.setResultCallback(mUpdatePlaceDetailsCallback_1);
-
-           /* Toast.makeText(getApplicationContext(), "Clicked: " + primaryText,
-                    Toast.LENGTH_SHORT).show();*/
-            //  Log.i(TAG, "Called getPlaceById to get Place details for " + placeId);
         }
     };
 
@@ -356,10 +389,6 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
                     .getPlaceById(mGoogleApiClient, placeId);
             placeResult.setResultCallback(mUpdatePlaceDetailsCallback_2);
-
-          /*  Toast.makeText(getApplicationContext(), "Clicked: " + fullText,
-                    Toast.LENGTH_SHORT).show();*/
-            //  Log.i(TAG, "Called getPlaceById to get Place details for " + placeId);
         }
     };
     private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback_1
@@ -444,30 +473,30 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 alert("3",mensaje1,9);
                Log.d("idTurnoVehiculo-->",preferencesDriver.ExtraerIdTurno()+"***"+preferencesDriver.ExtraerIdVehiculo());
 
-                compR.getBtnServicioNoTerminado().setEnabled(false);
-                compR.getBtnServicioTerminadoOk().setEnabled(false);
-                compR.getBtnIrAServicios().setEnabled(false);
-                compR.getBtnAdicionales().setEnabled(false);
+             //   compR.getBtnServicioNoTerminado().setEnabled(false);
+              //  compR.getBtnServicioTerminadoOk().setEnabled(false);
+                compR.getBtnIrAServicios().setEnabled(true);
+            //    compR.getBtnAdicionales().setEnabled(false);
                 break;
 
             case R.id.btnSercioNoTerminado:
                 String mensaje2="No termino el servicio ?";
                 alert("5",mensaje2,10);
 
-                compR.getBtnClienteEncontrado().setEnabled(false);
-                compR.getBtnServicioTerminadoOk().setEnabled(false);
-                compR.getBtnIrAServicios().setEnabled(false);
-                compR.getBtnAdicionales().setEnabled(false);
+              //  compR.getBtnClienteEncontrado().setEnabled(false);
+              //  compR.getBtnServicioTerminadoOk().setEnabled(false);
+                compR.getBtnIrAServicios().setEnabled(true);
+             //   compR.getBtnAdicionales().setEnabled(false);
 
                 break;
             case R.id.btnServicioTerminadoOk:
                 String mensaje3="Termino el servicio correctamente ?";
                 alert("4",mensaje3,11);
 
-                compR.getBtnClienteEncontrado().setEnabled(false);
-                compR.getBtnServicioNoTerminado().setEnabled(false);
-                compR.getBtnIrAServicios().setEnabled(false);
-                compR.getBtnAdicionales().setEnabled(false);
+             //   compR.getBtnClienteEncontrado().setEnabled(false);
+            //   compR.getBtnServicioNoTerminado().setEnabled(false);
+                compR.getBtnIrAServicios().setEnabled(true);
+               // compR.getBtnAdicionales().setEnabled(false);
 
                 break;
             case R.id.btnIrA_Servicios:
@@ -475,11 +504,14 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 startActivity(intent);
                 finish();
                 break;
+
+            case R.id.btnLLamarCliente:
+                Intent i = new Intent(Intent.ACTION_DIAL,
+                        Uri.parse("tel:"+celularCliente)); //
+                startActivity(i);
+                break;
         }
     }
-
-
-
     private void DetalleServicio(){
         final JSONArray jsonServiciosConductor=fichero.ExtraerListaServiciosTomadoConductor();
         new AsyncTask<String, String, JSONObject>() {
@@ -509,6 +541,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                 JsonObjecServiceConductor.put("nucCelularCliente",jsonServiciosConductor.getJSONObject(i).getString("nucCelularCliente"));
                                 JsonObjecServiceConductor.put("importeAireAcondicionado",jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"));
 
+                                JsonObjecServiceConductor.put("importeGastosAdicionales",jsonServiciosConductor.getJSONObject(i).getString("importeGastosAdicionales"));
                                 JsonObjecServiceConductor.put("numeroMinutoTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("numeroMinutoTiempoEspera"));
                                 JsonObjecServiceConductor.put("importeTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"));
                                 JsonObjecServiceConductor.put("importePeaje",jsonServiciosConductor.getJSONObject(i).getString("importePeaje"));
@@ -521,6 +554,9 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                 JsonObjecServiceConductor.put("idAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente"));
                                 JsonObjecServiceConductor.put("desAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("desAutoTipoPidioCliente"));
 
+
+                                String importeGastoAdicional_=jsonServiciosConductor.getJSONObject(i).getString("importeGastosAdicionales");
+                                double importeGastoAdicional=0.0;
                                 String importeTipoAuto="0.00";
                                 //1 VIP
                                 //2 ECONOMICO
@@ -539,12 +575,20 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                     JsonObjecServiceConductor.put("importeTipoAuto","0.00");
                                     importeTipoAuto="0.00";
                                 }
+                                if(importeGastoAdicional_!=null){
+                                    if(Constans.isNumeric(importeGastoAdicional_)){
+                                        importeGastoAdicional=Double.parseDouble(importeGastoAdicional_);
+                                    }else{
+                                        importeGastoAdicional=0.0;
+                                    }
+
+                                }
 
                                 double sumaImportes=Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeServicio"))+
                                         Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"))+
                                         Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"))+
                                         Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importePeaje"))+
-                                        Double.parseDouble(importeTipoAuto);
+                                        Double.parseDouble(importeTipoAuto)+importeGastoAdicional;
 
                                 JsonObjecServiceConductor.put("importeTotalServicio",String.valueOf(sumaImportes));
 
@@ -607,6 +651,9 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
 
                                         +"<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
                                         +"S/."+jsonDetalle.getString("importeTipoAuto")+"<br><br>"
+
+                                        +"<font color=\"#11aebf\"><bold>Import adicional :&nbsp;</bold></font>"
+                                        +"S/."+jsonDetalle.getString("importeGastosAdicionales")+"<br><br>"
 
                                         +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
                                         +"S/."+jsonDetalle.getString("importeTotalServicio")+"<br><br>"
@@ -1025,6 +1072,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 alertAdicionales.dismiss();
             }
         });
+        alertAdicionales.setCancelable(false);
         alertAdicionales.show();
     }
 
@@ -1103,22 +1151,22 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 alertDialog1.dismiss();
                 switch (caseObjeto){
                     case 9:
-                        compR.getBtnServicioNoTerminado().setEnabled(true);
+                      /*  compR.getBtnServicioNoTerminado().setEnabled(true);
                         compR.getBtnServicioTerminadoOk().setEnabled(true);
                         compR.getBtnIrAServicios().setEnabled(true);
-                        compR.getBtnAdicionales().setEnabled(true);
+                        compR.getBtnAdicionales().setEnabled(true);*/
                         break;
                     case 10:
-                        compR.getBtnClienteEncontrado().setEnabled(true);
+                       /* compR.getBtnClienteEncontrado().setEnabled(true);
                         compR.getBtnServicioTerminadoOk().setEnabled(true);
                         compR.getBtnIrAServicios().setEnabled(true);
-                        compR.getBtnAdicionales().setEnabled(true);
+                        compR.getBtnAdicionales().setEnabled(true);*/
                         break;
                     case 11:
-                        compR.getBtnClienteEncontrado().setEnabled(true);
+                        /*compR.getBtnClienteEncontrado().setEnabled(true);
                         compR.getBtnServicioNoTerminado().setEnabled(true);
                         compR.getBtnIrAServicios().setEnabled(true);
-                        compR.getBtnAdicionales().setEnabled(true);
+                        compR.getBtnAdicionales().setEnabled(true);*/
                         break;
                 }
             }

@@ -13,6 +13,7 @@ public class beansHistorialServiciosCreados {
     private String DescripcionServicion;
     private String indAireAcondicionado;
     private String importeAireAcondicionado;
+    private String importeGastosAdicionales;
     private String importePeaje;
     private String numeroMinutoTiempoEspera;
     private String importeTiempoEspera;
@@ -41,6 +42,43 @@ public class beansHistorialServiciosCreados {
     private String desAutoTipo;
     private String desAutoTipoPidioCliente;
     private String idAutoTipoPidioCliente;
+
+    private String indMostrarCelularCliente;
+    private String latitudService;
+    private String longitudService;
+
+
+    public String getImporteGastosAdicionales() {
+        return importeGastosAdicionales;
+    }
+
+    public void setImporteGastosAdicionales(String importeGastosAdicionales) {
+        this.importeGastosAdicionales = importeGastosAdicionales;
+    }
+
+    public String getIndMostrarCelularCliente() {
+        return indMostrarCelularCliente;
+    }
+
+    public void setIndMostrarCelularCliente(String indMostrarCelularCliente) {
+        this.indMostrarCelularCliente = indMostrarCelularCliente;
+    }
+
+    public String getLongitudService() {
+        return longitudService;
+    }
+
+    public void setLongitudService(String longitudService) {
+        this.longitudService = longitudService;
+    }
+
+    public String getLatitudService() {
+        return latitudService;
+    }
+
+    public void setLatitudService(String latitudService) {
+        this.latitudService = latitudService;
+    }
 
     public String getIdTipoAuto() {
         return idTipoAuto;

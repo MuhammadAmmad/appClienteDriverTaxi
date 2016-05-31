@@ -137,7 +137,7 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                         }
 
                         if(importPagoExtraordinario.trim().length()==0){
-                            importPagoExtraordinario="0";
+                            importPagoExtraordinario=jsonServicios.getJSONObject(x).getString("importeGastosAdicionales");
                         }
                         if(idTipoPagoServicio.trim().length()==0){
                             idTipoPagoServicio=jsonServicios.getJSONObject(x).getString("idTipoPagoServicio");
@@ -296,6 +296,13 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                 e.printStackTrace();
             }
         }
+        if(importPagoExtraordinario.length()==0){
+            try {
+                importPagoExtraordinario=JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("importeGastosAdicionales");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         if(minutosTiempoEspera.length()==0){
             try {
                 minutosTiempoEspera=JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("numeroMinutoTiempoEspera");
@@ -330,5 +337,8 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                 e.printStackTrace();
             }
         }
+
+
+
     }
 }

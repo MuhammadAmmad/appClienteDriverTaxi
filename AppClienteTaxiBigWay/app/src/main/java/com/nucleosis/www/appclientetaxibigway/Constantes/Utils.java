@@ -23,4 +23,14 @@ public class Utils {
     public static final   int MY_PERMISSION_ACCESS_COURSE_LOCATION_2 =2;
     public static final   int MY_PERMISSION_ACCESS_COURSE_LOCATION_3 =3;
     public static final   int MY_PERMISSION_ACCESS_COURSE_LOCATION_4 =4;
+
+
+    public static boolean isNumeric(String cadena){
+        try {
+            Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
 }

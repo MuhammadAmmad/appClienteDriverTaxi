@@ -66,7 +66,6 @@ public class ServiceListarServiciosCreados extends Service {
         fichero=new Fichero(ServiceListarServiciosCreados.this);
         Log.d("servicioCronometro", "CREADO");
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         final ActivityManager activityManager =
@@ -171,6 +170,7 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                         row.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
+                                        row.setImporteGastosAdicionales(dataVector.getProperty("IMP_GASTOS_ADICIONALES").toString());
                                         //ID PAR SABER SI EL REBGISTRO DEL SERVICIO SE HACE POR MOVIL O POR WEB
 
                                         row.setIdTipoRegistro(dataVector.getProperty("ID_REGISTRO_TIPO").toString());
@@ -193,14 +193,38 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setIdConductor(dataVector.getProperty("ID_CONDUCTOR").toString());
                                         row.setIdTipoAuto(dataVector.getProperty("ID_AUTO_TIPO").toString());
                                         //VERIFICAMOS SI EL CLIENTE QUIERE MOSTRAR SU CELULAR
-                                        row.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
+                                        row.setIndMostrarCelularCliente(dataVector.getProperty("IND_MOSTRAR_TELEFONO").toString());
+                                        String indMostrarCelular=dataVector.getProperty("IND_MOSTRAR_TELEFONO").toString();
 
+                                        if(indMostrarCelular!=null){
+                                            Log.d("idMostrarCliente_1",indMostrarCelular);
+                                            if(indMostrarCelular.equals("0")){
+                                                row.setNucCelularCliente("");//NO QUIERE MOSTRAR CELULAR
+                                            }else if(indMostrarCelular.equals("1")) {
+                                                                      //SI QUIERE MOSTRAR CELULAR
+                                                row.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
+                                            }else {
+                                                row.setNucCelularCliente("");//NO QUIERE MOSTRAR CELULAR
+                                            }
+                                        }
                                         row.setDesAutoTipo(dataVector.getProperty("DES_AUTO_TIPO").toString());
                                         row.setNumeroMovilTaxi(dataVector.getProperty("NUM_MOVIL").toString());
                                         row.setDesAutoTipoPidioCliente(dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
                                         row.setIdAutoTipoPidioCliente(dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
                                         ///TIPO DE PAGO DE SERVICIO  CONTADO (1) CREDITO (2)
                                         row.setIdTipoPagoServicio(dataVector.getProperty("ID_TIPO_PAGO_SERVICIO").toString());
+
+                                        if(dataVector.getProperty("DES_LATITUD_SERVICIO")!=null &&
+                                                dataVector.getProperty("DES_LONGITUD_SERVICIO")!=null  ){
+                                            row.setLatitudServicio(dataVector.getProperty("DES_LATITUD_SERVICIO").toString());
+                                            row.setLongitudServicio(dataVector.getProperty("DES_LONGITUD_SERVICIO").toString());
+                                        }else {
+                                            row.setLatitudServicio("");
+                                            row.setLongitudServicio("");
+                                        }
+
+
+
                                         ListServicios.add(row);
 
                                     }
@@ -220,6 +244,7 @@ public class ServiceListarServiciosCreados extends Service {
                                     row2.setImportePeaje(dataVector.getProperty("IMP_PEAJE").toString());
                                     row2.setNumeroMinutoTiempoEspera(dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
 
+                                    row2.setImporteGastosAdicionales(dataVector.getProperty("IMP_GASTOS_ADICIONALES").toString());
                                     //ID PAR SABER SI EL REBGISTRO DEL SERVICIO SE HACE POR MOVIL O POR WEB
 
                                     row2.setIdTipoRegistro(dataVector.getProperty("ID_REGISTRO_TIPO").toString());
@@ -241,7 +266,22 @@ public class ServiceListarServiciosCreados extends Service {
                                     row2.setIdCliente(dataVector.getProperty("ID_CLIENTE").toString());
                                     row2.setIdConductor(dataVector.getProperty("ID_CONDUCTOR").toString());
                                     row2.setIdTipoAuto(dataVector.getProperty("ID_AUTO_TIPO").toString());
-                                    row2.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
+
+                                    //VERIFICAMOS SI EL CLIENTE QUIERE MOSTRAR SU CELULAR
+                                    row2.setIndMostrarCelularCliente(dataVector.getProperty("IND_MOSTRAR_TELEFONO").toString());
+                                    String indMostrarCelular=dataVector.getProperty("IND_MOSTRAR_TELEFONO").toString();
+
+                                    if(indMostrarCelular!=null){
+                                        Log.d("idMostrarCliente_2",indMostrarCelular);
+                                        if(indMostrarCelular.equals("0")){
+                                            row2.setNucCelularCliente("");//NO QUIERE MOSTRAR CELULAR
+                                        }else if(indMostrarCelular.equals("1")) {
+                                            //SI QUIERE MOSTRAR CELULAR
+                                            row2.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
+                                        }else {
+                                            row2.setNucCelularCliente("");//NO QUIERE MOSTRAR CELULAR
+                                        }
+                                    }
                                     row2.setDesAutoTipo(dataVector.getProperty("DES_AUTO_TIPO").toString());
                                     row2.setDesAutoTipoPidioCliente(dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
                                     row2.setIdAutoTipoPidioCliente(dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
@@ -249,6 +289,16 @@ public class ServiceListarServiciosCreados extends Service {
 
                                     ///TIPO DE PAGO DE SERVICIO  CONTADO (1) CREDITO (2)
                                     row2.setIdTipoPagoServicio(dataVector.getProperty("ID_TIPO_PAGO_SERVICIO").toString());
+
+                                    if(dataVector.getProperty("DES_LATITUD_SERVICIO")!=null &&
+                                            dataVector.getProperty("DES_LONGITUD_SERVICIO")!=null ){
+                                        row2.setLatitudServicio(dataVector.getProperty("DES_LATITUD_SERVICIO").toString());
+                                        row2.setLongitudServicio(dataVector.getProperty("DES_LONGITUD_SERVICIO").toString());
+                                    }else {
+                                        row2.setLatitudServicio("");
+                                        row2.setLongitudServicio("");
+                                    }
+
                                     ListServiciosAsignadoConductor.add(row2);
 
                                     String idTipoRegistro=dataVector.getProperty("ID_REGISTRO_TIPO").toString();
@@ -257,7 +307,7 @@ public class ServiceListarServiciosCreados extends Service {
                                         if(idTipoRegistro.equals("2") && idStadoServicio.equals("2")){
                                               sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
                                               String dataServicio[]=sqlGestion.BuscarIdServicio(idServicio);
-                                            Log.d("sizeDta_", "-->"+String.valueOf(dataServicio.length));
+                                              Log.d("sizeDta_", "-->"+String.valueOf(dataServicio.length));
                                             if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
                                                 sendNotification("Te an asignado un servicio!!!!");
                                                 sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
@@ -313,19 +363,17 @@ public class ServiceListarServiciosCreados extends Service {
         timerCola.scheduleAtFixedRate(TimerCronometro, 0,15000);
         return super.onStartCommand(intent, flags, startId);
     }
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         TimerCronometro.cancel();
+        Log.d("servicioCronometro", "DESTRUIDO");
     }
-
     private int diferenciaDias(Date fechaMayor,Date fechaMenor){
         long diferenciaEn_ms = fechaMayor.getTime()- fechaMenor.getTime();
         long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);

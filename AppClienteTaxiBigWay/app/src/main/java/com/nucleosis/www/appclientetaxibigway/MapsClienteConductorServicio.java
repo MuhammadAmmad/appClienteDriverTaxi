@@ -143,10 +143,16 @@ public class MapsClienteConductorServicio
             }
         });
 
+        compR.getBtnFotoVehiculo().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MapsClienteConductorServicio.this,"hosss",Toast.LENGTH_LONG).show();
+            }
+        });
         ///SI ESTAMOS EN ESTE ACTIVIDAD
         //LA ALARMA PARA VERFICAR SI EL TAXI LLEGO ESTA APAGADA..........
-        Intent intent1 =new Intent(MapsClienteConductorServicio.this, AlarmaLLegadaConductor.class);
-        stopService(intent1);
+        /*Intent intent1 =new Intent(MapsClienteConductorServicio.this, AlarmaLLegadaConductor.class);
+        stopService(intent1);*/
 
 
     }
@@ -437,7 +443,7 @@ public class MapsClienteConductorServicio
         final Marker markerInicio = mapa.addMarker(new MarkerOptions()
                 .position(PERTH)
                 .title("Conductor")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_conductor)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_conductor_1)));
 
 
 
@@ -455,10 +461,10 @@ public class MapsClienteConductorServicio
         Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
         stopService(intentCoordendasConductor);
 
-        if(stadoServicio==2){
+  /*      if(stadoServicio==2){
                Intent intent1 =new Intent(MapsClienteConductorServicio.this, AlarmaLLegadaConductor.class);
         startService(intent1);
-        }
+        }*/
 
 
         swConductor=0;
