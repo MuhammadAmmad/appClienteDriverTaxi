@@ -192,7 +192,9 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setIdCliente(dataVector.getProperty("ID_CLIENTE").toString());
                                         row.setIdConductor(dataVector.getProperty("ID_CONDUCTOR").toString());
                                         row.setIdTipoAuto(dataVector.getProperty("ID_AUTO_TIPO").toString());
+                                        //VERIFICAMOS SI EL CLIENTE QUIERE MOSTRAR SU CELULAR
                                         row.setNucCelularCliente(dataVector.getProperty("NUM_CELULAR").toString());
+
                                         row.setDesAutoTipo(dataVector.getProperty("DES_AUTO_TIPO").toString());
                                         row.setNumeroMovilTaxi(dataVector.getProperty("NUM_MOVIL").toString());
                                         row.setDesAutoTipoPidioCliente(dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());

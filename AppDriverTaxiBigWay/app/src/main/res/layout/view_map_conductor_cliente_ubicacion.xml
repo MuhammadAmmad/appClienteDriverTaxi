@@ -45,7 +45,7 @@
                     android:layout_height="35dp"
                     android:layout_marginTop="@dimen/marginLeftDiez"
                     android:layout_marginLeft="@dimen/marginLeftDiez"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:gravity="left">
                     <Button
                         android:layout_width="120dp"
@@ -55,7 +55,13 @@
                         android:textSize="16dp"
                         android:textAllCaps="false"
                         android:id="@+id/btnDetalleServicio"
-                        android:text="DETALLE"/>
+                        android:text="DETALLE*"/>
+
+                    <Button
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/dimenCinco"
+                        android:text="@string/llamarCliente"/>
                 </LinearLayout>
 
                 <LinearLayout

@@ -33,8 +33,6 @@ import org.ksoap2.transport.HttpTransportSE;
  */
 import com.nucleosis.www.appdrivertaxibigway.R;
 import com.nucleosis.www.appdrivertaxibigway.Sqlite.SqlGestion;
-import com.nucleosis.www.appdrivertaxibigway.Sqlite.SqlManager;
-import java.util.ArrayList;
 
 public class LoginDriverWS extends AsyncTask<User,String,String> {
     private Context context;
@@ -112,7 +110,7 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
                 jsonSesion2.put("idSesion","1");
                 fichero.InsertarSesion(jsonSesion2.toString());
                 //CREAMOS LA BASE DE DATOS SQLITE
-                SQLiteDatabase db;
+
                 SqlGestion  sqlGestion=new SqlGestion(context);
 
 

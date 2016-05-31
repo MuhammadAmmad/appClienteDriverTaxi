@@ -411,187 +411,195 @@ public class MainActivity extends AppCompatActivity
                         super.onPostExecute(aBoolean);
                         progressBar.dismiss();
                         if(aBoolean){
-                           final JSONArray jsonServicesDelDia= fichero.ExtraerListaServiciosTomadoCliete();
-                            Log.d("qu_",jsonServicesDelDia.toString());
-                            Log.d("fec_q",fichero.ExtraerFechaHoraActual().toString());
-                            new AsyncTask<String, String, Boolean>() {
+                           final JSONArray jsonServicesDelDia=
+                                 fichero.ExtraerListaServiciosTomadoCliete();
 
-                                @Override
-                                protected Boolean doInBackground(String... params) {
-                                    boolean sw=true;
-                                    if(jsonServicesDelDia!=null){
-                                        for(int i=0; i<jsonServicesDelDia.length();i++){
-                                            try {
-                                                if(jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("1")
-                                                  ||jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("2")
-                                               || jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("3")){
-                                                    sw=false;
-                                                    i=jsonServicesDelDia.length();
+
+
+                                new AsyncTask<String, String, Boolean>() {
+
+                                    @Override
+                                    protected Boolean doInBackground(String... params) {
+                                        boolean sw=true;
+                                        if(jsonServicesDelDia!=null){
+                                 /*
+                                     Log.d("qu_",jsonServicesDelDia.toString());
+                                     Log.d("fec_q",fichero.ExtraerFechaHoraActual().toString());
+                                */
+                                            for(int i=0; i<jsonServicesDelDia.length();i++){
+                                                try {
+                                                    if(jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("1")
+                                                            ||jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("2")
+                                                            || jsonServicesDelDia.getJSONObject(i).getString("statadoServicio").equals("3")){
+                                                        sw=false;
+                                                        i=jsonServicesDelDia.length();
+                                                    }else{
+                                                        sw=true;
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }
+
+                                        return sw;
+                                    }
+
+                                    @Override
+                                    protected void onPostExecute(Boolean aBoolean) {
+                                        super.onPostExecute(aBoolean);
+                                        if(aBoolean){
+                                            if(addresIncio.length()!=0 && addresFin.length()!=0 ){
+                                                if(ZonaIncio.length()!=0 && ZonaFin.length()!=0){
+                                                    Toast.makeText(MainActivity.this,ZonaIncio+"***"+ZonaFin,Toast.LENGTH_LONG).show();
+                                                    fichero.InsertarDireccionIncioFin(addresIncio,addresFin);
+                                                    new wsExtraerPrecioZonaDistrito(
+                                                            MainActivity.this,
+                                                            fichero.ExtraerZonaIdDistrito_Origen(),
+                                                            fichero.ExtraerZonaIdDistrito_Destino()).execute();
+                                                    //AlertPedirServicio();
                                                 }else{
-                                                    sw=true;
-                                                }
+                                                    String mensjeCovertura=getResources().getString(R.string.coverturaZonas);
+                                                    String msnAlerta=getResources().getString(R.string.msnAlert);
 
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    }
+                                                    String direccion1;
+                                                    String telefono1="00-0000";
+                                                    JSONObject jsonConfiguraciones=fichero.ExtraerConfiguraciones();
 
-                                    return sw;
-                                }
-
-                                @Override
-                                protected void onPostExecute(Boolean aBoolean) {
-                                    super.onPostExecute(aBoolean);
-                                    if(aBoolean){
-                                        if(addresIncio.length()!=0 && addresFin.length()!=0 ){
-                                            if(ZonaIncio.length()!=0 && ZonaFin.length()!=0){
-                                                Toast.makeText(MainActivity.this,ZonaIncio+"***"+ZonaFin,Toast.LENGTH_LONG).show();
-                                                fichero.InsertarDireccionIncioFin(addresIncio,addresFin);
-                                                new wsExtraerPrecioZonaDistrito(
-                                                        MainActivity.this,
-                                                        fichero.ExtraerZonaIdDistrito_Origen(),
-                                                        fichero.ExtraerZonaIdDistrito_Destino()).execute();
-                                                //AlertPedirServicio();
-                                            }else{
-                                                String mensjeCovertura=getResources().getString(R.string.coverturaZonas);
-                                                String msnAlerta=getResources().getString(R.string.msnAlert);
-
-                                                String direccion1;
-                                                String telefono1="00-0000";
-                                                JSONObject jsonConfiguraciones=fichero.ExtraerConfiguraciones();
-
-                                                if(jsonConfiguraciones!=null){
-                                                    try {
-                                                        telefono1=jsonConfiguraciones.getString("numTelefonoEmpesa");
-                                                        direccion1=jsonConfiguraciones.getString("direccionEmpresa");
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
+                                                    if(jsonConfiguraciones!=null){
+                                                        try {
+                                                            telefono1=jsonConfiguraciones.getString("numTelefonoEmpesa");
+                                                            direccion1=jsonConfiguraciones.getString("direccionEmpresa");
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
                                                     }
-                                                }
-                                                Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(MainActivity.this,msnServicioTaxi,Toast.LENGTH_LONG).show();
 
 
-                                                AlertDialog.Builder alertBilder = new AlertDialog.Builder(MainActivity.this);
-                                                final View view = getLayoutInflater().inflate(R.layout.view_llamada_central, null);
-                                                final TextView txtTelefono1=(TextView)view.findViewById(R.id.txtTefono1);
-                                                final TextView txtTelefono2=(TextView)view.findViewById(R.id.txtTefono2);
-                                                final TextView txtTelefono3=(TextView)view.findViewById(R.id.txtTefono3);
-                                                final TextView txtTelefono4=(TextView)view.findViewById(R.id.txtTefono4);
-                                                Button btnCancelarTelefonos=(Button)view.findViewById(R.id.btnCerrarTelefonos);
-                                                txtTelefono1.setTypeface(myTypeFace.OpenSansRegular());
-                                                txtTelefono2.setTypeface(myTypeFace.OpenSansRegular());
-                                                txtTelefono3.setTypeface(myTypeFace.OpenSansRegular());
-                                                txtTelefono4.setTypeface(myTypeFace.OpenSansRegular());
-                                                btnCancelarTelefonos.setTypeface(myTypeFace.openRobotoLight());
+                                                    AlertDialog.Builder alertBilder = new AlertDialog.Builder(MainActivity.this);
+                                                    final View view = getLayoutInflater().inflate(R.layout.view_llamada_central, null);
+                                                    final TextView txtTelefono1=(TextView)view.findViewById(R.id.txtTefono1);
+                                                    final TextView txtTelefono2=(TextView)view.findViewById(R.id.txtTefono2);
+                                                    final TextView txtTelefono3=(TextView)view.findViewById(R.id.txtTefono3);
+                                                    final TextView txtTelefono4=(TextView)view.findViewById(R.id.txtTefono4);
+                                                    Button btnCancelarTelefonos=(Button)view.findViewById(R.id.btnCerrarTelefonos);
+                                                    txtTelefono1.setTypeface(myTypeFace.OpenSansRegular());
+                                                    txtTelefono2.setTypeface(myTypeFace.OpenSansRegular());
+                                                    txtTelefono3.setTypeface(myTypeFace.OpenSansRegular());
+                                                    txtTelefono4.setTypeface(myTypeFace.OpenSansRegular());
+                                                    btnCancelarTelefonos.setTypeface(myTypeFace.openRobotoLight());
 
 
 
-                                                alertBilder.setView(view);
-                                                final AlertDialog alertDialog = alertBilder.create();
-                                                JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+                                                    alertBilder.setView(view);
+                                                    final AlertDialog alertDialog = alertBilder.create();
+                                                    JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
                                                     Log.d("configuracionTeel",fichero.ExtraerConfiguraciones().toString());
-                                                if(configuracionesJson!=null){
-                                                    try {
-                                                        txtTelefono1.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa"));
-                                                        txtTelefono2.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa_2"));
-                                                        txtTelefono3.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa_3"));
-                                                        txtTelefono4.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa_4"));
+                                                    if(configuracionesJson!=null){
+                                                        try {
+                                                            txtTelefono1.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa"));
+                                                            txtTelefono2.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa_2"));
+                                                            txtTelefono3.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa_3"));
+                                                            txtTelefono4.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa_4"));
 
 
 
-                                                        //tel:998319046
+                                                            //tel:998319046
 
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
                                                     }
+
+                                                    txtTelefono1.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+                                                            String    telef_1= null;
+                                                            try {
+                                                                telef_1 = configuracionesJson.getString("numTelefonoEmpesa");
+                                                                Intent i = new Intent(Intent.ACTION_DIAL,
+                                                                        Uri.parse("tel:"+telef_1)); //
+                                                                startActivity(i);
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
+                                                            }
+
+                                                        }
+                                                    });
+                                                    txtTelefono2.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+                                                            String    telef_2= null;
+                                                            try {
+                                                                telef_2 = configuracionesJson.getString("numTelefonoEmpesa_2");
+                                                                Intent i = new Intent(Intent.ACTION_DIAL,
+                                                                        Uri.parse("tel:"+telef_2)); //
+                                                                startActivity(i);
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
+                                                            }
+                                                        }
+                                                    });
+
+                                                    txtTelefono3.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+                                                            String    telef_3= null;
+                                                            try {
+                                                                telef_3 = configuracionesJson.getString("numTelefonoEmpesa_3");
+                                                                Intent i = new Intent(Intent.ACTION_DIAL,
+                                                                        Uri.parse("tel:"+telef_3)); //
+                                                                startActivity(i);
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
+                                                            }
+                                                        }
+                                                    });
+                                                    txtTelefono4.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+                                                            String    telef_4= null;
+                                                            try {
+                                                                telef_4 = configuracionesJson.getString("numTelefonoEmpesa_4");
+                                                                Intent i = new Intent(Intent.ACTION_DIAL,
+                                                                        Uri.parse("tel:"+telef_4)); //
+                                                                startActivity(i);
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
+                                                            }
+                                                        }
+                                                    });
+
+                                                    btnCancelarTelefonos.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            alertDialog.dismiss();
+                                                        }
+                                                    });
+
+
+
+                                                    alertDialog.show();
                                                 }
+                                            }else{
+                                                String msnDestinoFinal=getResources().getString(R.string.MensajeDestinoFinal);
+                                                Toast.makeText(MainActivity.this,msnDestinoFinal,Toast.LENGTH_LONG).show();
 
-                                                txtTelefono1.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-                                                        String    telef_1= null;
-                                                        try {
-                                                            telef_1 = configuracionesJson.getString("numTelefonoEmpesa");
-                                                            Intent i = new Intent(Intent.ACTION_DIAL,
-                                                                    Uri.parse("tel:"+telef_1)); //
-                                                            startActivity(i);
-                                                        } catch (JSONException e) {
-                                                            e.printStackTrace();
-                                                        }
-
-                                                    }
-                                                });
-                                                txtTelefono2.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-                                                        String    telef_2= null;
-                                                        try {
-                                                            telef_2 = configuracionesJson.getString("numTelefonoEmpesa_2");
-                                                            Intent i = new Intent(Intent.ACTION_DIAL,
-                                                                    Uri.parse("tel:"+telef_2)); //
-                                                            startActivity(i);
-                                                        } catch (JSONException e) {
-                                                            e.printStackTrace();
-                                                        }
-                                                    }
-                                                });
-
-                                                txtTelefono3.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-                                                        String    telef_3= null;
-                                                        try {
-                                                            telef_3 = configuracionesJson.getString("numTelefonoEmpesa_3");
-                                                            Intent i = new Intent(Intent.ACTION_DIAL,
-                                                                    Uri.parse("tel:"+telef_3)); //
-                                                            startActivity(i);
-                                                        } catch (JSONException e) {
-                                                            e.printStackTrace();
-                                                        }
-                                                    }
-                                                });
-                                                txtTelefono4.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-                                                        String    telef_4= null;
-                                                        try {
-                                                            telef_4 = configuracionesJson.getString("numTelefonoEmpesa_4");
-                                                            Intent i = new Intent(Intent.ACTION_DIAL,
-                                                                    Uri.parse("tel:"+telef_4)); //
-                                                            startActivity(i);
-                                                        } catch (JSONException e) {
-                                                            e.printStackTrace();
-                                                        }
-                                                    }
-                                                });
-
-                                                btnCancelarTelefonos.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        alertDialog.dismiss();
-                                                    }
-                                                });
-
-
-
-                                                alertDialog.show();
                                             }
-                                        }else{
-                                            String msnDestinoFinal=getResources().getString(R.string.MensajeDestinoFinal);
-                                            Toast.makeText(MainActivity.this,msnDestinoFinal,Toast.LENGTH_LONG).show();
-
+                                        }else {
+                                            Toast.makeText(MainActivity.this,"Ya Tine servicios pendientes, Termine o Cancele esos servicios!!",
+                                                    Toast.LENGTH_SHORT).show();
                                         }
-                                    }else {
-                                        Toast.makeText(MainActivity.this,"Ya Tine servicios pendientes, Termine o Cancele esos servicios!!",
-                                                Toast.LENGTH_SHORT).show();
                                     }
-                                }
-                            }.execute();
+                                }.execute();
+
+
 
 
                         }else {

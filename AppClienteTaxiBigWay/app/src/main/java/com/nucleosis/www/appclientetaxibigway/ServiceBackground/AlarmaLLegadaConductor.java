@@ -1,33 +1,23 @@
 package com.nucleosis.www.appclientetaxibigway.ServiceBackground;
 
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
-import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.nucleosis.www.appclientetaxibigway.Constantes.ConstantsWS;
 import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
-import com.nucleosis.www.appclientetaxibigway.FinalizarAlarma;
-import com.nucleosis.www.appclientetaxibigway.FirstScreemCarga;
-import com.nucleosis.www.appclientetaxibigway.ListaServicios;
-import com.nucleosis.www.appclientetaxibigway.MainActivity;
-import com.nucleosis.www.appclientetaxibigway.R;
 import com.nucleosis.www.appclientetaxibigway.SharedPreferences.PreferencesCliente;
-import com.nucleosis.www.appclientetaxibigway.beans.beansDetalleService;
+import com.nucleosis.www.appclientetaxibigway.Sqlite.SqlGestion;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,6 +47,7 @@ public class AlarmaLLegadaConductor extends Service {
     private int TIME_OUT=10000;
     private boolean tiempoEsperaConexion=false;
     private TextToSpeech t1;
+    private SqlGestion sqlGestion;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -144,7 +135,7 @@ public class AlarmaLLegadaConductor extends Service {
                                 SoapObject dataVector=(SoapObject)responseVector.get(i);
                                 if(String.valueOf(MAYOR_).equals(dataVector.getPropertyAsString("ID_SERVICIO"))){
                                     jsonStadoUltimoServicio.put("stadoServicio",dataVector.getPropertyAsString("ID_ESTADO_SERVICIO"));
-
+                                    jsonStadoUltimoServicio.put("idServicio",dataVector.getPropertyAsString("ID_SERVICIO"));
                                 }
                             }
                             Log.d("mayor_",String.valueOf(MAYOR_));
@@ -165,7 +156,17 @@ public class AlarmaLLegadaConductor extends Service {
                         if(jsonUltimoServ!=null){
                             try {
                                 if(jsonUltimoServ.getString("stadoServicio").equals("3")){
-                                    sendNotification("Su taxi a llegado");
+
+                                    sqlGestion=new SqlGestion(AlarmaLLegadaConductor.this);
+                                    String[] dataServicio=sqlGestion.BuscarIdServicio(jsonUltimoServ.getString("idServicio"));
+                                    if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
+                                        sqlGestion=new SqlGestion(AlarmaLLegadaConductor.this);
+                                        sqlGestion.InsertarIdServicioStado(jsonUltimoServ.getString("idServicio"),"1");
+                                        sendNotification("Su taxi a llegado");
+                                    }else {
+                                        Log.d("dataServisss",dataServicio[0]+"-->"+dataServicio[1]);
+                                    }
+
                                 }else{
                                     Log.d("check_stado",jsonUltimoServ.getString("stadoServicio"));
                                 }
@@ -212,11 +213,11 @@ public class AlarmaLLegadaConductor extends Service {
                                         long [] patron1 = {0, 500, 300, 1000, 500};
                                         vv.vibrate(patron1,3);*/
 
-        Intent intent = new Intent(this, FirstScreemCarga.class);
+    /*    Intent intent = new Intent(this, FirstScreemCarga.class);
         intent.putExtra("idAlarmaNotificacion","1");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 *//* Request code *//*, intent,
+                PendingIntent.FLAG_ONE_SHOT);*/
         long [] patron = {5000, 2000, 3000, 1000, 5000};
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
@@ -226,14 +227,16 @@ public class AlarmaLLegadaConductor extends Service {
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setVibrate(patron)
-                .setLights(Color.RED,1,0)
+                .setLights(Color.RED,1,0);
                 //.setOngoing(true)
-                .setContentIntent(pendingIntent);
+              //  .setContentIntent(pendingIntent);
 //builder.setLights(Color.RED, 1, 0);
         //builder.setOngoing(true);
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        //CANCELAMOS EL SERVICIO
+        TimerCronometro.cancel();
     }
 }

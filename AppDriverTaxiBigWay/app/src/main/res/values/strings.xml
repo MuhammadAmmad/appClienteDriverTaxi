@@ -31,4 +31,5 @@
                     Tiene que activarlo !!!</string>
     <string name="pagoExtraOrdinario">Pago Extra</string>
     <string name="Monto">Monto</string>
+    <string name="llamarCliente">Llamar</string>
 </resources>

@@ -14,6 +14,7 @@ import com.nucleosis.www.appclientetaxibigway.FrmSigUp;
 import com.nucleosis.www.appclientetaxibigway.LoginActivity;
 import com.nucleosis.www.appclientetaxibigway.MainActivity;
 import com.nucleosis.www.appclientetaxibigway.R;
+import com.nucleosis.www.appclientetaxibigway.Sqlite.SqlGestion;
 
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
@@ -104,14 +105,20 @@ public class wsLoginCliente extends AsyncTask<String,String,String> {
         }
         progressDialog.dismiss();
         //  Log.d("caso_","--->"+String.valueOf(CasoActivity));
+        SqlGestion sqlGestion;
         if(sw==1){
             switch (CasoActivity){
+
                 case 101:
+                    //CREAMOS LA BASE DE DATOS SQLITE
+                    sqlGestion=new SqlGestion(context);
                     new wsExtraerDataCliente(Email,context,CasoActivity).execute();
                     new wsExtraerDistritos(context).execute();
                     new wsExtraerConfiguracionAdicionales(context).execute();
                     break;
                 case 102:
+                    //CREAMOS LA BASE DE DATOS SQLITE
+                     sqlGestion=new SqlGestion(context);
                     new wsExtraerDataCliente(Email,context,CasoActivity).execute();
                     new wsExtraerDistritos(context).execute();
                     new wsExtraerConfiguracionAdicionales(context).execute();

@@ -256,7 +256,7 @@ public class Fichero {
 
     public void InsertarListaServiciosTomados(String data){
         try  { OutputStreamWriter json =new OutputStreamWriter(
-                context.openFileOutput("jsonListaServiciosTomadosCliete.txt", Context.MODE_PRIVATE));
+                context.openFileOutput("jsonListaServiciosTomadosCliente.txt", Context.MODE_PRIVATE));
             json.write(data);
             json.close();
         }
@@ -271,7 +271,7 @@ public class Fichero {
             BufferedReader getDataServicios =
                     new BufferedReader(
                             new InputStreamReader(
-                                    context.openFileInput("jsonListaServiciosTomadosCliete.txt")));
+                                    context.openFileInput("jsonListaServiciosTomadosCliente.txt")));
             String    dataServicios = getDataServicios.readLine();
             jsonArray=new JSONArray(dataServicios);
             getDataServicios.close();

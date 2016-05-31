@@ -270,6 +270,7 @@ public class MapsClienteConductorServicio
                                         Log.d("idActualConductor",fichero.ExtraerIdConductorServicio().toString());
                                         //ESCUCHAMOS LA POSICION DEL CONDUCTGOR
                                         if(swConductor==0){
+                                            Log.d("xxxx_position","iniciado");
                                             swConductor=1;
                                             Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,
                                                     PosicionConductor.class);
