@@ -754,6 +754,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                     "",//idDistritoFin
                                     "",//idZonaFin
                                     "",//DireccionFin
+                                    "",//descricion pago extra
                                     "",  //IMPORTE EXTRAORDINARIO
                                     ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
                                     ).execute();
@@ -829,6 +830,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                     "",//idDistritoFin
                                     "",//idZonaFin
                                     "",//DireccionFin
+                                    "",
                                     "",  //IMPORTE EXTRAORDINARIO
                                     ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
                             ).execute();
@@ -914,6 +916,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                         "",//idDistritoFin
                                         "",//idZonaFin
                                         "",//DireccionFin
+                                        "",//descripcion pago extra
                                         "",  //IMPORTE EXTRAORDINARIO
                                         ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
                                 ).execute();
@@ -941,6 +944,8 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         final EditText editPagosExras=(EditText)view.findViewById(R.id.editPagoExtraOrdinario);
         final Button btnEnviarPagosExras=(Button)view.findViewById(R.id.btnEnviarPagosExtraOrdinarios);
 
+        final EditText editDescriopcionPagoExtra=(EditText)view.findViewById(R.id.editDescripcionPagoExtra);
+
         btnGatosExtraordinario1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -957,6 +962,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 btnGatosExtraordinario2.setVisibility(View.GONE);
                 linearPagosExtras.setVisibility(View.GONE);
                 editPagosExras.setText("");
+                editDescriopcionPagoExtra.setText("");
             }
         });
 
@@ -965,6 +971,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             public void onClick(View v) {
                 if(editPagosExras.getText().toString().trim().length()!=0){
                     String importePagoExtra=editPagosExras.getText().toString().trim();
+                    String descripcion=editDescriopcionPagoExtra.getText().toString().trim();
                     if(!importePagoExtra.equals("0")){
                         new wsActualizarServicio(
                                 activity,
@@ -981,6 +988,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                 "",//idDistritoFin
                                 "",//idZonaFin
                                 "",//DireccionFin
+                                descripcion,
                                 importePagoExtra,  //IMPORTE EXTRAORDINARIO
                                 ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
                         ).execute();
@@ -1195,6 +1203,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                     "",//idDistritoFin
                                     "",//idZonaFin
                                     "",//DireccionFin
+                                    "",//descripcion de pago exraOordinario
                                     "",  //IMPORTE EXTRAORDINARIO
                                     tipoPagoServicioFinal[0]  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
                             ).execute();
@@ -1223,8 +1232,6 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-
-
             return true;
         }
         return super.onKeyDown(keyCode, event);

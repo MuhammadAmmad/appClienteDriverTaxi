@@ -258,6 +258,14 @@
             android:id="@+id/linearPagosExtras">
             <EditText
                 android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/dimenCinco"
+                android:hint="@string/Descripcion"
+                android:textColorHint="@color/hintColor"
+                android:id="@+id/editDescripcionPagoExtra"
+                android:lines="3"/>
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/editPagoExtraOrdinario"
                 android:layout_marginTop="@dimen/dimenCinco"

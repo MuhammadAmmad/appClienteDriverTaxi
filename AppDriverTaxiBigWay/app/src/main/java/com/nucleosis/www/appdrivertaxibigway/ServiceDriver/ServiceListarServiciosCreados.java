@@ -20,7 +20,11 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
+import com.google.maps.android.PolyUtil;
+import com.google.maps.android.SphericalUtil;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansListaServiciosCreadosPorFecha;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
@@ -149,7 +153,62 @@ public class ServiceListarServiciosCreados extends Service {
                                 fechaServer=formatIngreso.parse(fecha1);
                                 fechaServicio=formatIngreso.parse(fecha2);
 
-                                if(stadoServicio.equals("1")){
+                                boolean swRadioServicio=true;
+
+                                if(dataVector.getProperty("DES_LATITUD_SERVICIO")!=null &&
+                                        dataVector.getProperty("DES_LONGITUD_SERVICIO")!=null  ){
+                                    JSONObject jsonConfiguraciones=fichero.ExtraerConfiguraciones();
+
+                                    String latitudServicio=dataVector.getPropertyAsString("DES_LATITUD_SERVICIO");
+                                    String longitudservicio=dataVector.getPropertyAsString("DES_LONGITUD_SERVICIO");
+
+                                    if(jsonConfiguraciones!=null){
+                                        //radioServicio
+                                        if(jsonConfiguraciones.has("radioServicio")){
+                                            String radioServicio=jsonConfiguraciones.getString("radioServicio");
+                                            if (radioServicio.length()!=0){
+
+                                                //computeDistanceBetween()
+                                                JSONObject jsonCoordenadaDriver=fichero.ExtraerCoordendaConductor();
+
+                                                if(jsonCoordenadaDriver!=null){
+                                                    Log.d("coorde_X",jsonCoordenadaDriver.toString());
+                                                    Log.d("radioVector",radioServicio);
+                                                    String latitudConductor=jsonCoordenadaDriver.getString("latitud");
+                                                    String longitudConductor=jsonCoordenadaDriver.getString("longitud");
+
+
+                                                    if(latitudServicio.length()!=0 && longitudservicio.length()!=0){
+                                                        LatLng latLngServicio=new LatLng(Double.parseDouble(latitudServicio),Double.parseDouble(longitudservicio));
+                                                        LatLng latLngConductor=new LatLng(Double.parseDouble(latitudConductor),Double.parseDouble(longitudConductor));
+
+                                                        double distancia= SphericalUtil.computeDistanceBetween(latLngServicio,latLngConductor);
+
+                                                        Log.d("distancia_","radio"+"-->"+radioServicio+"--->"+"extrack"+"-->"+String.valueOf(distancia));
+
+                                                        if(Double.parseDouble(radioServicio)>=distancia){
+                                                            Log.d("EstaEnRango","Si");
+                                                            swRadioServicio=true;
+                                                        }else{
+                                                            Log.d("EstaEnRango","No");
+                                                            swRadioServicio=false;
+                                                        }
+                                                    }
+
+
+
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }else {
+                                    Log.d("coordenada_Z","null");
+                                    swRadioServicio=true;
+                                }
+
+
+                                if(stadoServicio.equals("1") && swRadioServicio==true){
 
                                     int diferenciaDias=diferenciaDias(fechaServicio,fechaServer);
                                     int diferenciaHoras=diferenciaHoras(horaServer,horaServicio);

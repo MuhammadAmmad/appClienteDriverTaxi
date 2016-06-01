@@ -96,6 +96,7 @@ public class UpdateLocationDriver extends AsyncTask<String,String,String[]> {
             if(data[0].equals("1")){
                 jsonFecha=preferencesDriver.ExtraerHoraSistema();
                 JSONObject jsonCoordenada=null;
+
                 try {
                     Log.d("mensajeLocation",data[1].toString()+jsonFecha.getString("fechaServidor").toString()+" "+
                                             jsonFecha.getString("horaServidor"));

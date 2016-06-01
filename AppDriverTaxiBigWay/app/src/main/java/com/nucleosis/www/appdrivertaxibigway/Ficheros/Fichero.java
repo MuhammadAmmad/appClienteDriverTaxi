@@ -404,4 +404,35 @@ public class Fichero {
         }
         return jsonAddresLatLon;
     }
+
+    public  void InsertarCoordendaConductor(String coordenadas){
+        try  { OutputStreamWriter json =new OutputStreamWriter(
+                context.openFileOutput("latlonDriver.txt", Context.MODE_PRIVATE));
+            json.write(coordenadas);
+            json.close();
+        }
+        catch (Exception ex)
+        {	Log.d("error", ex.getMessage());           }
+    }
+
+
+    public JSONObject ExtraerCoordendaConductor(){
+        JSONObject jsonObject=null;
+        try
+        {
+            BufferedReader getDataServicios =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    context.openFileInput("latlonDriver.txt")));
+            String    coordenadas = getDataServicios.readLine();
+            jsonObject=new JSONObject(coordenadas);
+            getDataServicios.close();
+        }
+        catch (Exception ex)
+        {
+            Log.d("look_","No se puede leer fichero");   }
+        return jsonObject;
+    }
+
+
 }

@@ -54,6 +54,7 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
     private String importAutoVip;
     private String importPagoExtraordinario;
     private String idTipoPagoServicio;//CONTADO O CREDITO
+    private String descripcionPagoExtra;
     public wsActualizarServicio(Activity activity,
                                 String idServicio,
                                 String indAire,
@@ -68,6 +69,7 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                                 String idDistritoFin,
                                 String idZonaFin,
                                 String direccionFinal,
+                                String descripcionPagoExtra,
                                 String importPagoExtraordinario,
                                 String idTipoPagoServicio
 
@@ -88,6 +90,7 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
         this.impServicio=impServicio;
         this.importPagoExtraordinario=importPagoExtraordinario;
         this.idTipoPagoServicio=idTipoPagoServicio;
+        this.descripcionPagoExtra=descripcionPagoExtra;
         context=(Context)activity;
         fichero=new Fichero(context);
         preferencesDriver=new PreferencesDriver(context);
@@ -142,6 +145,10 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                         if(idTipoPagoServicio.trim().length()==0){
                             idTipoPagoServicio=jsonServicios.getJSONObject(x).getString("idTipoPagoServicio");
                         }
+
+                        if(descripcionPagoExtra.trim().length()==0){
+                            descripcionPagoExtra=jsonServicios.getJSONObject(x).getString("DescripcionServicion");
+                        }
                         //1 VIP
                         //2 ECONOMICO
                         if(jsonServicios.getJSONObject(x).getString("idAutoTipoPidioCliente").equals("1")){
@@ -177,8 +184,8 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
                     request.addProperty("fecServicio", JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("FechaFormat"));
                     request.addProperty("desHora", JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("Hora"));
                     request.addProperty("impServicio", impServicio);
-                    request.addProperty("desServicio", JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("DescripcionServicion"));
-
+                    //request.addProperty("desServicio", JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("DescripcionServicion"));
+                    request.addProperty("desServicio", descripcionPagoExtra);
                     request.addProperty("indAireAcondicionado", Integer.parseInt(indAire));
                     request.addProperty("impAireAcondicionado",impAireAcondic );
                     request.addProperty("impPeaje",impPeaje);
@@ -260,6 +267,15 @@ public class wsActualizarServicio extends AsyncTask<String,String,String[]> {
 
 
     private void InsertaData(int i){
+
+
+        if(descripcionPagoExtra.length()==0){
+            try {
+                descripcionPagoExtra=JSON_SERVICIOS_TOMADOS_CONDUCTOR.getJSONObject(i).getString("DescripcionServicion");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
         if(impServicio.length()==0){
             try {

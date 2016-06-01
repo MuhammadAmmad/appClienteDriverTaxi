@@ -20,7 +20,11 @@ import android.widget.Toast;
 
 import com.nucleosis.www.appdrivertaxibigway.Beans.User;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
+import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.ws.UpdateLocationDriver;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,11 +42,12 @@ public class locationDriver extends Service
     private int sw = 0;
     private Activity activity;
     private Context context;
+    private Fichero fichero;
     @Override
     public void onCreate() {
         super.onCreate();
         context=(Context)this;
-
+        fichero=new Fichero(context);
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -74,6 +79,19 @@ public class locationDriver extends Service
             public void run() {
                 x++;
                 Log.d("incio_timer", "iniciando........" + String.valueOf(x));
+                JSONObject jsonCoordenadas=new JSONObject();
+                try {
+                    jsonCoordenadas.put("latitud",LatLong[0]);
+                    jsonCoordenadas.put("longitud",LatLong[1]);
+                    fichero.InsertarCoordendaConductor(jsonCoordenadas.toString());
+                    if(fichero.ExtraerCoordendaConductor()!=null){
+                        Log.d("coordernadas_",fichero.ExtraerCoordendaConductor().toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
                 new UpdateLocationDriver(locationDriver.this,LatLong[0],
                         LatLong[1])
                         .execute();

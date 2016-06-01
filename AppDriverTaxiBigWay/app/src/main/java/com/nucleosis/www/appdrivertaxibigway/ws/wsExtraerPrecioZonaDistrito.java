@@ -228,6 +228,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
                                 jsonDestino.getString("idDistrito"),//idDistritoFin
                                 jsonDestino.getString("idZona"),//idZonaFin
                                 jsonFinAddres.getString("addresDestino"),//DireccionFin
+                                "",//Descripcion pago extraordinario
                                 "",//IMPORTE GASTO EXTRAORDINARIO
                                 ""//TIPO DE PAGO DE SERVCIO 1 CONTADO 2 CREDITO
                         ).execute();
