@@ -410,9 +410,10 @@ public class Fichero {
                 context.openFileOutput("latlonDriver.txt", Context.MODE_PRIVATE));
             json.write(coordenadas);
             json.close();
+            Log.d("fichero_","creado !!!");
         }
         catch (Exception ex)
-        {	Log.d("error", ex.getMessage());           }
+        {	Log.d("error_x", ex.getMessage());           }
     }
 
 
@@ -427,6 +428,7 @@ public class Fichero {
             String    coordenadas = getDataServicios.readLine();
             jsonObject=new JSONObject(coordenadas);
             getDataServicios.close();
+            Log.d("fichero","leido_xxx");
         }
         catch (Exception ex)
         {

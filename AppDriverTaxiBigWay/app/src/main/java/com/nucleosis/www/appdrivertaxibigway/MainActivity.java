@@ -128,10 +128,12 @@ public class MainActivity extends AppCompatActivity
         mapFragment.getMapAsync(this);
         //OBTIENE INFORMACION DE COSTOS GENERALES   TIEMPO ESPERA/PEAJE/VIP/ECONOMICO/AIREACONDICIONADO
         //RUTA DE LA URL FOTO CONDUCTOR
-        JSONObject jsonConfiguracion = fichero.ExtraerConfiguraciones();
+        new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
+
+       /* JSONObject jsonConfiguracion = fichero.ExtraerConfiguraciones();
         if (jsonConfiguracion == null) {
             new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
-        }
+        }*/
 
         ListaServiciosCreados = new ArrayList<beansHistorialServiciosCreados>();
 
@@ -334,8 +336,6 @@ public class MainActivity extends AppCompatActivity
                             e.printStackTrace();
                         }
                     }
-
-
                     break;
                 case Utils.ACTION_MEMORY_EXIT_2:
                     break;

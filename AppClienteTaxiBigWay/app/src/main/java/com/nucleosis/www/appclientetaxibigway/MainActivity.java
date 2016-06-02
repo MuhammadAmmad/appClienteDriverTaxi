@@ -171,11 +171,6 @@ public class MainActivity extends AppCompatActivity
             new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
         }
         new wsExtraerHoraServer(MainActivity.this).execute();
-
-
-
-
-
     }
 
     @Override
@@ -201,7 +196,6 @@ public class MainActivity extends AppCompatActivity
                 TextView txtEmailCliente = (TextView) findViewById(R.id.txtEmail);
                 txtNameCliente.setTypeface(myTypeFace.openRobotoLight());
                 txtEmailCliente.setTypeface(myTypeFace.openRobotoLight());
-
                 String[] dataCliente = preferencesCliente.OpenDataCliente();
                 txtNameCliente.setText(dataCliente[1]);
                 txtEmailCliente.setText(dataCliente[5]);

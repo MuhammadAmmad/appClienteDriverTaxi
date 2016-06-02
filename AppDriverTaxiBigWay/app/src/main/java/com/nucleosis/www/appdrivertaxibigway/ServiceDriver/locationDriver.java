@@ -91,7 +91,6 @@ public class locationDriver extends Service
                     e.printStackTrace();
                 }
 
-
                 new UpdateLocationDriver(locationDriver.this,LatLong[0],
                         LatLong[1])
                         .execute();
@@ -137,6 +136,7 @@ public class locationDriver extends Service
     }
 
     protected void updateLocation(Location location){
+     //   Log.d("latLon_x",String.valueOf(location.getLatitude())+"-->"+String.valueOf(location.getLongitude()));
         if(location!=null){
             LatLong[0]=String.valueOf(location.getLatitude());
             LatLong[1]=String.valueOf(location.getLongitude());

@@ -45,7 +45,7 @@ public class KmlCreatorPolygono {
         List<beansListaPolygono> LisKML=null;
         try {
             KmlLayer kmlLayer = new KmlLayer(mMap, R.raw.zonas_map_bigway, context);
-         kmlLayer.addLayerToMap();
+       //  kmlLayer.addLayerToMap();
             LisKML= ParsearKml(kmlLayer);
         } catch (XmlPullParserException e) {
             e.printStackTrace();

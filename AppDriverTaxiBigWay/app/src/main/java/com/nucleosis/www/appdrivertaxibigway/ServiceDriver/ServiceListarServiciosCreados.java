@@ -173,18 +173,17 @@ public class ServiceListarServiciosCreados extends Service {
 
                                                 if(jsonCoordenadaDriver!=null){
                                                     Log.d("coorde_X",jsonCoordenadaDriver.toString());
+                                                    Log.d("coordena_servicio",latitudServicio+"-->"+longitudservicio);
                                                     Log.d("radioVector",radioServicio);
                                                     String latitudConductor=jsonCoordenadaDriver.getString("latitud");
                                                     String longitudConductor=jsonCoordenadaDriver.getString("longitud");
-
-
                                                     if(latitudServicio.length()!=0 && longitudservicio.length()!=0){
                                                         LatLng latLngServicio=new LatLng(Double.parseDouble(latitudServicio),Double.parseDouble(longitudservicio));
                                                         LatLng latLngConductor=new LatLng(Double.parseDouble(latitudConductor),Double.parseDouble(longitudConductor));
 
                                                         double distancia= SphericalUtil.computeDistanceBetween(latLngServicio,latLngConductor);
-
-                                                        Log.d("distancia_","radio"+"-->"+radioServicio+"--->"+"extrack"+"-->"+String.valueOf(distancia));
+                                                        String idServis=dataVector.getPropertyAsString("ID_SERVICIO");
+                                                        Log.d("distancia_","idServicio"+"="+idServis+", "+"radio"+"-->"+radioServicio+"--->"+"extrack"+"-->"+String.valueOf(distancia));
 
                                                         if(Double.parseDouble(radioServicio)>=distancia){
                                                             Log.d("EstaEnRango","Si");
@@ -194,9 +193,6 @@ public class ServiceListarServiciosCreados extends Service {
                                                             swRadioServicio=false;
                                                         }
                                                     }
-
-
-
                                                 }
 
                                             }
@@ -206,8 +202,6 @@ public class ServiceListarServiciosCreados extends Service {
                                     Log.d("coordenada_Z","null");
                                     swRadioServicio=true;
                                 }
-
-
                                 if(stadoServicio.equals("1") && swRadioServicio==true){
 
                                     int diferenciaDias=diferenciaDias(fechaServicio,fechaServer);

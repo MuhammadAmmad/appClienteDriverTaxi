@@ -65,5 +65,6 @@
     <color name="hinWhite">#c4c7c5</color>
 
     <color name="viewColor">#acadac</color>
+    <color name="radioButonsTransparente">#00FFFFFF</color>
 
 </resources>

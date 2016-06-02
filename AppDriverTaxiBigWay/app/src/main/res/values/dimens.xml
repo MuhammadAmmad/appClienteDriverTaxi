@@ -19,4 +19,5 @@
     <dimen name="badge_text_size">10sp</dimen>
     <dimen name="padinLeft">5dp</dimen>
     <dimen name="dimenCinco">5dp</dimen>
+    <dimen name="dimenVeinte">20dp</dimen>
 </resources>

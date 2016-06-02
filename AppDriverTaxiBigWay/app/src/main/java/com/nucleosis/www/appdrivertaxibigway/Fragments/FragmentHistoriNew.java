@@ -46,6 +46,7 @@ import com.nucleosis.www.appdrivertaxibigway.R;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadoServicio;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerConfiguracionAdicionales;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListaServiciosTomadosConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListarServiciosTomadoConductorDiaActual;
 
@@ -85,6 +86,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
         fichero=new Fichero(getActivity());
+        new wsExtraerConfiguracionAdicionales(getActivity()).execute();
 
     }
     public FragmentHistoriNew() {
