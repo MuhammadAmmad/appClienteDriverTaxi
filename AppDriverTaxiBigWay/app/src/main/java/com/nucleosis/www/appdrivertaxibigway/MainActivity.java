@@ -71,6 +71,7 @@ import com.nucleosis.www.appdrivertaxibigway.ws.wsActivarTurno;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsDesactivarTurno;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerConfiguracionAdicionales;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerHoraServer;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsListVehiculos;
 import com.squareup.picasso.Picasso;
 
@@ -129,28 +130,12 @@ public class MainActivity extends AppCompatActivity
         //OBTIENE INFORMACION DE COSTOS GENERALES   TIEMPO ESPERA/PEAJE/VIP/ECONOMICO/AIREACONDICIONADO
         //RUTA DE LA URL FOTO CONDUCTOR
         new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
-
-       /* JSONObject jsonConfiguracion = fichero.ExtraerConfiguraciones();
-        if (jsonConfiguracion == null) {
-            new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
-        }*/
-
+        new wsExtraerHoraServer(MainActivity.this).execute();
         ListaServiciosCreados = new ArrayList<beansHistorialServiciosCreados>();
-
-        //LLENAR LISTA DE VEHICULOS
-        //  new wsListVehiculosJson(MainActivity.this).execute();
 
         levantarServicioBackground();
         CreaBroadcasReceiver();
-        levantarServicioBackground_ListaServiciosCreados();
-
     }
-
-    private void levantarServicioBackground_ListaServiciosCreados() {
-        Intent intent = new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
-        startService(intent);
-    }
-
     private void CreaBroadcasReceiver() {
         IntentFilter filter = new IntentFilter(Utils.ACTION_RUN_SERVICE);
         // Crear un nuevo ResponseReceiver
@@ -396,7 +381,6 @@ public class MainActivity extends AppCompatActivity
                         compR.getBtnIrAServicios().setVisibility(View.GONE);
                         swTurno = 2;
                     } else if (data.equals("1")) {
-
                         Log.d("EstadoTurno", "-->activo");
 
                         try {
@@ -406,15 +390,18 @@ public class MainActivity extends AppCompatActivity
                                 int tiempoUltimaCoordenada = validarUltimaCoordenadaEnviada(
                                         jsonSever.getString("horaServidor").toString(),
                                         jsonCoordendas.getString("HoraCoordenda").toString());
-                                Log.d("tiempoUltimaCoordenad", String.valueOf(tiempoUltimaCoordenada));
+                                Log.d("tiempoUltimaCoordenad", String.valueOf(tiempoUltimaCoordenada)+"***"+jsonSever.getString("horaServidor").toString()+"***"
+                                        +jsonCoordendas.getString("HoraCoordenda").toString());
+
                                 if (tiempoUltimaCoordenada >= 2) {
-                                    Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
-                                    startService(intent1);
+                                    Log.d("xx_Location",String.valueOf(tiempoUltimaCoordenada));
+                                   Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
+                                   startService(intent1);
                                 }
                             } else {
                                 Log.d("stadoCordendasEnvio", "nulll");
-                                Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
-                                startService(intent1);
+                               // Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
+                              //  startService(intent1);
 
                             }
 
@@ -740,8 +727,8 @@ public class MainActivity extends AppCompatActivity
         Intent intent=new Intent(MainActivity.this,ServiceTurno.class);
         stopService(intent);
 
-        Intent intent1=new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
-        stopService(intent1);
+       /* Intent intent1=new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
+        stopService(intent1);*/
       //  swTurno=0;
     }
 

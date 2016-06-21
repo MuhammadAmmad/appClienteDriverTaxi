@@ -1,13 +1,16 @@
 package com.nucleosis.www.appdrivertaxibigway.ServiceDriver;
 
 import android.app.ActivityManager;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -54,7 +57,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
-
+import com.nucleosis.www.appdrivertaxibigway.R;
 /**
  * Created by karlos on 04/05/2016.
  */
@@ -202,6 +205,7 @@ public class ServiceListarServiciosCreados extends Service {
                                     Log.d("coordenada_Z","null");
                                     swRadioServicio=true;
                                 }
+
                                 if(stadoServicio.equals("1") && swRadioServicio==true){
 
                                     int diferenciaDias=diferenciaDias(fechaServicio,fechaServer);
@@ -275,12 +279,23 @@ public class ServiceListarServiciosCreados extends Service {
                                             row.setLatitudServicio("");
                                             row.setLongitudServicio("");
                                         }
-
-
-
                                         ListServicios.add(row);
 
                                     }
+                                   String idServicio=dataVector.getPropertyAsString("ID_SERVICIO").toString();
+                                        sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
+                                        String dataServicio[]=sqlGestion.BuscarIdServicio(idServicio);
+                                        Log.d("sizeDta_", "-->"+String.valueOf(dataServicio.length));
+                                        if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
+                                            sendNotification("Hay servicios listos!!!!");
+                                            sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
+                                            sqlGestion.InsertarIdServicioStado(idServicio,"1");
+                                        }else {
+                                            Log.d("dataServisss",dataServicio[0]+"-->"+dataServicio[1]);
+                                        }
+                                           /* sqlGestion.InsertarIdServicioStado(idServicio,"1");
+                                            sendNotification("Te an asignado un servicio!!!!");*/
+
 
 
                                 }else if(idConductor.equals(preferencesDriver.OpenIdDriver())){
@@ -357,6 +372,7 @@ public class ServiceListarServiciosCreados extends Service {
                                     String idTipoRegistro=dataVector.getProperty("ID_REGISTRO_TIPO").toString();
                                     String idStadoServicio=dataVector.getProperty("ID_ESTADO_SERVICIO").toString();
                                     String idServicio=  dataVector.getProperty("ID_SERVICIO").toString();
+
                                         if(idTipoRegistro.equals("2") && idStadoServicio.equals("2")){
                                               sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
                                               String dataServicio[]=sqlGestion.BuscarIdServicio(idServicio);
@@ -456,29 +472,35 @@ public class ServiceListarServiciosCreados extends Service {
         }
     }
     private void sendNotification(String message) {
-       /* Intent intent = new Intent(this, MainActivity.class);
+        /*Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("idAlarmaNotificacion","1");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 *//* Request code *//*, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0  *//*Request code*//* , intent,
                 PendingIntent.FLAG_ONE_SHOT);*/
         long [] patron = {5000, 2000, 3000, 1000, 5000};
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+       // Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+        Uri customSound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE+ "://" + this.getPackageName() + "/raw/tonno");
+      /*  Notification notification = builder.build();
+        notification.sound = Uri.parse("android.resource://"
+                + context.getPackageName() + "/" + R.raw.siren);*/
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(android.R.drawable.ic_btn_speak_now)
                 .setContentTitle("Alerta !!!")
                 .setContentText(message)
                 .setAutoCancel(true)
-                .setSound(defaultSoundUri)
+                .setSound(customSound)
                 .setVibrate(patron)
                 .setLights(Color.RED,1,0);
                 //.setOngoing(true)
                // .setContentIntent(pendingIntent);
 //builder.setLights(Color.RED, 1, 0);
         //builder.setOngoing(true);
+        Notification mNotification = notificationBuilder.build();
+
+        mNotification.flags |= Notification.FLAG_INSISTENT;
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(1 /* ID of notification */, mNotification);
       //  notificationManager.cancelAll();
     }
 }

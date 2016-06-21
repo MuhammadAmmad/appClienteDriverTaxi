@@ -48,7 +48,8 @@
             android:layout_marginLeft="5dp"
             android:text="Fecha"
             android:paddingLeft="10dp"
-            android:textColor="@color/grease"            android:button="@drawable/selector_radio_button"
+            android:textColor="@color/grease"
+            android:button="@drawable/selector_radio_button"
             android:id="@+id/chxFecha" />
 
     </LinearLayout>
@@ -58,6 +59,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="@dimen/dimenCinco"
+        android:visibility="gone"
         android:gravity="center"
         android:orientation="vertical">
         <LinearLayout

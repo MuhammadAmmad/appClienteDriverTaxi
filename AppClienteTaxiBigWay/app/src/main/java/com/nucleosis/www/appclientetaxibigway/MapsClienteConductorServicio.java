@@ -226,6 +226,9 @@ public class MapsClienteConductorServicio
                         Intent intent=new Intent(MapsClienteConductorServicio.this,MainActivity.class);
                         startActivity(intent);
                         finish();
+
+                        Intent intenService=new Intent(MapsClienteConductorServicio.this,EstadoServiciosCreados.class);
+                        stopService(intenService);
                      }
                 }
             }

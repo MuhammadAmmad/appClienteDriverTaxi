@@ -182,8 +182,8 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         idDriver=preferencesDriver.OpenIdDriver();
 
         //LEVANTAR PROCESO EN SEGUNDO PLANO
-        Intent intent=new Intent(MapsConductorClienteServicio.this, ServiceListarServiciosCreados.class);
-        startService(intent);
+        /*Intent intent=new Intent(MapsConductorClienteServicio.this, ServiceListarServiciosCreados.class);
+        startService(intent);*/
 
     }
 
@@ -457,9 +457,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         switch (v.getId()){
             case R.id.btnDetalleServicio:
                  //   Toast.makeText(MapsConductorClienteServicio.this,"hola",Toast.LENGTH_LONG).show();
-
                 if(jsonServiciosConductor!=null){
-
                     Log.d("jsonSerxx",jsonServiciosConductor.toString());
                 }
                 DetalleServicio();
@@ -467,7 +465,6 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             case R.id.btnAdicionales:
                     alertAdicionales();
                 break;
-
             case R.id.btnClienteEncontrado:
                 String mensaje1="Encontro al cliente ?";
                 alert("3",mensaje1,9);
@@ -1097,6 +1094,11 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         TextView lblTipoPago=(TextView)view1.findViewById(R.id.lblTipoPago);
         final CheckBox checkBoxPagoEfectivo=(CheckBox)view1.findViewById(R.id.checkPagoContado);
         final CheckBox checkBoxPagoCredito=(CheckBox)view1.findViewById(R.id.checkPagoCredito);
+
+        final View viewLinea2=(View)view1.findViewById(R.id.viewLinea2);
+        final CheckBox checkBoxCalificacionBuena=(CheckBox)view1.findViewById(R.id.checkCalificacionBueno);
+        final CheckBox checkBoxCalificacionMalo=(CheckBox)view1.findViewById(R.id.checkCalificacionMalo);
+        final TextView lblCalificacionCliente=(TextView)view1.findViewById(R.id.lblCalificacionCliente);
         View viewLinea=(View)view1.findViewById(R.id.viewLinea);
         EditText editMotivo=(EditText)view1.findViewById(R.id.editMotivo);
         final String motivo=editMotivo.getText().toString();
@@ -1125,6 +1127,23 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
 
             }
         });
+
+        checkBoxCalificacionBuena.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    checkBoxCalificacionMalo.setChecked(false);
+                }
+
+            }
+        });
+
+        checkBoxCalificacionMalo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                checkBoxCalificacionBuena.setChecked(false);
+            }
+        });
         alertDialogBuilder1.setView(view1);
         // alertDialogBuilder.setTitle(R.string.addContacto);
         switch (caseObjeto){
@@ -1133,21 +1152,35 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 lblTipoPago.setVisibility(View.GONE);
                 checkBoxPagoEfectivo.setVisibility(View.GONE);
                 checkBoxPagoCredito.setVisibility(View.GONE);
+
+                checkBoxCalificacionBuena.setVisibility(View.GONE);
+                checkBoxCalificacionMalo.setVisibility(View.GONE);
                 viewLinea.setVisibility(View.GONE);
+                viewLinea2.setVisibility(View.GONE);
+
+                lblCalificacionCliente.setVisibility(View.GONE);
                 break;
             case 10:
                 editMotivo.setVisibility(View.VISIBLE);
                 lblTipoPago.setVisibility(View.GONE);
                 checkBoxPagoEfectivo.setVisibility(View.GONE);
                 checkBoxPagoCredito.setVisibility(View.GONE);
+                checkBoxCalificacionBuena.setVisibility(View.GONE);
+                checkBoxCalificacionMalo.setVisibility(View.GONE);
                 viewLinea.setVisibility(View.GONE);
+                viewLinea2.setVisibility(View.GONE);
+                lblCalificacionCliente.setVisibility(View.GONE);
                 break;
             case 11:
                 editMotivo.setVisibility(View.GONE);
                 lblTipoPago.setVisibility(View.VISIBLE);
                 checkBoxPagoEfectivo.setVisibility(View.VISIBLE);
                 checkBoxPagoCredito.setVisibility(View.VISIBLE);
+                checkBoxCalificacionBuena.setVisibility(View.VISIBLE);
+                checkBoxCalificacionMalo.setVisibility(View.VISIBLE);
                 viewLinea.setVisibility(View.VISIBLE);
+                viewLinea2.setVisibility(View.VISIBLE);
+                lblCalificacionCliente.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -1275,7 +1308,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         fichero.InsertarCoordendaDirrecionIncioCliente(jsonDataCoordenadaAddresClienteIncio.toString());
         Log.d("ExtracLATLON",fichero.ExtraerCoordendaDirrecionIncioCliente().toString());
 
-        Intent intent=new Intent(MapsConductorClienteServicio.this,ServiceListarServiciosCreados.class);
-        stopService(intent);
+        /*Intent intent=new Intent(MapsConductorClienteServicio.this,ServiceListarServiciosCreados.class);
+        stopService(intent);*/
     }
 }

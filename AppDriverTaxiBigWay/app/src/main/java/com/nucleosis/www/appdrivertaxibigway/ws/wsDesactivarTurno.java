@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceListarServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
@@ -109,6 +110,9 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
                 intent=new Intent(context, ServiceTurno.class);
                 context.stopService(intent);
+
+                Intent intent1=new Intent(context, ServiceListarServiciosCreados.class);
+                context.stopService(intent1);
 
             }else if(data[0].equals("2")){
                 compR.getBtnActivarTurno().setVisibility(View.GONE);

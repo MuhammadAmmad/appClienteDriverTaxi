@@ -76,7 +76,7 @@ public class ServiceTurno extends Service {
                             // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
                             SoapObject response1= (SoapObject) envelope.bodyIn;
                             SoapObject response2= (SoapObject)response1.getProperty("return");
-                           Log.d("aaaTurno", response2.toString());
+                           Log.d("aaaTurnox", response2.toString());
                             if(response2.hasProperty("IND_ESTADO_TURNO")){
                                 dataTurno[0]=response2.getPropertyAsString("IND_ESTADO_TURNO");
                                 dataTurno[1]=response2.getPropertyAsString("ID_TURNO");
@@ -147,7 +147,7 @@ public class ServiceTurno extends Service {
     public void onDestroy() {
         super.onDestroy();
         TimerCronometro.cancel();
-        Log.d("servicioCronometro", "DESTRUIDO");
+        Log.d("servicioCronometro", "DESTRUIDO_X");
     }
 
 

@@ -67,6 +67,7 @@ import com.nucleosis.www.appclientetaxibigway.Fragments.FragmentSolicitarServici
 import com.nucleosis.www.appclientetaxibigway.PointPolygono.PointDentroPolygono;
 import com.nucleosis.www.appclientetaxibigway.RestMap.AddresRestmap;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.AlarmaLLegadaConductor;
+import com.nucleosis.www.appclientetaxibigway.ServiceBackground.EstadoServiciosCreados;
 import com.nucleosis.www.appclientetaxibigway.SharedPreferences.PreferencesCliente;
 import com.nucleosis.www.appclientetaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appclientetaxibigway.beans.beansListaPolygono;
@@ -237,10 +238,13 @@ public class MainActivity extends AppCompatActivity
                                     jsonSesion.put("idSesion", "0");
                                     fichero.InsertarSesion(jsonSesion.toString());
                                     Log.d("StracFichero", fichero.ExtraerSesion().toString());
+                                    Intent intent2=new Intent(MainActivity.this, EstadoServiciosCreados.class);
+                                    stopService(intent2);
                                     Intent intentLongin = new Intent(MainActivity.this, LoginActivity.class);
                                     startActivity(intentLongin);
                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                     finish();
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -710,7 +714,7 @@ public class MainActivity extends AppCompatActivity
             mGoogleApiClient.disconnect();
             Log.d("stado_","stop");
         }
-        Log.d("stado_","stop");
+          Log.d("stado_","stop");
     }
 
     private AdapterView.OnItemClickListener mAutocompleteClickListener_1

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceListarServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
 import com.nucleosis.www.appdrivertaxibigway.SharedPreferences.PreferencesDriver;
@@ -79,6 +80,8 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
         } catch (Exception e) {
             e.printStackTrace();
             //Log.d("error", e.printStackTrace());
+            dataSalida[0]="0";
+            dataSalida[1]="";
         }
         return dataSalida;
     }
@@ -88,21 +91,28 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
         super.onPostExecute(data);
         Toast.makeText(context,data[1],Toast.LENGTH_SHORT).show();
         Intent intent;
-        if(data[0].equals("1")){
-            compR.getBtnActivarTurno().setVisibility(View.GONE);
-            compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
-            compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
+        if(data!=null){
+            if(data[0].equals("1")){
+                compR.getBtnActivarTurno().setVisibility(View.GONE);
+                compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
+                compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
 
-             intent=new Intent(context,locationDriver.class);
-             context.startService(intent);
-             intent=new Intent(context,ServiceTurno.class);
-             context.startService(intent);
-             preferencesDriver.InsertarIdVehiculo(String.valueOf(idVehiculo));
-            Log.d("extraerIdAuto",preferencesDriver.ExtraerIdVehiculo());
-        }else if(data[0].equals("2")){
-            compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
-            compR.getBtnDesactivarTurno().setVisibility(View.GONE);
-            compR.getBtnIrAServicios().setVisibility(View.GONE);
+                intent=new Intent(context,locationDriver.class);
+                context.startService(intent);
+
+                //intent=new Intent(context,ServiceTurno.class);
+                //context.startService(intent);
+                intent =new Intent(context, ServiceListarServiciosCreados.class);
+                context.startService(intent);
+                preferencesDriver.InsertarIdVehiculo(String.valueOf(idVehiculo));
+                Log.d("extraerIdAuto",preferencesDriver.ExtraerIdVehiculo());
+            }else if(data[0].equals("2")){
+                compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
+                compR.getBtnDesactivarTurno().setVisibility(View.GONE);
+                compR.getBtnIrAServicios().setVisibility(View.GONE);
+            }
+
         }
+
     }
 }

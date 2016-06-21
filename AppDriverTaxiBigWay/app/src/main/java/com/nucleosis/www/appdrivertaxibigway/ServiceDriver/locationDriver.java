@@ -70,7 +70,7 @@ public class locationDriver extends Service
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("servicio---->", "servicio Inciado");
+        Log.d("servicio_x---->", "servicio Inciado");
         final Timer timer = new Timer();
 
         timerTask =new TimerTask() {
@@ -103,7 +103,7 @@ public class locationDriver extends Service
 
     @Override
     public void onDestroy() {
-        Log.d("servicio---->","servicio terminado");
+        Log.d("servisLocation->","servicio terminado");
         timerTask.cancel();
         super.onDestroy();
     }
@@ -138,6 +138,7 @@ public class locationDriver extends Service
     protected void updateLocation(Location location){
      //   Log.d("latLon_x",String.valueOf(location.getLatitude())+"-->"+String.valueOf(location.getLongitude()));
         if(location!=null){
+           // Log.d("latLon_x",String.valueOf(location.getLatitude())+String.valueOf(location.getLongitude()));
             LatLong[0]=String.valueOf(location.getLatitude());
             LatLong[1]=String.valueOf(location.getLongitude());
             if(sw==0){

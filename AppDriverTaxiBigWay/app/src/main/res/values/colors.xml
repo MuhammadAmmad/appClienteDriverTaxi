@@ -67,4 +67,5 @@
     <color name="viewColor">#acadac</color>
     <color name="radioButonsTransparente">#00FFFFFF</color>
 
+    <color name="red">#fa4242</color>
 </resources>
