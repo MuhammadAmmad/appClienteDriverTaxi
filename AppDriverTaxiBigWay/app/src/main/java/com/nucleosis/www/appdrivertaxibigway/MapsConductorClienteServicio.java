@@ -71,6 +71,7 @@ import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appdrivertaxibigway.kmlPolygonos.KmlCreatorPolygono;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarServicio;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarStadosAdicionales;
+import com.nucleosis.www.appdrivertaxibigway.ws.wsCalificarCliente;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerIdZonaIdDistrito;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsExtraerPrecioZonaDistrito;
 
@@ -83,8 +84,11 @@ import java.util.List;
 /**
  * Created by carlos.lopez on 06/05/2016.
  */
-public class MapsConductorClienteServicio extends AppCompatActivity implements OnMapReadyCallback
-        ,View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class MapsConductorClienteServicio
+        extends AppCompatActivity
+                implements OnMapReadyCallback
+        ,View.OnClickListener,
+                GoogleApiClient.OnConnectionFailedListener {
     private MapFragment mapFragment;
     private int sw = 0;
     private componentesR compR;
@@ -108,6 +112,8 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
     private String longitud_;
     private String indMostrarCelularCliente;
     private String celularCliente;
+    private String idCliente;
+    private int idCalificacion=0;
     private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
             new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     //suereste  -12.34202, -77.04231-11.6818, -76.74636
@@ -134,7 +140,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 // .enableAutoManage(getActivity(), 0 /* clientId */, this)
                 .addApi(Places.GEO_DATA_API)
                 .build();
-        //CARGARMOS EL ESCUCHADOR PARA MODIFICAR LA DIRECCION INCIAL DEL CLIENTE
+         //CARGARMOS EL ESCUCHADOR PARA MODIFICAR LA DIRECCION INCIAL DEL CLIENTE
         CreaBroadcasReceiver();
 
         if(getIntent()!=null){
@@ -146,14 +152,11 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             longitud_=getIntent().getStringExtra("longitudService");
             indMostrarCelularCliente=getIntent().getStringExtra("indMostrarCelularCliente");
             celularCliente=getIntent().getStringExtra("celularCliente");
-
+            idCliente=getIntent().getStringExtra("idCliente");
             if(indMostrarCelularCliente.equals("1")){
                 Log.d("celularCliente",celularCliente);
                 compR.getBtnLLamarCliente().setVisibility(View.VISIBLE);
-
             }
-
-
             Log.d("zonAinicio_",AddresIncioCliente+"-->"+zonaInicio+"**"+zonaFin);
 
             new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaInicio, 3).execute();
@@ -655,7 +658,8 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                                         +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
                                         +"S/."+jsonDetalle.getString("importeTotalServicio")+"<br><br>"
                                         //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
-
+                                        +"<font color=\"#11aebf\"><bold>Informacion Adicional :&nbsp;</bold></font>"
+                                        +jsonDetalle.getString("DescripcionServicion")+"<br><br>"
                                         +"<font color=\"#11aebf\"><bold>Estado del servicio:&nbsp;</bold></font>"
                                         +jsonDetalle.getString("nombreStadoServicio");
 
@@ -1133,6 +1137,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     checkBoxCalificacionMalo.setChecked(false);
+                    idCalificacion=3;
                 }
 
             }
@@ -1142,6 +1147,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 checkBoxCalificacionBuena.setChecked(false);
+                idCalificacion=1;
             }
         });
         alertDialogBuilder1.setView(view1);
@@ -1212,6 +1218,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 }
             }
         });
+
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1221,6 +1228,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                         //ACTUALIZAMOS EL TIPO DE PAGO DEL SERVICIO
                         Log.d("tipoPago_",tipoPagoServicioFinal[0] );
                         if(tipoPagoServicioFinal[0].length()!=0){
+                            new wsCalificarCliente(activity,idCliente,idServicio,idCalificacion).execute();
                             new wsActualizarServicio(
                                     activity,
                                     idServicio,
@@ -1255,9 +1263,7 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
                 }else {
                     new wsActualizarStadosAdicionales(activity,idServicio,"",caseObjeto).execute(stadoServicio);
                   //  ActualizarStadosServicio(stadoServicio,"",caseObjeto,activity);
-
                 }
-
             }
         });
         alertDialog1.show();
@@ -1269,12 +1275,10 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         }
         return super.onKeyDown(keyCode, event);
     }
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
     private String DeterminaZona(int totalPoligono,LatLng positoinDireccion){
         String zona="No hay datos";
         for (int x = 0; x < totalPoligono; x++) {
@@ -1290,8 +1294,6 @@ public class MapsConductorClienteServicio extends AppCompatActivity implements O
         }
         return zona;
     }
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

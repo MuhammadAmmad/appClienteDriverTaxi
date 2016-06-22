@@ -230,6 +230,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("ZonaIncio",lista1.get(position).getNameZonaIncio());
                                         intent.putExtra("addresIncio",lista1.get(position).getDireccionIncio());
                                         intent.putExtra("ZonaFin",lista1.get(position).getNameZonaFin());
+                                        intent.putExtra("idCliente",lista1.get(position).getIdCliente());
                                         startActivity(intent);
                                         getActivity().finish();
 
@@ -241,6 +242,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("ZonaIncio",lista1.get(position).getNameZonaIncio());
                                         intent.putExtra("addresIncio",lista1.get(position).getDireccionIncio());
                                         intent.putExtra("ZonaFin",lista1.get(position).getNameZonaFin());
+                                        intent.putExtra("idCliente",lista1.get(position).getIdCliente());
                                         startActivity(intent);
                                         getActivity().finish();
                                     }
@@ -268,6 +270,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("celularCliente",lista2.get(position).getNumCelular());
                                         intent.putExtra("latitudService",lista2.get(position).getLatitudService());
                                         intent.putExtra("longitudService",lista2.get(position).getLongitudService());
+                                        intent.putExtra("idCliente",lista2.get(position).getIdCliente());
                                         startActivity(intent);
                                         getActivity().finish();
                                     }else  if(lista2.get(position).getStatadoServicio().equals("3")){
@@ -284,6 +287,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("celularCliente",lista2.get(position).getNumCelular());
                                         intent.putExtra("latitudService",lista2.get(position).getLatitudService());
                                         intent.putExtra("longitudService",lista2.get(position).getLongitudService());
+                                        intent.putExtra("idCliente",lista2.get(position).getIdCliente());
                                         startActivity(intent);
                                         getActivity().finish();
                                     }
@@ -630,7 +634,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                          +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
                                                  +"S/."+jsonDetalle.getString("importeTotalServicio")+"<br><br>"
                                          //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
-
+                                                 +"<font color=\"#11aebf\"><bold>Informacion Adicional :&nbsp;</bold></font>"
+                                                 +jsonDetalle.getString("DescripcionServicion")+"<br><br>"
                                          +"<font color=\"#11aebf\"><bold>Estado del servicio:&nbsp;</bold></font>"
                                                  +jsonDetalle.getString("nombreStadoServicio");
 
