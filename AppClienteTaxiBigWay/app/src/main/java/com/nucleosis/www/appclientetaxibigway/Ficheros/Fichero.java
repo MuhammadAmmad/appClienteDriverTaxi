@@ -35,8 +35,6 @@ public class Fichero {
         catch (Exception ex)
         {	Log.d("error", ex.getMessage());           }
     }
-
-
     public JSONObject ExtraerSesion(){
         JSONObject sesion=null;
         try

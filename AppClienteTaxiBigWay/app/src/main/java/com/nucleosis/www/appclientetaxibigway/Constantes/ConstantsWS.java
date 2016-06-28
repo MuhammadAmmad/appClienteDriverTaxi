@@ -85,6 +85,19 @@ public class ConstantsWS {
     private static final String METHODO_18="WS_CLIENTE_ACTUALIZAR";
     private static final String SOAP_ACTION_18=NAME_SPACE+"/"+METHODO_18;
 
+
+    //ACUTALIZAR_SERVICIO
+    private static final String METHODO_19="WS_CALIFICACION_CONDUCTOR_REGISTRAR";
+    private static final String SOAP_ACTION_19=NAME_SPACE+"/"+METHODO_19;
+
+    public static String getMethodo19() {
+        return METHODO_19;
+    }
+
+    public static String getSoapAction19() {
+        return SOAP_ACTION_19;
+    }
+
     public static String getMethodo18() {
         return METHODO_18;
     }

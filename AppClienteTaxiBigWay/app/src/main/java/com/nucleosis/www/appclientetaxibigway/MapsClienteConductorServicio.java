@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +26,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +47,9 @@ import com.nucleosis.www.appclientetaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.AlarmaLLegadaConductor;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.EstadoServiciosCreados;
 import com.nucleosis.www.appclientetaxibigway.ServiceBackground.PosicionConductor;
+import com.nucleosis.www.appclientetaxibigway.TypeFace.MyTypeFace;
 import com.nucleosis.www.appclientetaxibigway.componentes.ComponentesR;
+import com.nucleosis.www.appclientetaxibigway.ws.wsCalificarConductor;
 import com.nucleosis.www.appclientetaxibigway.ws.wsExtraerHoraServer;
 
 import org.json.JSONArray;
@@ -81,6 +87,9 @@ public class MapsClienteConductorServicio
     private int swCamara=0;
     private int contadorReciver=0;
     private int stadoServicio=0;
+    private MyTypeFace myTypeFace;
+    private  String idTipoCalificacion="0";
+    private static int SWcalificacionVariable=0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +97,8 @@ public class MapsClienteConductorServicio
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         MAPS_CLIENTE_CONDUCTOR=this;
+        myTypeFace=new MyTypeFace(MapsClienteConductorServicio.this);
+
         fichero=new Fichero(MapsClienteConductorServicio.this);
         compR=new ComponentesR(MapsClienteConductorServicio.this);
         compR.Controls_Maps_Cliente_Conductor(MAPS_CLIENTE_CONDUCTOR);
@@ -318,6 +329,20 @@ public class MapsClienteConductorServicio
                                         String msn="Servicio terminaddo";
                                         compR.getTxtMensajeDeEstado().setText(msn);
                                         compR.getImageViewColorStado().setBackgroundColor(Color.rgb(32,118,242));
+
+                                        Intent intenServicioCreados=new Intent(MapsClienteConductorServicio.this, EstadoServiciosCreados.class);
+                                        stopService(intenServicioCreados);
+                                        Log.d("stado_x",String.valueOf(stadoServicio));
+                                        Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
+                                        stopService(intentCoordendasConductor);
+                                        idDriver=jsonArrayServis.getJSONObject(i).getString("idConductor");
+
+                                        if(SWcalificacionVariable==0){
+                                            calificacionConductor(idDriver);
+                                            SWcalificacionVariable=1;
+                                        }
+
+
                                     }
                                    /* Toast.makeText(MapsClienteConductorServicio.this,
                                             jsonArrayServis.getJSONObject(i).getString("stadoServicio"),Toast.LENGTH_SHORT).show();*/
@@ -346,6 +371,78 @@ public class MapsClienteConductorServicio
     }
 
 
+
+    private void calificacionConductor(final String idDriver){
+        Log.d("idDriver_x",idDriver);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final View view = this.getLayoutInflater().inflate(R.layout.view_calificacion_cliente_a_conductor, null);
+
+        TextView lblTitulo=(TextView)view.findViewById(R.id.lblTitulo) ;
+        lblTitulo.setTypeface(myTypeFace.openRobotoLight());
+        ImageView imgCancelarCalificacion_=(ImageView)view.findViewById(R.id.imgCancelarCalificacion);
+        RatingBar ratingBarEstrellas=(RatingBar)view.findViewById(R.id.ratingBarCalificacionConductor);
+        Button btnCalificar=(Button)view.findViewById(R.id.btnCalificarConductor);
+        Button btnSaltarCalifica_=(Button)view.findViewById(R.id.btnSaltarCalificacion);
+        EditText editComentario=(EditText)view.findViewById(R.id.editComentario);
+        Log.d("xxtComentario",editComentario.getText().toString().trim());
+        final String Comentario=editComentario.getText().toString().trim();
+
+        ratingBarEstrellas.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+               // Toast.makeText(getApplicationContext(),Float.toString(rating),Toast.LENGTH_LONG).show();
+
+                Log.d("rantin_",String.valueOf(Math.round(rating)));
+                int ratingCalifica=Math.round(rating);
+                idTipoCalificacion=String.valueOf(ratingCalifica);
+            }
+        });
+        alertDialogBuilder.setView(view);
+        final AlertDialog alertDialog;
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+        btnCalificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                new wsCalificarConductor(MAPS_CLIENTE_CONDUCTOR,
+                        idDriver,
+                        idServicio,
+                        Integer.parseInt(idTipoCalificacion),
+                        Comentario).execute();
+
+              /* Intent intent =new Intent(MapsClienteConductorServicio.this,MainActivity.class);
+                startActivity(intent);
+                finish();*/
+            }
+        });
+        ratingBarEstrellas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btnSaltarCalifica_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                SWcalificacionVariable=0;
+                Intent intent =new Intent(MapsClienteConductorServicio.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        imgCancelarCalificacion_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+              //  SWcalificacionVariable=0;
+                Intent intent =new Intent(MapsClienteConductorServicio.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
     private class ResponseReceiverCoordendaConductor  extends BroadcastReceiver{
 
         @Override
@@ -372,8 +469,6 @@ public class MapsClienteConductorServicio
 
                                 }
                             }
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -468,7 +563,7 @@ public class MapsClienteConductorServicio
                Intent intent1 =new Intent(MapsClienteConductorServicio.this, AlarmaLLegadaConductor.class);
         startService(intent1);
         }*/
-
+        SWcalificacionVariable=0;
 
         swConductor=0;
     }

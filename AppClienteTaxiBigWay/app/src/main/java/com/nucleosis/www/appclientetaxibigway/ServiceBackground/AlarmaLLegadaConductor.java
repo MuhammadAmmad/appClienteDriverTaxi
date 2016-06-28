@@ -155,22 +155,25 @@ public class AlarmaLLegadaConductor extends Service {
                         super.onPostExecute(jsonUltimoServ);
                         if(jsonUltimoServ!=null){
                             try {
-                                if(jsonUltimoServ.getString("stadoServicio").equals("3")){
-                                    Log.d("check_stado_",jsonUltimoServ.getString("stadoServicio"));
-                                    sqlGestion=new SqlGestion(AlarmaLLegadaConductor.this);
-                                    String[] dataServicio=sqlGestion.BuscarIdServicio(jsonUltimoServ.getString("idServicio"));
-                                    if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
-                                        Log.d("que_x","--------");
+                                if(jsonUltimoServ.has("stadoServicio")){
+                                    if(jsonUltimoServ.getString("stadoServicio").equals("3")){
+                                        Log.d("check_stado_",jsonUltimoServ.getString("stadoServicio"));
                                         sqlGestion=new SqlGestion(AlarmaLLegadaConductor.this);
-                                        sqlGestion.InsertarIdServicioStado(jsonUltimoServ.getString("idServicio"),"1");
-                                        sendNotification("Su taxi a llegado");
-                                    }else {
-                                        Log.d("dataServisss",dataServicio[0]+"-->"+dataServicio[1]);
-                                    }
+                                        String[] dataServicio=sqlGestion.BuscarIdServicio(jsonUltimoServ.getString("idServicio"));
+                                        if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
+                                            Log.d("que_x","--------");
+                                            sqlGestion=new SqlGestion(AlarmaLLegadaConductor.this);
+                                            sqlGestion.InsertarIdServicioStado(jsonUltimoServ.getString("idServicio"),"1");
+                                            sendNotification("Su taxi a llegado");
+                                        }else {
+                                            Log.d("dataServisss",dataServicio[0]+"-->"+dataServicio[1]);
+                                        }
 
-                                }else{
-                                    Log.d("check_stado",jsonUltimoServ.getString("stadoServicio"));
+                                    }else{
+                                        Log.d("check_stado",jsonUltimoServ.getString("stadoServicio"));
+                                    }
                                 }
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

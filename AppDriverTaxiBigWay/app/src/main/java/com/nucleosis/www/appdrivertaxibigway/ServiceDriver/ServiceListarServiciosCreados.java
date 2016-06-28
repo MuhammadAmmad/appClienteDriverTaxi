@@ -178,24 +178,27 @@ public class ServiceListarServiciosCreados extends Service {
                                                     Log.d("coorde_X",jsonCoordenadaDriver.toString());
                                                     Log.d("coordena_servicio",latitudServicio+"-->"+longitudservicio);
                                                     Log.d("radioVector",radioServicio);
-                                                    String latitudConductor=jsonCoordenadaDriver.getString("latitud");
-                                                    String longitudConductor=jsonCoordenadaDriver.getString("longitud");
-                                                    if(latitudServicio.length()!=0 && longitudservicio.length()!=0){
-                                                        LatLng latLngServicio=new LatLng(Double.parseDouble(latitudServicio),Double.parseDouble(longitudservicio));
-                                                        LatLng latLngConductor=new LatLng(Double.parseDouble(latitudConductor),Double.parseDouble(longitudConductor));
 
-                                                        double distancia= SphericalUtil.computeDistanceBetween(latLngServicio,latLngConductor);
-                                                        String idServis=dataVector.getPropertyAsString("ID_SERVICIO");
-                                                        Log.d("distancia_","idServicio"+"="+idServis+", "+"radio"+"-->"+radioServicio+"--->"+"extrack"+"-->"+String.valueOf(distancia));
+                                                        String latitudConductor=jsonCoordenadaDriver.getString("latitud");
+                                                        String longitudConductor=jsonCoordenadaDriver.getString("longitud");
+                                                        if(latitudServicio.length()!=0 && longitudservicio.length()!=0){
+                                                            LatLng latLngServicio=new LatLng(Double.parseDouble(latitudServicio),Double.parseDouble(longitudservicio));
+                                                            LatLng latLngConductor=new LatLng(Double.parseDouble(latitudConductor),Double.parseDouble(longitudConductor));
 
-                                                        if(Double.parseDouble(radioServicio)>=distancia){
-                                                            Log.d("EstaEnRango","Si");
-                                                            swRadioServicio=true;
-                                                        }else{
-                                                            Log.d("EstaEnRango","No");
-                                                            swRadioServicio=false;
+                                                            double distancia= SphericalUtil.computeDistanceBetween(latLngServicio,latLngConductor);
+                                                            String idServis=dataVector.getPropertyAsString("ID_SERVICIO");
+                                                            Log.d("distancia_","idServicio"+"="+idServis+", "+"radio"+"-->"+radioServicio+"--->"+"extrack"+"-->"+String.valueOf(distancia));
+
+                                                            if(Double.parseDouble(radioServicio)>=distancia){
+                                                                Log.d("EstaEnRango","Si");
+                                                                swRadioServicio=true;
+                                                            }else{
+                                                                Log.d("EstaEnRango","No");
+                                                                swRadioServicio=false;
+                                                            }
                                                         }
-                                                    }
+
+
                                                 }
 
                                             }
@@ -386,7 +389,10 @@ public class ServiceListarServiciosCreados extends Service {
                                             }
                                            /* sqlGestion.InsertarIdServicioStado(idServicio,"1");
                                             sendNotification("Te an asignado un servicio!!!!");*/
-                                            }
+
+                                        }else{
+                                            Log.d("tipoRegistro","!!!!!!");
+                                        }
 
                                 }
 

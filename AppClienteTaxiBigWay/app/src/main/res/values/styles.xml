@@ -27,4 +27,9 @@
         <item name="android:windowTitleSize">40dip</item>
         <item name="android:windowTitleBackgroundStyle">@style/FondoBarraPersonalizada</item>
     </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#04ab32</item>
+        <!--<item name="colorControlActivated">#ffc01f</item>-->
+        <item name="colorControlActivated">#04ab32</item>
+    </style>
 </resources>

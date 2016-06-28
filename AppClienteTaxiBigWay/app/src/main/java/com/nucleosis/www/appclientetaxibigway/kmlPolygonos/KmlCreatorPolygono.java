@@ -1,13 +1,9 @@
 package com.nucleosis.www.appclientetaxibigway.kmlPolygonos;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.maps.android.kml.KmlContainer;
 import com.google.maps.android.kml.KmlLayer;
@@ -15,7 +11,6 @@ import com.google.maps.android.kml.KmlPlacemark;
 import com.google.maps.android.kml.KmlPolygon;
 import com.nucleosis.www.appclientetaxibigway.R;
 import com.nucleosis.www.appclientetaxibigway.beans.beansListaPolygono;
-import com.nucleosis.www.appclientetaxibigway.beans.beansPolyGonos;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -44,7 +39,7 @@ public class KmlCreatorPolygono {
     public List<beansListaPolygono> LeerKml(){
         List<beansListaPolygono> LisKML=null;
         try {
-            KmlLayer kmlLayer = new KmlLayer(mMap, R.raw.zonas_map_bigway, context);
+        KmlLayer kmlLayer = new KmlLayer(mMap, R.raw.mapa_big_way_1, context);
         kmlLayer.addLayerToMap();
             LisKML= ParsearKml(kmlLayer);
         } catch (XmlPullParserException e) {
