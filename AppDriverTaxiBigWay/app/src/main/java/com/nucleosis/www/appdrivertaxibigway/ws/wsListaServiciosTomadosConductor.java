@@ -67,7 +67,7 @@ implements OnItemClickListener{
     @Override
     protected List<beansHistorialServiciosCreados> doInBackground(String... params) {
         beansHistorialServiciosCreados row=null;
-        SoapObject request = new SoapObject("http://taxibigway.com/soap","WS_SERVICIO_LISTAR");
+        SoapObject request = new SoapObject("http://sistema.taxibigway.com/soap","WS_SERVICIO_LISTAR");
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
@@ -84,12 +84,12 @@ implements OnItemClickListener{
         request.addProperty("idEstadoServicio", 0);
         request.addProperty("idAutoTipo", 0);
         envelope.setOutputSoapObject(request);
-        HttpTransportSE httpTransport = new HttpTransportSE("http://taxibigway.com/soap");
+        HttpTransportSE httpTransport = new HttpTransportSE("http://sistema.taxibigway.com/soap");
 
         try {
             ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
-            httpTransport.call("http://taxibigway.com/soap/WS_SERVICIO_LISTAR", envelope, headerPropertyArrayList);
+            httpTransport.call("http://sistema.taxibigway.com/soap/WS_SERVICIO_LISTAR", envelope, headerPropertyArrayList);
            //  httpTransport.call("http://taxibigway.com/soap/WS_SERVICIO_LISTAR", envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             Vector<?> responseVector = (Vector<?>) response1.getProperty("return");

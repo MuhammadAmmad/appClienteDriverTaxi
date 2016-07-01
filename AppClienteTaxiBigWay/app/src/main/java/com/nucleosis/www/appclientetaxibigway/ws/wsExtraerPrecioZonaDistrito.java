@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
@@ -316,7 +318,9 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
         });
         compR.getmAutocompleteView_AddressIncio().setText(addresIni);
         compR.getmAutocompleteView_AddressFinal().setText(addressFin);
+      //  alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
+
     }
 
 
@@ -396,7 +400,6 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String>
                             compR.getEditFechaServicio().setText("0"+dayOfMonth + "-0"
                                     + (monthOfYear + 1) + "-" + year);
                         }
-
 
                     }
 

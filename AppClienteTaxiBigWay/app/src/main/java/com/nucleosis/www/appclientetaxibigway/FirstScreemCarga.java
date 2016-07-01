@@ -25,14 +25,14 @@ public class FirstScreemCarga extends AppCompatActivity {
 
     private static final long SPLASH_SCREEN_DELAY = 3000;
     private ProgressDialog progressDialog;
-    private ProgressBar progressBarCargar;
+  //  private ProgressBar progressBarCargar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_screem_carga);
-        progressBarCargar=(ProgressBar)findViewById(R.id.progresLoading);
+     //  progressBarCargar=(ProgressBar)findViewById(R.id.progresLoading);
         fichero=new Fichero(FirstScreemCarga.this);
-        progressBarCargar.setVisibility(View.VISIBLE);
+      //  progressBarCargar.setVisibility(View.VISIBLE);
        /* progressDialog=new ProgressDialog(FirstScreemCarga.this);
         progressDialog.setMessage("cargado...");
         progressDialog.show();*/

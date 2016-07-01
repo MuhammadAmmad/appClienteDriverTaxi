@@ -34,6 +34,8 @@ import org.ksoap2.transport.HttpTransportSE;
 import com.nucleosis.www.appdrivertaxibigway.R;
 import com.nucleosis.www.appdrivertaxibigway.Sqlite.SqlGestion;
 
+import java.util.ArrayList;
+
 public class LoginDriverWS extends AsyncTask<User,String,String> {
     private Context context;
     private Intent intent;
@@ -63,20 +65,20 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
         Log.d("eta_aqui","doInBackGround");
         String codLogin="";
         String msnLogin="";
-        SoapObject request = new SoapObject("http://taxibigway.com/soap","WS_CONDUCTOR_ACCESAR");
+        SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo1());
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
         Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
         request.addProperty("numDocumento", user.getUser());
         request.addProperty("desPassword", user.getPassword());
         envelope.setOutputSoapObject(request);
-        HttpTransportSE httpTransport = new HttpTransportSE("http://taxibigway.com/soap");
+        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 
         try {
-           /* ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
+            ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
-            httpTransport.call("http://taxibigway.com/soap/WS_CONDUCTOR_ACCESAR", envelope, headerPropertyArrayList);*/
-            httpTransport.call("http://taxibigway.com/soap/WS_CONDUCTOR_ACCESAR", envelope);
+            httpTransport.call("http://sistema.taxibigway.com/soap/WS_CONDUCTOR_ACCESAR", envelope, headerPropertyArrayList);
+         //   httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             Log.d("response1_",response1.toString());
             SoapObject response2=(SoapObject)response1.getProperty("return");

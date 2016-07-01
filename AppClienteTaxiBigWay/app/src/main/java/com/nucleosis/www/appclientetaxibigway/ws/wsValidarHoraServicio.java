@@ -194,7 +194,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
                         //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
                                 JSONObject jsonObject=fichero.ExtraerDireccionIncioFin();
                                 JSONObject jsonCoordenadas=fichero.ExtraerCoordendaDirrecionIncio();
-                        Log.d("coorLaLn",jsonCoordenadas.toString());
+
                         try {
                             request.addProperty("fecServicio", fecha);
                             request.addProperty("desHora", hora);
@@ -216,6 +216,7 @@ public class wsValidarHoraServicio extends AsyncTask<String,String, String[]> {
 
                             request.addProperty("idAutoTipo", tipoAutoSolicita); //idAutoTipo=1  VIP     idAutoTipo=2 ECONOMICO
                             if(jsonCoordenadas!= null){
+                                Log.d("coorLaLn",jsonCoordenadas.toString());
                                 request.addProperty("desLatitudServicio", jsonCoordenadas.getString("latitud"));
                                 request.addProperty("desLongitudServicio", jsonCoordenadas.getString("longitud"));
 

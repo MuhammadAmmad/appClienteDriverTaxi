@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/accent"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
@@ -33,7 +33,7 @@
         </android.support.v7.widget.Toolbar>
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -53,27 +53,28 @@
                     android:textColor="@color/cabeceratxt"
                     android:text="@string/mensajeRegistro"/>
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/sizeEditText"
+                    android:layout_width="@dimen/dimen200"
+                    android:layout_height="@dimen/dime40"
+                    android:textSize="@dimen/dimen16"
+                    android:gravity="center"
                     android:paddingLeft="@dimen/padinLeft"
                     android:layout_marginLeft="@dimen/dimen30"
                     android:layout_marginRight="@dimen/dimen30"
-                    android:textSize="@dimen/txtSise14"
                     android:id="@+id/editName"
                     android:textColorHint="@color/hintColorText"
                     android:hint="@string/name"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/selector_edit_text"/>
+                    android:layout_gravity="center_horizontal"/>
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/sizeEditText"
+                    android:layout_height="@dimen/dime35"
+                    android:textSize="@dimen/dimen16"
                     android:paddingLeft="@dimen/padinLeft"
+                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/dimen30"
                     android:layout_marginRight="@dimen/dimen30"
                     android:textColorHint="@color/hintColorText"
                     android:layout_marginTop="@dimen/marginLine"
-                    android:textSize="@dimen/txtSise14"
                     android:id="@+id/editApaterno"
                     android:hint="@string/apaterno"
                     android:layout_gravity="center_horizontal"
@@ -83,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/sizeEditText"
                     android:paddingLeft="@dimen/padinLeft"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/marginLine"
                     android:layout_marginLeft="@dimen/dimen30"
                     android:layout_marginRight="@dimen/dimen30"
@@ -99,6 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/sizeEditText"
                     android:paddingLeft="@dimen/padinLeft"
+                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/dimen30"
                     android:layout_marginRight="@dimen/dimen30"
                     android:layout_marginTop="@dimen/marginLine"
@@ -113,36 +116,36 @@
                     android:background="@drawable/selector_edit_text"/>
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/sizeEditText"
+                    android:layout_width="@dimen/dimen200"
+                    android:layout_height="@dimen/dime40"
+                    android:textSize="@dimen/dimen16"
                     android:layout_marginTop="@dimen/marginLine"
                     android:paddingLeft="@dimen/padinLeft"
+                    android:gravity="center"
                     android:layout_marginLeft="@dimen/dimen30"
                     android:layout_marginRight="@dimen/dimen30"
-                    android:textSize="@dimen/txtSise14"
                     android:inputType="number"
                     android:hint="@string/celular"
                     android:maxLength="9"
                     android:textColorHint="@color/hintColorText"
                     android:ems="10"
                     android:id="@+id/editCelular"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/selector_edit_text"/>
+                    android:layout_gravity="center_horizontal"/>
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/sizeEditText"
+                    android:layout_width="@dimen/dimen200"
+                    android:layout_height="@dimen/dime40"
+                    android:textSize="@dimen/dimen16"
                     android:layout_marginTop="@dimen/marginLine"
                     android:layout_marginLeft="@dimen/dimen30"
                     android:layout_marginRight="@dimen/dimen30"
-                    android:textSize="@dimen/txtSise14"
+                    android:gravity="center"
                     android:inputType="textEmailAddress"
                     android:paddingLeft="@dimen/padinLeft"
                     android:textColorHint="@color/hintColorText"
                     android:hint="@string/email"
                     android:ems="10"
-                    android:id="@+id/editEmail"
-                    android:background="@drawable/selector_edit_text"/>
+                    android:id="@+id/editEmail"/>
            <!-- <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -150,36 +153,36 @@
                 android:layout_marginTop="5dp"
                 />-->
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/sizeEditText"
+                    android:layout_width="@dimen/dimen200"
+                    android:layout_height="@dimen/dime40"
+                    android:textSize="@dimen/dimen16"
                     android:layout_marginTop="@dimen/marginLine"
                     android:inputType="numberPassword"
                     android:layout_marginLeft="@dimen/dimen30"
                     android:layout_marginRight="@dimen/dimen30"
                     android:paddingLeft="@dimen/padinLeft"
-                    android:textSize="@dimen/txtSise14"
+                    android:gravity="center"
                     android:textColorHint="@color/hintColorText"
                     android:hint="@string/password"
                     android:ems="10"
                     android:id="@+id/editPass"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/selector_edit_text"/>
+                    android:layout_gravity="center_horizontal"/>
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/sizeEditText"
+                    android:layout_width="@dimen/dimen200"
+                    android:layout_height="@dimen/dime40"
+                    android:textSize="@dimen/dimen16"
                     android:inputType="numberPassword"
                     android:layout_marginLeft="@dimen/dimen30"
                     android:layout_marginRight="@dimen/dimen30"
                     android:layout_marginTop="@dimen/marginLine"
-                    android:textSize="@dimen/txtSise14"
+                    android:gravity="center"
                     android:hint="@string/verificaPassword"
                     android:paddingLeft="@dimen/padinLeft"
                     android:textColorHint="@color/hintColorText"
                     android:ems="10"
                     android:id="@+id/editConfirPass"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/selector_edit_text"/>
+                    android:layout_gravity="center_horizontal"/>
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="40dp"

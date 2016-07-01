@@ -16,7 +16,7 @@
 
     <color name="colorPrimary">#056B11</color>
     <color name="colorPrimaryDark">#138b21</color>
-    <color name="colorAccent">#363738</color>
+    <color name="colorAccent">#1bb100</color>
    <color name="hintColorText">#c4c3c3</color>
 
  <color name="btnFalse">#4CAF50</color>

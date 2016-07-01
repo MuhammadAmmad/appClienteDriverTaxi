@@ -57,8 +57,6 @@ public class locationDriver extends Service
             ActivityCompat.requestPermissions(activity,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_1);
-
-
         } else {
 
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

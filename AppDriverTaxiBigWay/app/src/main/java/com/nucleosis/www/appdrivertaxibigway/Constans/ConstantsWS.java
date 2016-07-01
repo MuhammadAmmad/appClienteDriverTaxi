@@ -5,8 +5,8 @@ package com.nucleosis.www.appdrivertaxibigway.Constans;
  */
 public class ConstantsWS {
     /* DESCRIPCION DE LOS WEBSERVICES*/
-    private static final String NAME_SPACE="http://taxibigway.com/soap";
-    private static final String URL="http://taxibigway.com/soap";
+    private static final String NAME_SPACE="http://sistema.taxibigway.com/soap";
+    private static final String URL="http://sistema.taxibigway.com/soap";
     //CONDUCTOR ACCESAR
     private static final String METHODO_1="WS_CONDUCTOR_ACCESAR";
     private static final String SOAP_ACTION_1=NAME_SPACE+"/"+METHODO_1;

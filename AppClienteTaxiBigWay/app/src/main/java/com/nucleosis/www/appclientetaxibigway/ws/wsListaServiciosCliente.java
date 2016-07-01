@@ -54,7 +54,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
         this.context = context;
         this.fecha=fecha;
         fichero=new Fichero(context);
-        progesDialog=new ProgressDialog(context);
+
        // drawable=context.getResources().getDrawable(R.drawable.ic_room_black_24dp);
         jsonConfiguraciones=fichero.ExtraerConfiguraciones();
         if(jsonConfiguraciones!=null){
@@ -71,6 +71,7 @@ public class wsListaServiciosCliente extends AsyncTask<String,String,List<beansH
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progesDialog=new ProgressDialog(context);
         preferencesCliente=new PreferencesCliente(context);
         ListServicios=new ArrayList<beansHistorialServiciosCreados>();
         listDetalleServicio=new ArrayList<beansServiciosFechaDetalle>();

@@ -18,12 +18,12 @@
             android:layout_height="80dp"
             android:src="@drawable/cargar_cliente_1"
                  />
-        <ProgressBar
+       <!-- <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginLeftDiez"
             android:id="@+id/progresLoading"
             android:visibility="visible"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal" />-->
     </LinearLayout>
 </LinearLayout>

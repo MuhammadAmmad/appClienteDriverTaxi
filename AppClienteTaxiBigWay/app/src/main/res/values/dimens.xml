@@ -27,5 +27,10 @@
     <dimen name="dimen20">20dp</dimen>
     <dimen name="dimen10">10dp</dimen>
     <dimen name="dimen25">25dp</dimen>
+    <dimen name="dimen200">200dp</dimen>
+    <dimen name="dime35">35dp</dimen>
+    <dimen name="dimen18">18dp</dimen>
+    <dimen name="dimen16">16dp</dimen>
+    <dimen name="dime40">40dp</dimen>
 
 </resources>

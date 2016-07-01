@@ -5,8 +5,8 @@ package com.nucleosis.www.appclientetaxibigway.Constantes;
  */
 public class ConstantsWS {
     /* DESCRIPCION DE LOS WEBSERVICES*/
-    private static final String NAME_SPACE="http://taxibigway.com/soap";
-    private static final String URL="http://taxibigway.com/soap";
+    private static final String NAME_SPACE="http://sistema.taxibigway.com/soap";
+    private static final String URL="http://sistema.taxibigway.com/soap";
 
 
     //CONDUCTOR REGISTRAR

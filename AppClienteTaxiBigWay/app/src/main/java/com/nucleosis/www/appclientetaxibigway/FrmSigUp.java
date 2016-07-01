@@ -51,15 +51,15 @@ public class FrmSigUp extends AppCompatActivity implements View.OnClickListener{
                 String confirPass=compR.getEditConfirPassword().getText().toString().trim();
                 String celular=compR.getEditCelular().getText().toString().trim();
 
-                if(nombre.length()!=0 && dni.length()!=0 &&
+                if(nombre.length()!=0 &&
                         email.length()!=0 &&
                         password.length()!=0 &&
                         confirPass.length()!=0 &&
                         celular.length()!=0){
-                    row.setNombre(nombre);
-                    row.setaPaterno(apadre);
-                    row.setaMaterno(amadre);
-                    row.setDni(dni);
+                    row.setNombre(nombre.toUpperCase());
+                    row.setaPaterno("");
+                    row.setaMaterno("");
+                    row.setDni("");
                     row.setEmail(email);
                     row.setPassword(password);
                     row.setCelular(celular);
@@ -79,9 +79,9 @@ public class FrmSigUp extends AppCompatActivity implements View.OnClickListener{
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent i = new Intent(getApplicationContext(),LoginActivity.class);;
-            finish();
+            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
             startActivity(i);
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);

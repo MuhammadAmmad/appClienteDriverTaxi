@@ -662,8 +662,6 @@ public class MapsConductorClienteServicio
                                         +jsonDetalle.getString("DescripcionServicion")+"<br><br>"
                                         +"<font color=\"#11aebf\"><bold>Estado del servicio:&nbsp;</bold></font>"
                                         +jsonDetalle.getString("nombreStadoServicio");
-
-
                         txtDetalle.setText(Html.fromHtml(detalle));
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -672,8 +670,6 @@ public class MapsConductorClienteServicio
                     // alerDialogoBilder.setCancelable(false);
                     alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogo1, int id) {
-
-
                         }
                     });
                     alertDialog = alerDialogoBilder.create();
@@ -681,10 +677,6 @@ public class MapsConductorClienteServicio
                 }else{
                     Toast.makeText(MapsConductorClienteServicio.this,"No hay detalle para este servicio",Toast.LENGTH_LONG).show();
                 }
-
-
-
-
             }
         }.execute();
     }

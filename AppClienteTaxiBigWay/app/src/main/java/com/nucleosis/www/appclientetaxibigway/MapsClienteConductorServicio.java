@@ -329,20 +329,16 @@ public class MapsClienteConductorServicio
                                         String msn="Servicio terminaddo";
                                         compR.getTxtMensajeDeEstado().setText(msn);
                                         compR.getImageViewColorStado().setBackgroundColor(Color.rgb(32,118,242));
-
                                         Intent intenServicioCreados=new Intent(MapsClienteConductorServicio.this, EstadoServiciosCreados.class);
                                         stopService(intenServicioCreados);
                                         Log.d("stado_x",String.valueOf(stadoServicio));
                                         Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
                                         stopService(intentCoordendasConductor);
                                         idDriver=jsonArrayServis.getJSONObject(i).getString("idConductor");
-
                                         if(SWcalificacionVariable==0){
                                             calificacionConductor(idDriver);
                                             SWcalificacionVariable=1;
                                         }
-
-
                                     }
                                    /* Toast.makeText(MapsClienteConductorServicio.this,
                                             jsonArrayServis.getJSONObject(i).getString("stadoServicio"),Toast.LENGTH_SHORT).show();*/
@@ -374,8 +370,9 @@ public class MapsClienteConductorServicio
 
     private void calificacionConductor(final String idDriver){
         Log.d("idDriver_x",idDriver);
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        final View view = this.getLayoutInflater().inflate(R.layout.view_calificacion_cliente_a_conductor, null);
+        final Activity activity=MapsClienteConductorServicio.this;
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+        final View view = activity.getLayoutInflater().inflate(R.layout.view_calificacion_cliente_a_conductor, null);
 
         TextView lblTitulo=(TextView)view.findViewById(R.id.lblTitulo) ;
         lblTitulo.setTypeface(myTypeFace.openRobotoLight());
@@ -383,15 +380,12 @@ public class MapsClienteConductorServicio
         RatingBar ratingBarEstrellas=(RatingBar)view.findViewById(R.id.ratingBarCalificacionConductor);
         Button btnCalificar=(Button)view.findViewById(R.id.btnCalificarConductor);
         Button btnSaltarCalifica_=(Button)view.findViewById(R.id.btnSaltarCalificacion);
-        EditText editComentario=(EditText)view.findViewById(R.id.editComentario);
-        Log.d("xxtComentario",editComentario.getText().toString().trim());
-        final String Comentario=editComentario.getText().toString().trim();
 
+        final  EditText editComentario=(EditText)view.findViewById(R.id.editComentario);
         ratingBarEstrellas.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                // Toast.makeText(getApplicationContext(),Float.toString(rating),Toast.LENGTH_LONG).show();
-
                 Log.d("rantin_",String.valueOf(Math.round(rating)));
                 int ratingCalifica=Math.round(rating);
                 idTipoCalificacion=String.valueOf(ratingCalifica);
@@ -405,15 +399,25 @@ public class MapsClienteConductorServicio
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                new wsCalificarConductor(MAPS_CLIENTE_CONDUCTOR,
-                        idDriver,
-                        idServicio,
-                        Integer.parseInt(idTipoCalificacion),
-                        Comentario).execute();
 
-              /* Intent intent =new Intent(MapsClienteConductorServicio.this,MainActivity.class);
-                startActivity(intent);
-                finish();*/
+                String Comentario=editComentario.getText().toString().trim();
+                if(Comentario.length()!=0){
+                    new wsCalificarConductor(
+                            MAPS_CLIENTE_CONDUCTOR,
+                            idDriver,
+                            idServicio,
+                            Integer.parseInt(idTipoCalificacion),
+                            Comentario.toUpperCase()).execute();
+                }else {
+                    new wsCalificarConductor(
+                            MAPS_CLIENTE_CONDUCTOR,
+                            idDriver,
+                            idServicio,
+                            Integer.parseInt(idTipoCalificacion),
+                            "").execute();
+                }
+
+
             }
         });
         ratingBarEstrellas.setOnClickListener(new View.OnClickListener() {
@@ -554,7 +558,6 @@ public class MapsClienteConductorServicio
         super.onDestroy();
         Intent intent=new Intent(MapsClienteConductorServicio.this, EstadoServiciosCreados.class);
         stopService(intent);
-
         Log.d("stado_x",String.valueOf(stadoServicio));
         Intent intentCoordendasConductor=new Intent(MapsClienteConductorServicio.this,PosicionConductor.class);
         stopService(intentCoordendasConductor);
