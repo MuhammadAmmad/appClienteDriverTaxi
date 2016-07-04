@@ -61,7 +61,7 @@ public class locationDriver extends Service
 
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             updateLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, Utils.TIME_LOCATION_DRIVER, 0, this);
 
         }
 
@@ -94,7 +94,7 @@ public class locationDriver extends Service
                         .execute();
             }
         };
-        timer.scheduleAtFixedRate(timerTask, 0, 10000);
+        timer.scheduleAtFixedRate(timerTask, 0, Utils.TIME_LOCATION_DRIVER);
         return super.onStartCommand(intent, flags, startId);
 
     }

@@ -11,9 +11,11 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -55,6 +57,7 @@ import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreado
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansVehiculoConductor;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Alerta;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Constans;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.DonwloadImage.CircleTransform;
@@ -160,70 +163,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(AdapterNotificaciones.ViewHolder holder, String posicion) {
-
-        /*Toast.makeText(getApplicationContext(),ListaServiciosCreados.get(Integer.parseInt(posicion)).getIdServicio(),
-                Toast.LENGTH_SHORT).show();*/
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         final View view = this.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
         final int posicion_ = Integer.parseInt(posicion);
         TextView lblDetalleServicio = (TextView) view.findViewById(R.id.txtDetalleServicio);
         //   Toast.makeText(this, ListaServiciosCreados.get(posicion_).getIdServicio().toString(), Toast.LENGTH_SHORT).show();
-        String detalle = "";
-        JSONObject jsonConfiguracion = fichero.ExtraerConfiguraciones();
-        String importTipoAutoSolicitoCliente = "0.0";
-        Double sumaImportesServicio = 0.0;
-        if (jsonConfiguracion != null) {
-            Log.d("configu_", jsonConfiguracion.toString());
-            if (ListaServiciosCreados.get(posicion_).getIdAutoTipoPidioCliente().equals("1")) {
-                try {
-                    importTipoAutoSolicitoCliente = jsonConfiguracion.getString("impAutoVip");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                importTipoAutoSolicitoCliente = "0.0";
-            }
-        }
-        sumaImportesServicio = Double.parseDouble(importTipoAutoSolicitoCliente) +
-                Double.parseDouble(ListaServiciosCreados.get(posicion_).getImporteAireAcondicionado().toString()) +
-                Double.parseDouble(ListaServiciosCreados.get(posicion_).getImportePeaje().toString()) +
-                Double.parseDouble(ListaServiciosCreados.get(posicion_).getImporteServicio().toString());
-        detalle =
-                "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
-                        + "\t" + ListaServiciosCreados.get(posicion_).getFecha().toString() + "<br>"
-                        + "<font color=\"#11aebf\"><bold>Hora:&nbsp;</bold></font>"
-                        + ListaServiciosCreados.get(posicion_).getHora().toString() + "<br>"
-                        + "<font color=\"#11aebf\"><bold>Distri Incio:&nbsp;</bold></font>"
-                        + ListaServiciosCreados.get(posicion_).getNameDistritoInicio().toString() + "<br>"
-                        + "<font color=\"#11aebf\"><bold>Direccion Incio:&nbsp;</bold></font>"
-                        + ListaServiciosCreados.get(posicion_).getDireccionIncio().toString() + "<br>"
-                        + "<font color=\"#11aebf\"><bold>Distri Fin:&nbsp;</bold></font>"
-                        + ListaServiciosCreados.get(posicion_).getNameDistritoFin().toString() + "<br>"
-                        + "<font color=\"#11aebf\"><bold>Direccion Fin:&nbsp;</bold></font>"
-                        + ListaServiciosCreados.get(posicion_).getDireccionFinal().toString() + "<br>"
-                        + "<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
-                        + ListaServiciosCreados.get(posicion_).getNumeroMinutoTiempoEspera().toString() + "\t" + " min" + "<br>"
-                        + "<font color=\"#11aebf\"><bold>Tipo Servicio :&nbsp;</bold></font>"
-                        + "( " + ListaServiciosCreados.get(posicion_).getDesAutoTipoPidioCliente().toString() + " )" + "<br><br>"
+        String detalle = Constans.DetalleServicioLista(this,ListaServiciosCreados,posicion_);
 
-                        + "<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
-                        + "S/." + ListaServiciosCreados.get(posicion_).getImporteServicio().toString() + "<br>"
-
-                        + "<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
-                        + "S/." + ListaServiciosCreados.get(posicion_).getImporteAireAcondicionado().toString() + "<br>"
-
-                      /*  +"<font color=\"#11aebf\"><bold>Import Tiem espera:&nbsp;</bold></font>"
-                        +"S/."+jsonDetalle.getString("importeTiempoEspera")+"<br>"*/
-
-                        + "<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
-                        + "S/." + ListaServiciosCreados.get(posicion_).getImportePeaje().toString() + "<br>"
-
-                        + "<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
-                        + "S/." + importTipoAutoSolicitoCliente + "<br><br>"
-
-                        + "<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
-                        + "S/." + String.valueOf(sumaImportesServicio) + "<br><br>";
-        //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
 
         lblDetalleServicio.setText(Html.fromHtml(detalle));
 
@@ -231,23 +177,22 @@ public class MainActivity extends AppCompatActivity
         alertDialogBuilder.setView(view);
         AlertDialog alertDialog;
 
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
-                dialogo1.setTitle("Importante");
-                dialogo1.setMessage("¿ Esta seguro de aceptar este servicio ?");
+
+                dialogo1.setTitle(R.string.importante);
+                dialogo1.setMessage(R.string.mensajeAlert);
                 dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                dialogo1.setPositiveButton(R.string.Confirmar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         alertDialogPanelNotificacion.dismiss();
                         new wsAsignarServicioConductor(MainActivity.this,
                                 ListaServiciosCreados.get(posicion_).getIdServicio()).execute();
                     }
                 });
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                dialogo1.setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
 
                     }
@@ -257,7 +202,7 @@ public class MainActivity extends AppCompatActivity
                 // Create the AlertDialog object and return it
 
             }
-        }).setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -487,7 +432,8 @@ public class MainActivity extends AppCompatActivity
                     if (swPermiteSoloUnServicioTomado == 1) {
                         cargarAlertNotificaciones();
                     } else {
-                        Toast.makeText(MainActivity.this, "Tiene servicios tomados, Termine los servicios !!!",
+                        String msn=getResources().getString(R.string.tienesServicios);
+                        Toast.makeText(MainActivity.this, msn,
                                 Toast.LENGTH_LONG).show();
                     }
 
@@ -558,25 +504,166 @@ public class MainActivity extends AppCompatActivity
                                 setFragment(2);
                                 break;
                             case R.id.cerrarSesion:
-                                JSONObject jsonSesion = new JSONObject();
-                                try {
-                                    jsonSesion.put("idSesion", "0");
-                                    fichero.InsertarSesion(jsonSesion.toString());
-                                    Log.d("StracFichero", fichero.ExtraerSesion().toString());
-                                    Intent intentLongin = new Intent(MainActivity.this, LoingDriverApp.class);
-                                    startActivity(intentLongin);
-                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                                    finish();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                cerrar_sesion_Alert();
+                                break;
+
+                            case R.id.llamarCentral:
+                                llamar_a_central();
                                 break;
                         }
                         return true;
                     }
                 });
     }
+    private void cerrar_sesion_Alert(){
+        AlertDialog.Builder alertBilder = new AlertDialog.Builder(MainActivity.this);
+        alertBilder.setTitle(R.string.cerrar_sesion);
+        alertBilder.setMessage(R.string.msnCerrar_sesion);
+        alertBilder.setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
+            }
+        }).setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                JSONObject jsonSesion = new JSONObject();
+                try {
+                    jsonSesion.put("idSesion", "0");
+                    fichero.InsertarSesion(jsonSesion.toString());
+                    Log.d("StracFichero", fichero.ExtraerSesion().toString());
+                    Intent intentLongin = new Intent(MainActivity.this, LoingDriverApp.class);
+                    startActivity(intentLongin);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        alertBilder.show();
+
+        }
+private void llamar_a_central(){
+    JSONObject jsonConfiguraciones=fichero.ExtraerConfiguraciones();
+    String direccion1;
+    String telefono1="00-0000";
+    if(jsonConfiguraciones!=null){
+        try {
+            telefono1=jsonConfiguraciones.getString("numTelefonoEmpesa");
+            direccion1=jsonConfiguraciones.getString("direccionEmpresa");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    AlertDialog.Builder alertBilder = new AlertDialog.Builder(MainActivity.this);
+    final View view = getLayoutInflater().inflate(R.layout.view_llamada_central, null);
+    final TextView txtTelefono1=(TextView)view.findViewById(R.id.txtTefono1);
+    final TextView txtTelefono2=(TextView)view.findViewById(R.id.txtTefono2);
+    final TextView txtTelefono3=(TextView)view.findViewById(R.id.txtTefono3);
+    final TextView txtTelefono4=(TextView)view.findViewById(R.id.txtTefono4);
+    Button btnCancelarTelefonos=(Button)view.findViewById(R.id.btnCerrarTelefonos);
+    txtTelefono1.setTypeface(myTypeFace.OpenSansRegular());
+    txtTelefono2.setTypeface(myTypeFace.OpenSansRegular());
+    txtTelefono3.setTypeface(myTypeFace.OpenSansRegular());
+    txtTelefono4.setTypeface(myTypeFace.OpenSansRegular());
+    btnCancelarTelefonos.setTypeface(myTypeFace.openRobotoLight());
+
+
+
+    alertBilder.setView(view);
+    final AlertDialog alertDialog = alertBilder.create();
+    JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+    Log.d("configuracionTeel",fichero.ExtraerConfiguraciones().toString());
+    if(configuracionesJson!=null){
+        try {
+            txtTelefono1.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa"));
+            txtTelefono2.setText("Tel 2:\t "+configuracionesJson.getString("numTelefonoEmpesa_2"));
+            txtTelefono3.setText("Tel 3:\t "+configuracionesJson.getString("numTelefonoEmpesa_3"));
+            txtTelefono4.setText("Tel 4:\t "+configuracionesJson.getString("numTelefonoEmpesa_4"));
+
+            //tel:998319046
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    txtTelefono1.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+            String    telef_1= null;
+            try {
+                telef_1 = configuracionesJson.getString("numTelefonoEmpesa");
+                Intent i = new Intent(Intent.ACTION_DIAL,
+                        Uri.parse("tel:"+telef_1)); //
+                startActivity(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    });
+    txtTelefono2.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+            String    telef_2= null;
+            try {
+                telef_2 = configuracionesJson.getString("numTelefonoEmpesa_2");
+                Intent i = new Intent(Intent.ACTION_DIAL,
+                        Uri.parse("tel:"+telef_2)); //
+                startActivity(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+
+    txtTelefono3.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+            String    telef_3= null;
+            try {
+                telef_3 = configuracionesJson.getString("numTelefonoEmpesa_3");
+                Intent i = new Intent(Intent.ACTION_DIAL,
+                        Uri.parse("tel:"+telef_3)); //
+                startActivity(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+    txtTelefono4.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
+            String    telef_4= null;
+            try {
+                telef_4 = configuracionesJson.getString("numTelefonoEmpesa_4");
+                Intent i = new Intent(Intent.ACTION_DIAL,
+                        Uri.parse("tel:"+telef_4)); //
+                startActivity(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+
+    btnCancelarTelefonos.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            alertDialog.dismiss();
+        }
+    });
+
+
+
+    alertDialog.show();
+}
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -695,15 +782,15 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.btnDesactivarTurno:
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
-                dialogo1.setTitle("Importante");
-                dialogo1.setMessage("¿ Esta seguro de desactivar su turno ?");
+                dialogo1.setTitle(R.string.importante);
+                dialogo1.setMessage(R.string.desactivatTurno);
                 dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                dialogo1.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         new wsDesactivarTurno(MainActivity.this).execute();
                     }
                 });
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                dialogo1.setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
 
                     }

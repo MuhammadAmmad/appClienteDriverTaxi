@@ -61,6 +61,11 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
                 jsonObjectData.put("impMinutoEspera",response2.getPropertyAsString("IMP_POR_MINUTO_TIEMPO_ESPERA"));
                 jsonObjectData.put("impAutoVip",response2.getPropertyAsString("IMP_POR_AUTO_VIP"));
                 jsonObjectData.put("radioServicio",response2.getPropertyAsString("NUM_METRO_RADIO"));
+                jsonObjectData.put("direccionEmpresa",response2.getPropertyAsString("DES_DIRECCION"));
+                jsonObjectData.put("numTelefonoEmpesa",response2.getPropertyAsString("NUM_TELEFONO"));
+                jsonObjectData.put("numTelefonoEmpesa_2",response2.getPropertyAsString("NUM_TELEFONO2"));
+                jsonObjectData.put("numTelefonoEmpesa_3",response2.getPropertyAsString("NUM_TELEFONO3"));
+                jsonObjectData.put("numTelefonoEmpesa_4",response2.getPropertyAsString("NUM_TELEFONO4"));
             }else{
                 jsonObjectData.put("urlFotoConductor","0");
                 jsonObjectData.put("impAireAcondicionado","0");
@@ -68,6 +73,12 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
                 jsonObjectData.put("impMinutoEspera","0");
                 jsonObjectData.put("impAutoVip","0");
                 jsonObjectData.put("radioServicio","1000");
+                jsonObjectData.put("direccionEmpresa","0000000");
+                jsonObjectData.put("numTelefonoEmpesa","0000000");
+                jsonObjectData.put("numTelefonoEmpesa_2","0000000");
+                jsonObjectData.put("numTelefonoEmpesa_3","0000000");
+                jsonObjectData.put("numTelefonoEmpesa_4","0000000");
+
             }
             //  Log.d("response",response2.toString());
         } catch (Exception e) {
@@ -79,6 +90,11 @@ public class wsExtraerConfiguracionAdicionales extends AsyncTask<String,String,J
                 jsonObjectData.put("impMinutoEspera","0");
                 jsonObjectData.put("impAutoVip","0");
                 jsonObjectData.put("radioServicio","1000");
+                jsonObjectData.put("direccionEmpresa","0000000");
+                jsonObjectData.put("numTelefonoEmpesa","0000000");
+                jsonObjectData.put("numTelefonoEmpesa_2","0000000");
+                jsonObjectData.put("numTelefonoEmpesa_3","0000000");
+                jsonObjectData.put("numTelefonoEmpesa_4","0000000");
 
             } catch (JSONException e1) {
                 e1.printStackTrace();

@@ -25,9 +25,6 @@ import org.json.JSONObject;
  */
 public class FirstScreemCarga extends AppCompatActivity {
     private Fichero fichero;
-    // Set the duration of the splash screen
-
-  //  private static final long SPLASH_SCREEN_DELAY = 3000;
     private ProgressDialog progressDialog;
     private ProgressBar progressBarCargar;
     private Boolean conec=false;
@@ -35,16 +32,7 @@ public class FirstScreemCarga extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_screem_carga);
-       /* Toolbar toolbar=(Toolbar)findViewById(R.id.appbar);
-        setSupportActionBar(toolbar);
-        */
-        progressBarCargar=(ProgressBar)findViewById(R.id.progresLoading);
         fichero=new Fichero(FirstScreemCarga.this);
-        progressBarCargar.setVisibility(View.VISIBLE);
-       /* progressDialog=new ProgressDialog(FirstScreemCarga.this);
-        progressDialog.setMessage("cargado...");
-        progressDialog.show();*/
-
         final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
 
         Thread timerThread = new Thread(){

@@ -161,7 +161,6 @@ public class MapsConductorClienteServicio
 
             new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaInicio, 3).execute();
             new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaFin, 4).execute();
-           // new AsytaskServicioExtraido(MapsConductorClienteServicio.this,idServicio).execute();
 
             String stadoServicio=getIntent().getStringExtra("stadoService");
             Log.d("idServicio_stadoSevcio",idServicio+"-->"+stadoServicio);
@@ -184,9 +183,6 @@ public class MapsConductorClienteServicio
         preferencesDriver=new PreferencesDriver(MapsConductorClienteServicio.this);
         idDriver=preferencesDriver.OpenIdDriver();
 
-        //LEVANTAR PROCESO EN SEGUNDO PLANO
-        /*Intent intent=new Intent(MapsConductorClienteServicio.this, ServiceListarServiciosCreados.class);
-        startService(intent);*/
 
     }
 
@@ -217,16 +213,11 @@ public class MapsConductorClienteServicio
                                         AddresIncioCliente=jsonArray.getJSONObject(i).getString("DireccionIncio");
                                         i=jsonArray.length();
                                     }
-                                    //jsonArray.getJSONObject(i).getString("idServicio");
-                                    //jsonArray.getJSONObject(i).getString("DireccionIncio")
                                 }
-                                // Log.d("x_array", String.valueOf(jsonArray.length()));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-
-
                     break;
                 case Utils.ACTION_MEMORY_EXIT_3:
                     break;
@@ -303,21 +294,6 @@ public class MapsConductorClienteServicio
 
                             }
                         }
-
-                        /*
-                        JSONObject jsonCoordenadaClienteAddresRecojo=fichero.ExtraerCoordendaDirrecionIncioCliente();
-                        try {
-                            if(jsonCoordenadaClienteAddresRecojo.getString("latitud").length()!=0 &&
-                                    jsonCoordenadaClienteAddresRecojo.getString("longitud").length()!=0){
-                                double latitudd=Double.parseDouble(jsonCoordenadaClienteAddresRecojo.getString("latitud"));
-                                double longitudd=Double.parseDouble(jsonCoordenadaClienteAddresRecojo.getString("longitud"));
-                                MarcadorServicio(map, latitudd, longitudd);
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }*/
                         map.animateCamera(cam);
                     }
                 }
@@ -340,9 +316,6 @@ public class MapsConductorClienteServicio
         if (requestCode == Utils.MY_PERMISSION_ACCESS_COURSE_LOCATION_1) {
             if(grantResults.length == 1
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // We can now safely use the API we requested access to
-               /* Location myLocation =
-                        LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);*/
             } else {
                 // Permission was denied or request was cancelled
             }
@@ -359,11 +332,6 @@ public class MapsConductorClienteServicio
                 .position(PERTH)
                 .title("Cliente")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_cliente_2)));
-
-
-
-     /*   CustomInfoWindow customInfoWindow = new CustomInfoWindow(MainActivity.this);
-        mapa.setInfoWindowAdapter(customInfoWindow);*/
     }
 
     private AdapterView.OnItemClickListener mAutocompleteClickListener_1
@@ -472,7 +440,6 @@ public class MapsConductorClienteServicio
                 String mensaje1="Encontro al cliente ?";
                 alert("3",mensaje1,9);
                Log.d("idTurnoVehiculo-->",preferencesDriver.ExtraerIdTurno()+"***"+preferencesDriver.ExtraerIdVehiculo());
-
              //   compR.getBtnServicioNoTerminado().setEnabled(false);
               //  compR.getBtnServicioTerminadoOk().setEnabled(false);
                 compR.getBtnIrAServicios().setEnabled(true);
@@ -482,7 +449,6 @@ public class MapsConductorClienteServicio
             case R.id.btnSercioNoTerminado:
                 String mensaje2="No termino el servicio ?";
                 alert("5",mensaje2,10);
-
               //  compR.getBtnClienteEncontrado().setEnabled(false);
               //  compR.getBtnServicioTerminadoOk().setEnabled(false);
                 compR.getBtnIrAServicios().setEnabled(true);
@@ -492,12 +458,10 @@ public class MapsConductorClienteServicio
             case R.id.btnServicioTerminadoOk:
                 String mensaje3="Termino el servicio correctamente ?";
                 alert("4",mensaje3,11);
-
              //   compR.getBtnClienteEncontrado().setEnabled(false);
             //   compR.getBtnServicioNoTerminado().setEnabled(false);
                 compR.getBtnIrAServicios().setEnabled(true);
                // compR.getBtnAdicionales().setEnabled(false);
-
                 break;
             case R.id.btnIrA_Servicios:
                 Intent intent=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
@@ -553,8 +517,6 @@ public class MapsConductorClienteServicio
                                 JsonObjecServiceConductor.put("nombreStadoServicio",jsonServiciosConductor.getJSONObject(i).getString("nombreStadoServicio"));
                                 JsonObjecServiceConductor.put("idAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente"));
                                 JsonObjecServiceConductor.put("desAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("desAutoTipoPidioCliente"));
-
-
                                 String importeGastoAdicional_=jsonServiciosConductor.getJSONObject(i).getString("importeGastosAdicionales");
                                 double importeGastoAdicional=0.0;
                                 String importeTipoAuto="0.00";
@@ -581,7 +543,6 @@ public class MapsConductorClienteServicio
                                     }else{
                                         importeGastoAdicional=0.0;
                                     }
-
                                 }
 
                                 double sumaImportes=Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeServicio"))+
@@ -618,54 +579,10 @@ public class MapsConductorClienteServicio
 
                     String detalle = "";
                     AlertDialog alertDialog;
-                    try {
-                        detalle=
-                                "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
-                                        +"\t"+jsonDetalle.getString("Fecha")+"<br>"
-                                        +"<font color=\"#11aebf\"><bold>Hora:&nbsp;</bold></font>"
-                                        +jsonDetalle.getString("Hora")+"<br>"
-                                        +"<font color=\"#11aebf\"><bold>Distri Incio:&nbsp;</bold></font>"
-                                        +jsonDetalle.getString("nameDistritoInicio")+"<br>"
-                                        +"<font color=\"#11aebf\"><bold>Direccion Incio:&nbsp;</bold></font>"
-                                        +jsonDetalle.getString("DireccionIncio")+"<br>"
-                                        +"<font color=\"#11aebf\"><bold>Distri Fin:&nbsp;</bold></font>"
-                                        +jsonDetalle.getString("nameDistritoFin")+"<br>"
-                                        +"<font color=\"#11aebf\"><bold>Direccion Fin:&nbsp;</bold></font>"
-                                        +jsonDetalle.getString("direccionFinal")+"<br>"
-                                        +"<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
-                                        +jsonDetalle.getString("numeroMinutoTiempoEspera")+"\t"+" min"+"<br>"
-                                        +"<font color=\"#11aebf\"><bold>Tipo Servicio :&nbsp;</bold></font>"
-                                        +"( "+jsonDetalle.getString("desAutoTipoPidioCliente")+" )"+"<br><br>"
+                        detalle=Constans.DetalleServicioJson(jsonDetalle);
 
-                                        +"<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
-                                        +"S/."+jsonDetalle.getString("importeServicio")+"<br>"
-
-                                        +"<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
-                                        +"S/."+jsonDetalle.getString("importeAireAcondicionado")+"<br>"
-
-                                        +"<font color=\"#11aebf\"><bold>Import Tiem espera:&nbsp;</bold></font>"
-                                        +"S/."+jsonDetalle.getString("importeTiempoEspera")+"<br>"
-
-                                        +"<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
-                                        +"S/."+jsonDetalle.getString("importePeaje")+"<br>"
-
-                                        +"<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
-                                        +"S/."+jsonDetalle.getString("importeTipoAuto")+"<br><br>"
-
-                                        +"<font color=\"#11aebf\"><bold>Import adicional :&nbsp;</bold></font>"
-                                        +"S/."+jsonDetalle.getString("importeGastosAdicionales")+"<br><br>"
-
-                                        +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
-                                        +"S/."+jsonDetalle.getString("importeTotalServicio")+"<br><br>"
-                                        //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
-                                        +"<font color=\"#11aebf\"><bold>Informacion Adicional :&nbsp;</bold></font>"
-                                        +jsonDetalle.getString("DescripcionServicion")+"<br><br>"
-                                        +"<font color=\"#11aebf\"><bold>Estado del servicio:&nbsp;</bold></font>"
-                                        +jsonDetalle.getString("nombreStadoServicio");
                         txtDetalle.setText(Html.fromHtml(detalle));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+
                     //alerDialogoBilder.setMessage(detalle);
                     // alerDialogoBilder.setCancelable(false);
                     alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
@@ -675,7 +592,8 @@ public class MapsConductorClienteServicio
                     alertDialog = alerDialogoBilder.create();
                     alertDialog.show();
                 }else{
-                    Toast.makeText(MapsConductorClienteServicio.this,"No hay detalle para este servicio",Toast.LENGTH_LONG).show();
+                    String msn=getResources().getString(R.string.noDetalle);
+                    Toast.makeText(MapsConductorClienteServicio.this,msn,Toast.LENGTH_LONG).show();
                 }
             }
         }.execute();
@@ -692,8 +610,6 @@ public class MapsConductorClienteServicio
          final Button btnAireAcondicionado1=(Button)view.findViewById(R.id.btnAireAcondicionado1);
          final Button btnAireAcondicionado2=(Button)view.findViewById(R.id.btnAireAcondicionado2);
          final Button btnEnviarAire=(Button)view.findViewById(R.id.btnEnviarAire);
-
-
         btnAireAcondicionado1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -794,15 +710,15 @@ public class MapsConductorClienteServicio
             public void onClick(View v) {
 
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(activity);
-                dialogo1.setTitle("Añadir Peaje");
+                dialogo1.setTitle(R.string.agregarPeaje);
                 try {
-                    dialogo1.setMessage("¿ Esta seguro de  realizar esta operacion ?"+"\n\n"+
+                    dialogo1.setMessage(R.string.operacionPeaje+"\n\n"+
                             "Costo:"+"\t\t"+"S/."+jsonConfiguraciones.getString("impServicioPeaje"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                dialogo1.setPositiveButton(R.string.Confirmar, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         btnPeaje2.setVisibility(View.GONE);
                         btnPeaje1.setVisibility(View.VISIBLE);
@@ -1107,8 +1023,6 @@ public class MapsConductorClienteServicio
                     tipoPagoServicioFinal[0] ="1";
                     checkBoxPagoCredito.setChecked(false);
                 }
-
-
             }
         });
 
@@ -1119,8 +1033,6 @@ public class MapsConductorClienteServicio
                     tipoPagoServicioFinal[0] ="2";
                     checkBoxPagoEfectivo.setChecked(false);
                 }
-
-
             }
         });
 
@@ -1131,7 +1043,6 @@ public class MapsConductorClienteServicio
                     checkBoxCalificacionMalo.setChecked(false);
                     idCalificacion=3;
                 }
-
             }
         });
 
@@ -1251,10 +1162,8 @@ public class MapsConductorClienteServicio
                         new wsActualizarStadosAdicionales(activity,idServicio,motivo,caseObjeto).execute(stadoServicio);
 
                     }
-                    //ActualizarStadosServicio(stadoServicio,motivo,caseObjeto,activity);
                 }else {
                     new wsActualizarStadosAdicionales(activity,idServicio,"",caseObjeto).execute(stadoServicio);
-                  //  ActualizarStadosServicio(stadoServicio,"",caseObjeto,activity);
                 }
             }
         });
@@ -1301,8 +1210,5 @@ public class MapsConductorClienteServicio
         }
         fichero.InsertarCoordendaDirrecionIncioCliente(jsonDataCoordenadaAddresClienteIncio.toString());
         Log.d("ExtracLATLON",fichero.ExtraerCoordendaDirrecionIncioCliente().toString());
-
-        /*Intent intent=new Intent(MapsConductorClienteServicio.this,ServiceListarServiciosCreados.class);
-        stopService(intent);*/
     }
 }

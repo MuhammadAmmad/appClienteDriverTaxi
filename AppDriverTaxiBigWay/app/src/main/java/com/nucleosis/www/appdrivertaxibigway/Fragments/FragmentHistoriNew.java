@@ -37,6 +37,8 @@ import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.ConexionRed.ConnectionUtils;
 import com.nucleosis.www.appdrivertaxibigway.ConexionRed.conexionInternet;
 import com.nucleosis.www.appdrivertaxibigway.Constans.Constans;
+import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.Constans.Utils;
 import com.nucleosis.www.appdrivertaxibigway.Ficheros.Fichero;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListener;
 import com.nucleosis.www.appdrivertaxibigway.Interfaces.OnItemClickListenerDetalle;
@@ -54,12 +56,19 @@ import com.nucleosis.www.appdrivertaxibigway.ws.wsListarServiciosTomadoConductor
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.ksoap2.HeaderProperty;
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 import org.w3c.dom.Text;
 
+import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Vector;
 
 import in.srain.cube.views.GridViewWithHeaderAndFooter;
 
@@ -125,7 +134,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
         compR.getImageButonListarServicios().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"XXXX",Toast.LENGTH_LONG).show();
+             //   Toast.makeText(getActivity(),"XXXX",Toast.LENGTH_LONG).show();
                 final String fecha=compR.getEditHistoriaCarrera().getText().toString();
                 Log.d("fechax_",fecha);
                 if(fecha.length()!=0){
@@ -489,180 +498,154 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
     }
 
     @Override
-    public void onClickDetalle(final Context context, final String idServicio, String stadoServicio) {
+    public void onClickDetalle(final Context context, final String idServicio, String stadoServicio, final String fecha_) {
         Log.d("stadoSevcioLog",stadoServicio);
       //  Toast.makeText(context,"detalle de servicio",Toast.LENGTH_SHORT).show();
         final Fichero fichero=new Fichero(context);
-
+        preferencesDriver=new PreferencesDriver(context);
         final JSONArray jsonServiciosConductor=fichero.ExtraerListaServiciosTomadoConductor();
+
+        Log.d("fechilla_",fecha_);
       if(jsonServiciosConductor!=null){
 
-        Log.d("jsonSerxx",jsonServiciosConductor.toString());
+        Log.d("jsonSerxx",jsonServiciosConductor.toString()+"--->"+idServicio);
+
         }
 
+
         new AsyncTask<String, String, JSONObject>() {
+            ProgressDialog progressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog=new ProgressDialog(context);
+                progressDialog.setMessage("Listando...");
+                progressDialog.show();
+            }
+
             @Override
             protected JSONObject doInBackground(String... params) {
-                JSONObject JsonObjecServiceConductor=new JSONObject();
-                if(jsonServiciosConductor!=null){
-                    for(int i=0;i<jsonServiciosConductor.length();i++){
-                        try {
-                            if(idServicio.equals(jsonServiciosConductor.getJSONObject(i).getString("idServicio"))){
+                JSONObject jsonServicio_ =new JSONObject();
+                SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo7());
+                SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
+                envelope.dotNet = false;
 
-                                JsonObjecServiceConductor.put("importeServicio",jsonServiciosConductor.getJSONObject(i).getString("importeServicio"));
-                                JsonObjecServiceConductor.put("DescripcionServicion",jsonServiciosConductor.getJSONObject(i).getString("DescripcionServicion"));
-                                JsonObjecServiceConductor.put("Fecha",jsonServiciosConductor.getJSONObject(i).getString("Fecha"));
-                                JsonObjecServiceConductor.put("Hora",jsonServiciosConductor.getJSONObject(i).getString("Hora"));
-                                JsonObjecServiceConductor.put("nombreConductor",jsonServiciosConductor.getJSONObject(i).getString("nombreConductor"));
-                                JsonObjecServiceConductor.put("nucCelularCliente",jsonServiciosConductor.getJSONObject(i).getString("nucCelularCliente"));
-                                JsonObjecServiceConductor.put("importeAireAcondicionado",jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"));
+                request.addProperty("idCliente", 0);
+                request.addProperty("fecServicio", fecha_);
+                request.addProperty("idConductor", Integer.parseInt(preferencesDriver.OpenIdDriver()));
+                request.addProperty("idEstadoServicio", "");
+                request.addProperty("idAutoTipo", 0);
+                envelope.setOutputSoapObject(request);
+                HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL(), Utils.TIME_OUT);
+                try {
+                    ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
+                    headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
+                    httpTransport.call(ConstantsWS.getSoapAction7(), envelope, headerPropertyArrayList);
+                    //  httpTransport.call("http://taxibigway.com/soap/WS_SERVICIO_LISTAR", envelope);
+                    SoapObject response1= (SoapObject) envelope.bodyIn;
+                    Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
+                    Log.d("vectorRE",responseVector.toString());
+                    Log.d("requestServicios_",request.toString());
+                    int countVector=responseVector.size();
+                    for(int i=0;i<countVector;i++){
+                        SoapObject dataVector=(SoapObject)responseVector.get(i);
+                        jsonServicio_.put("importeServicio",dataVector.getProperty("IMP_SERVICIO").toString());
+                        jsonServicio_.put("DescripcionServicion",dataVector.getProperty("DES_SERVICIO").toString());
+                        jsonServicio_.put("Fecha",dataVector.getProperty("FEC_SERVICIO").toString());
+                        jsonServicio_.put("Hora",dataVector.getProperty("DES_HORA").toString());
+                        jsonServicio_.put("nombreConductor",dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
+                        jsonServicio_.put("nucCelularCliente",dataVector.getProperty("NUM_CELULAR").toString());
+                        jsonServicio_.put("importeAireAcondicionado",dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
+                        jsonServicio_.put("importeGastosAdicionales",dataVector.getProperty("IMP_GASTOS_ADICIONALES").toString());
+                        jsonServicio_.put("numeroMinutoTiempoEspera",dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
+                        jsonServicio_.put("importeTiempoEspera",dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
+                        jsonServicio_.put("importePeaje",dataVector.getProperty("IMP_PEAJE").toString());
 
-                                JsonObjecServiceConductor.put("importeGastosAdicionales",jsonServiciosConductor.getJSONObject(i).getString("importeGastosAdicionales"));
+                        jsonServicio_.put("nameDistritoInicio",dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                        jsonServicio_.put("DireccionIncio",dataVector.getProperty("DES_DIRECCION_INICIO").toString());
+                        jsonServicio_.put("nameDistritoFin",dataVector.getProperty("NOM_DISTRITO_FIN").toString());
+                        jsonServicio_.put("direccionFinal",dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                        jsonServicio_.put("numeroMovilTaxi",dataVector.getProperty("NUM_MOVIL").toString());
+                        jsonServicio_.put("nombreStadoServicio",dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
+                        jsonServicio_.put("idAutoTipoPidioCliente",dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
+                        jsonServicio_.put("desAutoTipoPidioCliente",dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
 
-                                JsonObjecServiceConductor.put("numeroMinutoTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("numeroMinutoTiempoEspera"));
-                                JsonObjecServiceConductor.put("importeTiempoEspera",jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"));
-                                JsonObjecServiceConductor.put("importePeaje",jsonServiciosConductor.getJSONObject(i).getString("importePeaje"));
-                                JsonObjecServiceConductor.put("nameDistritoInicio",jsonServiciosConductor.getJSONObject(i).getString("nameDistritoInicio"));
-                                JsonObjecServiceConductor.put("DireccionIncio",jsonServiciosConductor.getJSONObject(i).getString("DireccionIncio"));
-                                JsonObjecServiceConductor.put("nameDistritoFin",jsonServiciosConductor.getJSONObject(i).getString("nameDistritoFin"));
-                                JsonObjecServiceConductor.put("direccionFinal",jsonServiciosConductor.getJSONObject(i).getString("direccionFinal"));
-                                JsonObjecServiceConductor.put("numeroMovilTaxi",jsonServiciosConductor.getJSONObject(i).getString("numeroMovilTaxi"));
-                                JsonObjecServiceConductor.put("nombreStadoServicio",jsonServiciosConductor.getJSONObject(i).getString("nombreStadoServicio"));
-                                JsonObjecServiceConductor.put("idAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente"));
-                                JsonObjecServiceConductor.put("desAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("desAutoTipoPidioCliente"));
 
-                                String importeGastoAdicional_=jsonServiciosConductor.getJSONObject(i).getString("importeGastosAdicionales");
-                                double importeGastoAdicional=0.0;
-                                String importeTipoAuto="0.00";
-                                //1 VIP
-                                //2 ECONOMICO
-                                if(jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente").equals("1")){
+                        String importeGastoAdicional_=dataVector.getPropertyAsString("IMP_GASTOS_ADICIONALES");
+                        double importeGastoAdicional=0.0;
+                        String importeTipoAuto="0.00";
 
-                                    JSONObject configuracionJson=fichero.ExtraerConfiguraciones();
-                                    if(configuracionJson!=null){
-                                        JsonObjecServiceConductor.put("importeTipoAuto",configuracionJson.getString("impAutoVip"));
-                                        importeTipoAuto=configuracionJson.getString("impAutoVip");
-                                    }else {
-                                        JsonObjecServiceConductor.put("importeTipoAuto","0.00");
-                                        importeTipoAuto="0.00";
-                                    }
-
-                                }else{
-                                    JsonObjecServiceConductor.put("importeTipoAuto","0.00");
-                                    importeTipoAuto="0.00";
-                                }
-
-                                if(importeGastoAdicional_!=null){
-                                    if(Constans.isNumeric(importeGastoAdicional_)){
-                                        importeGastoAdicional=Double.parseDouble(importeGastoAdicional_);
-                                    }else{
-                                        importeGastoAdicional=0.0;
-                                    }
-
-                                }
-                                double sumaImportes=Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeServicio"))+
-                                                    Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeTiempoEspera"))+
-                                                    Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importeAireAcondicionado"))+
-                                                    Double.parseDouble(jsonServiciosConductor.getJSONObject(i).getString("importePeaje"))+
-                                                    Double.parseDouble(importeTipoAuto)+importeGastoAdicional;
-
-                                JsonObjecServiceConductor.put("importeTotalServicio",String.valueOf(sumaImportes));
-
-                                i=jsonServiciosConductor.length();
+                        if(dataVector.getPropertyAsString("ID_AUTO_TIPO_PIDIO_CLIENTE").equals("1")){
+                            JSONObject configuracionJson=fichero.ExtraerConfiguraciones();
+                            if(configuracionJson!=null){
+                                jsonServicio_.put("importeTipoAuto",configuracionJson.getString("impAutoVip"));
+                                importeTipoAuto=configuracionJson.getString("impAutoVip");
+                            }else {
+                                jsonServicio_.put("importeTipoAuto","0.00");
+                                importeTipoAuto="0.00";
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        }else{
+                            jsonServicio_.put("importeTipoAuto","0.00");
+                            importeTipoAuto="0.00";
                         }
+                        if(importeGastoAdicional_!=null){
+                            if(Constans.isNumeric(importeGastoAdicional_)){
+                                importeGastoAdicional=Double.parseDouble(importeGastoAdicional_);
+                            }else{
+                                importeGastoAdicional=0.0;
+                            }
+
+                        }
+                        double sumaImportes=Double.parseDouble(dataVector.getPropertyAsString("IMP_SERVICIO"))+
+                                Double.parseDouble(dataVector.getPropertyAsString("IMP_TIEMPO_ESPERA"))+
+                                Double.parseDouble(dataVector.getPropertyAsString("IMP_AIRE_ACONDICIONADO"))+
+                                Double.parseDouble(dataVector.getPropertyAsString("IMP_PEAJE"))+
+                                Double.parseDouble(importeTipoAuto)+importeGastoAdicional;
+
+                        jsonServicio_.put("importeTotalServicio",String.valueOf(sumaImportes));
+
                     }
+                }catch( InterruptedIOException i){
+                    i.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+//            Log.d("error", e.getMessage());
                 }
-                return JsonObjecServiceConductor;
+
+                Log.d("xxJosn",jsonServicio_.toString());
+                return jsonServicio_;
             }
 
             @Override
             protected void onPostExecute(JSONObject jsonDetalle) {
                 super.onPostExecute(jsonDetalle);
+                progressDialog.dismiss();
+                if(jsonDetalle!=null){
 
-                        if(jsonDetalle!=null){
-
-                            AlertDialog.Builder alerDialogoBilder = new AlertDialog.Builder(context);
-                            Activity activity=(Activity)context;
-                            final View view = activity.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
-                          //  dialogo1.setTitle("Detalle del Servicio");
-                            TextView txtDetalle=(TextView)view.findViewById(R.id.txtDetalleServicio);
-
-                            alerDialogoBilder.setView(view);
-
-                            String detalle = "";
-                            AlertDialog alertDialog;
-                            try {
-                                 detalle=
-                                         "<font color=\"#11aebf\"><bold>Fecha:&nbsp;</bold></font>"
-                                         +"\t"+jsonDetalle.getString("Fecha")+"<br>"
-                                         +"<font color=\"#11aebf\"><bold>Hora:&nbsp;</bold></font>"
-                                                 +jsonDetalle.getString("Hora")+"<br>"
-                                         +"<font color=\"#11aebf\"><bold>Distri Incio:&nbsp;</bold></font>"
-                                                 +jsonDetalle.getString("nameDistritoInicio")+"<br>"
-                                          +"<font color=\"#11aebf\"><bold>Direccion Incio:&nbsp;</bold></font>"
-                                                 +jsonDetalle.getString("DireccionIncio")+"<br>"
-                                         +"<font color=\"#11aebf\"><bold>Distri Fin:&nbsp;</bold></font>"
-                                                 +jsonDetalle.getString("nameDistritoFin")+"<br>"
-                                         +"<font color=\"#11aebf\"><bold>Direccion Fin:&nbsp;</bold></font>"
-                                         +jsonDetalle.getString("direccionFinal")+"<br>"
-                                         +"<font color=\"#11aebf\"><bold>Num mint espera:&nbsp;</bold></font>"
-                                                 +jsonDetalle.getString("numeroMinutoTiempoEspera")+"\t"+" min"+"<br>"
-                                         +"<font color=\"#11aebf\"><bold>Tipo Servicio:&nbsp;</bold></font>"
-                                                 +"( "+jsonDetalle.getString("desAutoTipoPidioCliente")+" )"+"<br><br>"
-
-                                         +"<font color=\"#11aebf\"><bold>Import Serv:&nbsp;</bold></font>"
-                                                 +"S/."+jsonDetalle.getString("importeServicio")+"<br>"
-
-                                         +"<font color=\"#11aebf\"><bold>Import Aire:&nbsp;</bold></font>"
-                                                 +"S/."+jsonDetalle.getString("importeAireAcondicionado")+"<br>"
-
-                                         +"<font color=\"#11aebf\"><bold>Import Tiem espera:&nbsp;</bold></font>"
-                                                 +"S/."+jsonDetalle.getString("importeTiempoEspera")+"<br>"
-
-                                         +"<font color=\"#11aebf\"><bold>Import Peaje:&nbsp;</bold></font>"
-                                                 +"S/."+jsonDetalle.getString("importePeaje")+"<br>"
-
-                                         +"<font color=\"#11aebf\"><bold>Import Tipo auto:&nbsp;</bold></font>"
-                                                 +"S/."+jsonDetalle.getString("importeTipoAuto")+"<br><br>"
-
-                                        +"<font color=\"#11aebf\"><bold>Import adicional :&nbsp;</bold></font>"
-                                        +"S/."+jsonDetalle.getString("importeGastosAdicionales")+"<br><br>"
-
-                                         +"<font color=\"#11aebf\"><bold>Import Total:&nbsp;</bold></font>"
-                                                 +"S/."+jsonDetalle.getString("importeTotalServicio")+"<br><br>"
-                                         //+"\n"+jsonDetalle.getString("numeroMovilTaxi")
-                                                 +"<font color=\"#11aebf\"><bold>Informacion Adicional :&nbsp;</bold></font>"
-                                                 +jsonDetalle.getString("DescripcionServicion")+"<br><br>"
-                                         +"<font color=\"#11aebf\"><bold>Estado del servicio:&nbsp;</bold></font>"
-                                                 +jsonDetalle.getString("nombreStadoServicio");
-
-
-                                txtDetalle.setText(Html.fromHtml(detalle));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            //alerDialogoBilder.setMessage(detalle);
-                           // alerDialogoBilder.setCancelable(false);
-                            alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialogo1, int id) {
-
-
-                                }
-                            });
-                            alertDialog = alerDialogoBilder.create();
-                            alertDialog.show();
-                        }else{
-                            Toast.makeText(context,"No hay detalle para este servicio",Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder alerDialogoBilder = new AlertDialog.Builder(context);
+                    Activity activity=(Activity)context;
+                    final View view = activity.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
+                    //  dialogo1.setTitle("Detalle del Servicio");
+                    TextView txtDetalle=(TextView)view.findViewById(R.id.txtDetalleServicio);
+                    alerDialogoBilder.setView(view);
+                    String detalle = "";
+                    AlertDialog alertDialog;
+                        detalle=Constans.DetalleServicioJson(jsonDetalle);
+                    Log.d("detaxxx",detalle);
+                        txtDetalle.setText(Html.fromHtml(detalle));
+                    alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
                         }
-
-
-
-
+                    });
+                    alertDialog = alerDialogoBilder.create();
+                    alertDialog.show();
+                }else{
+                   String msn= getResources().getString(R.string.noDetalle);
+                    Toast.makeText(context,msn,Toast.LENGTH_LONG).show();
+                }
             }
         }.execute();
+
     }
 
 

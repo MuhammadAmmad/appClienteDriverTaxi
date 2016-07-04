@@ -34,4 +34,19 @@
     <string name="llamarCliente">Llamar</string>
     <string name="detalle">DETALLE</string>
     <string name="Descripcion">Descripcion</string>
+    <string name="Confirmar">Confirmar</string>
+    <string name="mensajeAlert">¿ Esta seguro de aceptar este servicio ?</string>
+    <string name="noDetalle">No hay detalle para este servicio</string>
+    <string name="agregarPeaje">Añadir Peaje</string>
+    <string name="operacionPeaje">¿ Esta seguro de  realizar esta operacion ?</string>
+    <string name="servicioAsignado">Te an asignado un servicio!!!!</string>
+    <string name="serviciosListos">Hay servicios listos!!!!</string>
+    <string name="alerta">Alerta !!!</string>
+    <string name="tienesServicios">Tiene servicios tomados, Termine los servicios !!!</string>
+    <string name="llamarCentral">Llame a nuestra Central</string>
+    <string name="telefono1">TELEFONO  1</string>
+    <string name="msnCerrar_sesion">Esta seguro de cerrar sesión</string>
+    <string name="desactivatTurno">¿ Esta seguro de desactivar su turno ?</string>
+
+
 </resources>

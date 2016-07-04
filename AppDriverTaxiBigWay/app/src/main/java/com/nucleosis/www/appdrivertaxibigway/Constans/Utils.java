@@ -34,4 +34,8 @@ public class Utils {
     public static final OnItemClickListener ON_CLICK_LISTENER =new FragmentHistoriNew();
     public static final OnItemClickListenerDetalle ON_ITEM_CLICK_LISTENER_DETALLE=new FragmentHistoriNew();
 
+    public static final int TIME_OUT=15000;
+    public static final int TIME_LISTAR_SERVICIOS=15000;
+    public static final int TIME_SERVICIO_TURNO  =15000;
+    public static final int TIME_LOCATION_DRIVER=15000;
 }

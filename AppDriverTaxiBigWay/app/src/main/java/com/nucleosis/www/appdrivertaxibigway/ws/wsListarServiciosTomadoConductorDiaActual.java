@@ -73,6 +73,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends
                 try {
                     row.setIdServicio(jsonListaServicios.getJSONObject(i).getString("idServicio"));
                     row.setFecha(jsonListaServicios.getJSONObject(i).getString("Fecha").toString());
+                    row.setFechaFormat(jsonListaServicios.getJSONObject(i).getString("FechaFormat").toString());
                     row.setHora(jsonListaServicios.getJSONObject(i).getString("Hora").toString());
                     row.setImporteServicio(jsonListaServicios.getJSONObject(i).getString("importeServicio").toString());
                     row.setDescripcionServicion(jsonListaServicios.getJSONObject(i).getString("DescripcionServicion").toString());

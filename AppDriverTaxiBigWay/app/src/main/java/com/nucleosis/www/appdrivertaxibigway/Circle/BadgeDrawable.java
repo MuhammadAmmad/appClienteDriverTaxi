@@ -57,6 +57,7 @@ public class BadgeDrawable extends Drawable {
         // Draw badge circle.
         canvas.drawCircle(centerX, centerY, radius, mBadgePaint);
 
+
         // Draw badge count text inside the circle.
         mTextPaint.getTextBounds(mCount, 0, mCount.length(), mTxtRect);
         float textHeight = mTxtRect.bottom - mTxtRect.top;

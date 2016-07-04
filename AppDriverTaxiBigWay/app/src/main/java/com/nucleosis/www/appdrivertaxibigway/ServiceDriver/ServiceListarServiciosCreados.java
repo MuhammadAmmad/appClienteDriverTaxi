@@ -47,6 +47,7 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.io.InterruptedIOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -124,9 +125,10 @@ public class ServiceListarServiciosCreados extends Service {
                         request.addProperty("idEstadoServicio", 0);
                         request.addProperty("idAutoTipo", 0);
                         envelope.setOutputSoapObject(request);
-                        HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
+
 
                         try {
+                            HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL(),Utils.TIME_OUT);
                             ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
                             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
                             httpTransport.call(ConstantsWS.getSoapAction7(), envelope, headerPropertyArrayList);
@@ -290,7 +292,8 @@ public class ServiceListarServiciosCreados extends Service {
                                         String dataServicio[]=sqlGestion.BuscarIdServicio(idServicio);
                                         Log.d("sizeDta_", "-->"+String.valueOf(dataServicio.length));
                                         if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
-                                            sendNotification("Hay servicios listos!!!!");
+                                            String msn=getResources().getString(R.string.serviciosListos);
+                                            sendNotification(msn);
                                             sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
                                             sqlGestion.InsertarIdServicioStado(idServicio,"1");
                                         }else {
@@ -381,7 +384,8 @@ public class ServiceListarServiciosCreados extends Service {
                                               String dataServicio[]=sqlGestion.BuscarIdServicio(idServicio);
                                               Log.d("sizeDta_", "-->"+String.valueOf(dataServicio.length));
                                             if(dataServicio[0].length()==0 && dataServicio[1].length()==0){
-                                                sendNotification("Te an asignado un servicio!!!!");
+                                             String msn=   getResources().getString(R.string.servicioAsignado);
+                                                sendNotification(msn);
                                                 sqlGestion=new SqlGestion(ServiceListarServiciosCreados.this);
                                                 sqlGestion.InsertarIdServicioStado(idServicio,"1");
                                             }else {
@@ -402,7 +406,9 @@ public class ServiceListarServiciosCreados extends Service {
                             }
                             String ObjetoJsonArray=new Gson().toJson(ListServiciosAsignadoConductor);
                             fichero.InsertarListaServiciosTomadosConductor(ObjetoJsonArray);
-                        } catch (Exception e) {
+                        }catch (InterruptedIOException i){
+                            i.printStackTrace();
+                        }catch (Exception e) {
                             e.printStackTrace();
                         }
                         return ListServicios;
@@ -435,7 +441,7 @@ public class ServiceListarServiciosCreados extends Service {
                 }.execute();
             }
         };
-        timerCola.scheduleAtFixedRate(TimerCronometro, 0,15000);
+        timerCola.scheduleAtFixedRate(TimerCronometro, 0,Utils.TIME_LISTAR_SERVICIOS);
         return super.onStartCommand(intent, flags, startId);
     }
     @Nullable
@@ -489,9 +495,10 @@ public class ServiceListarServiciosCreados extends Service {
       /*  Notification notification = builder.build();
         notification.sound = Uri.parse("android.resource://"
                 + context.getPackageName() + "/" + R.raw.siren);*/
+        String msnTitulo=getResources().getString(R.string.alerta);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(android.R.drawable.ic_btn_speak_now)
-                .setContentTitle("Alerta !!!")
+                .setContentTitle(msnTitulo)
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(customSound)

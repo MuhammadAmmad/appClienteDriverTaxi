@@ -101,6 +101,7 @@ implements OnItemClickListener{
                 row=new beansHistorialServiciosCreados();
                 row.setIdServicio(dataVector.getProperty("ID_SERVICIO").toString());
                 row.setFecha(dataVector.getProperty("FEC_SERVICIO").toString());
+                row.setFechaFormat(dataVector.getPropertyAsString("FEC_SERVICIO_YMD"));
                 row.setHora(dataVector.getProperty("DES_HORA").toString());
                 row.setImporteServicio(dataVector.getProperty("IMP_SERVICIO").toString());
                 row.setDescripcionServicion(dataVector.getProperty("DES_SERVICIO").toString());

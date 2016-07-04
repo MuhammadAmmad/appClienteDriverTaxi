@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape_gradient"
+    android:background="@color/colorPrimary"
     >
     <LinearLayout
         android:orientation="vertical"
@@ -15,13 +15,13 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/cargardor_2"  />
+            android:src="@drawable/logo_big_way"  />
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginLeftDiez"
             android:id="@+id/progresLoading"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </LinearLayout>

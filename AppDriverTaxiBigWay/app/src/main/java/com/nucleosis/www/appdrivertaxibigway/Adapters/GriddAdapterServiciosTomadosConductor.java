@@ -115,7 +115,7 @@ public class GriddAdapterServiciosTomadosConductor extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 ON_ITEM_CLICK_LISTENER_DETALLE.onClickDetalle(mContext,items.get(position).getIdServicio(),
-                        items.get(position).getStatadoServicio());
+                        items.get(position).getStatadoServicio(),items.get(position).getFechaFormat());
             }
         });
 

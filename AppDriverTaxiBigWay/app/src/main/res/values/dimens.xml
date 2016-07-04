@@ -20,4 +20,7 @@
     <dimen name="padinLeft">5dp</dimen>
     <dimen name="dimenCinco">5dp</dimen>
     <dimen name="dimenVeinte">20dp</dimen>
+    <dimen name="dimen10">10dp</dimen>
+    <dimen name="dimen30">30dp</dimen>
+    <dimen name="dimen15">15dp</dimen>
 </resources>

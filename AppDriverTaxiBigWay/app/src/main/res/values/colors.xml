@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primary_dark">#4CAF50</color>
+    <color name="primary_dark">#279A92</color>
     <color name="primary">#388E3C</color>
     <color name="primary_light">#C8E6C9</color>
     <color name="accent">#4CAF50</color>
@@ -10,21 +10,14 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
 
-    <color name="colorPrimary">#056B11</color>
-    <color name="colorPrimaryDark">#138b21</color>
-    <color name="colorAccent">#0f0f0f</color>
+    <color name="colorPrimary">#279A92</color>
+  <!--  <color name="colorPrimaryDark">#138b21</color>-->
+    <color name="colorPrimaryDark">#1E7C6E</color>
+    <color name="colorAccent">#e72121</color>
     <color name="hintColor">#aba9a9</color>
 
- <!--   <color name="primary">#009688</color>
-    <color name="primary_dark">#00796B</color>
-    <color name="primary_light">#B2DFDB</color>
-    <color name="accent">#607D8B</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#727272</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#B6B6B6</color>-->
-    <color name="btnFalse">#4CAF50</color>
-    <color name="btnTrue">#8fe292</color>
+    <color name="btnFalse">#279A92</color>
+    <color name="btnTrue">#188179</color>
 
     <color name="white">#FFFFFF</color>
     <color name="progress">#5a03d06d</color>
@@ -68,4 +61,6 @@
     <color name="radioButonsTransparente">#00FFFFFF</color>
 
     <color name="red">#fa4242</color>
+
+    <color name="screem">#279A92</color>
 </resources>
