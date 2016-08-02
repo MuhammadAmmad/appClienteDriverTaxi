@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity
     private MyTypeFace myTypeFace;
     private PreferencesDriver preferencesDriver;
     private Menu menuNoti;
-    private int swTurno = 0;
+    public static int swTurno = 0;
     private int swPermiteSoloUnServicioTomado = 0;
     private Fichero fichero;
     private List<beansHistorialServiciosCreados> ListaServiciosCreados;
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity
                     ListaServiciosCreados.clear();
                     String json = intent.getStringExtra(Utils.EXTRA_MEMORY_2);
                     if (json != null) {
-                        Log.d("jsonList_", json.toString());
+                            //  Log.d("jsonList_", json.toString());
                         try {
                             final JSONArray jsonArray = new JSONArray(json);
 
@@ -400,8 +400,6 @@ public class MainActivity extends AppCompatActivity
         item = menu.findItem(R.id.menuAlert);
         icon = (LayerDrawable) item.getIcon();
         Alerta.setBadgeCount(this, icon, NumeroNotificacion);
-
-
         return true;
     }
 
@@ -428,6 +426,7 @@ public class MainActivity extends AppCompatActivity
 
                 return true;
             case R.id.menuAlert:
+                Log.d("turnoxxInt",String.valueOf(swTurno));
                 if (swTurno == 1) {
                     if (swPermiteSoloUnServicioTomado == 1) {
                         cargarAlertNotificaciones();
@@ -535,6 +534,9 @@ public class MainActivity extends AppCompatActivity
                     Intent intentLongin = new Intent(MainActivity.this, LoingDriverApp.class);
                     startActivity(intentLongin);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    Log.d("acatividad", "Destrudia en sesion");
+                    Intent intent=new Intent(MainActivity.this,ServiceTurno.class);
+                    stopService(intent);
                     finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -545,7 +547,7 @@ public class MainActivity extends AppCompatActivity
         alertBilder.show();
 
         }
-private void llamar_a_central(){
+    private void llamar_a_central(){
     JSONObject jsonConfiguraciones=fichero.ExtraerConfiguraciones();
     String direccion1;
     String telefono1="00-0000";
@@ -739,12 +741,6 @@ private void llamar_a_central(){
                 }
             });
         }
-
-
-
-
-
-
     }
 
     public void onRequestPermissionsResult(int requestCode,

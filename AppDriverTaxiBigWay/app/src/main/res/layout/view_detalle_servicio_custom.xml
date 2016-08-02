@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#494949"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
-
     <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,22 +12,28 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:layout_gravity="center_horizontal">
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop"
-            android:layout_marginLeft="@dimen/marginLeftDiez"
-            android:layout_marginRight="@dimen/marginLeftDiez"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:textColor="@color/grease"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/detalleServicio"
-            android:id="@+id/lblDetalleServicio"
-            android:layout_gravity="center_horizontal" />
-
+            android:background="#d8d8d8"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginLeft="@dimen/marginLeftDiez"
+                android:layout_marginRight="@dimen/marginLeftDiez"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/grease"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/detalleServicio"
+                android:id="@+id/lblDetalleServicio"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +42,7 @@
             android:layout_marginRight="@dimen/marginLeftDiez"
             android:gravity="left"
             android:textSize="14dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:text="Sin informaion !!"
             android:id="@+id/txtDetalleServicio"
             android:layout_gravity="center_horizontal" />

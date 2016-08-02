@@ -78,7 +78,7 @@ public class GriddAdapterServiciosTomadosConductor extends BaseAdapter {
 
         beansHistorialServiciosCreados item = items.get(position);
         holder.getFechaHora().setText(item.getFecha()+"   "+item.getHora());
-       // holder.getFechaHora().setTypeface(myTypeFace.openRobotoLight());
+       // holder.getFechaHora().setTypeface(myTypeFace.OpenSansRegular());
 
         holder.getInfo().setText(item.getInfoAddress());
         holder.getInfo().setTypeface(myTypeFace.openRobotoLight());

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:orientation="vertical"
 android:layout_width="match_parent"
-android:layout_height="match_parent">
+android:layout_height="match_parent"
+    android:background="@color/greaseDetalle">
 <!--    <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -31,7 +32,7 @@ android:layout_height="match_parent">
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:id="@+id/txtNotificaciones"
-                android:textColor="#656669"
+                android:textColor="#4e4e4f"
                 android:gravity="center"
                 android:background="@drawable/shape_notificaciones"
                 android:textSize="20dp"
@@ -50,16 +51,13 @@ android:layout_height="match_parent">
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
-
-
-
     <android.support.v7.widget.RecyclerView
         xmlns:recicler="http://schemas.android.com/apk/res/android"
         recicler:id="@+id/reciclador"
         recicler:layout_width="match_parent"
-        recicler:layout_marginTop="15dp"
         recicler:layout_marginLeft="15dp"
         recicler:layout_marginRight="15dp"
+        recicler:paddingTop="@dimen/dimen10"
         recicler:layout_height="wrap_content"
         recicler:padding="3dp"
         recicler:scrollbars="vertical" />

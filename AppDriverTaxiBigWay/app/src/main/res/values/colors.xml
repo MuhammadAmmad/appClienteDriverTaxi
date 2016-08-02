@@ -24,8 +24,8 @@
 
     <color name="btnButtonNotificacionFalse">#abb4b5b4</color>
     <color name="btnButtonNotificacionTrue">#ab777877</color>
+    <!--color name="blackTwo">#252424</color>-->
     <color name="blackTwo">#252424</color>
-
     <color name="btnTraslucerFalse">#e0025002</color>
     <color name="btnTraslucerTrue">#b3015601</color>
     <color name="black">#000000</color>
@@ -63,4 +63,6 @@
     <color name="red">#fa4242</color>
 
     <color name="screem">#279A92</color>
+
+    <color name="greaseDetalle">#494949</color>
 </resources>

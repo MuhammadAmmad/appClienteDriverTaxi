@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.MainActivity;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceListarServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
@@ -99,7 +100,7 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
 
                 intent=new Intent(context,locationDriver.class);
                 context.startService(intent);
-
+                MainActivity.swTurno=1;
                 //intent=new Intent(context,ServiceTurno.class);
                 //context.startService(intent);
                 intent =new Intent(context, ServiceListarServiciosCreados.class);
@@ -110,6 +111,7 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
                 compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
                 compR.getBtnDesactivarTurno().setVisibility(View.GONE);
                 compR.getBtnIrAServicios().setVisibility(View.GONE);
+                MainActivity.swTurno=0;
             }
 
         }

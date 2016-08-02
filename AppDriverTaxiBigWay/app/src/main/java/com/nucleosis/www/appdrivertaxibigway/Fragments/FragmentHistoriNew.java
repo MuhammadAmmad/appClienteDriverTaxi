@@ -509,6 +509,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
       if(jsonServiciosConductor!=null){
 
         Log.d("jsonSerxx",jsonServiciosConductor.toString()+"--->"+idServicio);
+          Log.d("idServicios_statico",idServicio);
 
         }
 
@@ -544,65 +545,75 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                     //  httpTransport.call("http://taxibigway.com/soap/WS_SERVICIO_LISTAR", envelope);
                     SoapObject response1= (SoapObject) envelope.bodyIn;
                     Vector<?> responseVector = (Vector<?>) response1.getProperty("return");
+
                     Log.d("vectorRE",responseVector.toString());
                     Log.d("requestServicios_",request.toString());
                     int countVector=responseVector.size();
+                    Log.d("cantidad", String.valueOf(responseVector.size()));
                     for(int i=0;i<countVector;i++){
                         SoapObject dataVector=(SoapObject)responseVector.get(i);
-                        jsonServicio_.put("importeServicio",dataVector.getProperty("IMP_SERVICIO").toString());
-                        jsonServicio_.put("DescripcionServicion",dataVector.getProperty("DES_SERVICIO").toString());
-                        jsonServicio_.put("Fecha",dataVector.getProperty("FEC_SERVICIO").toString());
-                        jsonServicio_.put("Hora",dataVector.getProperty("DES_HORA").toString());
-                        jsonServicio_.put("nombreConductor",dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
-                        jsonServicio_.put("nucCelularCliente",dataVector.getProperty("NUM_CELULAR").toString());
-                        jsonServicio_.put("importeAireAcondicionado",dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
-                        jsonServicio_.put("importeGastosAdicionales",dataVector.getProperty("IMP_GASTOS_ADICIONALES").toString());
-                        jsonServicio_.put("numeroMinutoTiempoEspera",dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
-                        jsonServicio_.put("importeTiempoEspera",dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
-                        jsonServicio_.put("importePeaje",dataVector.getProperty("IMP_PEAJE").toString());
+                        if(dataVector.getProperty("ID_SERVICIO").toString().equals(idServicio)){
+                            Log.d("idIgual",dataVector.getPropertyAsString("ID_SERVICIO"));
 
-                        jsonServicio_.put("nameDistritoInicio",dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
-                        jsonServicio_.put("DireccionIncio",dataVector.getProperty("DES_DIRECCION_INICIO").toString());
-                        jsonServicio_.put("nameDistritoFin",dataVector.getProperty("NOM_DISTRITO_FIN").toString());
-                        jsonServicio_.put("direccionFinal",dataVector.getProperty("DES_DIRECCION_FINAL").toString());
-                        jsonServicio_.put("numeroMovilTaxi",dataVector.getProperty("NUM_MOVIL").toString());
-                        jsonServicio_.put("nombreStadoServicio",dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
-                        jsonServicio_.put("idAutoTipoPidioCliente",dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
-                        jsonServicio_.put("desAutoTipoPidioCliente",dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
+                            jsonServicio_.put("importeServicio",dataVector.getProperty("IMP_SERVICIO").toString());
+                            jsonServicio_.put("DescripcionServicion",dataVector.getProperty("DES_SERVICIO").toString());
+                            jsonServicio_.put("Fecha",dataVector.getProperty("FEC_SERVICIO").toString());
+                            jsonServicio_.put("Hora",dataVector.getProperty("DES_HORA").toString());
+                            jsonServicio_.put("nombreConductor",dataVector.getProperty("NOM_APE_CONDUCTOR").toString());
+                            jsonServicio_.put("nucCelularCliente",dataVector.getProperty("NUM_CELULAR").toString());
+                            jsonServicio_.put("importeAireAcondicionado",dataVector.getProperty("IMP_AIRE_ACONDICIONADO").toString());
+                            jsonServicio_.put("importeGastosAdicionales",dataVector.getProperty("IMP_GASTOS_ADICIONALES").toString());
+                            jsonServicio_.put("numeroMinutoTiempoEspera",dataVector.getProperty("NUM_MINUTO_TIEMPO_ESPERA").toString());
+                            jsonServicio_.put("importeTiempoEspera",dataVector.getProperty("IMP_TIEMPO_ESPERA").toString());
+                            jsonServicio_.put("importePeaje",dataVector.getProperty("IMP_PEAJE").toString());
+
+                            jsonServicio_.put("nameDistritoInicio",dataVector.getProperty("NOM_DISTRITO_INICIO").toString());
+                            jsonServicio_.put("DireccionIncio",dataVector.getProperty("DES_DIRECCION_INICIO").toString());
+                            jsonServicio_.put("nameDistritoFin",dataVector.getProperty("NOM_DISTRITO_FIN").toString());
+                            jsonServicio_.put("direccionFinal",dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+                            jsonServicio_.put("numeroMovilTaxi",dataVector.getProperty("NUM_MOVIL").toString());
+                            jsonServicio_.put("nombreStadoServicio",dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
+                            jsonServicio_.put("idAutoTipoPidioCliente",dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
+                            jsonServicio_.put("desAutoTipoPidioCliente",dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
 
 
-                        String importeGastoAdicional_=dataVector.getPropertyAsString("IMP_GASTOS_ADICIONALES");
-                        double importeGastoAdicional=0.0;
-                        String importeTipoAuto="0.00";
+                            String importeGastoAdicional_=dataVector.getPropertyAsString("IMP_GASTOS_ADICIONALES");
+                            double importeGastoAdicional=0.0;
+                            String importeTipoAuto="0.00";
 
-                        if(dataVector.getPropertyAsString("ID_AUTO_TIPO_PIDIO_CLIENTE").equals("1")){
-                            JSONObject configuracionJson=fichero.ExtraerConfiguraciones();
-                            if(configuracionJson!=null){
-                                jsonServicio_.put("importeTipoAuto",configuracionJson.getString("impAutoVip"));
-                                importeTipoAuto=configuracionJson.getString("impAutoVip");
-                            }else {
+                            if(dataVector.getPropertyAsString("ID_AUTO_TIPO_PIDIO_CLIENTE").equals("1")){
+                                JSONObject configuracionJson=fichero.ExtraerConfiguraciones();
+                                if(configuracionJson!=null){
+                                    jsonServicio_.put("importeTipoAuto",configuracionJson.getString("impAutoVip"));
+                                    importeTipoAuto=configuracionJson.getString("impAutoVip");
+                                }else {
+                                    jsonServicio_.put("importeTipoAuto","0.00");
+                                    importeTipoAuto="0.00";
+                                }
+                            }else{
                                 jsonServicio_.put("importeTipoAuto","0.00");
                                 importeTipoAuto="0.00";
                             }
-                        }else{
-                            jsonServicio_.put("importeTipoAuto","0.00");
-                            importeTipoAuto="0.00";
-                        }
-                        if(importeGastoAdicional_!=null){
-                            if(Constans.isNumeric(importeGastoAdicional_)){
-                                importeGastoAdicional=Double.parseDouble(importeGastoAdicional_);
-                            }else{
-                                importeGastoAdicional=0.0;
+                            if(importeGastoAdicional_!=null){
+                                if(Constans.isNumeric(importeGastoAdicional_)){
+                                    importeGastoAdicional=Double.parseDouble(importeGastoAdicional_);
+                                }else{
+                                    importeGastoAdicional=0.0;
+                                }
+
                             }
+                            double sumaImportes=Double.parseDouble(dataVector.getPropertyAsString("IMP_SERVICIO"))+
+                                    Double.parseDouble(dataVector.getPropertyAsString("IMP_TIEMPO_ESPERA"))+
+                                    Double.parseDouble(dataVector.getPropertyAsString("IMP_AIRE_ACONDICIONADO"))+
+                                    Double.parseDouble(dataVector.getPropertyAsString("IMP_PEAJE"))+
+                                    Double.parseDouble(importeTipoAuto)+importeGastoAdicional;
 
+                            jsonServicio_.put("importeTotalServicio",String.valueOf(sumaImportes));
+
+                            i=countVector;
                         }
-                        double sumaImportes=Double.parseDouble(dataVector.getPropertyAsString("IMP_SERVICIO"))+
-                                Double.parseDouble(dataVector.getPropertyAsString("IMP_TIEMPO_ESPERA"))+
-                                Double.parseDouble(dataVector.getPropertyAsString("IMP_AIRE_ACONDICIONADO"))+
-                                Double.parseDouble(dataVector.getPropertyAsString("IMP_PEAJE"))+
-                                Double.parseDouble(importeTipoAuto)+importeGastoAdicional;
 
-                        jsonServicio_.put("importeTotalServicio",String.valueOf(sumaImportes));
+
 
                     }
                 }catch( InterruptedIOException i){
@@ -630,6 +641,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                     alerDialogoBilder.setView(view);
                     String detalle = "";
                     AlertDialog alertDialog;
+                    Log.d("jsonDetall_x",jsonDetalle.toString());
                         detalle=Constans.DetalleServicioJson(jsonDetalle);
                     Log.d("detaxxx",detalle);
                         txtDetalle.setText(Html.fromHtml(detalle));

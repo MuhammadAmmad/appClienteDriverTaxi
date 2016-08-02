@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="190dp"
-    android:background="@drawable/img_prueba"
+    android:background="@color/primary"
     android:gravity="center|left"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#70000000"
+
         android:paddingTop="5dp"
         android:id="@+id/txtName"
         android:textColor="@color/white"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen10"
         android:textColor="@color/white"
-        android:background="#70000000"
+
         android:text="user@taxibigway.com.pe" />
 
 </LinearLayout>

@@ -64,8 +64,8 @@ public class wsRegistroCliente extends AsyncTask<String,String,String> {
         request.addProperty("numCelular",dataCliente.getCelular());
         request.addProperty("desEmail",dataCliente.getEmail());
         request.addProperty("desContrasena",dataCliente.getPassword());
-        request.addProperty("idArea",0);
-        request.addProperty("idEmpresa",0);
+        request.addProperty("idArea",1);
+        request.addProperty("idEmpresa",1);
         request.addProperty("idUsuario",0);
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());

@@ -76,7 +76,7 @@ public class PreferencesDriver {
     public String ExtraerIdVehiculo(){
         SharedPreferences prefs =
                 context.getSharedPreferences("idVehiculo", Context.MODE_PRIVATE);
-        return prefs.getString("idAuto","-1");
+        return prefs.getString("idAuto","0");
     }
 
 

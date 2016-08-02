@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
 import com.nucleosis.www.appdrivertaxibigway.Constans.ConstantsWS;
+import com.nucleosis.www.appdrivertaxibigway.MainActivity;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceListarServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
@@ -32,10 +33,10 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
     private PreferencesDriver preferencesDriver;
     private componentesR compR;
     private ProgressDialog progressDialog;
-
+    private   Activity activity;
     public wsDesactivarTurno(Context context) {
         this.context = context;
-        Activity activity=(Activity)context;
+        activity=(Activity)context;
         preferencesDriver=new PreferencesDriver(context);
         compR=new componentesR(context);
         compR.Contros_main_activity(activity);
@@ -113,6 +114,7 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
 
                 Intent intent1=new Intent(context, ServiceListarServiciosCreados.class);
                 context.stopService(intent1);
+                MainActivity.swTurno=0;
 
             }else if(data[0].equals("2")){
                 compR.getBtnActivarTurno().setVisibility(View.GONE);
@@ -120,12 +122,15 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
                 compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
                // compR.getBtnAdicionales().setVisibility(View.VISIBLE);
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
+                MainActivity.swTurno=1;
+            //    swTurno=1;
             }else if(data[0].equals("3")){
                 compR.getBtnActivarTurno().setVisibility(View.GONE);
                 compR.getBtnDesactivarTurno().setVisibility(View.VISIBLE);
                 compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
              //   compR.getBtnAdicionales().setVisibility(View.VISIBLE);
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
+                MainActivity.swTurno=1;
             }
         }
 

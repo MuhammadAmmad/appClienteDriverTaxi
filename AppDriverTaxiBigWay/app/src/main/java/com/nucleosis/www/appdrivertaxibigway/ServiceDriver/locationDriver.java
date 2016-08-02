@@ -82,9 +82,9 @@ public class locationDriver extends Service
                     jsonCoordenadas.put("latitud",LatLong[0]);
                     jsonCoordenadas.put("longitud",LatLong[1]);
                     fichero.InsertarCoordendaConductor(jsonCoordenadas.toString());
-                    if(fichero.ExtraerCoordendaConductor()!=null){
+                    /*if(fichero.ExtraerCoordendaConductor()!=null){
                         Log.d("coordernadas_",fichero.ExtraerCoordendaConductor().toString());
-                    }
+                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

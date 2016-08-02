@@ -40,7 +40,6 @@
                     android:layout_marginTop="@dimen/dimenCinco"
                     android:gravity="center|left"
                     android:textColor="@color/blackTwo"
-                    android:textStyle="bold"
                     android:paddingLeft="@dimen/padinLeft"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
