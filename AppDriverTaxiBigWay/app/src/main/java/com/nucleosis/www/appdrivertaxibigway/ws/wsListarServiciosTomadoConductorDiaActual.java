@@ -56,7 +56,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends
         listServiciosFechaActualConducor=new ArrayList<beansHistorialServiciosCreados>();
         listServiciosFechaActualConducor.clear();
         progressDialog=new ProgressDialog(context);
-        progressDialog.setMessage("cargando.....");
+        progressDialog.setMessage("cargando...");
       //  progressDialog.setCancelable(false);
         progressDialog.show();
     }
@@ -108,7 +108,38 @@ public class wsListarServiciosTomadoConductorDiaActual extends
                     row.setLatitudService(jsonListaServicios.getJSONObject(i).getString("latitudServicio").toString());
                     row.setLongitudService(jsonListaServicios.getJSONObject(i).getString("longitudServicio").toString());
 
+                    row.setNameCliente(jsonListaServicios.getJSONObject(i).getString("nameCliente").toString());
+                    row.setTipoPago(jsonListaServicios.getJSONObject(i).getString("tipoPago").toString());
+
+                    row.setIdDistritoIncio(jsonListaServicios.getJSONObject(i).getString("idDistritoIncio").toString());
+                    row.setIdDistritoFin(jsonListaServicios.getJSONObject(i).getString("idDistritoFin").toString());
+                    row.setIdZonaInicio(jsonListaServicios.getJSONObject(i).getString("idZonaInicio").toString());
+                    row.setIdZonaFin(jsonListaServicios.getJSONObject(i).getString("idZonaFin").toString());
+
+
+                  JSONObject jsonIdDistritoIdZonaInicio=new JSONObject();
+                    try {
+                        jsonIdDistritoIdZonaInicio.put("idDistrito",jsonListaServicios.getJSONObject(i).getString("idDistritoIncio").toString());
+                        jsonIdDistritoIdZonaInicio.put("idZona",jsonListaServicios.getJSONObject(i).getString("idZonaInicio").toString());
+                        fichero.INSERTAR_IdZONA_IDDISTRITO_INCIO(jsonIdDistritoIdZonaInicio.toString());
+                        Log.d("originalIdDistrito1", fichero.EXTRAER_IdZONA_IDDISTRITO_INCIO().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    JSONObject jsonIdDistritoIdZonaFin=new JSONObject();
+                    try {
+                        jsonIdDistritoIdZonaFin.put("idDistrito",jsonListaServicios.getJSONObject(i).getString("idDistritoFin").toString());
+                        jsonIdDistritoIdZonaFin.put("idZona",jsonListaServicios.getJSONObject(i).getString("idZonaFin").toString());
+                        fichero.INSERTAR_IdZONA_IDDISTRITO_FIN(jsonIdDistritoIdZonaFin.toString());
+                        Log.d("originalIdDistrito2", fichero.EXTRAER_IdZONA_IDDISTRITO_FIN().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     int idStatus=Integer.parseInt(jsonListaServicios.getJSONObject(i).getString("statadoServicio").toString());
+
+
                     Log.d("stadoServiciosxxxx-->",String.valueOf(idStatus));
                     if(idStatus==2){
                         //STATDO ACEPTADO
@@ -145,6 +176,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends
                     Log.d("xxx_", String.valueOf(listServiciosFechaActualConducor.size()));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                 //   Log.d("erroJ",e.getMessage());
                 }
             }
         }
@@ -160,6 +192,7 @@ public class wsListarServiciosTomadoConductorDiaActual extends
         progressDialog.dismiss();
         if(listaSeriviciosConductor!=null){
         //  progressDialog.dismiss();
+            Log.d("stamos_Aqui",String.valueOf(listaSeriviciosConductor.size()));
            grid.setAdapter(new GriddAdapterServiciosTomadosConductor(context,listaSeriviciosConductor));
         }else{
             Log.d("stamos_Aqui","sdjfldsakjj");

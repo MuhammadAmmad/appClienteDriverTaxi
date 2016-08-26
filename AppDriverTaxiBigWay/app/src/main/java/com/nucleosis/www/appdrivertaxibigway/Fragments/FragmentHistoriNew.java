@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -280,6 +281,12 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("latitudService",lista2.get(position).getLatitudService());
                                         intent.putExtra("longitudService",lista2.get(position).getLongitudService());
                                         intent.putExtra("idCliente",lista2.get(position).getIdCliente());
+
+                                        intent.putExtra("idDistritoIncio", lista2.get(position).getIdDistritoIncio());
+                                        intent.putExtra("idDistritoFin", lista2.get(position).getIdDistritoFin());
+                                        intent.putExtra("idZonaIncio", lista2.get(position).getIdZonaInicio());
+                                        intent.putExtra("idZonaFin", lista2.get(position).getIdZonaFin());
+
                                         startActivity(intent);
                                         getActivity().finish();
                                     }else  if(lista2.get(position).getStatadoServicio().equals("3")){
@@ -297,6 +304,11 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                                         intent.putExtra("latitudService",lista2.get(position).getLatitudService());
                                         intent.putExtra("longitudService",lista2.get(position).getLongitudService());
                                         intent.putExtra("idCliente",lista2.get(position).getIdCliente());
+
+                                        intent.putExtra("idDistritoIncio", lista2.get(position).getIdDistritoIncio());
+                                        intent.putExtra("idDistritoFin", lista2.get(position).getIdDistritoFin());
+                                        intent.putExtra("idZonaIncio", lista2.get(position).getIdZonaInicio());
+                                        intent.putExtra("idZonaFin", lista2.get(position).getIdZonaFin());
                                         startActivity(intent);
                                         getActivity().finish();
                                     }
@@ -576,6 +588,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                             jsonServicio_.put("idAutoTipoPidioCliente",dataVector.getProperty("ID_AUTO_TIPO_PIDIO_CLIENTE").toString());
                             jsonServicio_.put("desAutoTipoPidioCliente",dataVector.getProperty("DES_AUTO_TIPO_PIDIO_CLIENTE").toString());
 
+                            jsonServicio_.put("nameCliente",dataVector.getProperty("NOM_APE_CLIENTE").toString());
+                            jsonServicio_.put("tipoPago",dataVector.getProperty("NOM_TIPO_PAGO_SERVICIO").toString());
 
                             String importeGastoAdicional_=dataVector.getPropertyAsString("IMP_GASTOS_ADICIONALES");
                             double importeGastoAdicional=0.0;
@@ -638,18 +652,26 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                     final View view = activity.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
                     //  dialogo1.setTitle("Detalle del Servicio");
                     TextView txtDetalle=(TextView)view.findViewById(R.id.txtDetalleServicio);
+                    Button btnOK=(Button)view.findViewById(R.id.btnOk);
+
                     alerDialogoBilder.setView(view);
                     String detalle = "";
-                    AlertDialog alertDialog;
+                    final AlertDialog alertDialog;
                     Log.d("jsonDetall_x",jsonDetalle.toString());
                         detalle=Constans.DetalleServicioJson(jsonDetalle);
                     Log.d("detaxxx",detalle);
                         txtDetalle.setText(Html.fromHtml(detalle));
-                    alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                   /* alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogo1, int id) {
                         }
-                    });
+                    });*/
                     alertDialog = alerDialogoBilder.create();
+                    btnOK.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
                     alertDialog.show();
                 }else{
                    String msn= getResources().getString(R.string.noDetalle);

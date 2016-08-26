@@ -88,7 +88,6 @@ public class locationDriver extends Service
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 new UpdateLocationDriver(locationDriver.this,LatLong[0],
                         LatLong[1])
                         .execute();
@@ -102,8 +101,8 @@ public class locationDriver extends Service
     @Override
     public void onDestroy() {
         Log.d("servisLocation->","servicio terminado");
-        timerTask.cancel();
         super.onDestroy();
+        timerTask.cancel();
     }
 
     @Nullable

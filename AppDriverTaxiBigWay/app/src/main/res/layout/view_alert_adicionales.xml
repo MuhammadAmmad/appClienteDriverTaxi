@@ -27,7 +27,7 @@
                     android:layout_marginTop="@dimen/dimenCinco"
                     android:clickable="true"
                     android:id="@+id/ImgButtonCancelAlert"
-                    android:background="@drawable/ic_cancel_black_24dp"/>
+                    android:background="@drawable/ic_cancel_black_24dp_true"/>
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"

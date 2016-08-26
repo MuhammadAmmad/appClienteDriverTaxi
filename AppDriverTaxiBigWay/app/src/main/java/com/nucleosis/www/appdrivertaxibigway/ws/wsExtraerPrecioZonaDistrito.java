@@ -42,10 +42,12 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
     private String idZonaIncio;
     private String idZonaFin;
     private int sw=0;
-    public wsExtraerPrecioZonaDistrito(Context context,AlertDialog alertDialog,String idServicio) {
+    private String idCliente;
+    public wsExtraerPrecioZonaDistrito(Context context,AlertDialog alertDialog,String idServicio,String idCliente) {
         this.context = context;
         this.alertDialog=alertDialog;
         this.idServicio=idServicio;
+        this.idCliente=idCliente;
         fichero=new Fichero(context);
         activity=(Activity)context;
     }
@@ -65,13 +67,13 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
         try {
             if(jsonOrigen==null){
                 jsonOrigenClienteIncial=fichero.EXTRAER_IdZONA_IDDISTRITO_INCIO();
-                Log.d("jsonCli_",jsonOrigenClienteIncial.toString());
+                Log.d("jsonCli_a",jsonOrigenClienteIncial.toString());
                 idZonaIncio=jsonOrigenClienteIncial.getString("idZona");
                 idDistritoIncio=jsonOrigenClienteIncial.getString("idDistrito");
                 sw=1;
             }else if(jsonOrigen.getString("idZona").length()==0){
                 jsonOrigenClienteIncial=fichero.EXTRAER_IdZONA_IDDISTRITO_INCIO();
-                Log.d("jsonCli_",jsonOrigenClienteIncial.toString());
+                Log.d("jsonCli_b",jsonOrigenClienteIncial.toString());
                 idZonaIncio=jsonOrigenClienteIncial.getString("idZona");
                 idDistritoIncio=jsonOrigenClienteIncial.getString("idDistrito");
                 sw=1;
@@ -84,6 +86,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
 
         } catch (JSONException e) {
             e.printStackTrace();
+
         }
 
     }
@@ -98,6 +101,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
         try {
             request.addProperty("idZonaInicio",Integer.parseInt(idZonaIncio));
             request.addProperty("idZonaFinal",Integer.parseInt(jsonDestino.getString("idZona").toString()));
+            request.addProperty("idCliente",Integer.parseInt(idCliente));
             Log.d("requesDistritos",request.toString());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -245,17 +249,7 @@ public class wsExtraerPrecioZonaDistrito extends AsyncTask<String,String,String[
         dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
 
-                /*JSONObject borrarDataAddresIncio=new JSONObject();
-                JSONObject borrarDataAddresFin=new JSONObject();
-                try {
-                    borrarDataAddresIncio.put("addresOrigen","Vuelva a intentarlo");
-                    borrarDataAddresFin.put("addresDestino","Vuelva a intentarlo");
-                    fichero.InsertaDireccionIncio(borrarDataAddresIncio.toString());
-                    fichero.InsertaDireccionFin(borrarDataAddresFin.toString());
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
             }
         });
         dialogo1.show();

@@ -38,7 +38,7 @@ public class FirstScreemCarga extends AppCompatActivity {
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(4000);
+                    sleep(2000);
 
                     JSONObject jsonSesion=fichero.ExtraerSesion();
                     if(jsonSesion!=null){

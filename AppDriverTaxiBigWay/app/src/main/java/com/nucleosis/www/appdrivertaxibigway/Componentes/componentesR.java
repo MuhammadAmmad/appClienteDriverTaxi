@@ -50,6 +50,7 @@ public class componentesR  {
     private  EditText editUser;
     private  EditText editPass;
     private TextView textNotificaciones;
+    private TextView txtAdressIncio;
     private  Button btnSigIn;
     private  Button btnDetalleServicio;
     private ImageButton btnDismisNotificaciones;
@@ -61,6 +62,7 @@ public class componentesR  {
     private Button btnLLamarCliente;
     private ImageView btnServicioNoTerminado;
     private ImageView btnAdicionales;
+    private ImageView imgAdicionales;
     EditText editHistoriaCarrera;
     private  LinearLayout linearLayoutLoading;
     private  LinearLayout linearLayoutLogin;
@@ -236,9 +238,23 @@ public class componentesR  {
         btnLLamarCliente=(Button)activity.findViewById(R.id.btnLLamarCliente);
         btnLLamarCliente.setOnClickListener((View.OnClickListener) activity);
 
+
+        ///controles adicionales
+
+        imgAdicionales=(ImageView)activity.findViewById(R.id.imgAdicionales);
+        imgAdicionales.setOnClickListener((View.OnClickListener) activity);
+
+         txtAdressIncio=(TextView)activity.findViewById(R.id.txtAdresInicio);
+
     }
 
+    public ImageView getImgAdicionales() {
+        return imgAdicionales;
+    }
 
+    public void setImgAdicionales(ImageView imgAdicionales) {
+        this.imgAdicionales = imgAdicionales;
+    }
 
     public GridViewWithHeaderAndFooter getGrid() {
 
@@ -291,6 +307,14 @@ public class componentesR  {
 
     public void setLinearFragment(LinearLayout linearFragment) {
         this.linearFragment = linearFragment;
+    }
+
+    public TextView getTxtAdressIncio() {
+        return txtAdressIncio;
+    }
+
+    public void setTxtAdressIncio(TextView txtAdressIncio) {
+        this.txtAdressIncio = txtAdressIncio;
     }
 
     public Button getBtnDetalleServicio() {

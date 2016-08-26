@@ -47,6 +47,13 @@
     <string name="telefono1">TELEFONO  1</string>
     <string name="msnCerrar_sesion">Esta seguro de cerrar sesión</string>
     <string name="desactivatTurno">¿ Esta seguro de desactivar su turno ?</string>
+    <string name="ubUser">Ubiqué al cliente</string>
+    <string name="AgExtras">Agregar Extras</string>
+    <string name="TerServis">Terminé servicio</string>
+    <string name="canServis">Cancelar servicio</string>
+    <string name="miUbic">Mi ubicación</string>
+    <string name="ServisNoTerminado">No termino el servicio</string>
+    <string name="elijirVehiculo">Elija su vehículo</string>
 
 
 </resources>

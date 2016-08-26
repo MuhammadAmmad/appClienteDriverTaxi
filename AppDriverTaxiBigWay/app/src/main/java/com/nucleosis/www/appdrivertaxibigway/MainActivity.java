@@ -152,8 +152,6 @@ public class MainActivity extends AppCompatActivity
         ResponseReceiverListarServiciosCreados receiver2 = new
                 ResponseReceiverListarServiciosCreados();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver2, filter1);
-
-
     }
 
     private void levantarServicioBackground() {
@@ -169,11 +167,7 @@ public class MainActivity extends AppCompatActivity
         TextView lblDetalleServicio = (TextView) view.findViewById(R.id.txtDetalleServicio);
         //   Toast.makeText(this, ListaServiciosCreados.get(posicion_).getIdServicio().toString(), Toast.LENGTH_SHORT).show();
         String detalle = Constans.DetalleServicioLista(this,ListaServiciosCreados,posicion_);
-
-
         lblDetalleServicio.setText(Html.fromHtml(detalle));
-
-
         alertDialogBuilder.setView(view);
         AlertDialog alertDialog;
 
@@ -816,8 +810,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void Alert_Elegir_taxi_conductor() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         final View view = this.getLayoutInflater().inflate(R.layout.view_elegir_taxi_conductor, null);
+        final Button btnCancel=(Button)view.findViewById(R.id.btnCancel);
+        final Button btnOk=(Button)view.findViewById(R.id.btnOk);
         alertDialogBuilder.setView(view);
         final int[] idVehiculo = {0};
         compR.Controls_alert_elegir_auto_conductor(view);
@@ -837,25 +833,23 @@ public class MainActivity extends AppCompatActivity
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        alertDialogBuilder.setNegativeButton(R.string.CANCEL,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+       final AlertDialog alertDialog = alertDialogBuilder.create();
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (idVehiculo[0] != 0) {
+                    new wsActivarTurno(MainActivity.this, idVehiculo[0]).execute();
+                    alertDialog.dismiss();
+                }
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
 
-                    }
-                })
-                .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int iii) {
-                        if (idVehiculo[0] != 0) {
-                            new wsActivarTurno(MainActivity.this, idVehiculo[0]).execute();
-                        }
-
-
-                    }
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
 }

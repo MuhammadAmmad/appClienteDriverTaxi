@@ -117,7 +117,7 @@ public class MapsConductorClienteServicio
     private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
             new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     //suereste  -12.34202, -77.04231-11.6818, -76.74636
-//noreste -11.6818, -76.74636
+     //noreste -11.6818, -76.74636
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -159,8 +159,8 @@ public class MapsConductorClienteServicio
             }
             Log.d("zonAinicio_",AddresIncioCliente+"-->"+zonaInicio+"**"+zonaFin);
 
-            new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaInicio, 3).execute();
-            new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaFin, 4).execute();
+            //new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaInicio, 3).execute();
+           // new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaFin, 4).execute();
 
             String stadoServicio=getIntent().getStringExtra("stadoService");
             Log.d("idServicio_stadoSevcio",idServicio+"-->"+stadoServicio);
@@ -178,10 +178,12 @@ public class MapsConductorClienteServicio
 
             mAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient, BOUNDS_LIMA,
                     null);
+            compR.getTxtAdressIncio().setText(AddresIncioCliente);
         }
 
         preferencesDriver=new PreferencesDriver(MapsConductorClienteServicio.this);
         idDriver=preferencesDriver.OpenIdDriver();
+
 
 
     }
@@ -331,7 +333,7 @@ public class MapsConductorClienteServicio
         final Marker markerInicio = mapa.addMarker(new MarkerOptions()
                 .position(PERTH)
                 .title("Cliente")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_cliente_2)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcador_cliente)));
     }
 
     private AdapterView.OnItemClickListener mAutocompleteClickListener_1
@@ -426,6 +428,79 @@ public class MapsConductorClienteServicio
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.imgAdicionales:
+                AlertDialog.Builder alerDialogoBilder = new AlertDialog.Builder(MapsConductorClienteServicio.this);
+
+                final View view = getLayoutInflater().inflate(R.layout.view_custom_adicionale, null);
+                ImageView imgCancelAlert=(ImageView)view.findViewById(R.id.ImgButtonCancelAlert);
+                TextView txtEncontreCliente=(TextView)view.findViewById(R.id.txtUbiCliente);
+                TextView txtAgregarExtras=(TextView)view.findViewById(R.id.txtAgExtras);
+                TextView txtTermineServis=(TextView)view.findViewById(R.id.txtTermServis);
+                TextView txtServiNoTerminado=(TextView)view.findViewById(R.id.txtServisNoTerminado);
+                TextView txtMiUbicacion=(TextView) view.findViewById(R.id.txtMiUbicacion);
+                alerDialogoBilder.setView(view);
+
+                final AlertDialog alertDialog;
+                alertDialog = alerDialogoBilder.create();
+
+                imgCancelAlert.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+                txtMiUbicacion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                txtEncontreCliente.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String mensaje1="Encontro al cliente ?";
+                        alert("3",mensaje1,9);
+                        Log.d("idTurnoVehiculo-->",preferencesDriver.ExtraerIdTurno()+"***"+preferencesDriver.ExtraerIdVehiculo());
+                        //   compR.getBtnServicioNoTerminado().setEnabled(false);
+                        //  compR.getBtnServicioTerminadoOk().setEnabled(false);
+                        compR.getBtnIrAServicios().setEnabled(true);
+                        //    compR.getBtnAdicionales().setEnabled(false);
+                    }
+                });
+
+                txtAgregarExtras.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertAdicionales();
+                    }
+                });
+                txtTermineServis.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String mensaje3="Termino el servicio correctamente ?";
+                        alert("4",mensaje3,11);
+                        //   compR.getBtnClienteEncontrado().setEnabled(false);
+                        //   compR.getBtnServicioNoTerminado().setEnabled(false);
+                        compR.getBtnIrAServicios().setEnabled(true);
+                        // compR.getBtnAdicionales().setEnabled(false);
+                    }
+                });
+
+                txtServiNoTerminado.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String mensaje2="No termino el servicio ?";
+                        alert("5",mensaje2,10);
+                        //  compR.getBtnClienteEncontrado().setEnabled(false);
+                        //  compR.getBtnServicioTerminadoOk().setEnabled(false);
+                        compR.getBtnIrAServicios().setEnabled(true);
+                        //   compR.getBtnAdicionales().setEnabled(false);
+                    }
+                });
+                alertDialog.show();
+                break;
             case R.id.btnDetalleServicio:
                  //   Toast.makeText(MapsConductorClienteServicio.this,"hola",Toast.LENGTH_LONG).show();
                 if(jsonServiciosConductor!=null){
@@ -433,41 +508,8 @@ public class MapsConductorClienteServicio
                 }
                 DetalleServicio();
                 break;
-            case R.id.btnAdicionales:
-                    alertAdicionales();
-                break;
-            case R.id.btnClienteEncontrado:
-                String mensaje1="Encontro al cliente ?";
-                alert("3",mensaje1,9);
-               Log.d("idTurnoVehiculo-->",preferencesDriver.ExtraerIdTurno()+"***"+preferencesDriver.ExtraerIdVehiculo());
-             //   compR.getBtnServicioNoTerminado().setEnabled(false);
-              //  compR.getBtnServicioTerminadoOk().setEnabled(false);
-                compR.getBtnIrAServicios().setEnabled(true);
-            //    compR.getBtnAdicionales().setEnabled(false);
-                break;
 
-            case R.id.btnSercioNoTerminado:
-                String mensaje2="No termino el servicio ?";
-                alert("5",mensaje2,10);
-              //  compR.getBtnClienteEncontrado().setEnabled(false);
-              //  compR.getBtnServicioTerminadoOk().setEnabled(false);
-                compR.getBtnIrAServicios().setEnabled(true);
-             //   compR.getBtnAdicionales().setEnabled(false);
 
-                break;
-            case R.id.btnServicioTerminadoOk:
-                String mensaje3="Termino el servicio correctamente ?";
-                alert("4",mensaje3,11);
-             //   compR.getBtnClienteEncontrado().setEnabled(false);
-            //   compR.getBtnServicioNoTerminado().setEnabled(false);
-                compR.getBtnIrAServicios().setEnabled(true);
-               // compR.getBtnAdicionales().setEnabled(false);
-                break;
-            case R.id.btnIrA_Servicios:
-                Intent intent=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
-                startActivity(intent);
-                finish();
-                break;
 
             case R.id.btnLLamarCliente:
                 Intent i = new Intent(Intent.ACTION_DIAL,
@@ -517,6 +559,10 @@ public class MapsConductorClienteServicio
                                 JsonObjecServiceConductor.put("nombreStadoServicio",jsonServiciosConductor.getJSONObject(i).getString("nombreStadoServicio"));
                                 JsonObjecServiceConductor.put("idAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("idAutoTipoPidioCliente"));
                                 JsonObjecServiceConductor.put("desAutoTipoPidioCliente",jsonServiciosConductor.getJSONObject(i).getString("desAutoTipoPidioCliente"));
+
+                                JsonObjecServiceConductor.put("nameCliente",jsonServiciosConductor.getJSONObject(i).getString("nameCliente"));
+                                JsonObjecServiceConductor.put("tipoPago",jsonServiciosConductor.getJSONObject(i).getString("tipoPago"));
+
                                 String importeGastoAdicional_=jsonServiciosConductor.getJSONObject(i).getString("importeGastosAdicionales");
                                 double importeGastoAdicional=0.0;
                                 String importeTipoAuto="0.00";
@@ -574,22 +620,29 @@ public class MapsConductorClienteServicio
                     final View view = getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
                     //  dialogo1.setTitle("Detalle del Servicio");
                     TextView txtDetalle=(TextView)view.findViewById(R.id.txtDetalleServicio);
-
+                    Button btnOK=(Button)view.findViewById(R.id.btnOk);
                     alerDialogoBilder.setView(view);
 
                     String detalle = "";
-                    AlertDialog alertDialog;
+                    final AlertDialog alertDialog ;
                         detalle=Constans.DetalleServicioJson(jsonDetalle);
 
                         txtDetalle.setText(Html.fromHtml(detalle));
 
+
                     //alerDialogoBilder.setMessage(detalle);
                     // alerDialogoBilder.setCancelable(false);
-                    alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    /*alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialogo1, int id) {
                         }
-                    });
+                    });*/
                     alertDialog = alerDialogoBilder.create();
+                    btnOK.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
                     alertDialog.show();
                 }else{
                     String msn=getResources().getString(R.string.noDetalle);
@@ -915,9 +968,6 @@ public class MapsConductorClienteServicio
         final Button btnEnviarRutaNueva=(Button)view.findViewById(R.id.btnEnviarNuevaRuta);
         final AutoCompleteTextView editDestino1=(AutoCompleteTextView)view.findViewById(R.id.autocompleteDireccion1);
         final AutoCompleteTextView editDestino2=(AutoCompleteTextView)view.findViewById(R.id.autocompleteDireccion2);
-
-
-
         editDestino1.setOnItemClickListener(mAutocompleteClickListener_1);
         editDestino1.setAdapter(mAdapter);
 
@@ -979,7 +1029,7 @@ public class MapsConductorClienteServicio
                         e.printStackTrace();
                     }
                     //Extrae el precio de zona por zona
-                    new wsExtraerPrecioZonaDistrito(activity,alertAdicionales,idServicio).execute();
+                    new wsExtraerPrecioZonaDistrito(activity,alertAdicionales,idServicio,idCliente).execute();
                 }
             }
         });
@@ -1172,6 +1222,9 @@ public class MapsConductorClienteServicio
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            Intent intent=new Intent(MapsConductorClienteServicio.this,MainActivity.class);
+            startActivity(intent);
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);

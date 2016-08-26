@@ -3,43 +3,45 @@
     android:orientation="vertical"
     android:background="#494949"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#d8d8d8"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/marginLeftDiez"
+            android:layout_marginRight="@dimen/marginLeftDiez"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/grease"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/detalleServicio"
+            android:id="@+id/lblDetalleServicio"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
     <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-        android:layout_marginBottom="10dp">
+    android:layout_height="230dp"
+    android:layout_marginBottom="10dp">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
         android:layout_gravity="center_horizontal">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#d8d8d8"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginTop"
-                android:layout_marginLeft="@dimen/marginLeftDiez"
-                android:layout_marginRight="@dimen/marginLeftDiez"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/grease"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/detalleServicio"
-                android:id="@+id/lblDetalleServicio"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTop"
             android:layout_marginLeft="@dimen/marginLeftDiez"
             android:layout_marginRight="@dimen/marginLeftDiez"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
             android:gravity="left"
             android:textSize="14dp"
             android:textColor="@color/white"
@@ -48,5 +50,12 @@
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </ScrollView>
-
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginLeft="@dimen/marginLeftDiez"
+        android:layout_marginRight="@dimen/marginLeftDiez"
+        android:text="ACEPTAR"/>
 </LinearLayout>

@@ -79,6 +79,7 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginRight="5dp"
                         android:gravity="center">
                         <LinearLayout
@@ -126,6 +127,34 @@
                                 android:id="@+id/btnIrA_Servicios"/>
                         </LinearLayout>
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="200dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/txtAdresInicio"
+                            android:paddingLeft="@dimen/dimenCinco"
+                            android:paddingRight="@dimen/dimenCinco"
+                            android:gravity="center|left"
+                            android:text="AV. La Rotonda xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                            android:textColor="@color/white"
+                            android:background="@drawable/shape_address"
+                            />
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/imgAdicionales"
+                            android:padding="@dimen/dimenCinco"
+                            android:layout_marginLeft="@dimen/dimen15"
+                            android:src="@drawable/adicionales"
+                            android:clickable="true"
+                            android:background="@drawable/selector_adicionales"
+                            />
                     </LinearLayout>
 
                     <Button

@@ -256,6 +256,15 @@ public class ServiceListarServiciosCreados extends Service {
                                         row.setIdTipoAuto(dataVector.getProperty("ID_AUTO_TIPO").toString());
                                         //VERIFICAMOS SI EL CLIENTE QUIERE MOSTRAR SU CELULAR
                                         row.setIndMostrarCelularCliente(dataVector.getProperty("IND_MOSTRAR_TELEFONO").toString());
+
+                                        row.setNameCliente(dataVector.getProperty("NOM_APE_CLIENTE").toString());
+                                        row.setTipoPago(dataVector.getProperty("NOM_TIPO_PAGO_SERVICIO").toString());
+
+                                        //iddistroto y idZonas
+                                        row.setIdDistritoIncio(dataVector.getProperty("ID_DISTRITO_INICIO").toString());
+                                        row.setIdDistritoFin(dataVector.getProperty("ID_DISTRITO_FINAL").toString());
+                                        row.setIdZonaInicio(dataVector.getProperty("ID_ZONA_INICIO").toString());
+                                        row.setIdZonaFin(dataVector.getProperty("ID_ZONA_FINAL").toString());
                                         String indMostrarCelular=dataVector.getProperty("IND_MOSTRAR_TELEFONO").toString();
 
                                         if(indMostrarCelular!=null){
@@ -340,6 +349,14 @@ public class ServiceListarServiciosCreados extends Service {
                                     row2.setIdCliente(dataVector.getProperty("ID_CLIENTE").toString());
                                     row2.setIdConductor(dataVector.getProperty("ID_CONDUCTOR").toString());
                                     row2.setIdTipoAuto(dataVector.getProperty("ID_AUTO_TIPO").toString());
+
+                                    row2.setNameCliente(dataVector.getProperty("NOM_APE_CLIENTE").toString());
+                                    row2.setTipoPago(dataVector.getProperty("NOM_TIPO_PAGO_SERVICIO").toString());
+                                    //iddistroto y idZonas
+                                    row2.setIdDistritoIncio(dataVector.getProperty("ID_DISTRITO_INICIO").toString());
+                                    row2.setIdDistritoFin(dataVector.getProperty("ID_DISTRITO_FINAL").toString());
+                                    row2.setIdZonaInicio(dataVector.getProperty("ID_ZONA_INICIO").toString());
+                                    row2.setIdZonaFin(dataVector.getProperty("ID_ZONA_FINAL").toString());
 
                                     //VERIFICAMOS SI EL CLIENTE QUIERE MOSTRAR SU CELULAR
                                     row2.setIndMostrarCelularCliente(dataVector.getProperty("IND_MOSTRAR_TELEFONO").toString());

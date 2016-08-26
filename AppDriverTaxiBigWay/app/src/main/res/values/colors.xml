@@ -39,30 +39,25 @@
     <color name="stadoTerminadoCorrecto">#f2df31</color>
     <color name="stadoCanceladoCliente">#fc1d76</color>
     <color name="stadoCanceladoConductor">#8e0103</color>
-
     <color name="btnCancelServicioFalse">#d4080b</color>
     <color name="btnCancelServicioTrue">#f16264</color>
-
     <color name="btnDetalleServiceFalse">#01c9df</color>
     <color name="btnDetalleServiceTrue">#46eef7</color>
     <color name="greenButton">#2ca43e</color>
-
     <color name="textColorAlertFalse">#2ca43e</color>
     <color name="textColorAlertTrue">#e2fde6</color>
-
    <color name="colorPar">#11aebf</color>
-
     <color name="btnDetalleFalse">#055ee4</color>
     <color name="btnDetalleTrue">#4a84e7</color>
     <color name="scremm">#01722a</color>
     <color name="hinWhite">#c4c7c5</color>
-
     <color name="viewColor">#acadac</color>
     <color name="radioButonsTransparente">#00FFFFFF</color>
-
     <color name="red">#fa4242</color>
 
     <color name="screem">#279A92</color>
 
     <color name="greaseDetalle">#494949</color>
+
+
 </resources>

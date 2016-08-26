@@ -37,7 +37,7 @@ public class beansHistorialServiciosCreados {
     private String idTurno;
     private String idCliente;
     private String numCelular;
-    private String  nunMovilTaxi;
+    private String nunMovilTaxi;
     private String idTipoAuto;
     private String desAutoTipo;
     private String desAutoTipoPidioCliente;
@@ -47,6 +47,61 @@ public class beansHistorialServiciosCreados {
     private String latitudService;
     private String longitudService;
 
+    private String nameCliente;
+    private String tipoPago;
+
+    private String idDistritoIncio;
+    private String idDistritoFin;
+    private String idZonaInicio;
+    private String idZonaFin;
+
+    public String getIdDistritoFin() {
+        return idDistritoFin;
+    }
+
+    public void setIdDistritoFin(String idDistritoFin) {
+        this.idDistritoFin = idDistritoFin;
+    }
+
+    public String getIdDistritoIncio() {
+        return idDistritoIncio;
+    }
+
+    public void setIdDistritoIncio(String idDistritoIncio) {
+        this.idDistritoIncio = idDistritoIncio;
+    }
+
+    public String getIdZonaInicio() {
+        return idZonaInicio;
+    }
+
+    public void setIdZonaInicio(String idZonaInicio) {
+        this.idZonaInicio = idZonaInicio;
+    }
+
+    public String getIdZonaFin() {
+        return idZonaFin;
+    }
+
+    public void setIdZonaFin(String idZonaFin) {
+        this.idZonaFin = idZonaFin;
+    }
+
+    public String getNameCliente() {
+        return nameCliente;
+    }
+
+    public void setNameCliente(String nameCliente) {
+        this.nameCliente = nameCliente;
+    }
+
+    public String getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(String tipoPago) {
+        this.tipoPago = tipoPago;
+    }
 
     public String getImporteGastosAdicionales() {
         return importeGastosAdicionales;

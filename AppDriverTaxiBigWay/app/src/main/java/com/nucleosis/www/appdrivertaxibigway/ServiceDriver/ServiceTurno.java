@@ -147,7 +147,6 @@ public class ServiceTurno extends Service {
         Log.d("servicioCronometro", "DESTRUIDO_X");
     }
 
-
     private String VerificarAntiguedadDeTurno(JSONObject jsonTurno, JSONObject jsonFechaServer){
         String ind="0";
         Log.d("JonsDATA",jsonTurno.toString()+"\n"+jsonFechaServer.toString());

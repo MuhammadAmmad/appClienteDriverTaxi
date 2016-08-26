@@ -70,14 +70,6 @@ implements OnItemClickListener{
         SoapObject request = new SoapObject("http://sistema.taxibigway.com/soap","WS_SERVICIO_LISTAR");
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
-        //    Log.d("datosUser_",user.getUser()+"\n"+user.getPassword());
-
-       /* <idCliente xsi:type="xsd:int"></idCliente>
-        <fecServicio xsi:type="xsd:string"></fecServicio>
-        <idConductor xsi:type="xsd:int"></idConductor>
-        <idEstadoServicio xsi:type="xsd:int"></idEstadoServicio>
-        <idAutoTipo xsi:type="xsd:int">?</idAutoTipo>*/
-
         request.addProperty("idCliente", 0);
         request.addProperty("fecServicio", fecha);
         request.addProperty("idConductor", Integer.parseInt(preferencesDriver.OpenIdDriver()));
@@ -120,6 +112,15 @@ implements OnItemClickListener{
                 row.setNombreStadoServicio(dataVector.getProperty("NOM_ESTADO_SERVICIO").toString());
                 row.setDireccionIncio(dataVector.getProperty("DES_DIRECCION_INICIO").toString());
                 row.setDireccionFinal(dataVector.getProperty("DES_DIRECCION_FINAL").toString());
+
+                row.setNameCliente(dataVector.getProperty("NOM_APE_CLIENTE").toString());
+                row.setTipoPago(dataVector.getProperty("NOM_TIPO_PAGO_SERVICIO").toString());
+
+                //iddistroto y idZonas
+                row.setIdDistritoIncio(dataVector.getProperty("ID_DISTRITO_INICIO").toString());
+                row.setIdDistritoFin(dataVector.getProperty("ID_DISTRITO_FINAL").toString());
+                row.setIdZonaInicio(dataVector.getProperty("ID_ZONA_INICIO").toString());
+                row.setIdZonaFin(dataVector.getProperty("ID_ZONA_FINAL").toString());
                 row.setInfoAddress(dataVector.getProperty("DES_DIRECCION_INICIO").toString()
                 + "\n" + dataVector.getProperty("DES_DIRECCION_FINAL").toString());
                 //  row.setImageHistorico(drawable);
