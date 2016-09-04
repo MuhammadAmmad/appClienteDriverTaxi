@@ -198,9 +198,10 @@ public class ServiceListarServiciosCreados extends Service {
                                                                 Log.d("EstaEnRango","No");
                                                                 swRadioServicio=false;
                                                             }
+                                                        }else{
+                                                            Log.d("EstaEnRango","Si*");
+                                                            swRadioServicio=true;
                                                         }
-
-
                                                 }
 
                                             }
@@ -440,6 +441,7 @@ public class ServiceListarServiciosCreados extends Service {
                         }
                         Gson gson = new Gson();
                         String json = gson.toJson(listServiceiosCreados);
+                        Log.d("jsonU",json.toString());
                         String jsonListServicioConductor=gson.toJson(ListServiciosAsignadoConductor);
                         Log.d("jsonXXXX",jsonListServicioConductor.toString());
                         Intent localIntent = new Intent(Utils.ACTION_RUN_SERVICE_2)
@@ -478,6 +480,7 @@ public class ServiceListarServiciosCreados extends Service {
         return (int) dias;
     }
     private int diferenciaHoras(String HoraServicio ,String  HoraServer){
+        Log.d("HServHserver",HoraServicio+"**"+HoraServer);
         String H1=HoraServer.substring(0,2);
         String M1=HoraServer.substring(3,5);
     int TotalMinutos1=Integer.parseInt(H1)*60+Integer.parseInt(M1);

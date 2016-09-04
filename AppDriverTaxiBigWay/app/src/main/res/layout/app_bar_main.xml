@@ -58,7 +58,6 @@
                             android:id="@+id/btnAdicionales"
                             android:layout_marginLeft="10dp"
                             android:visibility="gone"
-                            android:background="@drawable/selector_buton_adicionales"
                             android:textColor="@color/white"
                             android:textSize="16dp"/>
                         <ImageView
@@ -66,14 +65,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:visibility="gone"
-                            android:background="@drawable/selector_button_cliente_encontrado"
                             android:id="@+id/btnClienteEncontrado"/>
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:visibility="gone"
-                            android:background="@drawable/selector_button_servicio_terminado_ok"
                             android:id="@+id/btnServicioTerminadoOk"/>
                         <ImageView
                             android:layout_width="wrap_content"

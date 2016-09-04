@@ -35,6 +35,7 @@ public class Constans {
                                        int posicion_){
         Fichero fichero =new Fichero(context);
         JSONObject jsonConfiguracion = fichero.ExtraerConfiguraciones();
+        Log.d("jst_",jsonConfiguracion.toString());
         String importTipoAutoSolicitoCliente = "0.0";
         Double sumaImportesServicio = 0.0;
         if (jsonConfiguracion != null) {
@@ -154,5 +155,42 @@ public class Constans {
         }
 
         return detalle;
+    }
+
+
+    public static int validarUltimaCoordenadaEnviada(String HoraServer, String HoraCoordenada) {
+        //  Log.d("horaServer", HoraServer + "--->Coor: " + HoraCoordenada);
+        int minutos = 0;
+        if (HoraServer.length() == 5 && HoraCoordenada.length() == 5) {
+            /* HoraServer="18:01";//135 //HORA ACTUAL 22:50
+             HoraTurno="06:00";//1130 // HORA DEL TURNO*/
+            int minutosFormales = 12 * 60;
+
+            int H1 = Integer.parseInt(HoraServer.substring(0, 2));
+            int M1 = Integer.parseInt(HoraServer.substring(3, 5));
+            int TotalMinutos1 = H1 * 60 + M1;
+
+            int H2 = Integer.parseInt(HoraCoordenada.substring(0, 2));
+            int M2 = Integer.parseInt(HoraCoordenada.substring(3, 5));
+
+            int TotalMinutos2 = H2 * 60 + M2;
+
+            if (H1 < H2) {
+                int diaMinutos = 24 * 60;
+                int RestaParcialMinutos = diaMinutos - TotalMinutos2;
+                Log.d("horaTermino", String.valueOf(RestaParcialMinutos));
+                int SumaTotal = RestaParcialMinutos + TotalMinutos1;
+                Log.d("TotalMintuos", String.valueOf(SumaTotal));
+
+                minutos = SumaTotal;
+            } else if (H1 >= H2) {
+                minutos = TotalMinutos1 - TotalMinutos2;
+                Log.d("TotalMintuos", String.valueOf(minutos));
+            }
+        }
+
+
+        Log.d("minutosRetorno", String.valueOf(minutos));
+        return minutos;
     }
 }

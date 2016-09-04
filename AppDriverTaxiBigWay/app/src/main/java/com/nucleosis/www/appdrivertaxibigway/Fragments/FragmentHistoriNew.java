@@ -511,7 +511,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
 
     @Override
     public void onClickDetalle(final Context context, final String idServicio, String stadoServicio, final String fecha_) {
-        Log.d("stadoSevcioLog",stadoServicio);
+       // Log.d("stadoSevcioLog",stadoServicio);
       //  Toast.makeText(context,"detalle de servicio",Toast.LENGTH_SHORT).show();
         final Fichero fichero=new Fichero(context);
         preferencesDriver=new PreferencesDriver(context);
@@ -653,7 +653,7 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                     //  dialogo1.setTitle("Detalle del Servicio");
                     TextView txtDetalle=(TextView)view.findViewById(R.id.txtDetalleServicio);
                     Button btnOK=(Button)view.findViewById(R.id.btnOk);
-
+                    Button btnCancel=(Button)view.findViewById(R.id.btnCancel);
                     alerDialogoBilder.setView(view);
                     String detalle = "";
                     final AlertDialog alertDialog;
@@ -666,6 +666,8 @@ public class FragmentHistoriNew extends Fragment implements OnItemClickListener,
                         }
                     });*/
                     alertDialog = alerDialogoBilder.create();
+                    btnCancel.setVisibility(View.GONE);
+                    btnCancel.setText("CANCELAR");
                     btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

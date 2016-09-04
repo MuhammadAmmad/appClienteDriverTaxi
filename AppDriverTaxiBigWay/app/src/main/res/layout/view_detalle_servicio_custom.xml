@@ -7,16 +7,15 @@
     android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="#d8d8d8"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="@dimen/marginLeftDiez"
             android:layout_marginRight="@dimen/marginLeftDiez"
             android:gravity="center"
-            android:textStyle="bold"
             android:textSize="20dp"
             android:textColor="@color/grease"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -24,6 +23,7 @@
             android:id="@+id/lblDetalleServicio"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
+
     <ScrollView
     android:layout_width="match_parent"
     android:layout_height="230dp"
@@ -50,12 +50,29 @@
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </ScrollView>
-    <Button
-        android:id="@+id/btnOk"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="@dimen/marginTop"
-        android:layout_marginLeft="@dimen/marginLeftDiez"
-        android:layout_marginRight="@dimen/marginLeftDiez"
-        android:text="ACEPTAR"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen10"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:textColor="@color/selector_text_detalle"
+            android:background="@drawable/selector_detalle"
+            android:text="ACEPTAR"/>
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:textColor="@color/selector_text_detalle"
+            android:layout_marginLeft="@dimen/dimenCinco"
+            android:background="@drawable/selector_detalle"
+            android:text="Rechazar"/>
+
+    </LinearLayout>
+
 </LinearLayout>

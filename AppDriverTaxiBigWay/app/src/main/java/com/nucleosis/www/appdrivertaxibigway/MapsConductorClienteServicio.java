@@ -57,6 +57,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appdrivertaxibigway.Adapters.PlaceAutocompleteAdapter;
+import com.nucleosis.www.appdrivertaxibigway.AlertDialog.CustomAlertDialog;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansListaPolygono;
 import com.nucleosis.www.appdrivertaxibigway.Componentes.componentesR;
@@ -100,8 +101,6 @@ public class MapsConductorClienteServicio
     private String idDriver="";
     private ProgressDialog progressDialog;
     private JSONObject jsonConfiguraciones;
-    private PlaceAutocompleteAdapter mAdapter;
-    protected GoogleApiClient mGoogleApiClient;
     public static final String TAG = "SampleActivityBase";
     private KmlCreatorPolygono kmlCreatorPolygono;
     private JSONArray jsonServicioUnicoXid;
@@ -114,6 +113,7 @@ public class MapsConductorClienteServicio
     private String celularCliente;
     private String idCliente;
     private int idCalificacion=0;
+    private CustomAlertDialog customAlertDialog;
     private static final LatLngBounds BOUNDS_LIMA = new LatLngBounds(
             new LatLng(-12.34202, -77.04231), new LatLng(-12.00103, -77.03269));
     //suereste  -12.34202, -77.04231-11.6818, -76.74636
@@ -134,12 +134,9 @@ public class MapsConductorClienteServicio
         fichero=new Fichero(MapsConductorClienteServicio.this);
         if(fichero.ExtraerConfiguraciones()!=null){
             jsonConfiguraciones=fichero.ExtraerConfiguraciones();
-            Log.d("configuracion_",fichero.ExtraerConfiguraciones().toString());
+           // Log.d("configuracion_",fichero.ExtraerConfiguraciones().toString());
         }
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                // .enableAutoManage(getActivity(), 0 /* clientId */, this)
-                .addApi(Places.GEO_DATA_API)
-                .build();
+        customAlertDialog=new CustomAlertDialog(this);
          //CARGARMOS EL ESCUCHADOR PARA MODIFICAR LA DIRECCION INCIAL DEL CLIENTE
         CreaBroadcasReceiver();
 
@@ -159,11 +156,7 @@ public class MapsConductorClienteServicio
             }
             Log.d("zonAinicio_",AddresIncioCliente+"-->"+zonaInicio+"**"+zonaFin);
 
-            //new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaInicio, 3).execute();
-           // new wsExtraerIdZonaIdDistrito(MapsConductorClienteServicio.this,zonaFin, 4).execute();
-
             String stadoServicio=getIntent().getStringExtra("stadoService");
-            Log.d("idServicio_stadoSevcio",idServicio+"-->"+stadoServicio);
 
             switch (Integer.parseInt(stadoServicio)){
                 case 3:
@@ -175,27 +168,18 @@ public class MapsConductorClienteServicio
                     compR.getBtnAdicionales().setEnabled(false);
                     break;
             }
-
-            mAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient, BOUNDS_LIMA,
-                    null);
             compR.getTxtAdressIncio().setText(AddresIncioCliente);
         }
 
         preferencesDriver=new PreferencesDriver(MapsConductorClienteServicio.this);
         idDriver=preferencesDriver.OpenIdDriver();
-
-
-
     }
 
     private void CreaBroadcasReceiver(){
-
         IntentFilter filter=new IntentFilter(Utils.ACTION_RUN_SERVICE_3);
         ResponseReceiverListarServiciosCreados receiver=new
                 ResponseReceiverListarServiciosCreados();
         LocalBroadcastManager.getInstance(this).registerReceiver(receiver,filter);
-
-
     }
 
     private class ResponseReceiverListarServiciosCreados extends BroadcastReceiver {
@@ -233,26 +217,20 @@ public class MapsConductorClienteServicio
         }
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
-     /*       int id = item.getItemId();
-            if (id == R.id.menuAlert) {
-            return true;
-        }*/
+
         return super.onOptionsItemSelected(item);
     }
     @Override
     public void onStart() {
-        Log.d("stado_","onStar");
         super.onStart();
-        if (mGoogleApiClient != null)
-            mGoogleApiClient.connect();
+       /* if (mGoogleApiClient != null)
+            mGoogleApiClient.connect();*/
     }
     @Override
     public void onStop() {
-        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+        /*if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
-            Log.d("stado_","stop");
-        }
-        Log.d("stado_","stop");
+        }*/
         super.onStop();
     }
     @SuppressWarnings("deprecation")
@@ -335,96 +313,6 @@ public class MapsConductorClienteServicio
                 .title("Cliente")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcador_cliente)));
     }
-
-    private AdapterView.OnItemClickListener mAutocompleteClickListener_1
-            = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            final AutocompletePrediction item = mAdapter.getItem(position);
-            final String placeId = item.getPlaceId();
-            final CharSequence primaryText = item.getPrimaryText(null);
-            PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
-                    .getPlaceById(mGoogleApiClient, placeId);
-            placeResult.setResultCallback(mUpdatePlaceDetailsCallback_1);
-        }
-    };
-
-    private AdapterView.OnItemClickListener mAutocompleteClickListener_2
-            = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            final AutocompletePrediction item = mAdapter.getItem(position);
-
-            final String placeId = item.getPlaceId();
-
-            final CharSequence primaryText = item.getPrimaryText(null);
-            final CharSequence fullText=item.getFullText(null);
-            PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
-                    .getPlaceById(mGoogleApiClient, placeId);
-            placeResult.setResultCallback(mUpdatePlaceDetailsCallback_2);
-        }
-    };
-    private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback_1
-            = new ResultCallback<PlaceBuffer>() {
-        @Override
-        public void onResult(PlaceBuffer places) {
-            Activity activity=MapsConductorClienteServicio.this;
-
-            if (!places.getStatus().isSuccess()) {
-                // Request did not complete successfully
-                Log.e(TAG, "Place query did not complete. Error: " + places.getStatus().toString());
-                places.release();
-                return;
-            }
-            // Get the Place object from the buffer.
-            final Place place = places.get(0);
-
-            Log.d("location_",places.get(0).getLatLng().toString());
-            final CharSequence thirdPartyAttribution = places.getAttributions();
-            Log.d("latLong_adres", String.valueOf(place.getLatLng()));
-            Log.i(TAG, "Place details received: " + place.getAddress());
-          //  Log.d("distancia", String.valueOf(place.getLocale()));
-            LatLng puntoEnZona=place.getLatLng();
-
-            //OBTIENE EL ID_DE DE ZONA Y DE DISTRITO
-            String zona =DeterminaZona(listPolyGo.size(),puntoEnZona);
-            int casoEntrada=1;
-
-            new wsExtraerIdZonaIdDistrito(activity,zona,casoEntrada).execute();
-            Log.d("zonaAdres1",zona);
-            places.release();
-        }
-    };
-
-    private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback_2
-            = new ResultCallback<PlaceBuffer>() {
-        @Override
-        public void onResult(PlaceBuffer places) {
-            Activity activity=MapsConductorClienteServicio.this;
-            if (!places.getStatus().isSuccess()) {
-                // Request did not complete successfully
-                Log.e(TAG, "Place query did not complete. Error: " + places.getStatus().toString());
-                places.release();
-                return;
-            }
-            // Get the Place object from the buffer.
-            final Place place = places.get(0);
-            Log.d("location_",places.get(0).getLatLng().toString());
-            final CharSequence thirdPartyAttribution = places.getAttributions();
-            Log.d("latLong_adres", String.valueOf(place.getLatLng()));
-            Log.i(TAG, "Place details received: " + place.getName());
-            //  Log.d("distancia", String.valueOf(place.getLocale()));
-            LatLng puntoEnZona=place.getLatLng();
-            String zona=DeterminaZona(listPolyGo.size(),puntoEnZona);
-            Log.d("zonaAdres2",zona);
-            //OBTIENE EL ID_DE DE ZONA Y DE DISTRITO
-            int casoEntrada=2;
-//            Log.d("observandoFichero",fichero.ExtraerConfiguraciones().toString());
-            new wsExtraerIdZonaIdDistrito(activity,zona,casoEntrada).execute();
-            places.release();
-        }
-    };
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -473,7 +361,8 @@ public class MapsConductorClienteServicio
                 txtAgregarExtras.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        alertAdicionales();
+                    customAlertDialog.alertAdicionales(idServicio,jsonConfiguraciones,listPolyGo,AddresIncioCliente,idCliente);
+                       //alertAdicionales();
                     }
                 });
                 txtTermineServis.setOnClickListener(new View.OnClickListener() {
@@ -621,6 +510,7 @@ public class MapsConductorClienteServicio
                     //  dialogo1.setTitle("Detalle del Servicio");
                     TextView txtDetalle=(TextView)view.findViewById(R.id.txtDetalleServicio);
                     Button btnOK=(Button)view.findViewById(R.id.btnOk);
+                    Button btnCance_=(Button)view.findViewById(R.id.btnCancel);
                     alerDialogoBilder.setView(view);
 
                     String detalle = "";
@@ -628,14 +518,6 @@ public class MapsConductorClienteServicio
                         detalle=Constans.DetalleServicioJson(jsonDetalle);
 
                         txtDetalle.setText(Html.fromHtml(detalle));
-
-
-                    //alerDialogoBilder.setMessage(detalle);
-                    // alerDialogoBilder.setCancelable(false);
-                    /*alerDialogoBilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogo1, int id) {
-                        }
-                    });*/
                     alertDialog = alerDialogoBilder.create();
                     btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -643,6 +525,8 @@ public class MapsConductorClienteServicio
                             alertDialog.dismiss();
                         }
                     });
+                    btnCance_.setVisibility(View.GONE);
+                    btnCance_.setText("CANCELAR");
                     alertDialog.show();
                 }else{
                     String msn=getResources().getString(R.string.noDetalle);
@@ -651,398 +535,6 @@ public class MapsConductorClienteServicio
             }
         }.execute();
     }
-    @SuppressWarnings("deprecation")
-    private void alertAdicionales(){
-        final Activity activity=MapsConductorClienteServicio.this;
-        final AlertDialog.Builder alertBilder = new AlertDialog.Builder(activity);
-        final View view = activity.getLayoutInflater().inflate(R.layout.view_alert_adicionales, null);
-
-       /*Drawable imageRigth=getResources().getDrawable(R.drawable.ic_expand_more_black_24dp);
-                btnAireAcondicionado1.setCompoundDrawablesWithIntrinsicBounds(null,null,imageRigth,null);*/
-        final ImageView imagenCanceleAlertAdicionales=(ImageView)view.findViewById(R.id.ImgButtonCancelAlert);
-         final Button btnAireAcondicionado1=(Button)view.findViewById(R.id.btnAireAcondicionado1);
-         final Button btnAireAcondicionado2=(Button)view.findViewById(R.id.btnAireAcondicionado2);
-         final Button btnEnviarAire=(Button)view.findViewById(R.id.btnEnviarAire);
-        btnAireAcondicionado1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnAireAcondicionado1.setVisibility(View.GONE);
-                btnAireAcondicionado2.setVisibility(View.VISIBLE);
-                btnEnviarAire.setVisibility(View.VISIBLE);
-            }
-        });
-
-        btnAireAcondicionado2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnAireAcondicionado1.setVisibility(View.VISIBLE);
-                btnAireAcondicionado2.setVisibility(View.GONE);
-                btnEnviarAire.setVisibility(View.GONE);
-            }
-        });
-
-
-        btnEnviarAire.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(activity);
-                dialogo1.setTitle("Añadir Aire acondicionado");
-                try {
-                    dialogo1.setMessage("¿ Esta seguro de  realizar esta operacion ?"+"\n\n"+
-                    "Costo:"+"\t\t"+"S/."+jsonConfiguraciones.getString("impAireAcondicionado"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        btnAireAcondicionado1.setVisibility(View.VISIBLE);
-                        btnAireAcondicionado2.setVisibility(View.GONE);
-                        btnEnviarAire.setVisibility(View.GONE);
-
-                        try {
-                            new wsActualizarServicio(
-                                    activity,
-                                    idServicio,
-                                    "1",
-                                     jsonConfiguraciones.getString("impAireAcondicionado"),
-                                     "",//peaje
-                                     "",//tiempo de espera
-                                     "",//minutos tiempoEspera
-                                     "",//importe servicio
-                                     "",//idDistritoIncio
-                                     "",//idZonaIncio
-                                     "",//DireccionIncio
-                                    "",//idDistritoFin
-                                    "",//idZonaFin
-                                    "",//DireccionFin
-                                    "",//descricion pago extra
-                                    "",  //IMPORTE EXTRAORDINARIO
-                                    ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
-                                    ).execute();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        btnAireAcondicionado1.setVisibility(View.VISIBLE);
-                        btnAireAcondicionado2.setVisibility(View.GONE);
-                        btnEnviarAire.setVisibility(View.GONE);
-                    }
-                });
-                dialogo1.show();
-            }
-        });
-
-        final Button btnPeaje1=(Button)view.findViewById(R.id.btnPeaje1);
-        final Button btnPeaje2=(Button)view.findViewById(R.id.btnPeaje2);
-        final Button btnEnviarPeaje=(Button)view.findViewById(R.id.btnEnviarPeaje);
-
-        btnPeaje1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnPeaje1.setVisibility(View.GONE);
-                btnPeaje2.setVisibility(View.VISIBLE);
-                btnEnviarPeaje.setVisibility(View.VISIBLE);
-            }
-        });
-
-        btnPeaje2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnPeaje2.setVisibility(View.GONE);
-                btnPeaje1.setVisibility(View.VISIBLE);
-                btnEnviarPeaje.setVisibility(View.GONE);
-            }
-        });
-
-        btnEnviarPeaje.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(activity);
-                dialogo1.setTitle(R.string.agregarPeaje);
-                try {
-                    dialogo1.setMessage(R.string.operacionPeaje+"\n\n"+
-                            "Costo:"+"\t\t"+"S/."+jsonConfiguraciones.getString("impServicioPeaje"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton(R.string.Confirmar, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        btnPeaje2.setVisibility(View.GONE);
-                        btnPeaje1.setVisibility(View.VISIBLE);
-                        btnEnviarPeaje.setVisibility(View.GONE);
-                        try {
-                            new wsActualizarServicio(
-                                    activity,
-                                    idServicio,
-                                    "",
-                                    "",
-                                    jsonConfiguraciones.getString("impServicioPeaje"),//peaje
-                                    "",//tiempo de espera
-                                    "",//minutos tiempoEspera
-                                    "",//importe servicio
-                                    "",//idDistritoIncio
-                                    "",//idZonaIncio
-                                    "",//DireccionIncio
-                                    "",//idDistritoFin
-                                    "",//idZonaFin
-                                    "",//DireccionFin
-                                    "",
-                                    "",  //IMPORTE EXTRAORDINARIO
-                                    ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
-                            ).execute();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        btnPeaje2.setVisibility(View.GONE);
-                        btnPeaje1.setVisibility(View.VISIBLE);
-                        btnEnviarPeaje.setVisibility(View.GONE);
-                    }
-                });
-                dialogo1.show();
-            }
-        });
-
-        final Button btnTiempoEspera1=(Button)view.findViewById(R.id.btnTiempoEspera1);
-        final Button btnTiempoEspera2=(Button)view.findViewById(R.id.btnTiempoEspera2);
-        final Button btnEnviarTiempoEspera=(Button)view.findViewById(R.id.btnEnviarTiempoEspera);
-        final EditText editTiempoEspera=(EditText)view.findViewById(R.id.editTiempoEspera);
-
-        final double[] totalMinutosXtiempo = {0};
-
-        final LinearLayout lienarTiempoEspera=(LinearLayout)view.findViewById(R.id.LinearContenedorTiempoEspera);
-        btnTiempoEspera1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnTiempoEspera1.setVisibility(View.GONE);
-                btnTiempoEspera2.setVisibility(View.VISIBLE);
-                lienarTiempoEspera.setVisibility(View.VISIBLE);
-
-            }
-        });
-        btnTiempoEspera2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnTiempoEspera1.setVisibility(View.VISIBLE);
-                btnTiempoEspera2.setVisibility(View.GONE);
-                lienarTiempoEspera.setVisibility(View.GONE);
-            }
-        });
-
-        btnEnviarTiempoEspera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String lblMinutosTiempo=editTiempoEspera.getText().toString().trim();
-                Log.d("editTexttiempoA",lblMinutosTiempo);
-                if(lblMinutosTiempo.length()!=0){
-                    AlertDialog.Builder dialogo1 = new AlertDialog.Builder(activity);
-                    dialogo1.setTitle("Añadir Minutos de espera");
-                    try {
-                        double costoMinuto=Double.parseDouble(jsonConfiguraciones.getString("impMinutoEspera"));
-                        Log.d("editTexttiempoB",lblMinutosTiempo);
-                        totalMinutosXtiempo[0] =Double.parseDouble(lblMinutosTiempo)*costoMinuto;
-                        dialogo1.setMessage("¿ Esta seguro de  realizar esta operacion ?"+"\n\n"+
-                                "Costo:"+"\t\t"+"S/."+String.valueOf(totalMinutosXtiempo[0]));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    dialogo1.setCancelable(false);
-                    dialogo1.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogo1, int id) {
-
-                            btnTiempoEspera1.setVisibility(View.VISIBLE);
-                            btnTiempoEspera2.setVisibility(View.GONE);
-                            lienarTiempoEspera.setVisibility(View.GONE);
-                                new wsActualizarServicio(
-                                        activity,
-                                        idServicio,
-                                        "",//indAireacondicionado
-                                        "",//aireAcondicionado
-                                        "",//peaje
-                                        String.valueOf(totalMinutosXtiempo[0]),//importe tiempo espera
-                                        lblMinutosTiempo,//minutos tiempoEspera
-                                        "",//importe servicio
-                                        "",//idDistritoIncio
-                                        "",//idZonaIncio
-                                        "",//DireccionIncio
-                                        "",//idDistritoFin
-                                        "",//idZonaFin
-                                        "",//DireccionFin
-                                        "",//descripcion pago extra
-                                        "",  //IMPORTE EXTRAORDINARIO
-                                        ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
-                                ).execute();
-
-                        }
-                    });
-                    dialogo1.setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogo1, int id) {
-                            btnTiempoEspera1.setVisibility(View.VISIBLE);
-                            btnTiempoEspera2.setVisibility(View.GONE);
-                            lienarTiempoEspera.setVisibility(View.GONE);
-                        }
-                    });
-                    dialogo1.show();
-                }else {
-                    Toast.makeText(activity,"Ingrese minutos",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        final Button btnGatosExtraordinario1=(Button)view.findViewById(R.id.btnPagoExtraOrdinadrio1);
-        final Button btnGatosExtraordinario2=(Button)view.findViewById(R.id.btnPagoExtraOrdinadrio2);
-        final LinearLayout linearPagosExtras=(LinearLayout)view.findViewById(R.id.linearPagosExtras);
-        final EditText editPagosExras=(EditText)view.findViewById(R.id.editPagoExtraOrdinario);
-        final Button btnEnviarPagosExras=(Button)view.findViewById(R.id.btnEnviarPagosExtraOrdinarios);
-
-        final EditText editDescriopcionPagoExtra=(EditText)view.findViewById(R.id.editDescripcionPagoExtra);
-
-        btnGatosExtraordinario1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnGatosExtraordinario1.setVisibility(View.GONE);
-                btnGatosExtraordinario2.setVisibility(View.VISIBLE);
-                linearPagosExtras.setVisibility(View.VISIBLE);
-            }
-        });
-
-        btnGatosExtraordinario2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnGatosExtraordinario1.setVisibility(View.VISIBLE);
-                btnGatosExtraordinario2.setVisibility(View.GONE);
-                linearPagosExtras.setVisibility(View.GONE);
-                editPagosExras.setText("");
-                editDescriopcionPagoExtra.setText("");
-            }
-        });
-
-        btnEnviarPagosExras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(editPagosExras.getText().toString().trim().length()!=0){
-                    String importePagoExtra=editPagosExras.getText().toString().trim();
-                    String descripcion=editDescriopcionPagoExtra.getText().toString().trim();
-                    if(!importePagoExtra.equals("0")){
-                        new wsActualizarServicio(
-                                activity,
-                                idServicio,
-                                "",//indAireacondicionado
-                                "",//aireAcondicionado
-                                "",//peaje
-                                "",//importe tiempo espera
-                                "",//minutos tiempoEspera
-                                "",//importe servicio
-                                "",//idDistritoIncio
-                                "",//idZonaIncio
-                                "",//DireccionIncio
-                                "",//idDistritoFin
-                                "",//idZonaFin
-                                "",//DireccionFin
-                                descripcion,
-                                importePagoExtra,  //IMPORTE EXTRAORDINARIO
-                                ""  //ID TIPO PAGO SERVCIO CREDITO O CONTADO  1 CONTADO 2 CREDITO
-                        ).execute();
-                    }
-
-                }else {
-                    Toast.makeText(MapsConductorClienteServicio.this,"Ingrese una cantidad",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-        final Button btnModificarRuta1=(Button)view.findViewById(R.id.btnModificarRuta1);
-        final Button btnModificarRuta2=(Button)view.findViewById(R.id.btnModificarRuta2);
-        final LinearLayout linearContenedor=(LinearLayout)view.findViewById(R.id.LinearContenedorRutaNueva);
-        final Button btnEnviarRutaNueva=(Button)view.findViewById(R.id.btnEnviarNuevaRuta);
-        final AutoCompleteTextView editDestino1=(AutoCompleteTextView)view.findViewById(R.id.autocompleteDireccion1);
-        final AutoCompleteTextView editDestino2=(AutoCompleteTextView)view.findViewById(R.id.autocompleteDireccion2);
-        editDestino1.setOnItemClickListener(mAutocompleteClickListener_1);
-        editDestino1.setAdapter(mAdapter);
-
-        editDestino2.setOnItemClickListener(mAutocompleteClickListener_2);
-        editDestino2.setAdapter(mAdapter);
-        btnModificarRuta1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnModificarRuta1.setVisibility(View.GONE);
-                btnModificarRuta2.setVisibility(View.VISIBLE);
-                linearContenedor.setVisibility(View.VISIBLE);
-                //SETENADO LA DIRECCION INCIAL DEL CLIENTE
-                editDestino1.setText(AddresIncioCliente);
-            }
-        });
-
-        btnModificarRuta2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnModificarRuta1.setVisibility(View.VISIBLE);
-                btnModificarRuta2.setVisibility(View.GONE);
-                linearContenedor.setVisibility(View.GONE);
-            }
-        });
-
-        alertBilder.setView(view);
-        final AlertDialog alertAdicionales = alertBilder.create();
-
-        btnEnviarRutaNueva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String addres1=editDestino1.getText().toString().trim();
-                String addres2=editDestino2.getText().toString().trim();
-
-                if(addres1.length()!=0 && addres2.length()!=0){
-
-                    Log.d("dataComplex",editDestino1.getText().toString());
-                    JSONObject jsonAdress1=new JSONObject();
-                    try {
-                        if(addres1.length()!=0){
-                            jsonAdress1.put("addresOrigen",addres1);
-                            fichero.InsertaDireccionIncio(jsonAdress1.toString());
-                            Log.d("addreORIGIN",fichero.ExtraerDireccionIncio().toString());
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    //ENTRE EL PRECIO DE IR DE UNA ZONA A OTRA
-                    JSONObject jsonAdress2=new JSONObject();
-                    try {
-                        if(addres2.length()!=0){
-                            jsonAdress2.put("addresDestino",addres2);
-                            fichero.InsertaDireccionFin(jsonAdress2.toString());
-                            Log.d("addreORIGIN",fichero.ExtraerDireccionFin().toString());
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    //Extrae el precio de zona por zona
-                    new wsExtraerPrecioZonaDistrito(activity,alertAdicionales,idServicio,idCliente).execute();
-                }
-            }
-        });
-        imagenCanceleAlertAdicionales.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertAdicionales.dismiss();
-            }
-        });
-        alertAdicionales.setCancelable(false);
-        alertAdicionales.show();
-    }
-
     private void alert(final String stadoServicio, final String mensaje, final int caseObjeto){
       final Activity activity=MapsConductorClienteServicio.this;
         final AlertDialog.Builder alertDialogBuilder1 = new AlertDialog.Builder(activity);

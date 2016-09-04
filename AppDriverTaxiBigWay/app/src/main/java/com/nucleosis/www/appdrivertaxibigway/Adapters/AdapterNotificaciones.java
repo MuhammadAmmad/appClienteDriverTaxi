@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,27 +32,20 @@ public class AdapterNotificaciones extends RecyclerView.Adapter<AdapterNotificac
     public class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         // Referencias UI
-        public ImageView imagen;
+        public Button btnDetalle;
         public TextView addres;
         public TextView fecha;
         public TextView distritos;
-       // public ImageButton imageButtonVerNotificacion;
 
         public ViewHolder(View v) {
             super(v);
-            imagen = (ImageView) v.findViewById(R.id.imagen);
             addres = (TextView) v.findViewById(R.id.nombre);
             fecha=(TextView)v.findViewById(R.id.lblFecha);
             distritos=(TextView)v.findViewById(R.id.lblDistritos);
-         //   imageButtonVerNotificacion=(ImageButton)v.findViewById(R.id.imageVerNotificacion);
-
+            btnDetalle=(Button)v.findViewById(R.id.btnDetalleServ) ;
             addres.setTypeface(myTypeFace.openRobotoLight());
             fecha.setTypeface(myTypeFace.OpenSansRegular());
-          //  distritos.setTypeface(myTypeFace.openRobotoLight());
-           // imageButtonVerNotificacion.setOnClickListener(this);
-            imagen.setOnClickListener(this);
-           // v.setOnClickListener(this);
-           // visitas.setOnClickListener(this);
+            btnDetalle.setOnClickListener(this);
         }
 
         @Override
@@ -63,8 +57,6 @@ public class AdapterNotificaciones extends RecyclerView.Adapter<AdapterNotificac
     private String obtenerNotificacion(int posicion) {
         if (items != null) {
             String pos=String.valueOf(posicion);
-            //
-          //  return items.get(posicion).getIdServicio();
             return  pos;
         }
 
@@ -87,7 +79,7 @@ public class AdapterNotificaciones extends RecyclerView.Adapter<AdapterNotificac
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        viewHolder.imagen.setImageResource(items.get(i).getImagenOptional());
+     //   viewHolder.imagen.setImageResource(items.get(i).getImagenOptional());
         viewHolder.addres.setText("Incio: "+items.get(i).getDireccionIncio()+"\n"+"Fin: "+items.get(i).getDireccionFinal());
         viewHolder.fecha.setText(items.get(i).getFecha()+"\n"+items.get(i).getHora());
         viewHolder.distritos.setText(items.get(i).getNameDistritoInicio()+" / "+items.get(i).getNameDistritoFin());

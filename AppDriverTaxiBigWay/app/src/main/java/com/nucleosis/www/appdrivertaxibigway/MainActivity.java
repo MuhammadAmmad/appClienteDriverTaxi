@@ -52,6 +52,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nucleosis.www.appdrivertaxibigway.Adapters.AdapterListVehiculos;
 import com.nucleosis.www.appdrivertaxibigway.Adapters.AdapterNotificaciones;
+import com.nucleosis.www.appdrivertaxibigway.AlertDialog.CustomAlertDialog;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansDataDriver;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansHistorialServiciosCreados;
 import com.nucleosis.www.appdrivertaxibigway.Beans.beansVehiculoConductor;
@@ -90,7 +91,7 @@ import java.util.List;
  * Created by karlos on 21/03/2016.
  */
 public class MainActivity extends AppCompatActivity
-        implements OnMapReadyCallback, View.OnClickListener, AdapterNotificaciones.OnItemClickListener {
+        implements OnMapReadyCallback, View.OnClickListener {
     private componentesR compR;
     public static Activity MAIN_ACTIVITY;
     private MapFragment mapFragment;
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity
     private List<beansHistorialServiciosCreados> ListaServiciosCreados;
     private AlertDialog alertDialogPanelNotificacion;
     private int MY_PERMISSION_ACCESS_COURSE_LOCATION = 16;
+    private CustomAlertDialog customAlertDialog;
     // Assume thisActivity is the current activity
 
     @Override
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity
         compR.cargar_toolbar_2(MAIN_ACTIVITY);
         preferencesDriver = new PreferencesDriver(MainActivity.this);
         //|compR.getToolbar_2().setTitle("Mi ubicacion");
+        customAlertDialog=new CustomAlertDialog(this);
         compR.Contros_main_activity(MAIN_ACTIVITY);
 
         if (compR.getNavigationView() != null) {
@@ -135,7 +138,6 @@ public class MainActivity extends AppCompatActivity
         new wsExtraerConfiguracionAdicionales(MainActivity.this).execute();
         new wsExtraerHoraServer(MainActivity.this).execute();
         ListaServiciosCreados = new ArrayList<beansHistorialServiciosCreados>();
-
         levantarServicioBackground();
         CreaBroadcasReceiver();
     }
@@ -159,52 +161,6 @@ public class MainActivity extends AppCompatActivity
         startService(intent);
     }
 
-    @Override
-    public void onClick(AdapterNotificaciones.ViewHolder holder, String posicion) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        final View view = this.getLayoutInflater().inflate(R.layout.view_detalle_servicio_custom, null);
-        final int posicion_ = Integer.parseInt(posicion);
-        TextView lblDetalleServicio = (TextView) view.findViewById(R.id.txtDetalleServicio);
-        //   Toast.makeText(this, ListaServiciosCreados.get(posicion_).getIdServicio().toString(), Toast.LENGTH_SHORT).show();
-        String detalle = Constans.DetalleServicioLista(this,ListaServiciosCreados,posicion_);
-        lblDetalleServicio.setText(Html.fromHtml(detalle));
-        alertDialogBuilder.setView(view);
-        AlertDialog alertDialog;
-
-        alertDialogBuilder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
-
-                dialogo1.setTitle(R.string.importante);
-                dialogo1.setMessage(R.string.mensajeAlert);
-                dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton(R.string.Confirmar, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        alertDialogPanelNotificacion.dismiss();
-                        new wsAsignarServicioConductor(MainActivity.this,
-                                ListaServiciosCreados.get(posicion_).getIdServicio()).execute();
-                    }
-                });
-                dialogo1.setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-
-                    }
-                });
-                dialogo1.show();
-
-                // Create the AlertDialog object and return it
-
-            }
-        }).setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
 
     private class ResponseReceiverListarServiciosCreados extends BroadcastReceiver {
 
@@ -212,11 +168,10 @@ public class MainActivity extends AppCompatActivity
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
                 case Utils.ACTION_RUN_SERVICE_2:
-                    //  Toast.makeText(MainActivity.this,intent.getStringExtra(Utils.EXTRA_MEMORY_2),Toast.LENGTH_LONG).show();
                     ListaServiciosCreados.clear();
                     String json = intent.getStringExtra(Utils.EXTRA_MEMORY_2);
                     if (json != null) {
-                            //  Log.d("jsonList_", json.toString());
+                             Log.d("jsonList_", json.toString());
                         try {
                             final JSONArray jsonArray = new JSONArray(json);
 
@@ -251,6 +206,8 @@ public class MainActivity extends AppCompatActivity
                                 row.setImportePeaje(jsonArray.getJSONObject(i).getString("importePeaje"));
                                 row.setIndAireAcondicionado(jsonArray.getJSONObject(i).getString("indAireAcondicionado"));
                                 row.setImporteAireAcondicionado(jsonArray.getJSONObject(i).getString("importeAireAcondicionado"));
+                                row.setNameCliente(jsonArray.getJSONObject(i).getString("nameCliente"));
+                                row.setTipoPago(jsonArray.getJSONObject(i).getString("tipoPago"));
                                 //   row.setImagenOptional(R.mipmap.ic_notifica_send);
                                 ListaServiciosCreados.add(row);
 
@@ -266,43 +223,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
-    private int validarUltimaCoordenadaEnviada(String HoraServer, String HoraCoordenada) {
-        Log.d("horaServer", HoraServer + "--->Coor: " + HoraCoordenada);
-        int minutos = 0;
-        if (HoraServer.length() == 5 && HoraCoordenada.length() == 5) {
-            /* HoraServer="18:01";//135 //HORA ACTUAL 22:50
-             HoraTurno="06:00";//1130 // HORA DEL TURNO*/
-            int minutosFormales = 12 * 60;
-
-            int H1 = Integer.parseInt(HoraServer.substring(0, 2));
-            int M1 = Integer.parseInt(HoraServer.substring(3, 5));
-            int TotalMinutos1 = H1 * 60 + M1;
-
-            int H2 = Integer.parseInt(HoraCoordenada.substring(0, 2));
-            int M2 = Integer.parseInt(HoraCoordenada.substring(3, 5));
-
-            int TotalMinutos2 = H2 * 60 + M2;
-
-            if (H1 < H2) {
-                int diaMinutos = 24 * 60;
-                int RestaParcialMinutos = diaMinutos - TotalMinutos2;
-                Log.d("horaTermino", String.valueOf(RestaParcialMinutos));
-                int SumaTotal = RestaParcialMinutos + TotalMinutos1;
-                Log.d("TotalMintuos", String.valueOf(SumaTotal));
-
-                minutos = SumaTotal;
-            } else if (H1 >= H2) {
-                minutos = TotalMinutos1 - TotalMinutos2;
-                Log.d("TotalMintuos", String.valueOf(minutos));
-            }
-        }
-
-
-        Log.d("minutosRetorno", String.valueOf(minutos));
-        return minutos;
-    }
-
     private class ResponseReceiver extends BroadcastReceiver {
         private ResponseReceiver() {
         }
@@ -314,33 +234,26 @@ public class MainActivity extends AppCompatActivity
                     String data = intent.getStringExtra(Utils.EXTRA_MEMORY);
                     //Toast.makeText(MainActivity.this,data,Toast.LENGTH_LONG).show();
                     if (data.equals("0")) {
-                        Log.d("EstadoTurno", "-->inactivo");
                         compR.getBtnActivarTurno().setVisibility(View.VISIBLE);
                         compR.getBtnDesactivarTurno().setVisibility(View.GONE);
                         compR.getBtnIrAServicios().setVisibility(View.GONE);
                         swTurno = 2;
                     } else if (data.equals("1")) {
-                        Log.d("EstadoTurno", "-->activo");
 
                         try {
                             JSONObject jsonSever = preferencesDriver.ExtraerHoraSistema();
                             JSONObject jsonCoordendas = fichero.ExtraerFechaHoraUltimaDeCoordenadas();
                             if (jsonSever != null && jsonCoordendas != null) {
-                                int tiempoUltimaCoordenada = validarUltimaCoordenadaEnviada(
+                                int tiempoUltimaCoordenada = Constans.validarUltimaCoordenadaEnviada(
                                         jsonSever.getString("horaServidor").toString(),
                                         jsonCoordendas.getString("HoraCoordenda").toString());
-                                Log.d("tiempoUltimaCoordenad", String.valueOf(tiempoUltimaCoordenada)+"***"+jsonSever.getString("horaServidor").toString()+"***"
-                                        +jsonCoordendas.getString("HoraCoordenda").toString());
 
                                 if (tiempoUltimaCoordenada >= 2) {
-                                    Log.d("xx_Location",String.valueOf(tiempoUltimaCoordenada));
                                    Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
                                    startService(intent1);
                                 }
                             } else {
                                 Log.d("stadoCordendasEnvio", "nulll");
-                               // Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
-                              //  startService(intent1);
 
                             }
 
@@ -420,10 +333,10 @@ public class MainActivity extends AppCompatActivity
 
                 return true;
             case R.id.menuAlert:
-                Log.d("turnoxxInt",String.valueOf(swTurno));
+               // Log.d("turnoxxInt",String.valueOf(swTurno));
                 if (swTurno == 1) {
                     if (swPermiteSoloUnServicioTomado == 1) {
-                        cargarAlertNotificaciones();
+                        customAlertDialog.CargarNotificaciones(ListaServiciosCreados);
                     } else {
                         String msn=getResources().getString(R.string.tienesServicios);
                         Toast.makeText(MainActivity.this, msn,
@@ -439,36 +352,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void cargarAlertNotificaciones() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        final View view = this.getLayoutInflater().inflate(R.layout.view_notificaicon_recycler, null);
-        //   RecyclerView.Adapter adapter;
-        RecyclerView.Adapter adapter;
-        RecyclerView.LayoutManager lManager;
-        //onLayoutChildren
-
-        compR.Controls_notificaciones(view);
-        //requestWindowFeature
-        compR.getRecycler().setClipToPadding(true);
-        compR.getRecycler().setHasFixedSize(true);
-        // Usar un administrador para LinearLayout
-        lManager = new LinearLayoutManager(this);
-        compR.getRecycler().setLayoutManager(lManager);
-        // Crear un nuevo adaptador
-
-        adapter = new AdapterNotificaciones(ListaServiciosCreados, this, this);
-        compR.getRecycler().setAdapter(adapter);
-        alertDialogBuilder.setView(view);
-        alertDialogPanelNotificacion = alertDialogBuilder.create();
-        compR.getBtnDismisNotificaciones().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialogPanelNotificacion.dismiss();
-            }
-        });
-        //alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialogPanelNotificacion.show();
-    }
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -497,169 +380,21 @@ public class MainActivity extends AppCompatActivity
                                 setFragment(2);
                                 break;
                             case R.id.cerrarSesion:
-                                cerrar_sesion_Alert();
+                                //cerrar_sesion_Alert();
+                                customAlertDialog.CerrarSesion();
                                 break;
 
                             case R.id.llamarCentral:
-                                llamar_a_central();
+                              //  llamar_a_central();
+                                customAlertDialog.LlamarACentral();
                                 break;
                         }
                         return true;
                     }
                 });
     }
-    private void cerrar_sesion_Alert(){
-        AlertDialog.Builder alertBilder = new AlertDialog.Builder(MainActivity.this);
-        alertBilder.setTitle(R.string.cerrar_sesion);
-        alertBilder.setMessage(R.string.msnCerrar_sesion);
-        alertBilder.setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                JSONObject jsonSesion = new JSONObject();
-                try {
-                    jsonSesion.put("idSesion", "0");
-                    fichero.InsertarSesion(jsonSesion.toString());
-                    Log.d("StracFichero", fichero.ExtraerSesion().toString());
-                    Intent intentLongin = new Intent(MainActivity.this, LoingDriverApp.class);
-                    startActivity(intentLongin);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    Log.d("acatividad", "Destrudia en sesion");
-                    Intent intent=new Intent(MainActivity.this,ServiceTurno.class);
-                    stopService(intent);
-                    finish();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-        alertBilder.show();
-
-        }
-    private void llamar_a_central(){
-    JSONObject jsonConfiguraciones=fichero.ExtraerConfiguraciones();
-    String direccion1;
-    String telefono1="00-0000";
-    if(jsonConfiguraciones!=null){
-        try {
-            telefono1=jsonConfiguraciones.getString("numTelefonoEmpesa");
-            direccion1=jsonConfiguraciones.getString("direccionEmpresa");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-    AlertDialog.Builder alertBilder = new AlertDialog.Builder(MainActivity.this);
-    final View view = getLayoutInflater().inflate(R.layout.view_llamada_central, null);
-    final TextView txtTelefono1=(TextView)view.findViewById(R.id.txtTefono1);
-    final TextView txtTelefono2=(TextView)view.findViewById(R.id.txtTefono2);
-    final TextView txtTelefono3=(TextView)view.findViewById(R.id.txtTefono3);
-    final TextView txtTelefono4=(TextView)view.findViewById(R.id.txtTefono4);
-    Button btnCancelarTelefonos=(Button)view.findViewById(R.id.btnCerrarTelefonos);
-    txtTelefono1.setTypeface(myTypeFace.OpenSansRegular());
-    txtTelefono2.setTypeface(myTypeFace.OpenSansRegular());
-    txtTelefono3.setTypeface(myTypeFace.OpenSansRegular());
-    txtTelefono4.setTypeface(myTypeFace.OpenSansRegular());
-    btnCancelarTelefonos.setTypeface(myTypeFace.openRobotoLight());
 
 
-
-    alertBilder.setView(view);
-    final AlertDialog alertDialog = alertBilder.create();
-    JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-    Log.d("configuracionTeel",fichero.ExtraerConfiguraciones().toString());
-    if(configuracionesJson!=null){
-        try {
-            txtTelefono1.setText("Tel 1:\t "+configuracionesJson.getString("numTelefonoEmpesa"));
-            txtTelefono2.setText("Tel 2:\t "+configuracionesJson.getString("numTelefonoEmpesa_2"));
-            txtTelefono3.setText("Tel 3:\t "+configuracionesJson.getString("numTelefonoEmpesa_3"));
-            txtTelefono4.setText("Tel 4:\t "+configuracionesJson.getString("numTelefonoEmpesa_4"));
-
-            //tel:998319046
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    txtTelefono1.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-            String    telef_1= null;
-            try {
-                telef_1 = configuracionesJson.getString("numTelefonoEmpesa");
-                Intent i = new Intent(Intent.ACTION_DIAL,
-                        Uri.parse("tel:"+telef_1)); //
-                startActivity(i);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-    });
-    txtTelefono2.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-            String    telef_2= null;
-            try {
-                telef_2 = configuracionesJson.getString("numTelefonoEmpesa_2");
-                Intent i = new Intent(Intent.ACTION_DIAL,
-                        Uri.parse("tel:"+telef_2)); //
-                startActivity(i);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    });
-
-    txtTelefono3.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-            String    telef_3= null;
-            try {
-                telef_3 = configuracionesJson.getString("numTelefonoEmpesa_3");
-                Intent i = new Intent(Intent.ACTION_DIAL,
-                        Uri.parse("tel:"+telef_3)); //
-                startActivity(i);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    });
-    txtTelefono4.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            JSONObject configuracionesJson=fichero.ExtraerConfiguraciones();
-            String    telef_4= null;
-            try {
-                telef_4 = configuracionesJson.getString("numTelefonoEmpesa_4");
-                Intent i = new Intent(Intent.ACTION_DIAL,
-                        Uri.parse("tel:"+telef_4)); //
-                startActivity(i);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    });
-
-    btnCancelarTelefonos.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            alertDialog.dismiss();
-        }
-    });
-
-
-
-    alertDialog.show();
-}
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -715,20 +450,13 @@ public class MainActivity extends AppCompatActivity
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSION_ACCESS_COURSE_LOCATION);
-            Log.d("xxx","fasdfasdf");
         } else {
-            Log.d("holaa","fsadfsdaf");
             map.setMyLocationEnabled(true);
             map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
                 @Override
                 public void onMyLocationChange(Location pos) {
-
-                    /// Toast.makeText(getApplicationContext(),String.valueOf(pos.getLatitude()+"****"+pos.getLongitude()),Toast.LENGTH_SHORT).show();
                     lat[0] = pos.getLatitude();
                     lon[0] = pos.getLongitude();
-                    // Log.d("lat-->",String.valueOf(lat[0]));
-                /*CameraUpdate cam = CameraUpdateFactory.newLatLng(new LatLng(
-                        lat[0], lon[0]));*/
                     CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(
                             lat[0], lon[0]), 16);
                     map.moveCamera(cam);
@@ -743,9 +471,6 @@ public class MainActivity extends AppCompatActivity
         if (requestCode == MY_PERMISSION_ACCESS_COURSE_LOCATION) {
             if(grantResults.length == 1
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // We can now safely use the API we requested access to
-               /* Location myLocation =
-                        LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);*/
             } else {
                 // Permission was denied or request was cancelled
             }
@@ -755,9 +480,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            finish();
-
-            return true;
+           // finish();            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -766,90 +489,23 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnActivarTurno:
-               // Toast.makeText(MainActivity.this,String.valueOf(preferencesDriver.OpenIdDriver()),Toast.LENGTH_LONG).show();
-               Alert_Elegir_taxi_conductor();
-
+                customAlertDialog.Alert_Elegir_taxi_conductor();
                 break;
             case R.id.btnDesactivarTurno:
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(MainActivity.this);
-                dialogo1.setTitle(R.string.importante);
-                dialogo1.setMessage(R.string.desactivatTurno);
-                dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        new wsDesactivarTurno(MainActivity.this).execute();
-                    }
-                });
-                dialogo1.setNegativeButton(R.string.CANCEL, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-
-                    }
-                });
-                dialogo1.show();
-
+                customAlertDialog.DescativarTurno();
                 break;
             case R.id.btnIrA_Servicios:
-                //Toast.makeText(MainActivity.this,"hola",Toast.LENGTH_LONG).show();
                 compR.getLinearFragment().setVisibility(View.GONE);
                 setFragment(1);
                 break;
-
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("acatividad", "Destrudia");
         Intent intent=new Intent(MainActivity.this,ServiceTurno.class);
         stopService(intent);
-
-       /* Intent intent1=new Intent(MainActivity.this, ServiceListarServiciosCreados.class);
-        stopService(intent1);*/
-      //  swTurno=0;
     }
 
-    private void Alert_Elegir_taxi_conductor() {
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        final View view = this.getLayoutInflater().inflate(R.layout.view_elegir_taxi_conductor, null);
-        final Button btnCancel=(Button)view.findViewById(R.id.btnCancel);
-        final Button btnOk=(Button)view.findViewById(R.id.btnOk);
-        alertDialogBuilder.setView(view);
-        final int[] idVehiculo = {0};
-        compR.Controls_alert_elegir_auto_conductor(view);
-        //TextView lblElijaSuVehiculo=(TextView)view.findViewById(R.id.lblVehiculo);
-        new wsListVehiculos(MainActivity.this,view).execute();
-
-        compR.getSpinerVehiculo().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (wsListVehiculos.listVehiculos != null) {
-                    List<beansVehiculoConductor> lista = wsListVehiculos.listVehiculos;
-                    idVehiculo[0] = lista.get(position).getIdVehiculo();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-       final AlertDialog alertDialog = alertDialogBuilder.create();
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (idVehiculo[0] != 0) {
-                    new wsActivarTurno(MainActivity.this, idVehiculo[0]).execute();
-                    alertDialog.dismiss();
-                }
-            }
-        });
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-
-        alertDialog.show();
-    }
 }
