@@ -41,7 +41,9 @@ import com.nucleosis.www.appdrivertaxibigway.LoingDriverApp;
 import com.nucleosis.www.appdrivertaxibigway.PointPolygono.PointDentroPolygono;
 import com.nucleosis.www.appdrivertaxibigway.R;
 import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.ServiceTurno;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
 import com.nucleosis.www.appdrivertaxibigway.TypeFace.MyTypeFace;
+import com.nucleosis.www.appdrivertaxibigway.ws.UpdateLocationDriver;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActivarTurno;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsActualizarServicio;
 import com.nucleosis.www.appdrivertaxibigway.ws.wsAsignarServicioConductor;
@@ -362,6 +364,10 @@ public class CustomAlertDialog implements AdapterNotificaciones.OnItemClickListe
                     Intent intent=new Intent(context,ServiceTurno.class);
                     context.stopService(intent);
                     activity.finish();
+
+                    Intent intent1=new Intent(context,locationDriver.class);
+                    context.stopService(intent1);
+                    new UpdateLocationDriver(context,"","","3").execute();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

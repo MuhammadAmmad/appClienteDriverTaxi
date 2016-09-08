@@ -32,10 +32,12 @@ public class UpdateLocationDriver extends AsyncTask<String,String,String[]> {
     private String ID_DRIVER;
     private Fichero fichero;
     private JSONObject jsonFecha;
-    public UpdateLocationDriver(Context context, String lat, String lon) {
+    private String idStadoConductor;
+    public UpdateLocationDriver(Context context, String lat, String lon,String idStadoConductor) {
         this.context = context;
         this.lat = lat;
         this.lon = lon;
+        this.idStadoConductor=idStadoConductor;
         preferencesDriver=new PreferencesDriver(context);
         fichero=new Fichero(context);
         ID_DRIVER =preferencesDriver.OpenIdDriver();
@@ -56,10 +58,12 @@ public class UpdateLocationDriver extends AsyncTask<String,String,String[]> {
         SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo3());
         SoapSerializationEnvelope envelope= new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = false;
-        request.addProperty("idConductor", Integer.parseInt(ID_DRIVER));
         Log.d("latLon_",String.valueOf(lat)+"-->"+lon);
+        request.addProperty("idConductor", Integer.parseInt(ID_DRIVER));
         request.addProperty("numPosicionLatitud", lat);
         request.addProperty("numPosicionLongitud",lon);
+        request.addProperty("idConductorTurnoEstado",idStadoConductor);
+        Log.d("request_x",request.toString());
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 

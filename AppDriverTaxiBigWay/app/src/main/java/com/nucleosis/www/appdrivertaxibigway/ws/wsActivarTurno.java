@@ -99,7 +99,12 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
                 compR.getBtnIrAServicios().setVisibility(View.VISIBLE);
 
                 intent=new Intent(context,locationDriver.class);
+                context.stopService(intent);
+
+                intent=new Intent(context,locationDriver.class);
+                intent.putExtra("idStadoConductor","2");
                 context.startService(intent);
+
                 MainActivity.swTurno=1;
                 //intent=new Intent(context,ServiceTurno.class);
                 //context.startService(intent);

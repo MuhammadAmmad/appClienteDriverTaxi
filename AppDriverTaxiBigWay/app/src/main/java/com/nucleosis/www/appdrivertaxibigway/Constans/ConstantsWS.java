@@ -14,7 +14,9 @@ public class ConstantsWS {
     private static final String METHODO_2="WS_CONDUCTOR_ENCONTRAR_POR_DNI";
     private static final String SOAP_ACTION_2=NAME_SPACE+"/"+METHODO_2;
 
-    private static final String METHODO_3="WS_CONDUCTOR_ACTUALIZAR_POSICION";
+    //WS_CONDUCTOR_ACTUALIZAR_POSICION
+  //USP_CONDUCTOR_ACTUALIZAR_POSICION_TURNO_ESTADO
+    private static final String METHODO_3="USP_CONDUCTOR_ACTUALIZAR_POSICION_TURNO_ESTADO";
     private static final String SOAP_ACTION_3=NAME_SPACE+"/"+METHODO_3;
 
     private static final String METHODO_4="WS_TURNO_ACTIVAR";

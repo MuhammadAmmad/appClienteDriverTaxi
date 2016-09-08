@@ -32,6 +32,7 @@ import org.ksoap2.transport.HttpTransportSE;
  * Created by karlos on 21/03/2016.
  */
 import com.nucleosis.www.appdrivertaxibigway.R;
+import com.nucleosis.www.appdrivertaxibigway.ServiceDriver.locationDriver;
 import com.nucleosis.www.appdrivertaxibigway.Sqlite.SqlGestion;
 
 import java.util.ArrayList;
@@ -111,6 +112,10 @@ public class LoginDriverWS extends AsyncTask<User,String,String> {
             try {
                 jsonSesion2.put("idSesion","1");
                 fichero.InsertarSesion(jsonSesion2.toString());
+
+                Intent intent=new Intent(context,locationDriver.class);
+                intent.putExtra("idStadoConductor","1");
+                context.startService(intent);
                 //CREAMOS LA BASE DE DATOS SQLITE
 
                 SqlGestion  sqlGestion=new SqlGestion(context);

@@ -250,6 +250,7 @@ public class MainActivity extends AppCompatActivity
 
                                 if (tiempoUltimaCoordenada >= 2) {
                                    Intent intent1 = new Intent(MainActivity.this, locationDriver.class);
+                                    intent.putExtra("idStadoConductor","2");
                                    startService(intent1);
                                 }
                             } else {
@@ -381,7 +382,21 @@ public class MainActivity extends AppCompatActivity
                                 break;
                             case R.id.cerrarSesion:
                                 //cerrar_sesion_Alert();
-                                customAlertDialog.CerrarSesion();
+                                Log.d("swTurno",String.valueOf(swTurno));
+                                switch (swTurno){
+                                    case 0:
+                                        customAlertDialog.CerrarSesion();
+                                        break;
+                                    case 1:
+                                        Toast.makeText(MainActivity.this,"Desactive el turno para Cerrar Sesión",Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case 2:
+                                        customAlertDialog.CerrarSesion();
+                                        break;
+
+                                }
+
+
                                 break;
 
                             case R.id.llamarCentral:

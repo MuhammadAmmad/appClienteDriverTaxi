@@ -106,7 +106,13 @@ public class wsDesactivarTurno extends AsyncTask<String,String,String[]> {
                  intent=new Intent(context,locationDriver.class);
                  context.stopService(intent);
                   Log.d("stopLocation","xxxx");
-                new UpdateLocationDriver(context,"","").execute();
+
+                intent=new Intent(context,locationDriver.class);
+                intent.putExtra("idStadoConductor","1");
+                context.startService(intent);
+
+                // String idStadoConductor="1";
+               // new UpdateLocationDriver(context,"","",idStadoConductor).execute();
 
                 Toast.makeText(context, data[1], Toast.LENGTH_LONG).show();
                 intent=new Intent(context, ServiceTurno.class);

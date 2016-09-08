@@ -48,7 +48,7 @@ public class locationDriver extends Service
         super.onCreate();
         context=(Context)this;
         fichero=new Fichero(context);
-        if ( Build.VERSION.SDK_INT >= 23 &&
+       /* if ( Build.VERSION.SDK_INT >= 23 &&
                 ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -63,14 +63,19 @@ public class locationDriver extends Service
             updateLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, Utils.TIME_LOCATION_DRIVER, 0, this);
 
-        }
+        }*/
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        updateLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, Utils.TIME_LOCATION_DRIVER, 0, this);
+
 
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("servicio_x---->", "servicio Inciado");
+        Log.d("idStadoConducotr",intent.getStringExtra("idStadoConductor"));
+      final  String idStadoConductor=intent.getStringExtra("idStadoConductor");
         final Timer timer = new Timer();
-
         timerTask =new TimerTask() {
             int x=0;
             @Override
@@ -82,14 +87,12 @@ public class locationDriver extends Service
                     jsonCoordenadas.put("latitud",LatLong[0]);
                     jsonCoordenadas.put("longitud",LatLong[1]);
                     fichero.InsertarCoordendaConductor(jsonCoordenadas.toString());
-                    /*if(fichero.ExtraerCoordendaConductor()!=null){
-                        Log.d("coordernadas_",fichero.ExtraerCoordendaConductor().toString());
-                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
                 new UpdateLocationDriver(locationDriver.this,LatLong[0],
-                        LatLong[1])
+                        LatLong[1],idStadoConductor)
                         .execute();
             }
         };
