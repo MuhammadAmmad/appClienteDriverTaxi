@@ -72,16 +72,19 @@ public class locationDriver extends Service
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("servicio_x---->", "servicio Inciado");
-        Log.d("idStadoConducotr",intent.getStringExtra("idStadoConductor"));
-      final  String idStadoConductor=intent.getStringExtra("idStadoConductor");
+         String idStadoConductor="";
+        if(intent.hasExtra("idStadoConductor")){
+            idStadoConductor=intent.getStringExtra("idStadoConductor");
+        }
+
         final Timer timer = new Timer();
+        final String finalIdStadoConductor = idStadoConductor;
         timerTask =new TimerTask() {
             int x=0;
             @Override
             public void run() {
                 x++;
-                Log.d("incio_timer", "iniciando........" + String.valueOf(x));
+              //  Log.d("incio_timer", "iniciando........" + String.valueOf(x));
                 JSONObject jsonCoordenadas=new JSONObject();
                 try {
                     jsonCoordenadas.put("latitud",LatLong[0]);
@@ -91,8 +94,11 @@ public class locationDriver extends Service
                     e.printStackTrace();
                 }
 
-                new UpdateLocationDriver(locationDriver.this,LatLong[0],
-                        LatLong[1],idStadoConductor)
+                new UpdateLocationDriver(
+                        locationDriver.this,
+                        LatLong[0],
+                        LatLong[1],
+                        finalIdStadoConductor)
                         .execute();
             }
         };
@@ -103,11 +109,11 @@ public class locationDriver extends Service
 
     @Override
     public void onDestroy() {
-        Log.d("servisLocation->","servicio terminado");
+      //  Log.d("servisLocation->","servicio terminado");
         super.onDestroy();
         timerTask.cancel();
-    }
 
+    }
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

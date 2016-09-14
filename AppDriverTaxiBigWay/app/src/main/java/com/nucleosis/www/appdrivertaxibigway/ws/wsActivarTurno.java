@@ -55,11 +55,6 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
         request.addProperty("usrRegistro", "");
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
-
-     /*   <idConductor xsi:type="xsd:int">?</idConductor>
-        <idAuto xsi:type="xsd:int">?</idAuto>
-        <usrRegistro xsi:type="xsd:int">?</usrRegistro>
-*/
         try {
             ArrayList<HeaderProperty> headerPropertyArrayList = new ArrayList<HeaderProperty>();
             headerPropertyArrayList.add(new HeaderProperty("Connection", "close"));
@@ -67,7 +62,7 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
             // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             SoapObject response2= (SoapObject)response1.getProperty("return");
-              Log.d("responseTurno",response2.toString());
+            //  Log.d("responseTurno",response2.toString());
             if(response2.hasProperty("IND_OPERACION")){
                 if(response2.getPropertyAsString("IND_OPERACION").equals("1")){
                     dataSalida[0]=response2.getPropertyAsString("IND_OPERACION");
@@ -106,8 +101,6 @@ public class wsActivarTurno  extends AsyncTask<String,String,String[]>{
                 context.startService(intent);
 
                 MainActivity.swTurno=1;
-                //intent=new Intent(context,ServiceTurno.class);
-                //context.startService(intent);
                 intent =new Intent(context, ServiceListarServiciosCreados.class);
                 context.startService(intent);
                 preferencesDriver.InsertarIdVehiculo(String.valueOf(idVehiculo));

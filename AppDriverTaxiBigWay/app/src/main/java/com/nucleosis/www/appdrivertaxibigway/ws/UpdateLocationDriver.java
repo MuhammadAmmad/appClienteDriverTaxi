@@ -52,7 +52,7 @@ public class UpdateLocationDriver extends AsyncTask<String,String,String[]> {
 
     @Override
     protected String[] doInBackground(String... params) {
-        Log.d("eta_aqui", "doInBackGround");
+       // Log.d("eta_aqui", "doInBackGround");
         String codLogin="";
         String[] data=new String[2];
         SoapObject request = new SoapObject(ConstantsWS.getNameSpace(),ConstantsWS.getMethodo3());
@@ -63,7 +63,7 @@ public class UpdateLocationDriver extends AsyncTask<String,String,String[]> {
         request.addProperty("numPosicionLatitud", lat);
         request.addProperty("numPosicionLongitud",lon);
         request.addProperty("idConductorTurnoEstado",idStadoConductor);
-        Log.d("request_x",request.toString());
+       // Log.d("request_x",request.toString());
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE(ConstantsWS.getURL());
 
@@ -74,7 +74,7 @@ public class UpdateLocationDriver extends AsyncTask<String,String,String[]> {
             // httpTransport.call(ConstantsWS.getSoapAction1(), envelope);
             SoapObject response1= (SoapObject) envelope.bodyIn;
             SoapObject response2= (SoapObject)response1.getProperty("return");
-            Log.d("responseLongitud",response2.toString());
+           // Log.d("responseLongitud",response2.toString());
             if(response2.hasProperty("IND_OPERACION")){
                 data[0]=response2.getPropertyAsString("IND_OPERACION").toString();
                 data[1]=response2.getPropertyAsString("DES_MENSAJE").toString();
@@ -102,8 +102,8 @@ public class UpdateLocationDriver extends AsyncTask<String,String,String[]> {
                 JSONObject jsonCoordenada=null;
 
                 try {
-                    Log.d("mensajeLocation",data[1].toString()+jsonFecha.getString("fechaServidor").toString()+" "+
-                                            jsonFecha.getString("horaServidor"));
+                    /*Log.d("mensajeLocation",data[1].toString()+jsonFecha.getString("fechaServidor").toString()+" "+
+                                            jsonFecha.getString("horaServidor"));*/
                     jsonCoordenada=new JSONObject();
                     jsonCoordenada.put("FechaCoordenda",jsonFecha.getString("fechaServidor").toString());
                     jsonCoordenada.put("HoraCoordenda",jsonFecha.getString("horaServidor").toString());

@@ -45,11 +45,7 @@ private boolean conec=false;
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnLoginDriver:
-               /* String USERX=compR.getEditUser().getText().toString().trim();
-                String PASSX=compR.getEditPass().getText().toString().trim();*/
-                ///VERIFICA LA CONEXION A INTERNET ....... Y LUEGO SE CONECTA
                 final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
-
                 if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
                     AlertNoGps();
                 }else{
@@ -87,8 +83,6 @@ private boolean conec=false;
                                             e.printStackTrace();
                                         }
                                     }
-
-
                                 }else {
                                     String msnInternet=getResources().getString(R.string.InternetAccessRevision);
                                     Toast.makeText(LoingDriverApp.this,msnInternet,Toast.LENGTH_LONG).show();
